@@ -1,23 +1,19 @@
-/*
- Navicat Premium Data Transfer
-
- Source Server         : sqlAngel
- Source Server Type    : SQL Server
- Source Server Version : 15002080
- Source Host           : CAS1:1433
- Source Catalog        : AREVALO_AYALA_DB
- Source Schema         : dbo
-
- Target Server Type    : SQL Server
- Target Server Version : 15002080
- File Encoding         : 65001
-
- Date: 15/06/2021 11:18:51
-*/
 
 
 -- ----------------------------
--- Table structure for CONVENIOS
+-- Creamos la Base de Datos	
+-- ----------------------------
+
+CREATE DATABASE AREVALO_AYALA_DB
+
+GO
+
+USE AREVALO_AYALA_DB
+
+GO 
+
+-- ----------------------------
+-- Estructura para  CONVENIOS
 -- ----------------------------
 IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[dbo].[CONVENIOS]') AND type IN ('U'))
 	DROP TABLE [dbo].[CONVENIOS]
@@ -39,7 +35,7 @@ GO
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for DIAS_Y_HORARIOS
+-- Estructura para  DIAS_Y_HORARIOS
 -- ----------------------------
 IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[dbo].[DIAS_Y_HORARIOS]') AND type IN ('U'))
 	DROP TABLE [dbo].[DIAS_Y_HORARIOS]
@@ -63,7 +59,7 @@ GO
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for ESPECIALIDAD_X_MEDICO
+-- Estructura para  ESPECIALIDAD_X_MEDICO
 -- ----------------------------
 IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[dbo].[ESPECIALIDAD_X_MEDICO]') AND type IN ('U'))
 	DROP TABLE [dbo].[ESPECIALIDAD_X_MEDICO]
@@ -93,7 +89,7 @@ GO
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for ESPECIALIDADES
+-- Estructura para  ESPECIALIDADES
 -- ----------------------------
 IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[dbo].[ESPECIALIDADES]') AND type IN ('U'))
 	DROP TABLE [dbo].[ESPECIALIDADES]
@@ -180,7 +176,7 @@ GO
 
 
 -- ----------------------------
--- Table structure for MEDICOS
+-- Estructura para  MEDICOS
 -- ----------------------------
 IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[dbo].[MEDICOS]') AND type IN ('U'))
 	DROP TABLE [dbo].[MEDICOS]
@@ -507,7 +503,7 @@ GO
 
 
 -- ----------------------------
--- Table structure for OBRAS_SOCIALES
+-- Estructura para  OBRAS_SOCIALES
 -- ----------------------------
 IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[dbo].[OBRAS_SOCIALES]') AND type IN ('U'))
 	DROP TABLE [dbo].[OBRAS_SOCIALES]
@@ -567,7 +563,7 @@ GO
 
 
 -- ----------------------------
--- Table structure for PACIENTES
+-- Estructura para  PACIENTES
 -- ----------------------------
 IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[dbo].[PACIENTES]') AND type IN ('U'))
 	DROP TABLE [dbo].[PACIENTES]
@@ -1194,7 +1190,7 @@ GO
 
 
 -- ----------------------------
--- Table structure for PLANES_X_OS
+-- Estructura para  PLANES_X_OS
 -- ----------------------------
 IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[dbo].[PLANES_X_OS]') AND type IN ('U'))
 	DROP TABLE [dbo].[PLANES_X_OS]
@@ -1216,7 +1212,7 @@ GO
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for ROLES
+-- Estructura para  ROLES
 -- ----------------------------
 IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[dbo].[ROLES]') AND type IN ('U'))
 	DROP TABLE [dbo].[ROLES]
@@ -1259,7 +1255,7 @@ GO
 
 
 -- ----------------------------
--- Table structure for TIPOS_DOCUMENTOS
+-- Estructura para  TIPOS_DOCUMENTOS
 -- ----------------------------
 IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[dbo].[TIPOS_DOCUMENTOS]') AND type IN ('U'))
 	DROP TABLE [dbo].[TIPOS_DOCUMENTOS]
@@ -1292,7 +1288,7 @@ GO
 
 
 -- ----------------------------
--- Table structure for TIPOS_ESTADOS
+-- Estructura para  TIPOS_ESTADOS
 -- ----------------------------
 IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[dbo].[TIPOS_ESTADOS]') AND type IN ('U'))
 	DROP TABLE [dbo].[TIPOS_ESTADOS]
@@ -1313,7 +1309,7 @@ GO
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for TURNOS
+-- Estructura para  TURNOS
 -- ----------------------------
 IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[dbo].[TURNOS]') AND type IN ('U'))
 	DROP TABLE [dbo].[TURNOS]
@@ -2835,7 +2831,7 @@ GO
 
 
 -- ----------------------------
--- Table structure for USUARIOS
+-- Estructura para  USUARIOS
 -- ----------------------------
 IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[dbo].[USUARIOS]') AND type IN ('U'))
 	DROP TABLE [dbo].[USUARIOS]
