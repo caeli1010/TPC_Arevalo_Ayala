@@ -9,6 +9,15 @@ namespace Dominio
 {
     public class Usuario
     {
-       
+        public int idUsuario { get; set; }
+        public int idRol { get; set; }
+        public string username { get; set; }
+        public string password { get; set; }
+        public int  estado { get; set; }
+        public string dni { get; set; }
+        public override string ToString()
+        {
+            return dni;
+        }
     }
 }
