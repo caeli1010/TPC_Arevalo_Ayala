@@ -17,34 +17,20 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta(@"SELECT
-                                        A.Id,
-                                        A.Codigo,
-                                        A.Nombre,
-                                        A.Descripcion,
-                                        M.Descripcion AS Marca,
-                                        C.Descripcion AS Categoria,
-                                        A.ImagenUrl AS Imagen,
-                                        A.Precio Precio,
-                                        M.Id IdMarca,
-                                        C.Id as IdCategoria
-                                        FROM
-                                        UsuarioS AS A
-                                        INNER JOIN CATEGORIAS AS C ON C.Id = A.IdCategoria
-                                        INNER JOIN MARCAS AS M ON M.Id = A.IdMarca");
+                datos.setearConsulta(@"SELECT * FROM USUARIOS");
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
-                    //Usuario aux = new Usuario();
-                    //aux.Id = (int)datos.Lector["Id"];
-                    //aux.Codigo = (string)datos.Lector["Codigo"];
-                    //aux.Nombre = (string)datos.Lector["Nombre"];
-                    //aux.Descripcion = (string)datos.Lector["Descripcion"];
-                    //aux.marca = new Marca((int)datos.Lector["IdMarca"],(string)datos.Lector["Marca"]);
-                    //aux.categoria = new Categoria((int)datos.Lector["IdCategoria"],(string)datos.Lector["Categoria"]);
-                    //aux.UrlImagen = (string)datos.Lector["Imagen"];
-                    //aux.Precio = (decimal)datos.Lector["Precio"];
-                    //lista.Add(aux);
+                    Usuario aux = new Usuario();
+                    aux.idUsuario = (int)datos.Lector["ID"];
+                    aux.idRol = (int)datos.Lector["IDROL"];
+                    aux.username = (string)datos.Lector["USERNAME"];
+                    aux.password = (string)datos.Lector["PASSWORD"];
+                    aux.estado = (int)datos.Lector["ESTADO"];
+                    aux.dni = (string)datos.Lector["DNI"];
+                    aux.idTipoDocumento = (int)datos.Lector["IDTIPODOC"];
+                    aux.imagen = (string)datos.Lector["IMAGEN"];
+                    lista.Add(aux);
 
                 }
                 return lista;
@@ -63,24 +49,24 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                //string valores = @"values('"+
-                //                    nuevo.Codigo+"', '"+ 
-                //                    nuevo.Nombre+"', '"+
-                //                    nuevo.Descripcion+ "', " +
-                //                    nuevo.marca.Id + ", " +
-                //                    nuevo.categoria.Id + ", '" +
-                //                    nuevo.UrlImagen+"', "+
-                //                    nuevo.Precio+ ")";
-                //datos.setearConsulta(@"insert into UsuarioS (
-                //                        Codigo, 
-                //                        Nombre,
-                //                        Descripcion, 
-                //                        IdMarca, 
-                //                        IdCategoria, 
-                //                        ImagenUrl, 
-                //                        Precio
-                //                        ) " + valores);
-                //datos.ejecutarAccion();
+                string valores = @"values('" +
+                                    nuevo.idRol + "', '" +
+                                    nuevo.username + "', '" +
+                                    nuevo.password + "', " +
+                                    nuevo.estado + ", " +
+                                    nuevo.dni + ", '" +
+                                    nuevo.idTipoDocumento + "', " +
+                                    nuevo.imagen + ")";
+                datos.setearConsulta(@"insert into USUARIOS (
+                                        IDROL, 
+                                        USERNAME,
+                                        PASSWORD, 
+                                        ESTADO, 
+                                        DNI, 
+                                        IDTIPODOC, 
+                                        IMAGEN
+                                        ) " + valores);
+                datos.ejecutarAccion();
 
             }
             catch (global::System.Exception)
@@ -98,16 +84,12 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                //datos.setearConsulta("update UsuarioS set Codigo = @codigo, Nombre = @nombre, Descripcion = @descripcion, ImagenUrl = @imagenUrl, IdMarca = @marca, IdCategoria = @categoria Where Id = @id");
-                //datos.setearParametro("@codigo", modificar.Codigo);
-                //datos.setearParametro("@nombre", modificar.Nombre);
-                //datos.setearParametro("@descripcion", modificar.Descripcion);
-                //datos.setearParametro("@imagenUrl", modificar.UrlImagen);
-                //datos.setearParametro("@marca", modificar.marca.Id);
-                //datos.setearParametro("@categoria", modificar.categoria.Id);
-                //datos.setearParametro("@id", modificar.Id);
+                datos.setearConsulta("update USUARIOS set PASSWORD = @password, IMAGEN= @imagen");
+                datos.setearParametro("@password", modificar.password);
+                datos.setearParametro("@imagen", modificar.imagen);
+                
 
-                //datos.ejecutarAccion();
+                datos.ejecutarAccion();
 
             }
             catch (global::System.Exception)
@@ -121,12 +103,14 @@ namespace Negocio
                 datos = null;
             }
         }
-        public void eliminar(int Id)
+        public void eliminar(Usuario usuario)
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("delete from UsuarioS where Id = '" + Id + "'");
+                datos.setearConsulta("update USUARIOS set ESTADO = 0 WHERE DNI = @dni");
+                datos.setearParametro("@dni", usuario.dni);
+               
                 datos.ejecutarAccion();
 
             }
@@ -142,12 +126,12 @@ namespace Negocio
             }
 
         }
-        public void leerUsuario(int id)
+        public void leerUsuario(string dni)
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("select * from UsuarioS where id = " + id + "");
+                datos.setearConsulta("select * from USUARIOS where DNI = " + dni + "");
                 datos.ejecutarLectura();
 
             }
@@ -162,19 +146,7 @@ namespace Negocio
             }
 
         }
-        public void guardarUsuario(Usuario Usuario)
-        {
-
-            //if (Usuario.Id==0) 
-            //{
-            //    this.agregar(Usuario);
-            //}
-            //else
-            //{
-            //    this.modificar(Usuario);
-            //}
-           
-        }
+        
        
     }
 }
