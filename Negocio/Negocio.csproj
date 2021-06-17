@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2DD694BE-3E43-492E-B7B1-DCAD475D9386}</ProjectGuid>
+    <ProjectGuid>{C14B3CA7-5863-457F-BCE9-6A919D45A586}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Negocio</RootNamespace>
@@ -47,7 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Dominio\Dominio.csproj">
-      <Project>{656763d8-024b-487e-9ae4-794fc66102d5}</Project>
+      <Project>{addfcd17-8650-4c3f-943c-78205870675e}</Project>
       <Name>Dominio</Name>
     </ProjectReference>
   </ItemGroup>
