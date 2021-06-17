@@ -14,6 +14,7 @@ namespace Dominio
         public string genero { get; set; }
         public DateTime fechaIngreso { get; set; }
         public string mail { get; set; }
+        public string dni { get; set; }
 
         public override string ToString()
         {
