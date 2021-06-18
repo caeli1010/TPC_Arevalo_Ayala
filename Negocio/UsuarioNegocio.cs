@@ -17,18 +17,18 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta(@"SELECT * FROM USUARIOS");
+                datos.setearConsulta(@"SELECT IMAGEN, ID, IDROL, DNI, USERNAME, PASSWORD, ESTADO, IDTIPODOC  FROM USUARIOS"); 
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
                     Usuario aux = new Usuario();
-                    aux.idUsuario = (int)datos.Lector["ID"];
                     aux.idRol = (int)datos.Lector["IDROL"];
+                    aux.idUsuario = (int)datos.Lector["ID"];
+                    aux.dni = (string)datos.Lector["DNI"];
                     aux.username = (string)datos.Lector["USERNAME"];
                     aux.password = (string)datos.Lector["PASSWORD"];
-                    aux.estado = (int)datos.Lector["ESTADO"];
-                    aux.dni = (string)datos.Lector["DNI"];
-                    aux.idTipoDocumento = (int)datos.Lector["IDTIPODOC"];
+                    aux.estado = (Boolean)datos.Lector["ESTADO"];
+                    aux.idTipoDocumento = (byte)datos.Lector["IDTIPODOC"];
                     aux.imagen = (string)datos.Lector["IMAGEN"];
                     lista.Add(aux);
 

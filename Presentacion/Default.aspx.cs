@@ -11,7 +11,7 @@ namespace Presentacion
 {
     public partial class _Default : Page
     {
-        public List<Usuario> users=null;
+        public List<Usuario> users;
         public string dni;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -30,7 +30,6 @@ namespace Presentacion
                     if (Request.QueryString["dni"] != null)
                     {
                         dni = Request.QueryString["dni"];
-
                     }
                     users = (List<Usuario>)Session["Usuarios"];
                 }
@@ -38,7 +37,7 @@ namespace Presentacion
             catch (Exception error)
             {
                 Session.Add("Error", error.ToString());
-                //Response.Redirect("Error.aspx");
+                Response.Redirect("Error.aspx");
             }
 
         }

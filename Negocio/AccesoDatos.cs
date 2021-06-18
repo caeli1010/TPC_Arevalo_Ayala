@@ -15,8 +15,10 @@ namespace Negocio
 
         public AccesoDatos()
         {
-            conexion = new SqlConnection("data source = .\\SQLEXPRESS; initial catalog= AREVALO_AYALA_DB; integrated security=sspi");
+            conexion = new SqlConnection("data source =.\\SQLEXPRESS; initial catalog=AREVALO_AYALA_DB; integrated security=sspi");
             comando = new SqlCommand();
+            //conexion = new SqlConnection("data source=.\\SQLEXPRESS; initial catalog=DB_Miranda_Paz; integrated security=sspi");
+            //comando = new SqlCommand();
         }
         public void setearConsulta(string consulta)
         {
