@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-    class Medico
+   public class Medico
     {
         public int idMedico { get; set; }
         public string apellido { get; set; }
         public string nombre { get; set; }
         public string genero { get; set; }
+        public DateTime fechaNac { get; set; }
         public DateTime fechaIngreso { get; set; }
         public string mail { get; set; }
         public string dni { get; set; }

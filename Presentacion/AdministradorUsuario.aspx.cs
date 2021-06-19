@@ -11,18 +11,21 @@ namespace Presentacion
 {
     public partial class AdministradorUsuario : System.Web.UI.Page
     {
-        public List<Usuario>users;
+        //public List<Usuario>users;
+        public List<Medico>doc;
         public string dni;
         protected void Page_Load(object sender, EventArgs e)
         {
-            UsuarioNegocio negocio = new UsuarioNegocio();
+            MedicoNegocio negocio = new MedicoNegocio();
 
             try
             {
-                if (Session["Usuarios"] == null)
+                if (Session["Medicos"] == null)
                 {
-                    users = negocio.listar();
-                    Session.Add("Usuarios", users);
+                    //users = negocio.listar();
+                    //Session.Add("Usuarios", users);
+                    doc = negocio.listar();
+                    Session.Add("Medicos", doc);
                 }
                 else
                 {
@@ -30,7 +33,8 @@ namespace Presentacion
                     {
                         dni = Request.QueryString["dni"];
                     }
-                    users = (List<Usuario>)Session["Usuarios"];
+                    //users = (List<Usuario>)Session["Usuarios"];
+                   doc = (List<Medico>)Session["Medicos"];
                 }
             }
             catch (Exception error)
