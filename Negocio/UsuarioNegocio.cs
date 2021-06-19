@@ -17,7 +17,7 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta(@"SELECT IMAGEN, ID, IDROL, DNI, USERNAME, PASSWORD, ESTADO, IDTIPODOC  FROM USUARIOS"); 
+                datos.setearConsulta(@"SELECT * FROM USUARIOS"); 
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
@@ -31,7 +31,6 @@ namespace Negocio
                     aux.idTipoDocumento = (byte)datos.Lector["IDTIPODOC"];
                     aux.imagen = (string)datos.Lector["IMAGEN"];
                     lista.Add(aux);
-
                 }
                 return lista;
             }

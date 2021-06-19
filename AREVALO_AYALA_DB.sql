@@ -31,11 +31,11 @@ GO
 
 
 -- ----------------------------
--- Records of CONVENIOS
+--  CONVENIOS
 -- ----------------------------
 
 -- ----------------------------
--- Estructura para  DIAS_Y_HORARIOS
+-- Estructura para DIAS_Y_HORARIOS
 -- ----------------------------
 IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[dbo].[DIAS_Y_HORARIOS]') AND type IN ('U'))
 	DROP TABLE [dbo].[DIAS_Y_HORARIOS]
@@ -55,11 +55,11 @@ GO
 
 
 -- ----------------------------
--- Records of DIAS_Y_HORARIOS
+--  DIAS_Y_HORARIOS
 -- ----------------------------
 
 -- ----------------------------
--- Estructura para  ESPECIALIDAD_X_MEDICO
+-- Estructura para ESPECIALIDAD_X_MEDICO
 -- ----------------------------
 IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[dbo].[ESPECIALIDAD_X_MEDICO]') AND type IN ('U'))
 	DROP TABLE [dbo].[ESPECIALIDAD_X_MEDICO]
@@ -85,11 +85,11 @@ GO
 
 
 -- ----------------------------
--- Records of ESPECIALIDAD_X_MEDICO
+--  ESPECIALIDAD_X_MEDICO
 -- ----------------------------
 
 -- ----------------------------
--- Estructura para  ESPECIALIDADES
+-- Estructura para ESPECIALIDADES
 -- ----------------------------
 IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[dbo].[ESPECIALIDADES]') AND type IN ('U'))
 	DROP TABLE [dbo].[ESPECIALIDADES]
@@ -106,7 +106,7 @@ GO
 
 
 -- ----------------------------
--- Records of ESPECIALIDADES
+--  ESPECIALIDADES
 -- ----------------------------
 INSERT INTO [dbo].[ESPECIALIDADES] ([IDESPECIALIDAD], [NOMBRE]) VALUES (N'1', N'MEDICO CLINICO')
 GO
@@ -176,7 +176,7 @@ GO
 
 
 -- ----------------------------
--- Estructura para  MEDICOS
+-- Estructura para MEDICOS
 -- ----------------------------
 IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[dbo].[MEDICOS]') AND type IN ('U'))
 	DROP TABLE [dbo].[MEDICOS]
@@ -199,7 +199,7 @@ GO
 
 
 -- ----------------------------
--- Records of MEDICOS
+--  MEDICOS
 -- ----------------------------
 INSERT INTO [dbo].[MEDICOS] ([IDMEDICO], [APELLIDO], [NOMBRE], [SEXO], [FECHANAC], [FECHAINGRESO], [EMAIL], [DNI]) VALUES (N'1', N'Owen', N'Elijah', N'F', N'1983-12-13', N'2011-05-11', NULL, N'11111')
 GO
@@ -503,7 +503,7 @@ GO
 
 
 -- ----------------------------
--- Estructura para  OBRAS_SOCIALES
+-- Estructura para OBRAS_SOCIALES
 -- ----------------------------
 IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[dbo].[OBRAS_SOCIALES]') AND type IN ('U'))
 	DROP TABLE [dbo].[OBRAS_SOCIALES]
@@ -520,7 +520,7 @@ GO
 
 
 -- ----------------------------
--- Records of OBRAS_SOCIALES
+--  OBRAS_SOCIALES
 -- ----------------------------
 INSERT INTO [dbo].[OBRAS_SOCIALES] ([IDOBRASOCIAL], [NOMBRE]) VALUES (N'1', N'PAMI')
 GO
@@ -563,7 +563,7 @@ GO
 
 
 -- ----------------------------
--- Estructura para  PACIENTES
+-- Estructura para PACIENTES
 -- ----------------------------
 IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[dbo].[PACIENTES]') AND type IN ('U'))
 	DROP TABLE [dbo].[PACIENTES]
@@ -586,7 +586,7 @@ GO
 
 
 -- ----------------------------
--- Records of PACIENTES
+--  PACIENTES
 -- ----------------------------
 INSERT INTO [dbo].[PACIENTES] ([IDPACIENTE], [APELLIDO], [NOMBRE], [IDOBRASOCIAL], [FECHANAC], [SEXO], [DNI], [EMAIL]) VALUES (N'1', N'Maldonado', N'Alex', N'4', N'1994-03-24', N'M', NULL, NULL)
 GO
@@ -1190,7 +1190,7 @@ GO
 
 
 -- ----------------------------
--- Estructura para  PLANES_X_OS
+-- Estructura para PLANES_X_OS
 -- ----------------------------
 IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[dbo].[PLANES_X_OS]') AND type IN ('U'))
 	DROP TABLE [dbo].[PLANES_X_OS]
@@ -1208,11 +1208,11 @@ GO
 
 
 -- ----------------------------
--- Records of PLANES_X_OS
+--  PLANES_X_OS
 -- ----------------------------
 
 -- ----------------------------
--- Estructura para  ROLES
+-- Estructura para ROLES
 -- ----------------------------
 IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[dbo].[ROLES]') AND type IN ('U'))
 	DROP TABLE [dbo].[ROLES]
@@ -1236,7 +1236,7 @@ GO
 
 
 -- ----------------------------
--- Records of ROLES
+--  ROLES
 -- ----------------------------
 INSERT INTO [dbo].[ROLES] ([ID], [NOMBRE]) VALUES (N'1', N'ADMINISTRADOR')
 GO
@@ -1255,7 +1255,7 @@ GO
 
 
 -- ----------------------------
--- Estructura para  TIPOS_DOCUMENTOS
+-- Estructura para TIPOS_DOCUMENTOS
 -- ----------------------------
 IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[dbo].[TIPOS_DOCUMENTOS]') AND type IN ('U'))
 	DROP TABLE [dbo].[TIPOS_DOCUMENTOS]
@@ -1272,7 +1272,7 @@ GO
 
 
 -- ----------------------------
--- Records of TIPOS_DOCUMENTOS
+--  TIPOS_DOCUMENTOS
 -- ----------------------------
 INSERT INTO [dbo].[TIPOS_DOCUMENTOS] ([ID], [NOMRE]) VALUES (N'1', N'DNI')
 GO
@@ -1288,7 +1288,7 @@ GO
 
 
 -- ----------------------------
--- Estructura para  TIPOS_ESTADOS
+-- Estructura para TIPOS_ESTADOS
 -- ----------------------------
 IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[dbo].[TIPOS_ESTADOS]') AND type IN ('U'))
 	DROP TABLE [dbo].[TIPOS_ESTADOS]
@@ -1305,11 +1305,11 @@ GO
 
 
 -- ----------------------------
--- Records of TIPOS_ESTADOS
+--  TIPOS_ESTADOS
 -- ----------------------------
 
 -- ----------------------------
--- Estructura para  TURNOS
+-- Estructura para TURNOS
 -- ----------------------------
 IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[dbo].[TURNOS]') AND type IN ('U'))
 	DROP TABLE [dbo].[TURNOS]
@@ -1330,7 +1330,7 @@ GO
 
 
 -- ----------------------------
--- Records of TURNOS
+--  TURNOS
 -- ----------------------------
 INSERT INTO [dbo].[TURNOS] ([IDTURNO], [FECHAHORA], [IDMEDICO], [IDPACIENTE], [OBSERVACIONES], [IDESTADO]) VALUES (N'2', N'2000-02-08 18:52:00.000', N'55', N'84', NULL, NULL)
 GO
@@ -2831,7 +2831,7 @@ GO
 
 
 -- ----------------------------
--- Estructura para  USUARIOS
+-- Estructura para USUARIOS
 -- ----------------------------
 IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[dbo].[USUARIOS]') AND type IN ('U'))
 	DROP TABLE [dbo].[USUARIOS]
@@ -2839,14 +2839,14 @@ GO
 
 CREATE TABLE [dbo].[USUARIOS] (
   [ID] int DEFAULT ((1)) NOT NULL,
-  [IDROL] tinyint  NOT NULL,
+  [IDROL] int  NOT NULL,
   [USERNAME] varchar(100) COLLATE Modern_Spanish_CI_AS  NOT NULL,
   [PASSWORD] varchar(255) COLLATE Modern_Spanish_CI_AS  NOT NULL,
   [ESTADO] bit  NOT NULL,
   [ULTIMOLOGIN] datetime DEFAULT (getdate()) NOT NULL,
   [IP] varchar(50) COLLATE Modern_Spanish_CI_AS  NULL,
   [IMAGEN] varchar(255) COLLATE Modern_Spanish_CI_AS  NULL,
-  [DNI] int  NOT NULL,
+  [DNI] varchar(13) COLLATE Modern_Spanish_CI_AS  NOT NULL,
   [IDTIPODOC] tinyint  NOT NULL
 )
 GO
@@ -2856,12 +2856,12 @@ GO
 
 
 -- ----------------------------
--- Records of USUARIOS
+--  USUARIOS
 -- ----------------------------
-INSERT INTO [dbo].[USUARIOS] ([ID], [IDROL], [USERNAME], [PASSWORD], [ESTADO], [ULTIMOLOGIN], [IP], [IMAGEN], [DNI], [IDTIPODOC]) VALUES (N'1', N'5', N'arevalo@eugenio.com.ar', N'123clinica', N'1', N'2021-06-15 11:13:51.673', NULL, NULL, N'26111222', N'1')
+INSERT INTO [dbo].[USUARIOS] ([ID], [IDROL], [USERNAME], [PASSWORD], [ESTADO], [ULTIMOLOGIN], [IP], [IMAGEN], [DNI], [IDTIPODOC]) VALUES (N'1', N'1', N'eli@caeli.com', N'123Clinica', N'1', N'2021-06-16 22:25:35.227', N'127.20.0.', N'adas', N'11111', N'1')
 GO
 
-INSERT INTO [dbo].[USUARIOS] ([ID], [IDROL], [USERNAME], [PASSWORD], [ESTADO], [ULTIMOLOGIN], [IP], [IMAGEN], [DNI], [IDTIPODOC]) VALUES (N'2', N'5', N'ayala@caeli.com.ar', N'123clinica', N'1', N'2021-06-15 11:14:25.147', NULL, NULL, N'35111222', N'1')
+INSERT INTO [dbo].[USUARIOS] ([ID], [IDROL], [USERNAME], [PASSWORD], [ESTADO], [ULTIMOLOGIN], [IP], [IMAGEN], [DNI], [IDTIPODOC]) VALUES (N'2', N'1', N'eugenio@arevalo.com.ar', N'123Clinica', N'1', N'2021-06-16 22:26:08.083', N'125..252', N'asdasd', N'22222', N'1')
 GO
 
 
@@ -2988,25 +2988,9 @@ GO
 
 
 -- ----------------------------
--- Uniques structure for table USUARIOS
--- ----------------------------
-ALTER TABLE [dbo].[USUARIOS] ADD CONSTRAINT [DNI] UNIQUE NONCLUSTERED ([DNI] ASC, [IDTIPODOC] ASC, [USERNAME] ASC)
-WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)  
-ON [PRIMARY]
-GO
-
-EXEC sp_addextendedproperty
-'MS_Description', N'EL DNI NO PUEDE TENER MAS DE UN USUARIO',
-'SCHEMA', N'dbo',
-'TABLE', N'USUARIOS',
-'CONSTRAINT', N'DNI'
-GO
-
-
--- ----------------------------
 -- Primary Key structure for table USUARIOS
 -- ----------------------------
-ALTER TABLE [dbo].[USUARIOS] ADD CONSTRAINT [PK__USUARIOS__C035B8DC68193D95] PRIMARY KEY CLUSTERED ([DNI])
+ALTER TABLE [dbo].[USUARIOS] ADD CONSTRAINT [PK__USUARIOS__C035B8DC68193D95] PRIMARY KEY CLUSTERED ([ID])
 WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)  
 ON [PRIMARY]
 GO

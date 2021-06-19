@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-    class Paciente
+    public class Paciente
     {
         public int idPaciente{ get; set; }
         public string apellido { get; set; }
@@ -16,6 +16,8 @@ namespace Dominio
         public string genero { get; set; }
         public Usuario dni { get; }
         public string mail { get; set; }
+
+
         
         public override string ToString()
         {
