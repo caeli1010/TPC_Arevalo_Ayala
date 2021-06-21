@@ -30,7 +30,7 @@
                         <td>555-555-55</td>
                         <td>Activo</td>
                         <td>
-                            <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-sm btn-success">Agregar Especialidad</button>
+                            <a  href="#" class="btn btn-sm btn-success">Agregar Especialidad</a>
                             <a href="#" class="btn btn-sm btn-danger">Deshabilitar</a>
                         </td>
                     </tr>
