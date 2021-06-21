@@ -11,13 +11,13 @@
                 <div class="card-body">
                     <hr />
                     <h4 class="card-title">Identidad del Paciente</h4>
-                    <p class="card-text">NOMBRE y APELLIDO : ANGEL SIMON</p>
+                    <p class="card-text">NOMBRE y APELLIDO : <% =Request.QueryString["paciente"] %></p>
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">DNI: <span class="">66632325</span> </li>
-                    <li class="list-group-item">OBRA SOCIAL:<span class="">OSDE</span> </li>
-                    <li class="list-group-item">NUMERO CARNET: <span class=" ">525585522 </span></li>
-                    <li class="list-group-item">EMAIL: <span class="">angel@simon.com </span>  </li>
+                    <li class="list-group-item">DNI: <span class=""><% =Request.QueryString["dni"] %></></span> </li>
+                    <li class="list-group-item">OBRA SOCIAL:<span class=""><% =Request.QueryString["obsoc"] %></span> </li>
+                    <li class="list-group-item">NUMERO CARNET: <span class=" "><% =Request.QueryString["carnet"] %> </span></li>
+                    <li class="list-group-item">EMAIL: <span class=""><% =Request.QueryString["email"] %> </span>  </li>
                 </ul>
                 <div class="card-body">
                     <a href="#" class="card-link badge btn-sm badge-warning">Modificar Datos</a>

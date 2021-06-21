@@ -24,11 +24,24 @@
                         <td>Angel Simon </td>
                         <td>OSDE</td>
                         <td>1522255</td>
-                        <td>MirMaxi@gmail.com</td>
+                        <td>angelsimon@gmail.com</td>
                         <td>555-555-55</td>
                         <td>Activo</td>
                         <td>
-                            <a href="#" class="btn btn-sm btn-success">Habilitar</a>
+                            <a href="SolicitudTurno.aspx?dni=500&estado=1&email=MirMaxi@gmail.com&obsoc=OSDE&carnet=1522255&paciente=Angel Simon" class="btn btn-sm btn-success">Solicitar Turno</a>
+                            <a href="#" class="btn btn-sm btn-danger">Deshabilitar</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">501</th>
+                        <td>Lara Brian  </td>
+                        <td>OSDE</td>
+                        <td>44558</td>
+                        <td>brian.lara@gmail.com</td>
+                        <td>555-555-55</td>
+                        <td>Activo</td>
+                        <td>
+                            <a href="SolicitudTurno.aspx?dni=501&estado=1&email=brian.lara@gmail.com&obsoc=CEMIC&carnet=44558&paciente=Lara Brian" class="btn btn-sm btn-success">Solicitar Turno</a>
                             <a href="#" class="btn btn-sm btn-danger">Deshabilitar</a>
                         </td>
                     </tr>

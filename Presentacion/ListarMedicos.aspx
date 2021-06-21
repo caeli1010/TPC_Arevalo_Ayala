@@ -1,12 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ListarMedicos.aspx.cs" Inherits="Presentacion.ListarMedicos" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    
 
     <hr class="py-1" />
     <h1>Listado de Medicos </h1>
     <div class="row alert alert-heading">
         <div class="col-md-12">
-
             <table class="table">
                 <thead class="thead-dark">
                     <tr>
@@ -30,14 +30,12 @@
                         <td>555-555-55</td>
                         <td>Activo</td>
                         <td>
-                            <a href="#" class="btn btn-sm btn-success">Habilitar</a>
+                            <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-sm btn-success">Agregar Especialidad</button>
                             <a href="#" class="btn btn-sm btn-danger">Deshabilitar</a>
                         </td>
                     </tr>
-                   
                 </tbody>
             </table>
-
         </div>
     </div>
 
