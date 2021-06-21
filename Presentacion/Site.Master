@@ -58,6 +58,9 @@
                     </li>
                     <li class="nav-item mx-1">
                         <a class="nav-link" runat="server" href="~/Pacientes">Listar Pacientes</a>
+                    </li> 
+                    <li class="nav-item mx-1">
+                        <a class="nav-link" runat="server" href="~/ListarMedicos">Listar Medicos</a>
                     </li>
                     <li class="nav-item mx-1">
                         <a class="nav-link" runat="server" href="~/AltaMedico">Registrar Medico</a>

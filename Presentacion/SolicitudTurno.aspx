@@ -12,7 +12,7 @@
          <div class="form-row">
             <div class="form-group col-md-12">
                 <label for="espec">Especialidad</label>
-                <select id="espec" class="form-control">
+                <select id="espec" class="form-control" required>
                     <option selected>Seleccione ...</option>
                     <option value="1">Medico clínico</option>
                     <option value="2">Urología</option>
@@ -22,7 +22,7 @@
             </div>
              <div class="form-group col-md-12">
                 <label for="profesional">Profesional</label>
-                <select id="profesional" class="form-control">
+                <select id="profesional" class="form-control" required>
                     <option selected>Seleccione ...</option>
                     <option value="1">Arostegui Isidoro</option>
                     <option value="2">Miranda Maximiliano</option>
@@ -36,7 +36,7 @@
         <div class="form-row">
             <div class="form-group col-md-12">
                 <label for="turnosDisp"> Turnos disponibles </label>
-                <input type="date" name="turnosDisp" class="form-control" id="turnosDisp">
+                <input type="date" name="turnosDisp" class="form-control" id="turnosDisp" required>
             </div>
         </div>
 
