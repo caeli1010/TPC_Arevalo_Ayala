@@ -1,7 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="LisarUsuarios.aspx.cs" Inherits="Presentacion.LisarUsuarios" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ListarUsuarios.aspx.cs" Inherits="Presentacion.ListarUsuarios" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <hr class="py-1" />
+        <hr class="py-1" />
     <h1>Listado de Usuarios </h1>
     <div class="row alert alert-heading">
         <div class="col-md-12">
@@ -26,7 +25,7 @@
                         <td><% = item.idRol  %></td>
                         <td><% = item.idUsuario  %></td>
                         <td>
-                            <a href="Usuarios.aspx?dni=<% =item.dni %>&estado=1" class="btn btn-sm btn-success">Habilitar</a>
+                            
                             <a href="Usuarios.aspx?dni=<% =item.dni %>&estado=0" class="btn btn-sm btn-danger">Deshabilitar</a>
                         </td>
                     </tr>
@@ -35,5 +34,4 @@
             </table>
         </div>
     </div>
-
 </asp:Content>

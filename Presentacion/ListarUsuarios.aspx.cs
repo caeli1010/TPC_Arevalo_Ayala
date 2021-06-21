@@ -9,7 +9,7 @@ using Negocio;
 
 namespace Presentacion
 {
-    public partial class LisarUsuarios : System.Web.UI.Page
+    public partial class ListarUsuarios : System.Web.UI.Page
     {
         public List<Usuario> users;
         public string dni;
@@ -38,6 +38,7 @@ namespace Presentacion
                 Session.Add("Error", error.ToString());
                 Response.Redirect("Error.aspx");
             }
+
         }
     }
 }
