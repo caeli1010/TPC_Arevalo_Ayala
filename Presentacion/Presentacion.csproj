@@ -129,7 +129,9 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="LisarUsuarios.aspx" />
     <Content Include="ListarMedicos.aspx" />
+    <Content Include="ListarPacientes.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -220,12 +222,26 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="LisarUsuarios.aspx.cs">
+      <DependentUpon>LisarUsuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LisarUsuarios.aspx.designer.cs">
+      <DependentUpon>LisarUsuarios.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ListarMedicos.aspx.cs">
       <DependentUpon>ListarMedicos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ListarMedicos.aspx.designer.cs">
       <DependentUpon>ListarMedicos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ListarPacientes.aspx.cs">
+      <DependentUpon>ListarPacientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ListarPacientes.aspx.designer.cs">
+      <DependentUpon>ListarPacientes.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">

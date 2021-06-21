@@ -41,10 +41,10 @@
                 <%--Site Scripts--%>
             </Scripts>
         </asp:ScriptManager>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-info">
 
+            <img src="https://tuplandesalud.ar/assets/img/80x80x6%402x.png" width="80" height="80" class="d-inline-block align-top" alt="">
             <a class="navbar-brand" href="#">
-                <img src="https://tuplandesalud.ar/assets/img/80x80x6%402x.png" width="80" height="80" class="d-inline-block align-top" alt="">
                 TURNOS
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,7 +57,7 @@
                         <a class="nav-link" runat="server" href="~/">Inicio <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item mx-1">
-                        <a class="nav-link" runat="server" href="~/Pacientes">Listar Pacientes</a>
+                        <a class="nav-link" runat="server" href="~/ListarPacientes">Listar Pacientes</a>
                     </li> 
                     <li class="nav-item mx-1">
                         <a class="nav-link" runat="server" href="~/ListarMedicos">Listar Medicos</a>
