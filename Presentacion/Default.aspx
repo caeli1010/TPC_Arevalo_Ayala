@@ -3,42 +3,49 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
     <div class="jumbotron">
-        <h1>ASP.NET</h1>
-            <% foreach(Dominio.Usuario item in users ){ %>
+        <h1>TURNOS WEB</h1>
+
+        <% foreach (Dominio.Usuario item in users)
+            { %>
         <p>
-                <a class="nav-link btn btn-outline-success" href="Usuarios.aspx?dni=<% =item.dni %>">
-                    <% = item.username  %> - 
+            <a class="nav-link btn btn-outline-success" href="Usuarios.aspx?dni=<% =item.dni %>">
+                <% = item.username  %> - 
                     <% = item.password  %> -
                     <% = item.dni  %> -
                     <% = item.imagen  %>-
                     <% = item.idRol  %>-
                     <% = item.idUsuario  %>-
-                </a>
+            </a>
         </p>
-            <%} %>
+        <%} %>
     </div>
 
     <div class="row">
         <div class="col-md-4">
-            <h2>Getting started</h2>
-           
-        </div>
-        <div class="col-md-4">
-            <h2>Get more libraries</h2>
+            <h2>TURNOS</h2>
             <p>
-                NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.
+                Aquí podrá ver el listado completo de los turnos pendientes.
             </p>
             <p>
-                <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301949">Learn more &raquo;</a>
+                <a class="btn btn-default" href="~/Turnos">Ir &raquo;</a>
             </p>
         </div>
         <div class="col-md-4">
-            <h2>Web Hosting</h2>
+            <h2>PACIENTES</h2>
             <p>
-                You can easily find a web hosting company that offers the right mix of features and price for your applications.
+                Aquí podrá ver el listado completo de los pacientes inscriptos.
             </p>
             <p>
-                <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301950">Learn more &raquo;</a>
+                <a class="btn btn-default" href="~/Pacientes">Ir &raquo;</a>
+            </p>
+        </div>
+        <div class="col-md-4">
+            <h2>MEDICOS</h2>
+            <p>
+                Aquí podrá ver el listado completo de los medicos bajo convenio
+            </p>
+            <p>
+                <a class="btn btn-default" href="~/Medicos">Ver Más &raquo;</a>
             </p>
         </div>
     </div>
