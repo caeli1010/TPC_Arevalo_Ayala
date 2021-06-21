@@ -2,6 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <hr class="py-1" />
+     <h1>Ingreso Nuevo Paciente</h1>
     <div class="row alert alert-info">
     <div class="offset-md-2 col-md-10">
 
@@ -84,7 +85,7 @@
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="gridCheck">
                 <label class="form-check-label" for="gridCheck">
-                   
+                   Solicita turno
                 </label>
             </div>
         </div>
