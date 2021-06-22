@@ -2,9 +2,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <hr class="py-1" />
-    <h1>Ingreso Nuevo Médico</h1>
-    <div class="row alert alert-success">
-    <div class="offset-md-2 col-md-10">
+    <h1 class="text-center">Ingreso Nuevo Médico</h1>
+    <div class="row alert alert-secondary">
+    <div class="offset-md-1 col-md-10">
 
     <form>
 

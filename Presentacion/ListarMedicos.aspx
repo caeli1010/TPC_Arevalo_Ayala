@@ -23,10 +23,10 @@
                 <tbody>
                     <tr>
                         <th scope="row">500</th>
-                        <td>Miranda Maximiliano</td>
-                        <td>L y M </td>
-                        <td>Urologo</td>
-                        <td>MirMaxi@gmail.com</td>
+                        <td>Kloster Daniel</td>
+                        <td>L, M, J </td>
+                        <td>Proctología</td>
+                        <td>dkloster@gmail.com</td>
                         <td>555-555-55</td>
                         <td>Activo</td>
                         <td>
