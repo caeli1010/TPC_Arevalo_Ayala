@@ -23,7 +23,7 @@ namespace Negocio
                 while (datos.Lector.Read())
                 {
                     Medico aux = new Medico();
-                    aux.idMedico = (int)datos.Lector["IDMEDICO"];
+                    aux.idMedico = (long)datos.Lector["IDMEDICO"];
                     aux.apellido = (string)datos.Lector["APELLIDO"];
                     aux.nombre = (string)datos.Lector["NOMBRE"];
                     aux.genero = (string)datos.Lector["SEXO"];
