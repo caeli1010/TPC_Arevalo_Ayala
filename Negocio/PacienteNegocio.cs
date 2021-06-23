@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.SqlClient;
 using Dominio;
 
 namespace Negocio
@@ -16,16 +15,19 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta(@"SELECT * FROM PACIENTES");
+                datos.setearConsulta(@"SELECT IDPACIENTE, APELLIDO, SEXO,  IDOBRASOCIAL, FECHANAC, NOMBRE, COALESCE(EMAIL, 'sin correo') as EMAIL,  COALESCE(DNI, 'sin dni') as DNI FROM PACIENTES");
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
                     Paciente aux = new Paciente();
+                    aux.idPaciente = (long)datos.Lector["IDPACIENTE"];
                     aux.apellido = (string)datos.Lector["APELLIDO"];
                     aux.nombre = (string)datos.Lector["NOMBRE"];
-                    aux.dni.dni = (string)datos.Lector["DNI"];
+                    aux.genero = (string)datos.Lector["SEXO"];
+                    aux.fechaNacimiento = (DateTime)datos.Lector["FECHANAC"];
+                    aux.mail = (string)datos.Lector["EMAIL"];
+                    aux.dni = (string)datos.Lector["DNI"];
                     aux.idObraSocial = (int)datos.Lector["IDOBRASOCIAL"];
-                    aux.mail = (string)datos.Lector["MAIL"];
                     lista.Add(aux);
 
                 }
@@ -46,22 +48,22 @@ namespace Negocio
             try
             {
                 string valores = @"values('" +
-                                    nuevo.apellido + "', '" +
                                     nuevo.nombre + "', '" +
-                                    nuevo.idObraSocial + "', " +
-                                    nuevo.fechaNacimiento + ", " +
-                                    nuevo.genero + ", '" +
-                                    nuevo.dni + "', " +
-                                    nuevo.mail + ")";
-                datos.setearConsulta(@"insert into PACIENTES (
-                                    APELLIDO, 
-                                    NOMBRE,
-                                    IDOBRASOCIAL, 
-                                    FECHANAC, 
-                                    SEXO, 
-                                    DNI, 
-                                    EMAIL
-                                    ) " + valores);
+                                    nuevo.apellido + "', " +
+                                    nuevo.genero + ", " +
+                                    nuevo.fechaNacimiento + ", '" +
+                                    nuevo.idObraSocial + ", '" +
+                                    nuevo.mail + "', " +
+                                    nuevo.dni + ")";
+                datos.setearConsulta(@"insert into PacienteS (
+                                        NOMBRE,
+                                        APELLIDO, 
+                                        SEXO, 
+                                        FECHANAC, 
+                                        IDOBRASOCIAL, 
+                                        MAIL,
+                                        DNI
+                                        ) " + valores);
                 datos.ejecutarAccion();
 
             }
@@ -80,9 +82,16 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                //datos.setearConsulta("update PACIENTES set IDOBRASOCIAL = @obsoc");
-                //datos.setearParametro("@obsoc", modificar.idObraSocial);
-                //datos.ejecutarAccion();
+                datos.setearConsulta("update PACIENTES set " +
+                                                        "NOMBRE = @nombre, " +
+                                                        "APELLIDO = @apellido, " +
+                                                        "IDOBRASICIAL=@idObraSocial, " +
+                                                        "EMAIL= @email");
+                datos.setearParametro("@nombre", modificar.nombre);
+                datos.setearParametro("@apellido", modificar.apellido);
+                datos.setearParametro("@idObraSocial", modificar.idObraSocial);
+                datos.setearParametro("@email", modificar.mail);
+                datos.ejecutarAccion();
 
             }
             catch (global::System.Exception)
@@ -96,28 +105,29 @@ namespace Negocio
                 datos = null;
             }
         }
-        public void eliminar(Paciente Paciente)
-        {
-            AccesoDatos datos = new AccesoDatos();
-            try
-            {
-                //datos.setearConsulta("update PACIENTES set ESTADO = 0 WHERE DNI = @dni");
-                //datos.setearParametro("@dni", Paciente.dni);
-                //datos.ejecutarAccion();
+        //public void eliminar(Paciente Paciente)
+        //{
+        //    AccesoDatos datos = new AccesoDatos();
+        //    try
+        //    {
+        //        datos.setearConsulta("update PacienteS set ESTADO = 0 WHERE DNI = @dni");
+        //        datos.setearParametro("@dni", Paciente.dni);
 
-            }
-            catch (global::System.Exception)
-            {
-                throw;
-            }
+        //        datos.ejecutarAccion();
 
-            finally
-            {
-                datos.cerrarConexion();
-                datos = null;
-            }
+        //    }
+        //    catch (global::System.Exception)
+        //    {
+        //        throw;
+        //    }
 
-        }
+        //    finally
+        //    {
+        //        datos.cerrarConexion();
+        //        datos = null;
+        //    }
+
+        //}
         public void leerPaciente(string dni)
         {
             AccesoDatos datos = new AccesoDatos();

@@ -13,38 +13,25 @@
                         <th scope="col">Obra Social</th>
                         <th scope="col"> Nro Carnet</th>
                         <th scope="col">Email</th>
-                        <th scope="col">Telefono</th>
-                        <th scope="col">Estado</th>
                         <th scope="col">Acciónes</th>
                     </tr>
                 </thead>
                 <tbody>
+                    <% foreach (Dominio.Paciente item in pacientes)
+                        { %>
                     <tr>
-                        <th scope="row">500</th>
-                        <td>Angel Simon </td>
-                        <td>OSDE</td>
-                        <td>1522255</td>
-                        <td>angelsimon@gmail.com</td>
-                        <td>555-555-55</td>
-                        <td>Activo</td>
+                        <th scope="row"><% = item.dni  %></th>
+                        <td><% = item.nombre  %> <% = item.apellido  %></td>
+                        <td><% = item.idObraSocial  %></td>
+                        <td> s/n </td>
+                        <td><% = item.mail  %></td>
                         <td>
-                            <a href="SolicitudTurno.aspx?dni=500&estado=1&email=MirMaxi@gmail.com&obsoc=OSDE&carnet=1522255&paciente=Angel Simon" class="btn btn-sm btn-success">Solicitar Turno</a>
-                            <a href="#" class="btn btn-sm btn-danger">Deshabilitar</a>
+                            <a href="SolicitudTurno.aspx?dni=<% = item.dni  %>&estado=1&email=<% = item.mail  %>&obsoc=<% = item.idObraSocial  %>&carnet=<% = item.idObraSocial  %>&paciente=<% = item.nombre  %> <% = item.apellido  %>" class="btn btn-sm btn-success">Solicitar Turno</a>
+                            
                         </td>
                     </tr>
-                    <tr>
-                        <th scope="row">501</th>
-                        <td>Lara Brian  </td>
-                        <td>OSDE</td>
-                        <td>44558</td>
-                        <td>brian.lara@gmail.com</td>
-                        <td>555-555-55</td>
-                        <td>Activo</td>
-                        <td>
-                            <a href="SolicitudTurno.aspx?dni=501&estado=1&email=brian.lara@gmail.com&obsoc=CEMIC&carnet=44558&paciente=Lara Brian" class="btn btn-sm btn-success">Solicitar Turno</a>
-                            <a href="#" class="btn btn-sm btn-danger">Deshabilitar</a>
-                        </td>
-                    </tr>
+                    <%} %>
+                </tbody>
                    
                 </tbody>
             </table>

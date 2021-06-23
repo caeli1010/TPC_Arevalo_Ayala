@@ -8,13 +8,13 @@ namespace Dominio
 {
     public class Paciente
     {
-        public int idPaciente{ get; set; }
+        public long idPaciente{ get; set; }
         public string apellido { get; set; }
         public string nombre { get; set; }
         public int idObraSocial { get; set; }
         public DateTime fechaNacimiento { get; set; }
         public string genero { get; set; }
-        public Usuario dni { get; }
+        public string dni { get; set; }
         public string mail { get; set; }
 
 
