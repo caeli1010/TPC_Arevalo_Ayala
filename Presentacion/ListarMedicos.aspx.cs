@@ -24,6 +24,10 @@ namespace Presentacion
                 }
                 else
                 {
+                    //if (Request.QueryString["dni"] != null)
+                    //{
+                    //    dni = Request.QueryString["dni"];
+                    //}
                     lista = (List<Medico>)Session["Medicos"];
                 }
             }

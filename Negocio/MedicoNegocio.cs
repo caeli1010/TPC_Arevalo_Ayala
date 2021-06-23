@@ -15,7 +15,10 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta(@"SELECT IDMEDICO, APELLIDO, NOMBRE, SEXO, FECHANAC, FECHAINGRESO, EMAIL, DNI FROM MEDICOS");
+                datos.setearConsulta(@"SELECT M.IDMEDICO, M.APELLIDO, M.NOMBRE, M.SEXO, M.FECHANAC, M.FECHAINGRESO,
+                                        COALESCE(EMAIL, 'Sin email') AS CORREO, M.DNI, E.NOMBRE AS ESPEC FROM MEDICOS M 
+                                        INNER JOIN ESPECIALIDAD_X_MEDICO EM ON EM.IDMEDICO=M.IDMEDICO 
+                                        INNER JOIN ESPECIALIDADES E ON E.IDESPECIALIDAD=EM.IDESPECIALIDAD");
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
@@ -26,8 +29,9 @@ namespace Negocio
                     aux.genero = (string)datos.Lector["SEXO"];
                     aux.fechaNac = (DateTime)datos.Lector["FECHANAC"];
                     aux.fechaIngreso = (DateTime)datos.Lector["FECHAINGRESO"];
-                    aux.mail = (string)datos.Lector["EMAIL"];
+                    aux.mail = (string)datos.Lector["CORREO"];
                     aux.dni = (string)datos.Lector["DNI"];
+                    aux.especialidad = (string)datos.Lector["ESPEC"];
                     lista.Add(aux);
 
                 }

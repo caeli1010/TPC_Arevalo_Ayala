@@ -21,12 +21,14 @@
                     </tr>
                 </thead>
                 <tbody>
+                     <% foreach (Dominio.Medico item in lista)
+                         { %>
                     <tr>
                         <th scope="row">500</th>
-                        <td>Kloster Daniel</td>
+                        <td><% = item.apellido %>  <% = item.nombre %></td>
                         <td>L, M, J </td>
-                        <td>Proctología</td>
-                        <td>dkloster@gmail.com</td>
+                        <td><% = item.especialidad %></td>
+                        <td><% = item.mail %></td>
                         <td>555-555-55</td>
                         <td>Activo</td>
                         <td>
@@ -34,6 +36,7 @@
                             <a href="#" class="btn btn-sm btn-danger">Deshabilitar</a>
                         </td>
                     </tr>
+                    <%} %>
                 </tbody>
             </table>
         </div>
