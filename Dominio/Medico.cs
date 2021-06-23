@@ -16,10 +16,10 @@ namespace Dominio
         public DateTime fechaIngreso { get; set; }
         public string mail { get; set; }
         public string dni { get; set; }
-
+        public Especialidad especialidad { get; set; }
         public override string ToString()
         {
-            string datoMedico = nombre + apellido;
+            string datoMedico = dni;
             return datoMedico;
         }
     }
