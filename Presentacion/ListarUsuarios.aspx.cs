@@ -17,12 +17,21 @@ namespace Presentacion
         {
             UsuarioNegocio negocio = new UsuarioNegocio();
 
-            try
+
+            if (Session["Login"] == null)
             {
+                Response.Redirect("Login2.aspx");
+            }
+
+            try
+            { 
+
+
                 if (Session["Usuarios"] == null)
                 {
                     users = negocio.listar();
                     Session.Add("Usuarios", users);
+                    
                 }
                 else
                 {

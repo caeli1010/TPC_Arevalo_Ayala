@@ -3,7 +3,7 @@
 
     <hr class="py-1" />
     <h1 class="text-center">Ingreso Nuevo Médico</h1>
-    <div class="row alert alert-secondary">
+    <div class="row alert alert-success ">
         <div class="offset-md-4 col-md-4">
 
             <form>

@@ -7,15 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace Presentacion
 {
-    public partial class AltaMedico : System.Web.UI.Page
+    public partial class Login2 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["Login"] == null)
-            {
-                Response.Redirect("Login2.aspx");
-            }
-
+            Session["Login"] = true;
         }
     }
 }

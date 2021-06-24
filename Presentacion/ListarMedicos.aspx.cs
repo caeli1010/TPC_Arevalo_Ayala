@@ -15,6 +15,11 @@ namespace Presentacion
         protected void Page_Load(object sender, EventArgs e)
         {
             MedicoNegocio negocio = new MedicoNegocio();
+
+            if (Session["Login"] == null)
+            {
+                Response.Redirect("Login2.aspx");
+            }
             try
             {
                 if (Session["Medicos"] == null)
