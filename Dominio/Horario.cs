@@ -8,9 +8,11 @@ namespace Dominio
 {
     public class Horario
     {
+        public long id { get; set; }
         public int idDias { get; set; }
-        public Medico medico{ get; set; }
+        public long idMedico{ get; set; }
         public int hora { get; set; }
-        public int duración { get; set; }
+        public int duracion { get; set; }
+
     }
 }
