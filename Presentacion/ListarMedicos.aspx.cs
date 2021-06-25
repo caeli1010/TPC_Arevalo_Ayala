@@ -16,10 +16,10 @@ namespace Presentacion
         {
             MedicoNegocio negocio = new MedicoNegocio();
 
-            if (Session["Login"] == null)
-            {
-                Response.Redirect("Login2.aspx");
-            }
+            //if (Session["Login"] == null)
+            //{
+            //    Response.Redirect("Login2.aspx");
+            //}
             try
             {
                 if (Session["Medicos"] == null)

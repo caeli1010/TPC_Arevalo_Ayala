@@ -11,10 +11,10 @@ namespace Presentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["Login"] == null)
-            {
-                Response.Redirect("Login2.aspx");
-            }
+            //if (Session["Login"] == null)
+            //{
+            //    Response.Redirect("Login2.aspx");
+            //}
 
         }
     }
