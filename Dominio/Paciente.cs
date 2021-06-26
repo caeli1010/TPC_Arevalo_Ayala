@@ -11,7 +11,7 @@ namespace Dominio
         public long idPaciente{ get; set; }
         public string apellido { get; set; }
         public string nombre { get; set; }
-        public int idObraSocial { get; set; }
+        public Obrasocial obraSocial { get; set; }
         public DateTime fechaNacimiento { get; set; }
         public string genero { get; set; }
         public string dni { get; set; }

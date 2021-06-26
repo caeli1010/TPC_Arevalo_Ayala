@@ -15,7 +15,19 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta(@"SELECT IDPACIENTE, APELLIDO, SEXO,  IDOBRASOCIAL, FECHANAC, NOMBRE, COALESCE(EMAIL, 'sin correo') as EMAIL,  COALESCE(DNI, 'sin dni') as DNI FROM PACIENTES");
+                datos.setearConsulta(@"SELECT
+	                                    P.IDPACIENTE,
+	                                    P.APELLIDO,
+	                                    P.SEXO,
+	                                    OS.IDOBRASOCIAL,
+	                                    OS.NOMBRE,
+	                                    P.FECHANAC,
+	                                    P.NOMBRE,
+	                                    COALESCE ( P.EMAIL, 'sin correo' ) AS EMAIL,
+	                                    COALESCE ( P.DNI, 'sin dni' ) AS DNI 
+                                    FROM
+	                                    PACIENTES AS P
+	                                    INNER JOIN OBRAS_SOCIALES AS OS ON OS.IDOBRASOCIAL= P.IDOBRASOCIAL");
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
@@ -27,7 +39,7 @@ namespace Negocio
                     aux.fechaNacimiento = (DateTime)datos.Lector["FECHANAC"];
                     aux.mail = (string)datos.Lector["EMAIL"];
                     aux.dni = (string)datos.Lector["DNI"];
-                    aux.idObraSocial = (int)datos.Lector["IDOBRASOCIAL"];
+                    aux.obraSocial = new Obrasocial((string)datos.Lector["NOMBRE"]);
                     lista.Add(aux);
 
                 }
@@ -52,7 +64,7 @@ namespace Negocio
                                     nuevo.apellido + "', " +
                                     nuevo.genero + ", " +
                                     nuevo.fechaNacimiento + ", '" +
-                                    nuevo.idObraSocial + ", '" +
+                                    nuevo.obraSocial.idObraSocial + ", '" +
                                     nuevo.mail + "', " +
                                     nuevo.dni + ")";
                 datos.setearConsulta(@"insert into PacienteS (
@@ -89,7 +101,7 @@ namespace Negocio
                                                         "EMAIL= @email");
                 datos.setearParametro("@nombre", modificar.nombre);
                 datos.setearParametro("@apellido", modificar.apellido);
-                datos.setearParametro("@idObraSocial", modificar.idObraSocial);
+                datos.setearParametro("@idObraSocial", modificar.obraSocial.idObraSocial);
                 datos.setearParametro("@email", modificar.mail);
                 datos.ejecutarAccion();
 

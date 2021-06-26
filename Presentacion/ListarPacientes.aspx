@@ -22,11 +22,11 @@
                     <tr>
                         <th scope="row"><% = item.dni  %></th>
                         <td><% = item.nombre  %> <% = item.apellido  %></td>
-                        <td><% = item.idObraSocial  %></td>
+                        <td><% = item.obraSocial  %></td>
                         <td> s/n </td>
                         <td><% = item.mail  %></td>
                         <td>
-                            <a href="SolicitudTurno.aspx?dni=<% = item.dni  %>&estado=1&email=<% = item.mail  %>&obsoc=<% = item.idObraSocial  %>&carnet=<% = item.idObraSocial  %>&paciente=<% = item.nombre  %> <% = item.apellido  %>" class="btn btn-sm btn-success">Solicitar Turno</a>
+                            <a href="SolicitudTurno.aspx?dni=<% = item.dni  %>" class="btn btn-sm btn-success">Solicitar Turno</a>
                             
                         </td>
                     </tr>
