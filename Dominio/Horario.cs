@@ -13,6 +13,14 @@ namespace Dominio
         public long idMedico{ get; set; }
         public int hora { get; set; }
         public int duracion { get; set; }
-
+        public Horario(){ }
+        public Horario(long _id, int _idDias, long _idMedico, int _hora, int _duracion)
+        {
+            id = _id;
+            idDias = _idDias;
+            idMedico = _idMedico;
+            hora = _hora;
+            duracion = _duracion;
+        }
     }
 }
