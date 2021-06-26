@@ -44,6 +44,7 @@
     <Compile Include="Especialidad.cs" />
     <Compile Include="Horario.cs" />
     <Compile Include="Medico.cs" />
+    <Compile Include="Obrasocial.cs" />
     <Compile Include="Paciente.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Turno.cs" />
