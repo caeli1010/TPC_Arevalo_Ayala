@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ListarMedicos.aspx.cs" Inherits="Presentacion.ListarMedicos" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    
+
 
     <hr class="py-1" />
     <h1>Listado de Medicos </h1>
@@ -21,22 +21,34 @@
                     </tr>
                 </thead>
                 <tbody>
-                     <% foreach (Dominio.Medico item in lista)
-                         { %>
-                    <tr>
-                        <th scope="row">500</th>
-                        <td><% = item.apellido %>  <% = item.nombre %></td>
-                        <td>L, M, J </td>
-                        <td><% = item.especialidad %></td>
-                        <td><% = item.mail %></td>
-                        <td>555-555-55</td>
-                        <td>Activo</td>
-                        <td>
-                            <a  href="#" class="btn btn-sm btn-success">Agregar Especialidad</a>
-                            <a href="#" class="btn btn-sm btn-danger">Deshabilitar</a>
-                        </td>
-                    </tr>
-                    <%} %>
+                    <asp:Repeater runat="server" ID="repetidor">
+                        <ItemTemplate>
+                            <tr>
+                                <th scope="row">500</th>
+                                <td><%#Eval("nombre")%>  <%#Eval("apellido")%></td>
+                                <td><%#Eval("horario.dias")%> </td>
+                                <td><%#Eval("especialidad")%></td>
+                                <td><%#Eval("mail")%></td>
+                                <td>555-555-55</td>
+                                <td>Activo</td>
+                                <td>
+                                    <asp:Button Text="Agregar Especialidad"
+                                        runat="server"
+                                        CssClass="btn btn-success"
+                                        ID="btnAgregarEsp"
+                                        OnClick="btnAgregarEsp_Click" 
+                                        CommandArgument='<%#Eval("idMedico")%>'/>
+                                    <asp:Button Text="Deshabilitar"
+                                        runat="server"
+                                        CssClass="btn btn-outline-warning"
+                                        ID="btnDeshabilitar"
+                                        OnClick="btnDeshabilitar_Click" 
+                                        CommandArgument='<%#Eval("idMedico")%>'/>
+                                </td>
+                            </tr>
+
+                        </ItemTemplate>
+                        </asp:Repeater>
                 </tbody>
             </table>
         </div>

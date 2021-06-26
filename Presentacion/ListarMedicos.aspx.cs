@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Dominio;
 using Negocio;
+using Microsoft.Ajax.Utilities;
 
 namespace Presentacion
 {
@@ -22,9 +23,12 @@ namespace Presentacion
             //}
             try
             {
-                if (Session["Medicos"] == null)
+                lista = (List<Medico>)Session["Medicos"];
+                if (lista == null)
                 {
                     lista = negocio.listar();
+                    
+                   
                     Session.Add("Medicos", lista);
                 }
                 else
@@ -35,6 +39,8 @@ namespace Presentacion
                     //}
                     lista = (List<Medico>)Session["Medicos"];
                 }
+                repetidor.DataSource = lista;
+                repetidor.DataBind();
             }
             catch (Exception error)
             {
@@ -42,6 +48,25 @@ namespace Presentacion
                 Response.Redirect("Error.aspx");
             }
 
+        }
+
+        protected void btnAgregarEsp_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Error.aspx");
+        }
+
+        protected void btnDeshabilitar_Click(object sender, EventArgs e)
+        {
+            var argument = ((Button)sender).CommandArgument;
+            List<Medico> seleccionado = (List<Medico>)Session["Medicos"];
+            Medico medicoSeleccionado = (Medico)seleccionado.Find(x => x.idMedico.ToString() == argument);
+
+            MedicoNegocio negocio = new MedicoNegocio();
+            negocio.eliminar(medicoSeleccionado);
+
+            seleccionado.Remove(medicoSeleccionado);
+            repetidor.DataSource = seleccionado;
+            repetidor.DataBind();
         }
     }
 }
