@@ -107,29 +107,29 @@ namespace Negocio
                 datos = null;
             }
         }
-        //public void eliminar(Medico Medico)
-        //{
-        //    AccesoDatos datos = new AccesoDatos();
-        //    try
-        //    {
-        //        datos.setearConsulta("update MEDICOS set ESTADO = 0 WHERE DNI = @dni");
-        //        datos.setearParametro("@dni", Medico.dni);
+        public void eliminar(Medico Medico)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("delete from MEDICOS WHERE DNI = @dni");
+                datos.setearParametro("@dni", Medico.dni);
 
-        //        datos.ejecutarAccion();
+                datos.ejecutarAccion();
 
-        //    }
-        //    catch (global::System.Exception)
-        //    {
-        //        throw;
-        //    }
+            }
+            catch (global::System.Exception)
+            {
+                throw;
+            }
 
-        //    finally
-        //    {
-        //        datos.cerrarConexion();
-        //        datos = null;
-        //    }
+            finally
+            {
+                datos.cerrarConexion();
+                datos = null;
+            }
 
-        //}
+        }
         public void leerMedico(string dni)
         {
             AccesoDatos datos = new AccesoDatos();
