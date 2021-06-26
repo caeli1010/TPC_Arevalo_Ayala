@@ -20,7 +20,7 @@ namespace Negocio
 	                                    P.APELLIDO,
 	                                    P.SEXO,
 	                                    OS.IDOBRASOCIAL,
-	                                    OS.NOMBRE,
+	                                    OS.NOMBRE as OSNOMBRE ,
 	                                    P.FECHANAC,
 	                                    P.NOMBRE,
 	                                    COALESCE ( P.EMAIL, 'sin correo' ) AS EMAIL,
@@ -39,7 +39,7 @@ namespace Negocio
                     aux.fechaNacimiento = (DateTime)datos.Lector["FECHANAC"];
                     aux.mail = (string)datos.Lector["EMAIL"];
                     aux.dni = (string)datos.Lector["DNI"];
-                    aux.obraSocial = new Obrasocial((string)datos.Lector["NOMBRE"]);
+                    aux.obraSocial = new Obrasocial((string)datos.Lector["OSNOMBRE"]);
                     lista.Add(aux);
 
                 }

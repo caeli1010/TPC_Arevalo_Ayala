@@ -11,16 +11,16 @@
                 <div class="card-body">
                     <hr />
                     <h4 class="card-title">Identidad del Paciente</h4>
-                    <p class="card-text">NOMBRE y APELLIDO : <asp:Label ID="lblNombre" runat="server" /></p>
+                    <p class="card-text">NOMBRE y APELLIDO :<span class=" font-weight-bold "> <asp:Label ID="lblNombre" runat="server" /></span></p>
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">DNI: <span class=""><% =Request.QueryString["dni"] %></></span> </li>
-                    <li class="list-group-item">OBRA SOCIAL:<span class=""><% =Request.QueryString["obsoc"] %></span> </li>
-                    <li class="list-group-item">NUMERO CARNET: <span class=" "><% =Request.QueryString["carnet"] %> </span></li>
-                    <li class="list-group-item">EMAIL: <span class=""><% =Request.QueryString["email"] %> </span>  </li>
+                    <li class="list-group-item">DNI: <span class=" font-weight-bold "><asp:Label  ID="lblDni" runat="server" /></span> </li>
+                    <li class="list-group-item">OBRA SOCIAL: <span class=" font-weight-bold"><asp:Label ID="lblObraSocial" runat="server" /></span> </li>
+                    <li class="list-group-item">EMAIL: <span class="font-weight-bold "><asp:Label ID="lblEmail" runat="server" /> </span>  </li>
                 </ul>
                 <div class="card-body">
-                    <a href="#" class="card-link badge btn-sm badge-warning">Modificar Datos</a>
+                    <asp:Button Text="Modificar Datos" CssClass="card-link btn-sm  btn-danger"  ID="btnModificar"  runat="server" />
+             
                     <a href="#" class="card-link badge btn-sm badge-info">Enviar mensaje</a>
                 </div>
             </div>

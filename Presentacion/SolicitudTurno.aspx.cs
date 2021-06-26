@@ -19,7 +19,11 @@ namespace Presentacion
             Paciente seleccionado = paciente.Find(X => X.idPaciente.ToString() == Request.QueryString["ipc"]);
             ////lblNombre.Text = (string)seleccionado.nombre;
 
-            lblNombre.Text = (string)seleccionado.apellido;
+            lblNombre.Text = (string)seleccionado.nombre +" "+ (string)seleccionado.apellido;
+            lblDni.Text =(string)seleccionado.dni;
+            lblEmail.Text = (string)seleccionado.mail;
+            lblObraSocial.Text = (string)seleccionado.obraSocial.nombre;
+           
 
             //if (Session["Login"] == null)
             //{

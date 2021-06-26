@@ -27,6 +27,7 @@
                         <td><% = item.mail  %></td>
                         <td>
                             <a href="SolicitudTurno.aspx?ipc=<% = item.idPaciente  %>" class="btn btn-sm btn-success">Solicitar Turno</a>
+                            <a href="ModificarPaciente.aspx?ipc=<% = item.idPaciente  %>" class="btn btn-sm btn-warning text-white">Modificar Datos</a>
                             
                         </td>
                     </tr>
