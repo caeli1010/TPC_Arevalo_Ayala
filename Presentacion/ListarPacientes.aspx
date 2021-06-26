@@ -26,7 +26,7 @@
                         <td> s/n </td>
                         <td><% = item.mail  %></td>
                         <td>
-                            <a href="SolicitudTurno.aspx?dni=<% = item.dni  %>" class="btn btn-sm btn-success">Solicitar Turno</a>
+                            <a href="SolicitudTurno.aspx?ipc=<% = item.idPaciente  %>" class="btn btn-sm btn-success">Solicitar Turno</a>
                             
                         </td>
                     </tr>
