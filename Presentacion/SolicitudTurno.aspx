@@ -11,7 +11,7 @@
                 <div class="card-body">
                     <hr />
                     <h4 class="card-title">Identidad del Paciente</h4>
-                    <p class="card-text">NOMBRE y APELLIDO : <% =Request.QueryString["paciente"] %></p>
+                    <p class="card-text">NOMBRE y APELLIDO : <asp:Label ID="lblNombre" runat="server" /></p>
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">DNI: <span class=""><% =Request.QueryString["dni"] %></></span> </li>
