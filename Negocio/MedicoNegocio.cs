@@ -31,7 +31,7 @@ namespace Negocio
                     aux.fechaIngreso = (DateTime)datos.Lector["FECHAINGRESO"];
                     aux.mail = (string)datos.Lector["CORREO"];
                     aux.dni = (string)datos.Lector["DNI"];
-                    aux.especialidad = (string)datos.Lector["ESPEC"];
+                    aux.especialidad = new Especialidad((string)datos.Lector["ESPEC"]);
                     lista.Add(aux);
 
                 }
