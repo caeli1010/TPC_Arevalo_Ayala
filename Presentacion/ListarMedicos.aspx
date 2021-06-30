@@ -32,12 +32,7 @@
                                 <td>555-555-55</td>
                                 <td>Activo</td>
                                 <td>
-                                    <asp:Button Text="Agregar Especialidad"
-                                        runat="server"
-                                        CssClass="btn btn-success"
-                                        ID="btnAgregarEsp"
-                                        OnClick="btnAgregarEsp_Click" 
-                                        CommandArgument='<%#Eval("idMedico")%>'/>
+                                    <a class="btn btn-sm btn-outline-info" href='AgregarEspecialidad.aspx?idM=<%#Eval("idMedico")%>'>Agregar Especialidad</a>
                                     <asp:Button Text="Deshabilitar"
                                         runat="server"
                                         CssClass="btn btn-outline-warning"
