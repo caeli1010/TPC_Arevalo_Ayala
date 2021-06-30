@@ -24,6 +24,7 @@ namespace Negocio
 	                                    P.FECHANAC,
 	                                    P.NOMBRE,
 	                                    COALESCE ( P.EMAIL, 'sin correo' ) AS EMAIL,
+	                                    COALESCE ( P.NROCARNET, 0000 ) AS NROCARNET,
 	                                    COALESCE ( P.DNI, 'sin dni' ) AS DNI 
                                     FROM
 	                                    PACIENTES AS P
@@ -38,6 +39,7 @@ namespace Negocio
                     aux.genero = (string)datos.Lector["SEXO"];
                     aux.fechaNacimiento = (DateTime)datos.Lector["FECHANAC"];
                     aux.mail = (string)datos.Lector["EMAIL"];
+                    aux.nroCarnet = (int)datos.Lector["NROCARNET"];
                     aux.dni = (string)datos.Lector["DNI"];
                     aux.obraSocial = new Obrasocial((string)datos.Lector["OSNOMBRE"]);
                     lista.Add(aux);
@@ -97,10 +99,13 @@ namespace Negocio
                 datos.setearConsulta("update PACIENTES set " +
                                                         "NOMBRE = @nombre, " +
                                                         "APELLIDO = @apellido, " +
-                                                        "IDOBRASICIAL=@idObraSocial, " +
-                                                        "EMAIL= @email");
+                                                        "NROCARNET=@nroCarnet, " +
+                                                        "IDOBRASOCIAL=@idObraSocial, " +
+                                                        "EMAIL= @email where IDPACIENTE = @idPaciente");
+                datos.setearParametro("@idPaciente", modificar.idPaciente);
                 datos.setearParametro("@nombre", modificar.nombre);
                 datos.setearParametro("@apellido", modificar.apellido);
+                datos.setearParametro("@nroCarnet", modificar.nroCarnet);
                 datos.setearParametro("@idObraSocial", modificar.obraSocial.idObraSocial);
                 datos.setearParametro("@email", modificar.mail);
                 datos.ejecutarAccion();

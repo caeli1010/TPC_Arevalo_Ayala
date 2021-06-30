@@ -10,14 +10,14 @@
             
             <div class="form-group col-md-12">
                 <label for="nDoc"> Nro Documento </label>
-                <asp:TextBox runat="server"  CssClass="form-control" ReadOnly="true" ID="txtDNI"/>
+                <asp:TextBox runat="server"  CssClass="form-control" ID="txtDNI"/>
             </div> 
         </div>
 
         <div class="form-row">
             <div class="form-group col-md-12">
                 <label for="email">Email</label>
-                 <asp:TextBox runat="server"  CssClass="form-control" ReadOnly="true" ID="txtEmail"/>
+                 <asp:TextBox runat="server"  CssClass="form-control"  ID="txtEmail"/>
             </div>
              
         </div>
@@ -42,24 +42,26 @@
         <div class="form-row">
             <div class="form-group col-md-12">
                 <label for="obSoc">Obra social</label>
-                <select id="obSoc" class="form-control">
+                <asp:TextBox runat="server" Text="" ID="cbxObraSocial"   CssClass="form-control"/>
+                <%--<select id="obSoc" class="form-control">
                     <option selected>Seleccione ...</option>
                     <option value="osde">OSde</option>
                     <option value="Swit Medical">Swits medical</option>
                     <option value="3">Galeno</option>
                     <option value="4">Cemic</option>
-                </select>
+                </select>--%>
             </div>
             </div>
         <div class="form-row">
             <div class="form-group col-md-12">
                 <label for="nCred"> Nro Credencial </label>
-                <input type="text" name="nCred" class="form-control" id="nCred">
+                <asp:TextBox runat="server" ID="txtNroCarnet" Text="" CssClass="form-control" />
+                
             </div>
         </div> 
 
-    
-        <button type="submit"  name="modificarPaciente" class="btn btn-primary">Modificar</button>
+        <asp:Button Text="Modificar" CssClass="btn btn-primary" OnClick="btnModificarPte" runat="server" />
+       
     </form>
     </div>
     </div>

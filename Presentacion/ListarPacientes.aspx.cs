@@ -24,19 +24,19 @@ namespace Presentacion
 
             try
             {
-                if (Session["Paciente"] == null)
-                {
-                    pacientes = negocio.listar();
+                //if (Session["Paciente"] == null)
+                //{
+                pacientes = negocio.listar();
                     Session.Add("Paciente", pacientes);
-                }
-                else
-                {
+                //}
+                //else
+                //{
                     if (Request.QueryString["dni"] != null)
                     {
                         dni = Request.QueryString["dni"];
                     }
                     pacientes = (List<Paciente>)Session["Paciente"];
-                }
+                //}
             }
             catch (Exception error)
             {
