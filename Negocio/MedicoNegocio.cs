@@ -88,9 +88,10 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("update MEDICOS set NOMBRE = @nombre, EMAIL= @email");
+                datos.setearConsulta("update MEDICOS set NOMBRE = @nombre, EMAIL= @email where IDMEDICO = @id");
                 datos.setearParametro("@nombre", modificar.nombre);
                 datos.setearParametro("@email", modificar.mail);
+                datos.setearParametro("@id", modificar.idMedico);
 
 
                 datos.ejecutarAccion();
