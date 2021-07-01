@@ -31,8 +31,9 @@
 
                     <div class="form-group col-md-6">
                         <label for="espec">Especialidad</label>
-                            <asp:DropDownList ID="ddlEspecialidad" runat="server">
-                                <asp:ListItem Selected="True" />
+                            <asp:DropDownList ID="ddlEspecialidad" runat="server" 
+                                 OnSelectedIndexChanged="ddlEspecialidad_SelectedIndexChanged"> 
+                                <asp:ListItem />
                             </asp:DropDownList>
                     </div>
                 </div>

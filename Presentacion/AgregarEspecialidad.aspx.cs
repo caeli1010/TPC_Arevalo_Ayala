@@ -28,22 +28,20 @@ namespace Presentacion
                     lblMatricula.Text = doctor.matricula;
                     lblEmail.Text = doctor.mail;
 
-                    Session.Add("especialidad", negocio.listar());
-                    insertar = (List<Especialidad>)Session["especialidades"];
-                    ddlEspecialidad.DataSource = insertar;
-                    ddlEspecialidad.DataMember = "nombre";
-                    ddlEspecialidad.DataBind();
-
-                    foreach (ListItem ltItem in ddlEspecialidad.Items)
+                    if (!Page.IsPostBack)
                     {
-
-                        ltItem.Text = (string)ltItem.Text;
-                        ltItem.Value = (string)ltItem.Value;
+                        Session.Add("especialidad", negocio.listar());
+                        insertar = (List<Especialidad>)Session["especialidades"];
+                        ddlEspecialidad.DataValueField = "idEspecialidad";
+                        ddlEspecialidad.DataTextField = "nombre";
+                        ddlEspecialidad.DataSource = insertar;
+                        ddlEspecialidad.DataBind();
+                        ddlEspecialidad.Items.Insert(0, new ListItem("nombre","-1"));
                     }
                 }
-              
-                    //Especialidad especialidad = (Especialidad)insertar.Find(X => X.idEspecialidad.ToString() == ddlEspecialidad.SelectedValue);
-                    //negocio.agregar(especialidad);
+
+                //Especialidad especialidad = (Especialidad)insertar.Find(X => X.idEspecialidad.ToString() == ddlEspecialidad.SelectedValue);
+                //negocio.agregar(especialidad);
 
             }
             catch (Exception ex)
@@ -53,12 +51,19 @@ namespace Presentacion
             }
 
         }
-
+      
+        protected void ddlEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
+        }
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
             EspecialidadNegocio negocio = new EspecialidadNegocio();
             Especialidad especialidad = (Especialidad)insertar.Find(X => X.idEspecialidad.ToString() == ddlEspecialidad.SelectedValue);
             negocio.agregarXMedico(especialidad, doctor);
+            //Response.Write("codigo" + ddlEspecialidad.SelectedItem.Value.ToString());
+            //Response.Write("codigo" + ddlEspecialidad.SelectedValue.ToString());
         }
+
     }
 }
