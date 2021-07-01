@@ -41,8 +41,6 @@ namespace Presentacion
                     }
                 }
 
-                //Especialidad especialidad = (Especialidad)insertar.Find(X => X.idEspecialidad.ToString() == ddlEspecialidad.SelectedValue);
-                //negocio.agregar(especialidad);
 
             }
             catch (Exception ex)
@@ -55,20 +53,37 @@ namespace Presentacion
       
         protected void ddlEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
         {
-            EspecialidadNegocio negocio = new EspecialidadNegocio();
-            Session.Add("especialidad", negocio.listar());
-            insertar = (List<Especialidad>)Session["especialidad"];
-            var argument = 2;
-                //((ListItem)sender).Value;
-            especialidad = (Especialidad)insertar.Find(X => X.idEspecialidad.ToString() == argument.ToString());
-            lblEspecialidad.Text = especialidad.nombre.ToString();
+            try
+            {
+                EspecialidadNegocio negocio = new EspecialidadNegocio();
+                Session.Add("especialidad", negocio.listar());
+                insertar = (List<Especialidad>)Session["especialidad"];
+
+                var argument = ddlEspecialidad.SelectedItem.Value;
+                especialidad = (Especialidad)insertar.Find(X => X.idEspecialidad.ToString() == argument.ToString());
+                lblEspecialidad.Text = especialidad.nombre.ToString();
+            }
+            catch (Exception ex)
+            {
+                Session.Add("Error", ex.ToString());
+                Response.Redirect("Error.aspx");
+            }
+           
         }
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
-            EspecialidadNegocio negocio = new EspecialidadNegocio();
-            negocio.agregarXMedico(especialidad, doctor);
-            //Response.Write("codigo" + ddlEspecialidad.SelectedItem.Value.ToString());
-            //Response.Write("codigo" + ddlEspecialidad.SelectedValue.ToString());
+            try
+            {
+                EspecialidadNegocio negocio = new EspecialidadNegocio();
+                negocio.agregarXMedico(especialidad, doctor);
+            }
+            catch (Exception ex)
+            {
+                Session.Add("Error", ex.ToString());
+                Response.Redirect("Error.aspx");
+            }
+           
+           
         }
 
     }
