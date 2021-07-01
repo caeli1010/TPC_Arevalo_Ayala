@@ -33,8 +33,9 @@
                         <label for="espec">Especialidad</label>
                             <asp:DropDownList ID="ddlEspecialidad" runat="server" 
                                  OnSelectedIndexChanged="ddlEspecialidad_SelectedIndexChanged"> 
-                                <asp:ListItem />
+                               
                             </asp:DropDownList>
+                        <asp:Label ID="lblEspecialidad" runat="server" />
                     </div>
                 </div>
 
