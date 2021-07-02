@@ -41,7 +41,7 @@ namespace Presentacion
                     }
                 }
 
-
+//Queda pendiente reañizar el alta de las especialidades en caso de que la organizacion quiera agregar mas
             }
             catch (Exception ex)
             {
