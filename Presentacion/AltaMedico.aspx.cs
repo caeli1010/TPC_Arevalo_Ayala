@@ -22,6 +22,7 @@ namespace Presentacion
                 MedicoNegocio negocio = new MedicoNegocio();
                 Medico nuevo = new Medico();
 
+<<<<<<< HEAD
             }
             catch (Exception ex)
             {
@@ -46,7 +47,6 @@ namespace Presentacion
                 nuevo.especialidad.idEspecialidad = int.Parse(ddlEspecialidad.SelectedItem.Value);
                 //nuevo.fechaIngreso =
                 negocio.agregar(nuevo);
-
             }
             catch (Exception ex)
             {

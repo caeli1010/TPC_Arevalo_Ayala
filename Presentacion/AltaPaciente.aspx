@@ -11,85 +11,91 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="tipodoc">Tipo Doc</label>
-                <select id="tipodoc" class="form-control">
-                    <option selected>Seleccione ...</option>
-                    <option value="1">DNI</option>
-                    <option value="2">LE</option>
-                    <option value="3">CI</option>
-                    <option value="4">CUIT</option>
-                </select>
+                <asp:DropDownList CssClass="form-control"   ID="ddlTipoDoc" runat="server">
+                    <asp:ListItem Value="1" Text="DNI" />
+                    <asp:ListItem Value="2" Text="LE" />
+                    <asp:ListItem Value="3" Text="CI" />
+                    <asp:ListItem Value="4" Text="CUIT" />
+                </asp:DropDownList>
+                
             </div>
             <div class="form-group col-md-6">
-                <label for="nDoc"> Nro Documento </label>
-                <input type="text" name="nDoc" class="form-control" id="nDoc">
+                <asp:Label Text="Nro Documento" runat="server" />
+                <asp:TextBox runat="server"  ID="txtDni" CssClass="form-control" required="true" />       
             </div> 
         </div>
 
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="email">Email</label>
-                <input name="email" type="email" class="form-control" id="email">
+                <asp:Label Text="Email"  runat="server" />
+                <asp:TextBox runat="server"  type="email" ID="txtEmail" CssClass="form-control" required="true" />
             </div>
              <div class="form-group col-md-6">
-                <label for="cEmail">Confirmar Email</label>
-                <input name="cEmail" type="email" class="form-control" id="cEmail">
+                 <asp:Label Text="Confirmar Email"  runat="server" />
+                <asp:TextBox runat="server" type="email" ID="txtConfEmail" CssClass="form-control" required="true" />
             </div>
         </div>
 
 
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="nombre"> Nombre </label>
-                <input type="text" name="nombre" class="form-control" id="nombre">
+                 <asp:Label Text="Nombre"  runat="server" />
+                <asp:TextBox runat="server" ID="txtNombre" CssClass="form-control" required="true" />
+               
+               
             </div> 
             <div class="form-group col-md-6">
-                <label for="apellido"> Apellido </label>
-                <input type="text" name="apellido" class="form-control" id="apellido">
+                  <asp:Label Text="Apellido"  runat="server" />
+                <asp:TextBox runat="server" ID="txtApellido" CssClass="form-control" required="true" />
+               
             </div>
         </div>
 
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="sexo">Sexo</label>
-                <select id="sexo" class="form-control">
-                    <option selected>Seleccione ...</option>
-                    <option value="F">Femenino</option>
-                    <option value="M">Masculino</option>
-                    <option value="O">Otro</option>
-                </select>
+                <asp:Label Text="Sexo" runat="server" />
+                  <asp:DropDownList CssClass="form-control"  ID="ddlSexo" runat="server">
+                    <asp:ListItem Value="F" Text="Femenino" />
+                    <asp:ListItem Value="M" Text="Masculino" />
+                    <asp:ListItem Value="O" Text="Otro" />
+                </asp:DropDownList>
+               
             </div>
             <div class="form-group col-md-6">
-                <label for="fechaNac"> Fecha de Nacimiento </label>
-                <input type="date" name="fechaNac" class="form-control" id="fechaNac">
+                 <asp:Label Text="Fecha de Nacimiento"  runat="server" />
+                <asp:TextBox runat="server" type="date" ID="txtFechaNac" CssClass="form-control" required="true" />
+               
+                
             </div>
         </div>
 
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="obSoc">Obra social</label>
-                <select id="obSoc" class="form-control">
-                    <option selected>Seleccione ...</option>
-                    <option value="osde">OSde</option>
-                    <option value="Swit Medical">Swits medical</option>
-                    <option value="3">Galeno</option>
-                    <option value="4">Cemic</option>
-                </select>
+                <asp:Label Text="Obra social" runat="server" />
+                 <asp:DropDownList CssClass="form-control"   ID="ddlObraSocial" runat="server">
+                    <asp:ListItem Value="1" Text="OSde" />
+                    <asp:ListItem Value="2" Text="Swits medical" />
+                    <asp:ListItem Value="3" Text="Galeno" />
+                    <asp:ListItem Value="4" Text="Cemic" />
+                </asp:DropDownList>
+
             </div>
             <div class="form-group col-md-6">
-                <label for="nCred"> Nro Credencial </label>
-                <input type="text" name="nCred" class="form-control" id="nCred">
-            </div>
+                   <asp:Label Text=" Nro Credencial "  runat="server" />
+                <asp:TextBox runat="server" ID="txtNroCred" CssClass="form-control" required="true" />
+               
+                </div>
         </div> 
 
         <div class="form-group">
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="gridCheck">
-                <label class="form-check-label" for="gridCheck">
-                   Solicita turno
-                </label>
+                <asp:Label Text="Solicitar Turno" runat="server" />
+                <asp:CheckBox Text="text" runat="server" />
+             
             </div>
         </div>
-        <button type="submit"  name="grabarPaciente" class="btn btn-primary">Guardar</button>
+        <asp:Button Text="Guardar Paciente" runat="server" ID="btnGuardar"  OnClick="btnGuardar_Click"/>
+       
     </form>
     </div>
     </div>
