@@ -21,8 +21,6 @@ namespace Presentacion
             {
                 MedicoNegocio negocio = new MedicoNegocio();
                 Medico nuevo = new Medico();
-
-<<<<<<< HEAD
             }
             catch (Exception ex)
             {
