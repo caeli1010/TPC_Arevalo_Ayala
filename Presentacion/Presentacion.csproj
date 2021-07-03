@@ -110,6 +110,7 @@
     <Content Include="AgregarEspecialidad.aspx" />
     <Content Include="AltaMedico.aspx" />
     <Content Include="AltaPaciente.aspx" />
+    <Content Include="BajaMedico.aspx" />
     <Content Include="Calendario.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -136,6 +137,7 @@
     <Content Include="ListarUsuarios.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Login2.aspx" />
+    <Content Include="ModificarMedico.aspx" />
     <Content Include="ModificarPaciente.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -210,6 +212,13 @@
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="BajaMedico.aspx.cs">
+      <DependentUpon>BajaMedico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BajaMedico.aspx.designer.cs">
+      <DependentUpon>BajaMedico.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Calendario.aspx.cs">
       <DependentUpon>Calendario.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -275,6 +284,13 @@
     </Compile>
     <Compile Include="Login2.aspx.designer.cs">
       <DependentUpon>Login2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ModificarMedico.aspx.cs">
+      <DependentUpon>ModificarMedico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ModificarMedico.aspx.designer.cs">
+      <DependentUpon>ModificarMedico.aspx</DependentUpon>
     </Compile>
     <Compile Include="ModificarPaciente.aspx.cs">
       <DependentUpon>ModificarPaciente.aspx</DependentUpon>
