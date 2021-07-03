@@ -22,7 +22,31 @@ namespace Presentacion
                 MedicoNegocio negocio = new MedicoNegocio();
                 Medico nuevo = new Medico();
 
-                nuevo.dni = nDoc.Text;
+            }
+            catch (Exception ex)
+            {
+                Session.Add("Error", ex.ToString());
+                Response.Redirect("Error.aspx");
+            }
+
+        }
+
+        protected void btnGrabarMedico_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MedicoNegocio negocio = new MedicoNegocio();
+                Medico nuevo = new Medico();
+                nuevo.dni = txtDoc.Text;
+                nuevo.mail = txtCEmail.Text;
+                //nuevo.fechaNac = ddl
+                nuevo.nombre = txtNombre.Text;
+                nuevo.apellido = txtApellido.Text;
+                nuevo.matricula = txtMatricula.Text;
+                nuevo.especialidad.idEspecialidad = int.Parse(ddlEspecialidad.SelectedItem.Value);
+                //nuevo.fechaIngreso =
+                negocio.agregar(nuevo);
+
             }
             catch (Exception ex)
             {
