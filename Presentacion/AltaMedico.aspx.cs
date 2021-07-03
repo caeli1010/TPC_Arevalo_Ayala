@@ -22,7 +22,7 @@ namespace Presentacion
                 MedicoNegocio negocio = new MedicoNegocio();
                 Medico nuevo = new Medico();
 
-                nuevo.dni = nDoc.Text;
+                //nuevo.dni = nDoc.Text;
             }
             catch (Exception ex)
             {

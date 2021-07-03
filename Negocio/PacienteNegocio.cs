@@ -68,6 +68,7 @@ namespace Negocio
                                     nuevo.fechaNacimiento + ", '" +
                                     nuevo.obraSocial.idObraSocial + ", '" +
                                     nuevo.mail + "', " +
+                                    nuevo.nroCarnet + "', " +
                                     nuevo.dni + ")";
                 datos.setearConsulta(@"insert into PacienteS (
                                         NOMBRE,
@@ -76,9 +77,13 @@ namespace Negocio
                                         FECHANAC, 
                                         IDOBRASOCIAL, 
                                         MAIL,
-                                        DNI
+                                        NROCARNET,
+                                        DNI, 
+                                        ESTADO = 1
                                         ) " + valores);
                 datos.ejecutarAccion();
+
+
 
             }
             catch (global::System.Exception)

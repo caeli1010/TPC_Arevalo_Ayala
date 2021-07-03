@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Dominio;
+using Negocio;
+
 
 namespace Presentacion
 {
@@ -21,6 +24,23 @@ namespace Presentacion
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
+            var idOs = ddlObraSocial.SelectedItem.Value;
+            if (txtEmail.Text == txtConfEmail.Text)
+            {
+                Paciente paciente = new Paciente();
+                PacienteNegocio agregar = new PacienteNegocio();
+                paciente.apellido = txtApellido.Text;
+                paciente.nombre = txtNombre.Text;
+                paciente.obraSocial.idObraSocial= 5;
+                paciente.fechaNacimiento = DateTime.Parse(txtFechaNac.Text);
+                paciente.genero = ddlSexo.SelectedItem.Value;
+                paciente.dni = txtDni.Text;
+                paciente.mail = txtEmail.Text;
+                paciente.nroCarnet = int.Parse(txtNroCred.Text);
+                agregar.agregar(paciente);
+
+            }
+
 
 
         }

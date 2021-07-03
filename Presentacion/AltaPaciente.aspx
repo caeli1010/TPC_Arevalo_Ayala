@@ -21,14 +21,14 @@
             </div>
             <div class="form-group col-md-6">
                 <asp:Label Text="Nro Documento" runat="server" />
-                <asp:TextBox runat="server" type="email"  ID="txtDni" CssClass="form-control" required="true" />       
+                <asp:TextBox runat="server"  ID="txtDni" CssClass="form-control" required="true" />       
             </div> 
         </div>
 
         <div class="form-row">
             <div class="form-group col-md-6">
                 <asp:Label Text="Email"  runat="server" />
-                <asp:TextBox runat="server" ID="txtEmail" CssClass="form-control" required="true" />
+                <asp:TextBox runat="server"  type="email" ID="txtEmail" CssClass="form-control" required="true" />
             </div>
              <div class="form-group col-md-6">
                  <asp:Label Text="Confirmar Email"  runat="server" />
