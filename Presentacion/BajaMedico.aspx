@@ -8,94 +8,76 @@
 
             <form>
 
+                 <div class="form-row">
+                     <div class="form-group col-md-6">
+                        <asp:Label ID="lblApellido" Text="Apellidos" runat="server"/>
+                        <asp:DropDownList ID="ddlApellido" OnselectedIndexChanged="ddlApellido_SelectedIndexChanged" runat="server">
+                        </asp:DropDownList>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <asp:Label ID="lblNombre" Text="Nombres" runat="server" />
+                        <asp:DropDownList ID="ddlNombre" OnSelectedIndexChanged="ddlNombre_SelectedIndexChanged" runat="server">
+                        </asp:DropDownList>
+                    </div>
+                </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <asp:Label ID="lblTipoDoc" Text="Tipo de documento" runat="server" />
-                        <select id="tipodoc" class="form-control">
-                            <option selected>Seleccione ...</option>
-                            <option value="1">DNI</option>
-                            <option value="2">LE</option>
-                            <option value="3">CI</option>
-                            <option value="4">CUIT</option>
-                        </select>
+                        <asp:DropDownList ID="ddlTipoDoc" runat="server">
+                            <asp:ListItem value="1" Text="DNI" />
+                            <asp:ListItem Value="2" Text="LE" />
+                            <asp:ListItem Value="3" Text="CI" />
+                            <asp:ListItem Value="4" Text="CUIT" />
+                        </asp:DropDownList>
                     </div>
                     <div class="form-group col-md-6">
                         <asp:Label ID="lblNDoc" Text="Nro de documento" runat="server" />
-                        <asp:TextBox ID="txtDoc" cssClass="form-control" MaxLength="13" runat="server" />
-                        <asp:RangeValidator ErrorMessage="Debe completar el campo" ControlToValidate="nDoc" runat="server" MaximumValue="13" MinimumValue="0" />
-                        </div>
-
+                        <asp:TextBox ID="txtDoc" type="Text" cssClass="form-control" runat="server" required="true" />
+                     </div>
+                  </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <asp:Label ID="lblEmail" Text="e-mail" runat="server" />
-                        <asp:TextBox ID="txtEmail"  cssClass="form-control" runat="server" />
-                        <asp:RangeValidator ErrorMessage="Debe completar el campo" ControlToValidate="txtEmail" runat="server" />
+                        <asp:TextBox ID="txtEmail" type="email" cssClass="form-control" ClientIDMode="Static" runat="server" required="true"/>
                     </div>
                     <div class="form-group col-md-6">
                         <asp:Label ID="lblCEmail" Text="Confirmar e-mail" runat="server" />
-                        <asp:TextBox ID="txtCEmail"  cssClass="form-control" runat="server" />
-                        <asp:RangeValidator ErrorMessage="Debe completar el campo" ControlToValidate="txtCEmail" runat="server"  />
+                        <asp:TextBox ID="txtCEmail" type="email" cssClass="form-control" ClientIdMode="Static" runat="server" required="true"/>
                     </div>
                 </div>
-
-
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <asp:Label ID="lblNombre" Text="Nombres" runat="server" />
-                        <asp:TextBox ID="txtNombre"  cssClass="form-control"  runat="server" />
-                        <asp:RangeValidator ErrorMessage="Debe completar el campo" ControlToValidate="txtNombre" runat="server"  />
-                    </div>
-                    <div class="form-group col-md-6">
-                        <asp:Label ID="lblApellido" Text="Apellidos" runat="server" />
-                        <asp:TextBox ID="txtApellido" cssClass="form-control"  runat="server" />
-                        <asp:RangeValidator ErrorMessage="Debe completar el campo" ControlToValidate="txtApellido" runat="server"  />
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="sexo">Sexo</label>
-                        <select id="sexo" class="form-control">
-                            <option selected>Seleccione ...</option>
-                            <option value="F">Femenino</option>
-                            <option value="M">Masculino</option>
-                            <option value="O">Otro</option>
-                        </select>
+                        <asp:Label ID="lblFechaIngreso" Text="Fecha de ingreso" runat="server" />
+                       <asp:TextBox ID="txtFechaIngreso" Type="date" cssClass="form-control" runat="server" required="true"/>   
                     </div>
                     <div class="form-group col-md-6">
                          <asp:Label ID="lblFechaNac" Text="Fecha Nacimiento" runat="server" />
-                        <asp:TextBox ID="txtFechaNac" cssClass="form-control"  runat="server" />
-                        <asp:RangeValidator ErrorMessage="Debe completar el campo" ControlToValidate="txtFechaNac" runat="server"  />
+                        <asp:TextBox ID="txtFechaNac" type="date" cssClass="form-control"  runat="server" required="true"/>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="espec">Especialidad</label>
-                        <select id="espec" class="form-control">
-                            <option selected>Seleccione ...</option>
-                            <option value="1">Medico clínico</option>
-                            <option value="2">Urología</option>
-                            <option value="3">Ginecología</option>
-                            <option value="4">Nutricionista</option>
-                        </select>
+                        <asp:Label ID="lblEspecialidad" Text="Especialidad" runat="server" />
+                        <asp:DropDownList ID="ddlEspecialidad" OnSelectedIndexChanged="ddlEspecialidad_SelectedIndexChanged" runat="server">
+                        </asp:DropDownList>      
                     </div>
                     <div class="form-group col-md-6">
-                         <asp:Label ID="lblMatricula" Text="Apellidos" runat="server" />
-                        <asp:TextBox ID="txtMatricula" cssClass="form-control"  runat="server" />
-                        <asp:RangeValidator ErrorMessage="Debe completar el campo" ControlToValidate="txtMatricula" runat="server"  />
+                        <asp:Label ID="lblSexo" Text="Sexo" runat="server" />
+                       <asp:DropDownList ID="ddlSexo" runat="server">
+                            <asp:ListItem Value="F" Text="Femenino" />
+                            <asp:ListItem Value="M" Text="Masculino" />
+                            <asp:ListItem Value="O" Text="Otro" />
+                        </asp:DropDownList>  
                     </div>
                 </div>
-
-                <%-- <div class="form-group">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="gridCheck">
-                <label class="form-check-label" for="gridCheck">
-                   
-                </label>
-            </div>
-        </div>--%>
-                    <asp:Button Text="Guardar" ID="btnGrabarMedico" OnClick="btnGrabarMedico_Click" runat="server" />
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <asp:Label ID="lblMatricula" Text="Matricula" runat="server" />
+                        <asp:TextBox ID="txtMatricula" Type="text" cssClass="form-control" runat="server" required="true"/>
+                     </div>
+                 </div>
+                    <asp:Button Text="Guardar" ID="btnGrabarMedico" OnClientClick="return validad()" OnClick="btnGrabarMedico_Click" runat="server" />
             </form>
         </div>
     </div>
