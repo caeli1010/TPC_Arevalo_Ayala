@@ -11,6 +11,8 @@ namespace Presentacion
 {
     public partial class AltaMedico : System.Web.UI.Page
     {
+        public List<Especialidad> lista;
+        private int especialidad;
         protected void Page_Load(object sender, EventArgs e)
         {
             //if (Session["Login"] == null)
@@ -19,9 +21,31 @@ namespace Presentacion
             //}
             try
             {
-                MedicoNegocio negocio = new MedicoNegocio();
-                Medico nuevo = new Medico();
+                EspecialidadNegocio negocio = new EspecialidadNegocio();
+                Especialidad nuevo = new Especialidad();
+
+                if(!Page.IsPostBack)
+                {
+                    ddlEspecialidad.DataSource = negocio.listar();
+                    ddlEspecialidad.DataBind();
+                }
             }
+            catch (Exception ex)
+            {
+                Session.Add("Error", ex.ToString());
+                Response.Redirect("Error.aspx");
+            }
+
+        }
+        protected void ddlEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+
+                especialidad = int.Parse(ddlEspecialidad.SelectedItem.Value);
+
+
+            }                
             catch (Exception ex)
             {
                 Session.Add("Error", ex.ToString());
@@ -32,18 +56,22 @@ namespace Presentacion
 
         protected void btnGrabarMedico_Click(object sender, EventArgs e)
         {
+            Page.Validate(); 
+             if(!Page.IsValid)
+                return;
+
             try
             {
                 MedicoNegocio negocio = new MedicoNegocio();
                 Medico nuevo = new Medico();
                 nuevo.dni = txtDoc.Text;
                 nuevo.mail = txtCEmail.Text;
-                //nuevo.fechaNac = ddl
+                nuevo.fechaNac = DateTime.Parse(txtFechaNac.Text);
                 nuevo.nombre = txtNombre.Text;
                 nuevo.apellido = txtApellido.Text;
                 nuevo.matricula = txtMatricula.Text;
-                nuevo.especialidad.idEspecialidad = int.Parse(ddlEspecialidad.SelectedItem.Value);
-                //nuevo.fechaIngreso =
+                nuevo.especialidad.idEspecialidad = especialidad;
+                nuevo.fechaIngreso = DateTime.Parse(txtFechaIngreso.Text);
                 negocio.agregar(nuevo);
             }
             catch (Exception ex)
@@ -53,5 +81,6 @@ namespace Presentacion
             }
 
         }
+
     }
 }
