@@ -11,6 +11,7 @@ namespace Dominio
         public int idEspecialidad { get; set; }
         public string nombre { get; set; }
         public int convenio { get; set; }
+        public Byte estado { get; set; }
         public Especialidad()
         {
 

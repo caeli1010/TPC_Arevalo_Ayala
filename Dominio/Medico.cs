@@ -18,7 +18,7 @@ namespace Dominio
         public string mail { get; set; }
         public string dni { get; set; }
         public Especialidad especialidad { get; set; }
-        public Horario horario { get; set; }
+        public Byte estado { get; set; }
         public override string ToString()
         {
             string datoMedico = dni;
