@@ -30,12 +30,10 @@
                 <div class="form-row">
 
                     <div class="form-group col-md-6">
-                        <label for="espec">Especialidad</label>
+                        <asp:Label ID="lblEspecialidad" Text="Especialidad" runat="server" />
                             <asp:DropDownList ID="ddlEspecialidad" runat="server" 
-                                 OnSelectedIndexChanged="ddlEspecialidad_SelectedIndexChanged"> 
-                               
+                                 OnSelectedIndexChanged="ddlEspecialidad_SelectedIndexChanged">          
                             </asp:DropDownList>
-                        <asp:Label ID="lblEspecialidad" runat="server" />
                     </div>
                 </div>
 

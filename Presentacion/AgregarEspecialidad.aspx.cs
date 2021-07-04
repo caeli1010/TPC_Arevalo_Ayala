@@ -31,13 +31,13 @@ namespace Presentacion
 
                     if (!Page.IsPostBack)
                     {
-                        Session.Add("especialidad", negocio.listar());
-                        insertar = (List<Especialidad>)Session["especialidad"];
-                        ddlEspecialidad.DataValueField = "idEspecialidad";
-                        ddlEspecialidad.DataTextField = "nombre";
-                        ddlEspecialidad.DataSource = insertar;
+                        //Session.Add("especialidad", negocio.listar());
+                        //insertar = (List<Especialidad>)Session["especialidad"];
+                        //ddlEspecialidad.DataValueField = "idEspecialidad";
+                        //ddlEspecialidad.DataTextField = "nombre";
+                        ddlEspecialidad.DataSource = negocio.listar();
                         ddlEspecialidad.DataBind();
-                        ddlEspecialidad.Items.Insert(0, new ListItem(insertar.ToString(), insertar.ToString()));
+                        //ddlEspecialidad.Items.Insert(0, new ListItem(insertar.ToString(), insertar.ToString()));
                     }
                 }
 
@@ -61,7 +61,6 @@ namespace Presentacion
 
                 var argument = ddlEspecialidad.SelectedItem.Value;
                 especialidad = (Especialidad)insertar.Find(X => X.idEspecialidad.ToString() == argument.ToString());
-                lblEspecialidad.Text = especialidad.nombre.ToString();
             }
             catch (Exception ex)
             {
