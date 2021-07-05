@@ -13,10 +13,11 @@ namespace Presentacion
     public partial class ListarMedicos : System.Web.UI.Page
     {
         public List<Medico> lista;
+        public Horario horario;
         protected void Page_Load(object sender, EventArgs e)
         {
             MedicoNegocio negocio = new MedicoNegocio();
-
+            HorarioNegocio datos = new HorarioNegocio();
             //if (Session["Login"] == null)
             //{
             //    Response.Redirect("Login2.aspx");
@@ -26,17 +27,13 @@ namespace Presentacion
                 lista = (List<Medico>)Session["Medicos"];
                 if (lista == null)
                 {
-                    lista = negocio.listar();
-                    
+                    lista = negocio.listar(); 
                    
                     Session.Add("Medicos", lista);
                 }
                 else
                 {
-                    //if (Request.QueryString["dni"] != null)
-                    //{
-                    //    dni = Request.QueryString["dni"];
-                    //}
+                  
                     lista = (List<Medico>)Session["Medicos"];
                 }
                 repetidor.DataSource = lista;
