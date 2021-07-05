@@ -99,12 +99,12 @@ namespace Negocio
             }
         }
         
-        public void leerHorario(string idHorario)
+        public void leerHorario(int idMedico)
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("select * from DIAS_Y_HORARIOS where ID = " + idHorario + "");
+                datos.setearConsulta("select * from DIAS_Y_HORARIOS where IDMEDICO = idMedico  ");
                 datos.ejecutarLectura();
 
             }
