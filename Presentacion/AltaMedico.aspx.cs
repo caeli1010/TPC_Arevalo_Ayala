@@ -27,6 +27,8 @@ namespace Presentacion
                 if(!Page.IsPostBack)
                 {
                     ddlEspecialidad.DataSource = negocio.listar();
+                    ddlEspecialidad.DataTextField = "nombre";
+                    ddlEspecialidad.DataValueField = "id";
                     ddlEspecialidad.DataBind();
                 }
             }
@@ -64,14 +66,15 @@ namespace Presentacion
             {
                 MedicoNegocio negocio = new MedicoNegocio();
                 Medico nuevo = new Medico();
-                nuevo.dni = txtDoc.Text;
-                nuevo.mail = txtCEmail.Text;
-                nuevo.fechaNac = DateTime.Parse(txtFechaNac.Text);
-                nuevo.nombre = txtNombre.Text;
-                nuevo.apellido = txtApellido.Text;
                 nuevo.matricula = txtMatricula.Text;
-                nuevo.especialidad.idEspecialidad = especialidad;
+                nuevo.apellido = txtApellido.Text;
+                nuevo.nombre = txtNombre.Text;
+                nuevo.genero = ddlSexo.SelectedValue;
+                nuevo.fechaNac = DateTime.Parse(txtFechaNac.Text);
                 nuevo.fechaIngreso = DateTime.Parse(txtFechaIngreso.Text);
+                nuevo.mail = txtCEmail.Text;
+                nuevo.dni = txtDoc.Text;
+                nuevo.especialidad.idEspecialidad = especialidad;
                 negocio.agregar(nuevo);
             }
             catch (Exception ex)

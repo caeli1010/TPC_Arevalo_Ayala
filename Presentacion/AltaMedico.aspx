@@ -81,7 +81,7 @@
                     </div>
                     <div class="form-group col-md-6">
                         <asp:Label ID="lblSexo" Text="Sexo" runat="server" />
-                       <asp:DropDownList ID="ddlSexo" runat="server">
+                       <asp:DropDownList ID="ddlSexo" runat="server" CssClass="btn btn-otline-dark dropdown-toggle">
                             <asp:ListItem Value="F" Text="Femenino" />
                             <asp:ListItem Value="M" Text="Masculino" />
                             <asp:ListItem Value="O" Text="Otro" />

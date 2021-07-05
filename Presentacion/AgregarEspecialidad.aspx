@@ -31,7 +31,7 @@
 
                     <div class="form-group col-md-6">
                         <asp:Label ID="lblEspecialidad" Text="Especialidad" runat="server" />
-                            <asp:DropDownList ID="ddlEspecialidad" runat="server" 
+                            <asp:DropDownList ID="ddlEspecialidad" CssClass="btn btn-otline-dark dropdown-toggle" runat="server" 
                                  OnSelectedIndexChanged="ddlEspecialidad_SelectedIndexChanged">          
                             </asp:DropDownList>
                     </div>

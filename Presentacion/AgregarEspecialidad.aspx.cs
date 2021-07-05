@@ -31,13 +31,11 @@ namespace Presentacion
 
                     if (!Page.IsPostBack)
                     {
-                        //Session.Add("especialidad", negocio.listar());
-                        //insertar = (List<Especialidad>)Session["especialidad"];
-                        //ddlEspecialidad.DataValueField = "idEspecialidad";
-                        //ddlEspecialidad.DataTextField = "nombre";
+                        ddlEspecialidad.DataValueField = "id";
+                        ddlEspecialidad.DataTextField = "nombre";
                         ddlEspecialidad.DataSource = negocio.listar();
                         ddlEspecialidad.DataBind();
-                        //ddlEspecialidad.Items.Insert(0, new ListItem(insertar.ToString(), insertar.ToString()));
+                        ddlEspecialidad.Items.Insert(0, new ListItem("Seleccione una especialidad", "-1"));
                     }
                 }
 
