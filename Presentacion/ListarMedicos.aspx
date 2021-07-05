@@ -12,7 +12,6 @@
                     <tr>
                         <th scope="col">Matricula</th>
                         <th scope="col">Nombre y Apellido</th>
-                        <th scope="col">Dias de Atención</th>
                         <th scope="col">Especialidad</th>
                         <th scope="col">Email</th>
                         <th scope="col">Telefono</th>
@@ -26,19 +25,20 @@
                             <tr>
                                 <th scope="row">500</th>
                                 <td><%#Eval("nombre")%>  <%#Eval("apellido")%></td>
-                                <td><%#Eval("horario.dias")%> </td>
                                 <td><%#Eval("especialidad")%></td>
                                 <td><%#Eval("mail")%></td>
                                 <td>555-555-55</td>
                                 <td>Activo</td>
                                 <td>
                                     <a class="btn btn-sm btn-outline-info" href='AgregarEspecialidad.aspx?idM=<%#Eval("idMedico")%>'>Agregar Especialidad</a>
-                                    <asp:Button Text="Deshabilitar"
+                                    <a class="btn btn-sm btn-outline-success " href='BajaMedico.aspx?idM=<%#Eval("idMedico")%>'>Deshabilitar</a>
+                                    <a class="btn btn-sm btn-outline-danger" href='ModificarMedico.aspx?idM=<%#Eval("idMedico")%>'>Modificar</a>
+                                   <%-- <asp:Button Text="Deshabilitar"
                                         runat="server"
                                         CssClass="btn btn-outline-warning"
                                         ID="btnDeshabilitar"
                                         OnClick="btnDeshabilitar_Click" 
-                                        CommandArgument='<%#Eval("idMedico")%>'/>
+                                        CommandArgument='<%#Eval("idMedico")%>'/>--%>
                                 </td>
                             </tr>
 

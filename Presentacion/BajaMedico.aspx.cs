@@ -11,16 +11,21 @@ namespace Presentacion
 {
     public partial class BajaMedico : System.Web.UI.Page
     {
-        public List<Medico> medicos;
+        public List<Medico> medico;
+        private Medico doctor;
         protected void Page_Load(object sender, EventArgs e)
         {
-            MedicoNegocio negocio = new MedicoNegocio();
             try
             {
-                if (!Page.IsPostBack)
+                if (Request.QueryString["idM"] != null)
                 {
-                    ddlApellido.DataSource = negocio.listar();
-                    ddlApellido.DataBind();
+                    medico = (List<Medico>)Session["medicos"];
+                    doctor = (Medico)medico.Find(X => X.idMedico.ToString() == Request.QueryString["idM"]);
+
+                        txtMatricula.Text = doctor.matricula;
+                        txtNombre.Text = doctor.nombre;
+                        txtApellido.Text = doctor.apellido;
+                        txtDoc.Text = doctor.dni;                 
                 }
             }
             catch (Exception ex)
@@ -33,14 +38,20 @@ namespace Presentacion
 
         }
 
-        protected void ddlNombre_SelectedIndexChanged(object sender, EventArgs e)
+        protected void btnEliminar_Click(object sender, EventArgs e)
         {
+            try
+            {
+            MedicoNegocio negocio = new MedicoNegocio();
+            negocio.eliminar(doctor);
 
+            }
+            catch (Exception ex)
+            {
+                Session.Add("Error", ex.ToString());
+                Response.Redirect("Error.aspx");
+            }
         }
 
-        protected void ddlApellido_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }
