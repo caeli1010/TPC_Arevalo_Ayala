@@ -9,7 +9,7 @@
 
             swal({
                 title: "Quieres eliminar el registro?",
-                text: "Una vez eliminado, ¡no podrá recuperar este archivo imaginario!",
+                text: "Se realizará una  baja lógica, si deseas recuperar el paciente comunicate con el administrador del sistema",
                 icon: "warning",
                 buttons: true,
                 dangerMode: true,
@@ -54,12 +54,12 @@
                         <td> s/n </td>
                         <td><% = item.mail  %></td>
                         <td>
-                            <a href="SolicitudTurno.aspx?ipc=<% = item.idPaciente  %>" class="btn btn-sm btn-success">Solicitar Turno</a>
+                            <a href="SolicitudTurno.aspx?ipc=<% = item.idPaciente  %>" class="btn btn-sm btn-outline-success">Solicitar Turno</a>
                                              
                             <asp:Button 
                                 Text="Eliminar"
                                 ID="eliminiar"
-                                 CssClass="btn btn-sm btn-danger text-white"
+                                 CssClass="btn btn-sm btn-outline-danger"
                                 CommandArgument="<% = item.idPaciente  %>"
                                 OnClick="eliminiar_Click"
                                 OnClientClick="return bajar(this);" runat="server" />

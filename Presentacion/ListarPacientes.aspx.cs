@@ -49,13 +49,25 @@ namespace Presentacion
 
         protected void eliminiar_Click(object sender, EventArgs e)
         {
-            var argument = ((Button)sender).CommandArgument;
-            //var id = ((Button)sender).CommandArgument;
-            ClientScript.RegisterClientScriptBlock(
-                this.GetType(),
-                "K",
-                "swal('Barrado!', 'Su registro se ha elimniado ameo , 'succeess')",
-                true);
+
+            try
+            {
+                //string mensaje = string.Empty;
+                //if (string.IsNullOrEmpty(txtApellido.Text)) mensaje += " El apellido es obligatorio,";
+
+                //if () throw new Exception(mensaje.TrimEnd(','));
+            }
+            catch (Exception ex)
+            {
+
+                //ClientScript.RegisterClientScriptBlock(
+                //        this.GetType(),
+                //        "Mensaje",
+                //        "<scripr> swal('Error!', '"+ex.Message+"!', 'error')</script>",
+                //        true
+                //    );
+            }
+            
         }
               
         //protected void btnEliminar_Click(object sender, EventArgs e)
