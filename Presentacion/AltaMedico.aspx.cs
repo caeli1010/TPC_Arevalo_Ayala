@@ -66,10 +66,10 @@ namespace Presentacion
             {
                 MedicoNegocio negocio = new MedicoNegocio();
                 Medico nuevo = new Medico();
-                nuevo.matricula = txtMatricula.Text;
+                nuevo.matricula = int.Parse(txtMatricula.Text);
                 nuevo.apellido = txtApellido.Text;
                 nuevo.nombre = txtNombre.Text;
-                nuevo.genero = char.Parse(ddlSexo.SelectedValue);
+                nuevo.genero = ddlSexo.SelectedValue;
                 nuevo.fechaNac = DateTime.Parse(txtFechaNac.Text);
                 nuevo.fechaIngreso = DateTime.Parse(txtFechaIngreso.Text);
                 nuevo.mail = txtCEmail.Text;

@@ -16,22 +16,22 @@ namespace Negocio
             try
             {
                 datos.setearConsulta(@"SELECT IDMEDICO, APELLIDO, NOMBRE, SEXO, 
-                                       FECHANAC, FECHAINGRESO, 
-                                       COALESCE(EMAIL, 'Sin email') CORREO, DNI, 
-                                      ESTADO FROM MEDICOS WHERE ESTADO=1");
+                                       FECHANAC, FECHAINGRESO, COALESCE(EMAIL, 'Sin email') AS CORREO,
+                                       MATRICULA, DNI, ESTADO FROM MEDICOS WHERE ESTADO=1");
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
                     Medico aux = new Medico();
-                    aux.idMedico = (int)datos.Lector["IDMEDICO"];
+                    aux.idMedico = (long)datos.Lector["IDMEDICO"];
                     aux.apellido = (string)datos.Lector["APELLIDO"];
                     aux.nombre = (string)datos.Lector["NOMBRE"];
-                    aux.genero = (char)datos.Lector["SEXO"];
+                    aux.genero = (string)(datos.Lector["SEXO"]);
                     aux.fechaNac = (DateTime)datos.Lector["FECHANAC"];
                     aux.fechaIngreso = (DateTime)datos.Lector["FECHAINGRESO"];
                     aux.mail = (string)datos.Lector["CORREO"];
                     aux.dni = (string)datos.Lector["DNI"];
-                    aux.estado = (byte)datos.Lector["ESTADO"];
+                    aux.matricula = (int)datos.Lector["MATRICULA"];
+                    aux.estado = (Boolean)datos.Lector["ESTADO"];
                     lista.Add(aux);
 
                 }

@@ -22,13 +22,13 @@
                     <asp:Repeater runat="server" ID="repetidor">
                         <ItemTemplate>
                             <tr>
-                                <th scope="row">500</th>
-                                <td><%#Eval("nombre")%>  <%#Eval("apellido")%></td>
+                                <th scope="row"><%#Eval("matricula")%></th>
+                                <td><%#Eval("nombre")%> <%#Eval("apellido")%></td> 
                                 <td><%#Eval("mail")%></td>
                                 <td>555-555-55</td>
                                 <td>Activo</td>
                                 <td>
-                                    <a class="btn btn-sm btn-outline-info" href='AgregarEspecialidad.aspx?idM=<%#Eval("idMedico")%>'>Agregar Especialidad</a>
+                                    <a class="btn btn-sm btn-outline-info" href='AgregarEspecialidad.aspx?idM=<%#Eval("idMedico")%>'>Ver Especialidad</a>
                                     <a class="btn btn-sm btn-outline-success " href='BajaMedico.aspx?idM=<%#Eval("idMedico")%>'>Deshabilitar</a>
                                     <a class="btn btn-sm btn-outline-danger" href='ModificarMedico.aspx?idM=<%#Eval("idMedico")%>'>Modificar</a>
                                    <%-- <asp:Button Text="Deshabilitar"

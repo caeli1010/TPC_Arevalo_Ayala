@@ -22,7 +22,7 @@ namespace Presentacion
                     medico = (List<Medico>)Session["medicos"];
                     doctor = (Medico)medico.Find(X => X.idMedico.ToString() == Request.QueryString["idM"]);
 
-                    txtMatricula.Text = doctor.matricula;
+                    txtMatricula.Text = doctor.matricula.ToString();
                     txtNombre.Text = doctor.nombre;
                     txtApellido.Text = doctor.apellido;
                     txtSexo.Text = doctor.genero.ToString();
