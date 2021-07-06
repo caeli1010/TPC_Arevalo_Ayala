@@ -12,7 +12,6 @@
                     <tr>
                         <th scope="col">Matricula</th>
                         <th scope="col">Nombre y Apellido</th>
-                        <th scope="col">Especialidad</th>
                         <th scope="col">Email</th>
                         <th scope="col">Telefono</th>
                         <th scope="col">Estado</th>
@@ -25,7 +24,6 @@
                             <tr>
                                 <th scope="row">500</th>
                                 <td><%#Eval("nombre")%>  <%#Eval("apellido")%></td>
-                                <td><%#Eval("especialidad")%></td>
                                 <td><%#Eval("mail")%></td>
                                 <td>555-555-55</td>
                                 <td>Activo</td>

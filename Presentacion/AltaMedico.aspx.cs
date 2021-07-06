@@ -69,7 +69,7 @@ namespace Presentacion
                 nuevo.matricula = txtMatricula.Text;
                 nuevo.apellido = txtApellido.Text;
                 nuevo.nombre = txtNombre.Text;
-                nuevo.genero = ddlSexo.SelectedValue;
+                nuevo.genero = char.Parse(ddlSexo.SelectedValue);
                 nuevo.fechaNac = DateTime.Parse(txtFechaNac.Text);
                 nuevo.fechaIngreso = DateTime.Parse(txtFechaIngreso.Text);
                 nuevo.mail = txtCEmail.Text;
