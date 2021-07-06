@@ -12,7 +12,7 @@
  Target Server Version : 15002080
  File Encoding         : 65001
 
- Date: 06/07/2021 00:15:41
+ Date: 06/07/2021 00:34:31
 */
 
 
@@ -632,7 +632,7 @@ CREATE TABLE [dbo].[MEDICOS] (
   [IDMEDICO] bigint  IDENTITY(1,1) NOT NULL,
   [APELLIDO] varchar(50) COLLATE Modern_Spanish_CI_AS  NOT NULL,
   [NOMBRE] varchar(50) COLLATE Modern_Spanish_CI_AS  NOT NULL,
-  [SEXO] char(1) COLLATE Modern_Spanish_CI_AS  NOT NULL,
+  [SEXO] varchar(1) COLLATE Modern_Spanish_CI_AS  NOT NULL,
   [FECHANAC] date  NOT NULL,
   [FECHAINGRESO] date  NOT NULL,
   [EMAIL] varchar(255) COLLATE Modern_Spanish_CI_AS  NULL,
@@ -1031,12 +1031,12 @@ IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[dbo].[PA
 GO
 
 CREATE TABLE [dbo].[PACIENTES] (
-  [IDPACIENTE] BIGINT  IDENTITY(1,1) NOT NULL,
+  [IDPACIENTE] bigint  IDENTITY(1,1) NOT NULL,
   [APELLIDO] varchar(50) COLLATE Modern_Spanish_CI_AS  NOT NULL,
   [NOMBRE] varchar(50) COLLATE Modern_Spanish_CI_AS  NOT NULL,
   [IDOBRASOCIAL] int  NULL,
   [FECHANAC] date  NOT NULL,
-  [SEXO] char(1) COLLATE Modern_Spanish_CI_AS  NOT NULL,
+  [SEXO] varchar(1) COLLATE Modern_Spanish_CI_AS  NOT NULL,
   [DNI] varchar(13) COLLATE Modern_Spanish_CI_AS  NULL,
   [EMAIL] varchar(255) COLLATE Modern_Spanish_CI_AS  NULL,
   [NROCARNET] int  NULL,
@@ -1812,7 +1812,7 @@ IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[dbo].[TU
 GO
 
 CREATE TABLE [dbo].[TURNOS] (
-  [IDTURNO] int  IDENTITY(1,1) NOT NULL,
+  [IDTURNO] bigint  IDENTITY(1,1) NOT NULL,
   [FECHAHORA] datetime  NOT NULL,
   [IDMEDICO] bigint  NOT NULL,
   [IDPACIENTE] bigint  NOT NULL,
@@ -3456,7 +3456,7 @@ GO
 -- ----------------------------
 -- Checks structure for table MEDICOS
 -- ----------------------------
-ALTER TABLE [dbo].[MEDICOS] ADD CONSTRAINT [CK__MEDICOS__SEXO__2D27B809] CHECK ([SEXO]='F' OR [SEXO]='M')
+ALTER TABLE [dbo].[MEDICOS] ADD CONSTRAINT [seo] CHECK ([SEXO]='F' OR [SEXO]='M')
 GO
 
 
