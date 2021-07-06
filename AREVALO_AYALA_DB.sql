@@ -112,7 +112,7 @@ GO
 
 CREATE TABLE [dbo].[ESPECIALIDAD_X_MEDICO] (
   [ID] int  IDENTITY(1,1) NOT NULL,
-  [IDMEDICO] int  NOT NULL,
+  [IDMEDICO] bigint  NOT NULL,
   [IDESPECIALIDAD] int  NOT NULL,
   [IDCONVENIO] int  NOT NULL,
   [ESTADO] bit  NULL
@@ -629,7 +629,7 @@ IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[dbo].[ME
 GO
 
 CREATE TABLE [dbo].[MEDICOS] (
-  [IDMEDICO] int  IDENTITY(1,1) NOT NULL,
+  [IDMEDICO] bigint  IDENTITY(1,1) NOT NULL,
   [APELLIDO] varchar(50) COLLATE Modern_Spanish_CI_AS  NOT NULL,
   [NOMBRE] varchar(50) COLLATE Modern_Spanish_CI_AS  NOT NULL,
   [SEXO] char(1) COLLATE Modern_Spanish_CI_AS  NOT NULL,
@@ -1031,7 +1031,7 @@ IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[dbo].[PA
 GO
 
 CREATE TABLE [dbo].[PACIENTES] (
-  [IDPACIENTE] int  IDENTITY(1,1) NOT NULL,
+  [IDPACIENTE] BIGINT  IDENTITY(1,1) NOT NULL,
   [APELLIDO] varchar(50) COLLATE Modern_Spanish_CI_AS  NOT NULL,
   [NOMBRE] varchar(50) COLLATE Modern_Spanish_CI_AS  NOT NULL,
   [IDOBRASOCIAL] int  NULL,
