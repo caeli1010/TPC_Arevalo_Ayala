@@ -41,7 +41,7 @@ namespace Negocio
                     aux.mail = (string)datos.Lector["EMAIL"];
                     aux.nroCarnet = (int)datos.Lector["NROCARNET"];
                     aux.dni = (string)datos.Lector["DNI"];
-                    aux.obraSocial = new Obrasocial((string)datos.Lector["OSNOMBRE"]);
+                    aux.obraSocial = new Obrasocial((int)datos.Lector["IDOBRASOCIAL"]);
                     lista.Add(aux);
 
                 }
@@ -62,25 +62,25 @@ namespace Negocio
             try
             {
                 string valores = @"values('" +
-                                    nuevo.nombre + "', '" +
-                                    nuevo.apellido + "', " +
-                                    nuevo.genero + ", " +
-                                    nuevo.fechaNacimiento + ", '" +
+                                    nuevo.apellido + "', '" +
+                                    nuevo.nombre + "', " +
                                     nuevo.obraSocial.idObraSocial + ", '" +
+                                    nuevo.fechaNacimiento + "', '" +
+                                    nuevo.genero + "', '" +
+                                    nuevo.dni + "', '"+ 
                                     nuevo.mail + "', " +
-                                    nuevo.nroCarnet + "', " +
-                                    nuevo.dni + ")";
-                datos.setearConsulta(@"insert into PacienteS (
-                                        NOMBRE,
+                                    nuevo.nroCarnet + ", 1" +
+                                    ")";
+                datos.setearConsulta(@"insert into PACIENTES (
                                         APELLIDO, 
-                                        SEXO, 
-                                        FECHANAC, 
+                                        NOMBRE,
                                         IDOBRASOCIAL, 
-                                        MAIL,
+                                        FECHANAC, 
+                                        SEXO, DNI, 
+                                        EMAIL,
                                         NROCARNET,
-                                        DNI, 
-                                        ESTADO = 1
-                                        ) " + valores);
+                                        ESTADO) " + valores);
+
                 datos.ejecutarAccion();
 
 

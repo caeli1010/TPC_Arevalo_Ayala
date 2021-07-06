@@ -8,7 +8,7 @@ namespace Dominio
 {
     public class Paciente
     {
-        public long idPaciente{ get; set; }
+        public long idPaciente { get; set; }
         public string apellido { get; set; }
         public string nombre { get; set; }
         public Obrasocial obraSocial { get; set; }

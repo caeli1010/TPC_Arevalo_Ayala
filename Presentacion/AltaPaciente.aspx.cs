@@ -15,6 +15,7 @@ namespace Presentacion
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             //if (Session["Login"] == null)
             //{
             //    Response.Redirect("Login2.aspx");
@@ -31,7 +32,7 @@ namespace Presentacion
                 PacienteNegocio agregar = new PacienteNegocio();
                 paciente.apellido = txtApellido.Text;
                 paciente.nombre = txtNombre.Text;
-                paciente.obraSocial.idObraSocial= 5;
+                paciente.obraSocial = new Obrasocial(5);
                 paciente.fechaNacimiento = DateTime.Parse(txtFechaNac.Text);
                 paciente.genero = ddlSexo.SelectedItem.Value;
                 paciente.dni = txtDni.Text;
@@ -40,9 +41,6 @@ namespace Presentacion
                 agregar.agregar(paciente);
 
             }
-
-
-
         }
     }
 }

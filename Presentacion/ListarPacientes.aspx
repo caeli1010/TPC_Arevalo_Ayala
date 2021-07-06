@@ -22,7 +22,7 @@
                     <tr>
                         <th scope="row"><% = item.dni  %></th>
                         <td><% = item.nombre  %> <% = item.apellido  %></td>
-                        <td><% = item.obraSocial  %></td>
+                        <td><% = item.obraSocial.nombre  %></td>
                         <td> s/n </td>
                         <td><% = item.mail  %></td>
                         <td>
