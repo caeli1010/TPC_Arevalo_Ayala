@@ -37,6 +37,7 @@ namespace Presentacion
                     }
                     pacientes = (List<Paciente>)Session["Paciente"];
                 //}
+               
             }
             catch (Exception error)
             {
@@ -45,5 +46,29 @@ namespace Presentacion
             }
 
         }
+
+        protected void eliminiar_Click(object sender, EventArgs e)
+        {
+            var argument = ((Button)sender).CommandArgument;
+            //var id = ((Button)sender).CommandArgument;
+            ClientScript.RegisterClientScriptBlock(
+                this.GetType(),
+                "K",
+                "swal('Barrado!', 'Su registro se ha elimniado ameo , 'succeess')",
+                true);
+        }
+              
+        //protected void btnEliminar_Click(object sender, EventArgs e)
+        //{
+        //    //string mensaje = '';
+        //    ScriptManager.RegisterStartupScript(
+        //        this, 
+        //        this.GetType(),
+        //        "alert",
+        //        "alert('Vas a eliminar el paciente.'); windows.location='ListarPacientes.aspx'",
+        //        true
+        //        );
+
+        //}
     }
 }

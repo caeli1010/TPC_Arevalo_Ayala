@@ -1,5 +1,33 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ListarPacientes.aspx.cs" Inherits="Presentacion.ListarPacientes" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <script>
+
+        function bajar(ev){
+
+            var objeto = { estado: false, element: null };
+            if (objeto.estado) { return true; };
+
+            swal({
+                title: "Quieres eliminar el registro?",
+                text: "Una vez eliminado, ¡no podrá recuperar este archivo imaginario!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        swal("¡El paciente ha sido eliminado!", {
+                            icon: "success",
+                        });
+                    } else {
+                        swal("No se realizaron cambios!");
+                    }
+                });
+            return false;
+
+        }
+
+    </script>
     <hr class="py-1" />
     <h1>Listado de Pacientes </h1>
     <div class="row alert alert-heading">
@@ -27,13 +55,18 @@
                         <td><% = item.mail  %></td>
                         <td>
                             <a href="SolicitudTurno.aspx?ipc=<% = item.idPaciente  %>" class="btn btn-sm btn-success">Solicitar Turno</a>
-                            <a href="ModificarPaciente.aspx?ipc=<% = item.idPaciente  %>" class="btn btn-sm btn-warning text-white">Modificar Datos</a>
+                                             
+                            <asp:Button 
+                                Text="Eliminar"
+                                ID="eliminiar"
+                                 CssClass="btn btn-sm btn-danger text-white"
+                                CommandArgument="<% = item.idPaciente  %>"
+                                OnClick="eliminiar_Click"
+                                OnClientClick="return bajar(this);" runat="server" />
                             
                         </td>
                     </tr>
                     <%} %>
-                </tbody>
-                   
                 </tbody>
             </table>
 
