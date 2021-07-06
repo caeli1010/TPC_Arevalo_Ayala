@@ -23,11 +23,11 @@ namespace Negocio
                 {
                     Usuario aux = new Usuario();
                     aux.idRol = (int)datos.Lector["IDROL"];
-                    aux.idUsuario = (int)datos.Lector["ID"];
+                    aux.idUsuario = (int)datos.Lector["IDUSUARIO"];
                     aux.dni = (string)datos.Lector["DNI"];
                     aux.username = (string)datos.Lector["USERNAME"];
                     aux.password = (string)datos.Lector["PASSWORD"];
-                    aux.estado = (Boolean)datos.Lector["ESTADO"];
+                    aux.estado = (bool)datos.Lector["ESTADO"];
                     aux.idTipoDocumento = (byte)datos.Lector["IDTIPODOC"];
                     aux.imagen = (string)datos.Lector["IMAGEN"];
                     lista.Add(aux);

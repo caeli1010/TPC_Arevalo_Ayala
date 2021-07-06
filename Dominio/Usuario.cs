@@ -13,7 +13,7 @@ namespace Dominio
         public int idRol { get; set; }
         public string username { get; set; }
         public string password { get; set; }
-        public Boolean  estado { get; set; }
+        public bool  estado { get; set; }
         public string dni { get; set; }
         public byte idTipoDocumento { get; set; }
         public string imagen { get; set; }
