@@ -21,18 +21,18 @@
             </div>
             <div class="form-group col-md-6">
                 <asp:Label Text="Nro Documento" runat="server" />
-                <asp:TextBox runat="server"  ID="txtDni" CssClass="form-control" required="true" />       
+                <asp:TextBox runat="server"  ID="txtDni" CssClass="form-control"  />       
             </div> 
         </div>
 
         <div class="form-row">
             <div class="form-group col-md-6">
                 <asp:Label Text="Email"  runat="server" />
-                <asp:TextBox runat="server"  type="email" ID="txtEmail" CssClass="form-control" required="true" />
+                <asp:TextBox runat="server"  type="email" ID="txtEmail" CssClass="form-control"  />
             </div>
              <div class="form-group col-md-6">
                  <asp:Label Text="Confirmar Email"  runat="server" />
-                <asp:TextBox runat="server" type="email" ID="txtConfEmail" CssClass="form-control" required="true" />
+                <asp:TextBox runat="server" type="email" ID="txtConfEmail" CssClass="form-control"  />
             </div>
         </div>
 
@@ -40,13 +40,13 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                  <asp:Label Text="Nombre"  runat="server" />
-                <asp:TextBox runat="server" ID="txtNombre" CssClass="form-control" required="true" />
+                <asp:TextBox runat="server" ID="txtNombre" CssClass="form-control"  />
                
                
             </div> 
             <div class="form-group col-md-6">
                   <asp:Label Text="Apellido"  runat="server" />
-                <asp:TextBox runat="server" ID="txtApellido" CssClass="form-control" required="true" />
+                <asp:TextBox runat="server" ID="txtApellido" CssClass="form-control" />
                
             </div>
         </div>
@@ -63,7 +63,7 @@
             </div>
             <div class="form-group col-md-6">
                  <asp:Label Text="Fecha de Nacimiento"  runat="server" />
-                <asp:TextBox runat="server" type="date" ID="txtFechaNac" CssClass="form-control" required="true" />
+                <asp:TextBox runat="server" type="date" ID="txtFechaNac" CssClass="form-control"  />
                
                 
             </div>
@@ -82,7 +82,7 @@
             </div>
             <div class="form-group col-md-6">
                    <asp:Label Text=" Nro Credencial "  runat="server" />
-                <asp:TextBox runat="server" ID="txtNroCred" CssClass="form-control" required="true" />
+                <asp:TextBox runat="server" ID="txtNroCred" CssClass="form-control"  />
                
                 </div>
         </div> 
