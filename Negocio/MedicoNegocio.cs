@@ -15,23 +15,23 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta(@"SELECT M.IDMEDICO, M.APELLIDO, M.NOMBRE, M.SEXO, M.FECHANAC, M.FECHAINGRESO,
-                                        COALESCE(EMAIL, 'Sin email') AS CORREO, M.DNI, E.NOMBRE AS ESPEC FROM MEDICOS M 
-                                        INNER JOIN ESPECIALIDAD_X_MEDICO EM ON EM.IDMEDICO=M.IDMEDICO 
-                                        INNER JOIN ESPECIALIDADES E ON E.IDESPECIALIDAD=EM.IDESPECIALIDAD");
+                datos.setearConsulta(@"SELECT IDMEDICO, APELLIDO, NOMBRE, SEXO, 
+                                       FECHANAC, FECHAINGRESO, 
+                                       COALESCE(EMAIL, 'Sin email') CORREO, DNI, 
+                                      ESTADO FROM MEDICOS WHERE ESTADO=1");
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
                     Medico aux = new Medico();
-                    aux.idMedico = (long)datos.Lector["IDMEDICO"];
+                    aux.idMedico = (int)datos.Lector["IDMEDICO"];
                     aux.apellido = (string)datos.Lector["APELLIDO"];
                     aux.nombre = (string)datos.Lector["NOMBRE"];
-                    aux.genero = (string)datos.Lector["SEXO"];
+                    aux.genero = (char)datos.Lector["SEXO"];
                     aux.fechaNac = (DateTime)datos.Lector["FECHANAC"];
                     aux.fechaIngreso = (DateTime)datos.Lector["FECHAINGRESO"];
                     aux.mail = (string)datos.Lector["CORREO"];
                     aux.dni = (string)datos.Lector["DNI"];
-                    aux.especialidad = new Especialidad((string)datos.Lector["ESPEC"]);
+                    aux.estado = (byte)datos.Lector["ESTADO"];
                     lista.Add(aux);
 
                 }

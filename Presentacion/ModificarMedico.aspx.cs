@@ -25,7 +25,7 @@ namespace Presentacion
                     txtMatricula.Text = doctor.matricula;
                     txtNombre.Text = doctor.nombre;
                     txtApellido.Text = doctor.apellido;
-                    txtSexo.Text = doctor.genero;
+                    txtSexo.Text = doctor.genero.ToString();
                     txtFechaNac.Text = doctor.fechaNac.ToString();
                     txtFechaIngreso.Text = doctor.fechaIngreso.ToString();
                     txtEmail.Text = doctor.mail;
