@@ -24,14 +24,21 @@ namespace Presentacion
                 {
                     medico = (List<Medico>)Session["medicos"];
                     doctor= (Medico)medico.Find(X => X.idMedico.ToString() == Request.QueryString["idM"]);
-                    lblNombre.Text = doctor.nombre;
+                    
+                    lblNombre.Text = doctor.nombre +" "+ doctor.apellido;
                     lblDni.Text = doctor.dni;
-                    lblMatricula.Text = doctor.matricula;
+                    lblMatricula.Text = doctor.matricula.ToString();
                     lblEmail.Text = doctor.mail;
 
                     if (!Page.IsPostBack)
                     {
-                        ddlEspecialidad.DataValueField = "id";
+                        ddlVerEspecialidad.DataValueField = "idEspecialidad";
+                        ddlVerEspecialidad.DataTextField= "nombre";
+                        ddlVerEspecialidad.DataSource = negocio.leerEspecialidad(doctor.idMedico);
+                        ddlVerEspecialidad.DataBind();
+                        ddlVerEspecialidad.Items.Insert(0, new ListItem("Especialidades", "-1"));
+
+                        ddlEspecialidad.DataValueField = "idEspecialidad";
                         ddlEspecialidad.DataTextField = "nombre";
                         ddlEspecialidad.DataSource = negocio.listar();
                         ddlEspecialidad.DataBind();
@@ -83,5 +90,21 @@ namespace Presentacion
            
         }
 
+        protected void btnAgregarEspecialidad_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+            lblEspecialidad.Visible = true;
+            ddlEspecialidad.Visible = true;
+            btnAgregar.Visible = true;
+            }
+            catch (Exception ex)
+            {
+                Session.Add("Error", ex.ToString());
+                Response.Redirect("Error.aspx");
+
+            }
+        }
     }
 }

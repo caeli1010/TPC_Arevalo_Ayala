@@ -51,6 +51,33 @@ namespace Presentacion
         protected global::System.Web.UI.WebControls.Label lblEmail;
 
         /// <summary>
+        /// Control lblVerEspec.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblVerEspec;
+
+        /// <summary>
+        /// Control ddlVerEspecialidad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlVerEspecialidad;
+
+        /// <summary>
+        /// Control btnAgregarEspecialidad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAgregarEspecialidad;
+
+        /// <summary>
         /// Control lblEspecialidad.
         /// </summary>
         /// <remarks>
