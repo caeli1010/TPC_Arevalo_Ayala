@@ -108,6 +108,7 @@
     <Content Include="About.aspx" />
     <Content Include="AdministradorUsuario.aspx" />
     <Content Include="AgregarEspecialidad.aspx" />
+    <Content Include="AgregarHorario.aspx" />
     <Content Include="AltaMedico.aspx" />
     <Content Include="AltaPaciente.aspx" />
     <Content Include="BajaMedico.aspx" />
@@ -188,6 +189,13 @@
     </Compile>
     <Compile Include="AgregarEspecialidad.aspx.designer.cs">
       <DependentUpon>AgregarEspecialidad.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AgregarHorario.aspx.cs">
+      <DependentUpon>AgregarHorario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AgregarHorario.aspx.designer.cs">
+      <DependentUpon>AgregarHorario.aspx</DependentUpon>
     </Compile>
     <Compile Include="AltaMedico.aspx.cs">
       <DependentUpon>AltaMedico.aspx</DependentUpon>

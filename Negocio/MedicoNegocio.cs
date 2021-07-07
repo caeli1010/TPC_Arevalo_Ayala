@@ -52,22 +52,20 @@ namespace Negocio
             try
             {
                 string valores = @"values('" +
-                                    nuevo.idMedico + "', '" +
                                     nuevo.nombre + "', '" +
-                                    nuevo.apellido + "', " +
-                                    nuevo.genero + ", " +
-                                    nuevo.fechaNac + ", '" +
-                                    nuevo.fechaIngreso + "', " +
-                                    nuevo.mail + "', " +
-                                    nuevo.dni + ")";
+                                    nuevo.apellido + "', '" +
+                                    nuevo.genero + "', '" +
+                                    nuevo.fechaNac + "', '" +
+                                    nuevo.fechaIngreso + "', '" +
+                                    nuevo.mail + "', '" +
+                                    nuevo.dni + "')";
                 datos.setearConsulta(@"insert into MEDICOS (
-                                        IDMEDICO, 
                                         NOMBRE,
                                         APELLIDO, 
                                         SEXO, 
                                         FECHANAC, 
                                         FECHAINGRESO, 
-                                        MAIL,
+                                        EMAIL,
                                         DNI
                                         ) " + valores);
                 datos.ejecutarAccion();
