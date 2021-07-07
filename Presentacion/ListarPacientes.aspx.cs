@@ -53,34 +53,22 @@ namespace Presentacion
             try
             {
                 //string mensaje = string.Empty;
-                //if (string.IsNullOrEmpty(txtApellido.Text)) mensaje += " El apellido es obligatorio,";
+                ////if (string.IsNullOrEmpty(txtApellido.Text)) mensaje += " El apellido es obligatorio,";
 
                 //if () throw new Exception(mensaje.TrimEnd(','));
             }
             catch (Exception ex)
             {
 
-                //ClientScript.RegisterClientScriptBlock(
-                //        this.GetType(),
-                //        "Mensaje",
-                //        "<scripr> swal('Error!', '"+ex.Message+"!', 'error')</script>",
-                //        true
-                //    );
+                ClientScript.RegisterClientScriptBlock(
+                        this.GetType(),
+                        "Mensaje",
+                        "<scripr> swal('Error!', '" + ex.Message + "!', 'error')</script>",
+                        true
+                    );
             }
             
         }
-              
-        //protected void btnEliminar_Click(object sender, EventArgs e)
-        //{
-        //    //string mensaje = '';
-        //    ScriptManager.RegisterStartupScript(
-        //        this, 
-        //        this.GetType(),
-        //        "alert",
-        //        "alert('Vas a eliminar el paciente.'); windows.location='ListarPacientes.aspx'",
-        //        true
-        //        );
-
-        //}
+             
     }
 }
