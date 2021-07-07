@@ -26,14 +26,14 @@ namespace Presentacion
                     doctor = (Medico)medico.Find(X => X.idMedico.ToString() == Request.QueryString["idM"]);
 
                     lblNombre.Text = doctor.nombre + " " + doctor.apellido;
-                    lblDni.Text = doctor.dni;
-                    lblMatricula.Text = doctor.matricula.ToString();
-                    lblEmail.Text = doctor.mail;
+                    //lblDni.Text = doctor.dni;
+                    //lblMatricula.Text = doctor.matricula.ToString();
+                    //lblEmail.Text = doctor.mail;
 
-                    if (!Page.IsPostBack)
-                    {
-                        ddlDias.Items.Insert(0, new ListItem("Seleccione una opcion", "-1"));
-                    }
+                    //if (!Page.IsPostBack)
+                    //{
+                    //    ddlDias.Items.Insert(0, new ListItem("Seleccione una opción", "1"));
+                    //}
                 }
 
             }
