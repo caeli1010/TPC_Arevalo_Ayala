@@ -19,6 +19,12 @@ namespace Dominio
         public string dni { get; set; }
         public Especialidad especialidad { get; set; }
         public Boolean estado { get; set; }
+        public Medico () { }
+        public Medico (long id) 
+        {
+            idMedico = id;
+        }
+
         public override string ToString()
         {
             string datoMedico = dni;

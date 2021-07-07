@@ -23,7 +23,7 @@ namespace Negocio
                     Horario aux = new Horario();
                     aux.id = (long)datos.Lector["ID"];
                     aux.duracion = (int)datos.Lector["DURACION"];
-                    aux.idMedico = (long)datos.Lector["IDMEDICO"];
+                    aux.medico = new Medico((long)datos.Lector["IDMEDICO"]);
                     aux.hora = (int)datos.Lector["HORAS"];
                     aux.idDias = (int)datos.Lector["IDDIAS"];
 
@@ -46,16 +46,18 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                string valores = @"values('" +
-                                    nuevo.duracion + "', '" +
-                                    nuevo.idMedico + "', '" +
-                                    nuevo.hora + "', '" +
-                                    nuevo.idDias + ")";
+                string valores = @"values(" +
+                                    nuevo.duracion + ", " +
+                                    nuevo.medico.idMedico + ", " +
+                                    nuevo.hora + ", " +
+                                    nuevo.idDias + ", " +
+                                    1 +")";
                 datos.setearConsulta(@"insert into DIAS_Y_HORARIOS (
                                         DURACION,
                                         IDMEDICO, 
                                         HORAS, 
-                                        IDDIAS
+                                        IDDIAS,
+                                        ESTADO
                                         ) " + valores);
                 datos.ejecutarAccion();
 
@@ -80,7 +82,7 @@ namespace Negocio
                                             "HORAS = @hora, " +
                                             "IDDIAS= @idDias");
                 datos.setearParametro("@duracion", modificar.duracion);
-                datos.setearParametro("@idMedico", modificar.idMedico);
+                datos.setearParametro("@idMedico", modificar.medico.idMedico);
                 datos.setearParametro("@hora", modificar.hora);
                 datos.setearParametro("@idDias", modificar.idDias);
 

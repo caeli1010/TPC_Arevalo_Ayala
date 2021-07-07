@@ -102,7 +102,8 @@
                      </div>
                  </div>
                     <asp:Button Text="Guardar" ID="btnGrabarMedico" OnClick="btnGrabarMedico_Click" runat="server" />
-            </form>
+                     <a class="btn btn-sm btn-outline-danger" href='ListarMedicos.aspx'>Atras</a>
+                </form>
         </div>
     </div>
 
