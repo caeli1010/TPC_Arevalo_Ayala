@@ -22,15 +22,9 @@ namespace Presentacion
                     medico = (List<Medico>)Session["medicos"];
                     doctor = (Medico)medico.Find(X => X.idMedico.ToString() == Request.QueryString["idM"]);
 
-                    txtMatricula.Text = doctor.matricula.ToString();
-                    txtNombre.Text = doctor.nombre;
-                    txtApellido.Text = doctor.apellido;
+                    lblApellido.Text = doctor.nombre +" "+ doctor.apellido;
                     txtSexo.Text = doctor.genero.ToString();
-                    txtFechaNac.Text = doctor.fechaNac.ToString();
-                    txtFechaIngreso.Text = doctor.fechaIngreso.ToString();
                     txtEmail.Text = doctor.mail;
-                    txtDoc.Text = doctor.dni;
-                    txtEspecialidad.Text = doctor.especialidad.nombre;
 
                 }
             }
@@ -48,9 +42,6 @@ namespace Presentacion
             try
             {
                 doctor.mail = txtEmail.Text;
-                doctor.fechaIngreso = DateTime.Parse(txtFechaIngreso.Text);
-                doctor.fechaNac = DateTime.Parse(txtFechaNac.Text);
-
                 MedicoNegocio negocio = new MedicoNegocio();
                 negocio.modificar(doctor);
             }
