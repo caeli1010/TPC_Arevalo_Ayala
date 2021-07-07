@@ -42,8 +42,8 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                string valores = @"values('" + nuevo.nombre + "')";
-                datos.setearConsulta(@"insert into ESPECIALIDADES ( NOMBRE ) " + valores);
+                //string valores = @"values('" + nuevo.nombre + "')";
+                datos.setearConsulta(@"update ESPECIALIDADES set ESTADO=1 WHERE NOMBRE LIKE '" +nuevo.nombre+"' ");
                 datos.ejecutarAccion();
 
             }
@@ -62,8 +62,8 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                string valores = @"values(6 , " + medico.idMedico + " , " + nuevo.idEspecialidad + ", 5)";
-                datos.setearConsulta(@"insert into ESPECIALIDAD_X_MEDICO (ID, IDMEDICO, IDESPECIALIDAD, IDCONVENIO) " + valores);
+                string valores = @"values( " + medico.idMedico + " , " + nuevo.idEspecialidad + ", 5)";
+                datos.setearConsulta(@"insert into ESPECIALIDAD_X_MEDICO (IDMEDICO, IDESPECIALIDAD, IDCONVENIO) " + valores);
                 datos.ejecutarAccion();
                 
             }

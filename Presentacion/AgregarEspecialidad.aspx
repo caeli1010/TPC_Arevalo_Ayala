@@ -21,7 +21,7 @@
                 </ul>
                 <div class="card-body">
              
-                    <a href="#" class="card-link badge btn-sm badge-info">Enviar mensaje</a>
+                <a class="btn btn-sm btn-outline-danger" href='ListarMedicos.aspx'>Atras</a>
                 </div>
             </div>
 
@@ -49,7 +49,6 @@
 
                   <asp:Button Text="Agregar" CssClass="card-link btn-sm  btn-danger" 
                       ID="btnAgregar"  runat="server" Visible="false" OnClick="btnAgregar_Click" />
-                <a class="btn btn-sm btn-outline-danger" href='ListarMedicos.aspx'>Atras</a>
             </form>
         </div>
     </div>

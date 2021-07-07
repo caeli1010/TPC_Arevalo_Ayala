@@ -15,6 +15,9 @@ namespace Dominio
         public Especialidad()               
         {
 
+        } public Especialidad(int id)               
+        {
+            idEspecialidad = id;
         }
         public Especialidad(string _nombre)
         {
