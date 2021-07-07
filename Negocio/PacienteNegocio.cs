@@ -127,29 +127,29 @@ namespace Negocio
                 datos = null;
             }
         }
-        //public void eliminar(Paciente Paciente)
-        //{
-        //    AccesoDatos datos = new AccesoDatos();
-        //    try
-        //    {
-        //        datos.setearConsulta("update PacienteS set ESTADO = 0 WHERE DNI = @dni");
-        //        datos.setearParametro("@dni", Paciente.dni);
+        public void eliminar(Paciente Paciente)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("update PACIENTES set ESTADO = 0 WHERE DNI = @dni");
+                datos.setearParametro("@dni", Paciente.dni);
 
-        //        datos.ejecutarAccion();
+                datos.ejecutarAccion();
 
-        //    }
-        //    catch (global::System.Exception)
-        //    {
-        //        throw;
-        //    }
+            }
+            catch (global::System.Exception)
+            {
+                throw;
+            }
 
-        //    finally
-        //    {
-        //        datos.cerrarConexion();
-        //        datos = null;
-        //    }
+            finally
+            {
+                datos.cerrarConexion();
+                datos = null;
+            }
 
-        //}
+        }
         public void leerPaciente(string dni)
         {
             AccesoDatos datos = new AccesoDatos();

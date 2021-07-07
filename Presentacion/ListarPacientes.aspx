@@ -54,7 +54,9 @@
                         <td> s/n </td>
                         <td><% = item.mail  %></td>
                         <td>
-                            <a href="SolicitudTurno.aspx?ipc=<% = item.idPaciente  %>" class="btn btn-sm btn-outline-success">Solicitar Turno</a>
+                            <a href="SolicitudTurno.aspx?ipc=<% = item.idPaciente  %>" class="btn btn-sm btn-outline-success">
+                                <i title="Agregar un turno" class=" fa fa-calendar-check"></i>
+                            </a>
                                              
                             <asp:Button 
                                 Text="Eliminar"

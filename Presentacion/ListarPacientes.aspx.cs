@@ -52,10 +52,16 @@ namespace Presentacion
 
             try
             {
+
                 //string mensaje = string.Empty;
-                ////if (string.IsNullOrEmpty(txtApellido.Text)) mensaje += " El apellido es obligatorio,";
+                //if (string.IsNullOrEmpty(txtApellido.Text)) mensaje += " El apellido es obligatorio,";
 
                 //if () throw new Exception(mensaje.TrimEnd(','));
+
+                ClientScript.RegisterClientScriptBlock(
+                       this.GetType(),"Mensaje","<scripr> swal('Correcto!', ' La accion se realizó con exito!', 'success')</script>", true
+                   );
+
             }
             catch (Exception ex)
             {
