@@ -58,7 +58,7 @@ namespace Negocio
                                     nuevo.fechaNac + "', '" +
                                     nuevo.fechaIngreso + "', '" +
                                     nuevo.mail + "', '" +
-                                    nuevo.dni + "')";
+                                    nuevo.dni + "', "+ 1 +")";
                 datos.setearConsulta(@"insert into MEDICOS (
                                         NOMBRE,
                                         APELLIDO, 
@@ -66,7 +66,8 @@ namespace Negocio
                                         FECHANAC, 
                                         FECHAINGRESO, 
                                         EMAIL,
-                                        DNI
+                                        DNI,
+                                        ESTADO
                                         ) " + valores);
                 datos.ejecutarAccion();
 

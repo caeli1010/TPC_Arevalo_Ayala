@@ -45,16 +45,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% foreach (Dominio.Paciente item in pacientes)
-                        { %>
+
+                    <asp:Repeater runat="server" ID="repetidor">
+                        <ItemTemplate> 
+                   
                     <tr>
-                        <th scope="row"><% = item.dni  %></th>
-                        <td><% = item.nombre  %> <% = item.apellido  %></td>
-                        <td><% = item.obraSocial.nombre  %></td>
-                        <td> s/n </td>
-                        <td><% = item.mail  %></td>
+                        <th scope="row"><%#Eval("dni")%></th>
+                        <td><%#Eval("nombre")%> <%#Eval("apellido")%></td>
+                        <td><%#Eval("obraSocial")%></td>
+                        <td><%#Eval("nroCarnet")%></td>
+                        <td><%#Eval("mail")%></td>
                         <td>
-                            <a href="SolicitudTurno.aspx?ipc=<% = item.idPaciente  %>" class="btn btn-sm btn-outline-success">
+                            <a href="SolicitudTurno.aspx?ipc=<%#Eval("idPaciente")%>" class="btn btn-sm btn-outline-success">
                                 <i title="Agregar un turno" class=" fa fa-calendar-check"></i>
                             </a>
                                              
@@ -62,13 +64,15 @@
                                 Text="Eliminar"
                                 ID="eliminiar"
                                  CssClass="btn btn-sm btn-outline-danger"
-                                CommandArgument="<% = item.idPaciente  %>"
+                                CommandArgument="<%#Eval("idPaciente")%>"
                                 OnClick="eliminiar_Click"
                                 OnClientClick="return bajar(this);" runat="server" />
                             
                         </td>
                     </tr>
-                    <%} %>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                    
                 </tbody>
             </table>
 

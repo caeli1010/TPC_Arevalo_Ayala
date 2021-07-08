@@ -1,25 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AltaMedico.aspx.cs" Inherits="Presentacion.AltaMedico" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-   <%-- <script>
-
-        function verificar() {
-            var mail = document.getElementById("txtEmail").value;
-            var confMail = document.getElementById("txtCEmail").value;
-            if (mail === confMail) {
-                return true;
-            }
-            else {
-                document.getElementById("txtEmail").AddClass("is_invalid");
-                document.getElementById("txtCEmail").AddClass("is_invalid");
-                var e = new Error('Email distintos');
-                throw e;
-                return false;
-            }
-        }
-
-    </script>--%>
-
     <hr class="py-1" />
     <h1 class="text-center">Ingreso Nuevo Médico</h1>
     <div class="row alert alert-secondary">

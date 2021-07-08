@@ -24,20 +24,25 @@ namespace Presentacion
 
             try
             {
-                //if (Session["Paciente"] == null)
-                //{
-                pacientes = negocio.listar();
+                if (!Page.IsPostBack)
+                {
+
+                    //if (Session["Paciente"] == null)
+                    //{
+                    pacientes = negocio.listar();
                     Session.Add("Paciente", pacientes);
-                //}
-                //else
-                //{
+                    //}
+                    //else
+                    //{
                     if (Request.QueryString["dni"] != null)
                     {
                         dni = Request.QueryString["dni"];
                     }
                     pacientes = (List<Paciente>)Session["Paciente"];
-                //}
-               
+                    //}
+                }
+                repetidor.DataSource = pacientes;
+                repetidor.DataBind();
             }
             catch (Exception error)
             {
@@ -52,6 +57,16 @@ namespace Presentacion
 
             try
             {
+                var id = ((Button)sender).CommandArgument;
+                List<Paciente> seleccionado = (List<Paciente>)Session["Paciente"];
+                Paciente pacienteSeleccionado = (Paciente)seleccionado.Find(x => x.idPaciente.ToString() == id);
+
+                PacienteNegocio negocio = new PacienteNegocio();
+                negocio.eliminar(pacienteSeleccionado);
+
+                seleccionado.Remove(pacienteSeleccionado);
+                repetidor.DataSource = seleccionado;
+                repetidor.DataBind();
 
                 //string mensaje = string.Empty;
                 //if (string.IsNullOrEmpty(txtApellido.Text)) mensaje += " El apellido es obligatorio,";

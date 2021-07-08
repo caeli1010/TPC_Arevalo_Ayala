@@ -14,15 +14,6 @@
                     <p class="card-text"<span class=" font-weight-bold ">
                        </span></p>
                 </div>
-                <%--<ul class="list-group list-group-flush">
-                    <li class="list-group-item">DNI: <span class=" font-weight-bold ">
-                        <asp:Label ID="lblDni" runat="server" /></span> </li>
-                    <li class="list-group-item">MATRICULA: <span class=" font-weight-bold">
-                        <asp:Label ID="lblMatricula" type="number" runat="server" /></span> </li>
-                    <li class="list-group-item">EMAIL: <span class="font-weight-bold ">
-                        <asp:Label ID="lblEmail" runat="server" />
-                    </span></li>
-                </ul>--%>
                 <div class="card-body">
 
                     <a class="btn btn-sm btn-outline-info" href='ListarMedicos.aspx'>Atras</a>

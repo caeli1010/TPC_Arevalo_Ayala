@@ -13,7 +13,6 @@
                         <th scope="col">Matricula</th>
                         <th scope="col">Nombre y Apellido</th>
                         <th scope="col">Email</th>
-                        <th scope="col">Telefono</th>
                         <th scope="col">Estado</th>
                         <th scope="col">Acciónes</th>
                     </tr>
@@ -25,7 +24,6 @@
                                 <th scope="row"><%#Eval("matricula")%></th>
                                 <td><%#Eval("nombre")%> <%#Eval("apellido")%></td> 
                                 <td><%#Eval("mail")%></td>
-                                <td>555-555-55</td>
                                 <td>Activo</td>
                                 <td>
                                     <a class="btn btn-sm btn-outline-info" href='AgregarEspecialidad.aspx?idM=<%#Eval("idMedico")%>'><i title="Ver especialidades" class="display-5 fa fa-eye"></i></a>

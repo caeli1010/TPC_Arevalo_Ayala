@@ -62,8 +62,8 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                string valores = @"values( " + medico.idMedico + " , " + nuevo.idEspecialidad + ", 5)";
-                datos.setearConsulta(@"insert into ESPECIALIDAD_X_MEDICO (IDMEDICO, IDESPECIALIDAD, IDCONVENIO) " + valores);
+                string valores = @"values( " + medico.idMedico + " , " + nuevo.idEspecialidad + ", 5, 1)";
+                datos.setearConsulta(@"insert into ESPECIALIDAD_X_MEDICO (IDMEDICO, IDESPECIALIDAD, IDCONVENIO, ESTADO) " + valores);
                 datos.ejecutarAccion();
                 
             }
