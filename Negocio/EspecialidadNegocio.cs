@@ -132,7 +132,7 @@ namespace Negocio
                 datos.setearConsulta(@"SELECT * FROM ESPECIALIDADES ES
                                      INNER JOIN ESPECIALIDAD_X_MEDICO EM ON EM.IDESPECIALIDAD = ES.IDESPECIALIDAD
                                      INNER JOIN MEDICOS ME ON ME.IDMEDICO = EM.IDMEDICO 
-                                     WHERE ME.IDMEDICO = id");
+                                     WHERE ME.IDMEDICO = "+ id +" ");
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
