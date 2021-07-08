@@ -52,7 +52,8 @@ namespace Presentacion
                 paciente.apellido = txtApellido.Text;
                 paciente.nombre = txtNombre.Text;
                 paciente.obraSocial = new Obrasocial(5);
-                paciente.fechaNacimiento = DateTime.ParseExact(txtFechaNac.Text, "M/D/Y", null);
+               // paciente.fechaNacimiento = DateTime.ParseExact(txtFechaNac.Text, "M/D/Y", null);
+                paciente.fechaNacimiento = DateTime.Parse(txtFechaNac.Text);
                 paciente.genero = ddlSexo.SelectedItem.Value;
                 paciente.nroCarnet = int.Parse(txtNroCred.Text);
                 agregar.agregar(paciente);

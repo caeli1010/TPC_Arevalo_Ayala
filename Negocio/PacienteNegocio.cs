@@ -61,11 +61,11 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
+                datos.setearParametro("@fecha", nuevo.fechaNacimiento);
                 string valores = @"values('" +
                                     nuevo.apellido + "', '" +
                                     nuevo.nombre + "', " +
-                                    nuevo.obraSocial.idObraSocial + ", '" +
-                                    nuevo.fechaNacimiento + "', '" +
+                                    nuevo.obraSocial.idObraSocial + ", @fecha, " +
                                     nuevo.genero + "', '" +
                                     nuevo.dni + "', '"+ 
                                     nuevo.mail + "', " +
@@ -86,7 +86,7 @@ namespace Negocio
 
 
             }
-            catch (global::System.Exception)
+            catch (global::System.Exception ex)
             {
                 throw;
             }
