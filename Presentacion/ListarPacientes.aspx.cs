@@ -69,25 +69,18 @@ namespace Presentacion
                 repetidor.DataSource = seleccionado;
                 repetidor.DataBind();
 
-                //lblMensaje.Text = "Eliminado!";
-                //lblMensaje.CssClass = "alert alert-success";
-                //lblMensaje.Visible = true;
+                //Definimos mensajes para la clase alert de bootstrp y cambiamos la bandera del label a true para mostrarlo.
+                lblMensaje.Text = "El proceso de eliminar el  Paciente se ha realizado correctamente!";
+                lblMensaje.CssClass = "alert alert-success text-center";
+                lblMensaje.Visible = true;
 
-
-                //string mensaje = string.Empty;
-                //if (string.IsNullOrEmpty(txtApellido.Text)) mensaje += " El apellido es obligatorio,";
-
-                //if () throw new Exception(mensaje.TrimEnd(','));
-                ClientScript.RegisterStartupScript(type: GetType(), "K", "<script>swal({title: 'Quieres eliminar el registro?', text: 'Se realizará una  baja lógica, si deseas recuperar el paciente comunicate con el administrador del sistema', icon: 'warning', buttons: true, dangerMode: true,}).then((willDelete) => { if (willDelete) { swal('¡El paciente ha sido eliminado!', { icon: 'success',}); } else { swal('No se realizaron cambios!'); }}); window.location = 'ListarPacientes.aspx'</script>");
-                //ClientScript.RegisterStartupScript(
-                //    this.GetType(),
-                //    "Mensaje",
-                //    "<script> swal('Correcto!', ' La accion se realizó con exito!', 'success')</script>"
-                //);
-
-                //ClientScript.RegisterClientScriptBlock(
-                //       this.GetType(),"Mensaje","<script> swal('Correcto!', ' La accion se realizó con exito!', 'success')</script>", true
-                //   );
+                //usamos un sweetalert para avisar que el evento se ralizó con exito. 
+                ClientScript.RegisterStartupScript(type: GetType(),
+                    "K", "<script>swal('Ok!', " +
+                    "'¡El paciente ha sido eliminado con exito!', " +
+                    "'success'); " +
+                    "setTimeout(function() {window.location = 'ListarPacientes.aspx';}, 5000); " +
+                    "</script>");
 
             }
             catch (Exception ex)

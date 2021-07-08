@@ -18,6 +18,11 @@
                     if (willDelete) {
                         swal("¡El paciente ha sido eliminado!", {
                             icon: "success",
+                            function() {
+                                objeto.estado = true;
+                                objeto.element = ev;
+                                objeto.element.click();
+                            }
                         });
                     } else {
                         swal("No se realizaron cambios!");
@@ -30,10 +35,14 @@
     </script>
     <hr class="py-1" />
     <h1>Listado de Pacientes </h1>
-    <div class="alert alert-success">
+    <% if (lblMensaje.Visible == true) { %>
+    <div class="alert alert-success text-center">
 
     <asp:Label Visible="false" runat="server" ID="lblMensaje" />
     </div>
+    <% } %>
+    <% //lblMensaje.Visible = false; %>
+
     <div class="row alert alert-heading">
         <div class="col-md-12">
 
@@ -42,7 +51,7 @@
                     <tr>
                         <th scope="col">DNI</th>
                         <th scope="col">Nombre y Apellido</th>
-                        <th scope="col">Obra Social</th>
+                        <%--<th scope="col">Obra Social</th>--%>
                         <th scope="col"> Nro Carnet</th>
                         <th scope="col">Email</th>
                         <th scope="col">Acciónes</th>
@@ -56,7 +65,7 @@
                     <tr>
                         <th scope="row"><%#Eval("dni")%></th>
                         <td><%#Eval("nombre")%> <%#Eval("apellido")%></td>
-                        <td><%#Eval("obraSocial")%></td>
+                        <%--<td><%#Eval("obraSocial")%></td>--%>
                         <td><%#Eval("nroCarnet")%></td>
                         <td><%#Eval("mail")%></td>
                         <td>
