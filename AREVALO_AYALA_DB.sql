@@ -12,7 +12,7 @@
  Target Server Version : 15002080
  File Encoding         : 65001
 
- Date: 07/07/2021 20:43:55
+ Date: 07/07/2021 23:23:33
 */
 
 
@@ -135,6 +135,9 @@ INSERT INTO [dbo].[ESPECIALIDAD_X_MEDICO] ([ID], [IDMEDICO], [IDESPECIALIDAD], [
 GO
 
 INSERT INTO [dbo].[ESPECIALIDAD_X_MEDICO] ([ID], [IDMEDICO], [IDESPECIALIDAD], [IDCONVENIO], [ESTADO]) VALUES (N'6', N'2', N'7', N'5', N'1')
+GO
+
+INSERT INTO [dbo].[ESPECIALIDAD_X_MEDICO] ([ID], [IDMEDICO], [IDESPECIALIDAD], [IDCONVENIO], [ESTADO]) VALUES (N'7', N'2', N'8', N'5', N'1')
 GO
 
 SET IDENTITY_INSERT [dbo].[ESPECIALIDAD_X_MEDICO] OFF
@@ -629,9 +632,6 @@ GO
 -- Records of MEDICOS
 -- ----------------------------
 SET IDENTITY_INSERT [dbo].[MEDICOS] ON
-GO
-
-INSERT INTO [dbo].[MEDICOS] ([IDMEDICO], [APELLIDO], [NOMBRE], [SEXO], [FECHANAC], [FECHAINGRESO], [EMAIL], [DNI], [MATRICULA], [ESTADO]) VALUES (N'2', N'Avery', N'Idola', N'M', N'1977-10-20', N'2014-11-01', N'sin@mail', N'11135', N'40002', N'1')
 GO
 
 INSERT INTO [dbo].[MEDICOS] ([IDMEDICO], [APELLIDO], [NOMBRE], [SEXO], [FECHANAC], [FECHAINGRESO], [EMAIL], [DNI], [MATRICULA], [ESTADO]) VALUES (N'4', N'Berger', N'Jayme', N'F', N'1952-05-26', N'2011-09-17', N'sin@mail', N'11170', N'40004', N'1')
@@ -1625,6 +1625,12 @@ INSERT INTO [dbo].[PACIENTES] ([IDPACIENTE], [APELLIDO], [NOMBRE], [IDOBRASOCIAL
 GO
 
 INSERT INTO [dbo].[PACIENTES] ([IDPACIENTE], [APELLIDO], [NOMBRE], [IDOBRASOCIAL], [FECHANAC], [SEXO], [DNI], [EMAIL], [NROCARNET], [ESTADO]) VALUES (N'201', N'Zúñiga', N'Mirko', N'5', N'1973-04-09 00:00:00.000', N'F', N'40253', N'SIN@MAIL.COM', N'5633', N'1')
+GO
+
+INSERT INTO [dbo].[PACIENTES] ([IDPACIENTE], [APELLIDO], [NOMBRE], [IDOBRASOCIAL], [FECHANAC], [SEXO], [DNI], [EMAIL], [NROCARNET], [ESTADO]) VALUES (N'235', N'Arevalo', N'Eugenio', N'5', N'2021-06-28 00:00:00.000', N'F', N'26664555', N'reugenioarevalo@gmail.com', N'555888', N'1')
+GO
+
+INSERT INTO [dbo].[PACIENTES] ([IDPACIENTE], [APELLIDO], [NOMBRE], [IDOBRASOCIAL], [FECHANAC], [SEXO], [DNI], [EMAIL], [NROCARNET], [ESTADO]) VALUES (N'237', N'Fernandez', N'Alberto', N'5', N'2021-06-28 00:00:00.000', N'M', N'26664555', N'reugenioarevalo@gmail.com', N'556661', N'1')
 GO
 
 SET IDENTITY_INSERT [dbo].[PACIENTES] OFF
@@ -3385,7 +3391,7 @@ GO
 -- ----------------------------
 -- Auto increment value for ESPECIALIDAD_X_MEDICO
 -- ----------------------------
-DBCC CHECKIDENT ('[dbo].[ESPECIALIDAD_X_MEDICO]', RESEED, 6)
+DBCC CHECKIDENT ('[dbo].[ESPECIALIDAD_X_MEDICO]', RESEED, 7)
 GO
 
 
@@ -3426,7 +3432,23 @@ GO
 -- ----------------------------
 -- Auto increment value for MEDICOS
 -- ----------------------------
-DBCC CHECKIDENT ('[dbo].[MEDICOS]', RESEED, 103)
+DBCC CHECKIDENT ('[dbo].[MEDICOS]', RESEED, 104)
+GO
+
+
+-- ----------------------------
+-- Uniques structure for table MEDICOS
+-- ----------------------------
+ALTER TABLE [dbo].[MEDICOS] ADD CONSTRAINT [dni_matricula] UNIQUE NONCLUSTERED ([DNI] ASC, [MATRICULA] ASC)
+WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)  
+ON [PRIMARY]
+GO
+
+EXEC sp_addextendedproperty
+'MS_Description', N'la matricula y el dni deben ser unicos',
+'SCHEMA', N'dbo',
+'TABLE', N'MEDICOS',
+'CONSTRAINT', N'dni_matricula'
 GO
 
 
@@ -3465,7 +3487,23 @@ GO
 -- ----------------------------
 -- Auto increment value for PACIENTES
 -- ----------------------------
-DBCC CHECKIDENT ('[dbo].[PACIENTES]', RESEED, 234)
+DBCC CHECKIDENT ('[dbo].[PACIENTES]', RESEED, 237)
+GO
+
+
+-- ----------------------------
+-- Uniques structure for table PACIENTES
+-- ----------------------------
+ALTER TABLE [dbo].[PACIENTES] ADD CONSTRAINT [dni_carnet] UNIQUE NONCLUSTERED ([DNI] ASC, [NROCARNET] ASC)
+WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)  
+ON [PRIMARY]
+GO
+
+EXEC sp_addextendedproperty
+'MS_Description', N'el carnet y el dni deben ser unicos',
+'SCHEMA', N'dbo',
+'TABLE', N'PACIENTES',
+'CONSTRAINT', N'dni_carnet'
 GO
 
 

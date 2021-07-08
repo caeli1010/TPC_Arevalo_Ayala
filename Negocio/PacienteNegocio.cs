@@ -28,7 +28,7 @@ namespace Negocio
 	                                    COALESCE ( P.DNI, 'sin dni' ) AS DNI 
                                     FROM
 	                                    PACIENTES AS P
-	                                    INNER JOIN OBRAS_SOCIALES AS OS ON OS.IDOBRASOCIAL= P.IDOBRASOCIAL");
+	                                    INNER JOIN OBRAS_SOCIALES AS OS ON OS.IDOBRASOCIAL= P.IDOBRASOCIAL WHERE P.ESTADO = 1");
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
@@ -61,25 +61,17 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
+                datos.setearConsulta(@"insert into PACIENTES (APELLIDO, NOMBRE, IDOBRASOCIAL,  FECHANAC,  SEXO, DNI, EMAIL, NROCARNET, ESTADO)
+                 VALUES(@apellido, @nombre, @idObraSocial, @fecha, @genero, @dni, @mail, @nroCarnet, @estado)");
+                datos.setearParametro("@apellido", nuevo.apellido);
+                datos.setearParametro("@nombre", nuevo.nombre);
+                datos.setearParametro("@idObraSocial", nuevo.obraSocial.idObraSocial);
                 datos.setearParametro("@fecha", nuevo.fechaNacimiento);
-                string valores = @"values('" +
-                                    nuevo.apellido + "', '" +
-                                    nuevo.nombre + "', " +
-                                    nuevo.obraSocial.idObraSocial + ", @fecha, " +
-                                    nuevo.genero + "', '" +
-                                    nuevo.dni + "', '"+ 
-                                    nuevo.mail + "', " +
-                                    nuevo.nroCarnet + ", 1" +
-                                    ")";
-                datos.setearConsulta(@"insert into PACIENTES (
-                                        APELLIDO, 
-                                        NOMBRE,
-                                        IDOBRASOCIAL, 
-                                        FECHANAC, 
-                                        SEXO, DNI, 
-                                        EMAIL,
-                                        NROCARNET,
-                                        ESTADO) " + valores);
+                datos.setearParametro("@genero", nuevo.genero);
+                datos.setearParametro("@dni", nuevo.dni);
+                datos.setearParametro("@mail", nuevo.mail);
+                datos.setearParametro("@nroCarnet", nuevo.nroCarnet);
+                datos.setearParametro("@estado", 1);
 
                 datos.ejecutarAccion();
 
@@ -88,7 +80,7 @@ namespace Negocio
             }
             catch (global::System.Exception ex)
             {
-                throw;
+                throw ex;
             }
 
             finally
@@ -101,12 +93,8 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("update PACIENTES set " +
-                                                        "NOMBRE = @nombre, " +
-                                                        "APELLIDO = @apellido, " +
-                                                        "NROCARNET=@nroCarnet, " +
-                                                        "IDOBRASOCIAL=@idObraSocial, " +
-                                                        "EMAIL= @email where IDPACIENTE = @idPaciente");
+                datos.setearConsulta(@"update PACIENTES SET NOMBRE = @nombre, APELLIDO = @apellido, NROCARNET= @nroCarnet, IDOBRASOCIAL = @idObraSocial, EMAIL = @email 
+                WHERE IDPACIENTE = @idPaciente");
                 datos.setearParametro("@idPaciente", modificar.idPaciente);
                 datos.setearParametro("@nombre", modificar.nombre);
                 datos.setearParametro("@apellido", modificar.apellido);
@@ -116,9 +104,9 @@ namespace Negocio
                 datos.ejecutarAccion();
 
             }
-            catch (global::System.Exception)
+            catch (global::System.Exception ex)
             {
-                throw;
+                throw ex;
             }
 
             finally
@@ -127,20 +115,19 @@ namespace Negocio
                 datos = null;
             }
         }
-        public void eliminar(Paciente Paciente)
+        public void eliminar(string dni)
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
                 datos.setearConsulta("update PACIENTES set ESTADO = 0 WHERE DNI = @dni");
-                datos.setearParametro("@dni", Paciente.dni);
-
+                datos.setearParametro("@dni", dni);
                 datos.ejecutarAccion();
 
             }
-            catch (global::System.Exception)
+            catch (global::System.Exception ex)
             {
-                throw;
+                throw ex;
             }
 
             finally
@@ -155,13 +142,14 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("select * from PACIENTES where DNI = " + dni + "");
+                datos.setearConsulta("select * from PACIENTES where DNI = @dni");
+                datos.setearParametro("@dni", dni);
                 datos.ejecutarLectura();
 
             }
-            catch (global::System.Exception)
+            catch (global::System.Exception ex)
             {
-                throw;
+                throw ex;
             }
 
             finally

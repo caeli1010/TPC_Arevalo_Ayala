@@ -37,6 +37,7 @@ namespace Presentacion
                 if (string.IsNullOrEmpty(txtFechaNac.Text)) mensaje += "| Debe seleccionar una fecha válida,";
                 if (string.IsNullOrEmpty(txtNroCred.Text)) mensaje += "| El numero de credencial es obligatorio, si no posee ingrese Cero,";
                 if (!string.Equals(txtEmail.Text, txtConfEmail.Text)) mensaje += " La casilla de email ingresada no es la misma,";
+                
                 //lanzamos la excepcion solo en caso de que haya algun camp
                 if (!string.IsNullOrEmpty(mensaje)) throw new Exception(mensaje.TrimEnd(','));
 

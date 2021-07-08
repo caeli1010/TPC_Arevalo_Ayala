@@ -20,19 +20,19 @@
                 
             </div>
             <div class="form-group col-md-6">
-                <asp:Label Text="Nro Documento" runat="server" />
-                <asp:TextBox runat="server"  ID="txtDni" CssClass="form-control"  />       
+                <asp:Label Text="Nro Documento" ID="lblDni" runat="server" />
+                <asp:TextBox runat="server" required="true"  ID="txtDni" CssClass="form-control"  />       
             </div> 
         </div>
 
         <div class="form-row">
             <div class="form-group col-md-6">
                 <asp:Label Text="Email"  runat="server" />
-                <asp:TextBox runat="server"  type="email" ID="txtEmail" CssClass="form-control"  />
+                <asp:TextBox runat="server" required="true"  type="email" ID="txtEmail" CssClass="form-control"  />
             </div>
              <div class="form-group col-md-6">
                  <asp:Label Text="Confirmar Email"  runat="server" />
-                <asp:TextBox runat="server"  ID="txtConfEmail" CssClass="form-control"  TextMode="Email" />
+                <asp:TextBox runat="server"  required="true"  ID="txtConfEmail" CssClass="form-control"  TextMode="Email" />
             </div>
         </div>
 
@@ -40,7 +40,7 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                  <asp:Label Text="Nombre"  runat="server" />
-                <asp:TextBox runat="server" ID="txtNombre" CssClass="form-control"  />
+                <asp:TextBox runat="server" ID="txtNombre" CssClass="form-control" required="true"  />
                
                
             </div> 
