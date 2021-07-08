@@ -57,25 +57,37 @@ namespace Presentacion
 
             try
             {
+                
                 var id = ((Button)sender).CommandArgument;
                 List<Paciente> seleccionado = (List<Paciente>)Session["Paciente"];
-                Paciente pacienteSeleccionado = (Paciente)seleccionado.Find(x => x.idPaciente.ToString() == id);
+                Paciente pacienteSeleccionado = seleccionado.Find(x => x.idPaciente.ToString() == id);
 
                 PacienteNegocio negocio = new PacienteNegocio();
-                negocio.eliminar(pacienteSeleccionado);
+                negocio.eliminar(pacienteSeleccionado.dni);
 
                 seleccionado.Remove(pacienteSeleccionado);
                 repetidor.DataSource = seleccionado;
                 repetidor.DataBind();
 
+                //lblMensaje.Text = "Eliminado!";
+                //lblMensaje.CssClass = "alert alert-success";
+                //lblMensaje.Visible = true;
+
+
                 //string mensaje = string.Empty;
                 //if (string.IsNullOrEmpty(txtApellido.Text)) mensaje += " El apellido es obligatorio,";
 
                 //if () throw new Exception(mensaje.TrimEnd(','));
+                ClientScript.RegisterStartupScript(type: GetType(), "K", "<script>swal({title: 'Quieres eliminar el registro?', text: 'Se realizará una  baja lógica, si deseas recuperar el paciente comunicate con el administrador del sistema', icon: 'warning', buttons: true, dangerMode: true,}).then((willDelete) => { if (willDelete) { swal('¡El paciente ha sido eliminado!', { icon: 'success',}); } else { swal('No se realizaron cambios!'); }}); window.location = 'ListarPacientes.aspx'</script>");
+                //ClientScript.RegisterStartupScript(
+                //    this.GetType(),
+                //    "Mensaje",
+                //    "<script> swal('Correcto!', ' La accion se realizó con exito!', 'success')</script>"
+                //);
 
-                ClientScript.RegisterClientScriptBlock(
-                       this.GetType(),"Mensaje","<scripr> swal('Correcto!', ' La accion se realizó con exito!', 'success')</script>", true
-                   );
+                //ClientScript.RegisterClientScriptBlock(
+                //       this.GetType(),"Mensaje","<script> swal('Correcto!', ' La accion se realizó con exito!', 'success')</script>", true
+                //   );
 
             }
             catch (Exception ex)

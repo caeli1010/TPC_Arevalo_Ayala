@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ListarPacientes.aspx.cs" Inherits="Presentacion.ListarPacientes" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ListarPacientes.aspx.cs" Inherits="Presentacion.ListarPacientes" EnableEventValidation="False" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <script>
 
@@ -30,6 +30,10 @@
     </script>
     <hr class="py-1" />
     <h1>Listado de Pacientes </h1>
+    <div class="alert alert-success">
+
+    <asp:Label Visible="false" runat="server" ID="lblMensaje" />
+    </div>
     <div class="row alert alert-heading">
         <div class="col-md-12">
 
@@ -64,9 +68,9 @@
                                 Text="Eliminar"
                                 ID="eliminiar"
                                  CssClass="btn btn-sm btn-outline-danger"
-                                CommandArgument="<%#Eval("idPaciente")%>"
+                                CommandArgument='<%#Eval("idPaciente")%>'
                                 OnClick="eliminiar_Click"
-                                OnClientClick="return bajar(this);" runat="server" />
+                                runat="server" Enabled="True" />
                             
                         </td>
                     </tr>
