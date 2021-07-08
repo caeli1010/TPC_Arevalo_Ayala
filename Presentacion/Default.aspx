@@ -5,7 +5,7 @@
     <div class="jumbotron">
         <h1>TURNOS WEB</h1>
 
-        
+
     </div>
 
     <div class="row">
@@ -37,5 +37,20 @@
             </p>
         </div>
     </div>
+    <div class="row">
+        <div class="alert alert-danger col-md-6">
+            <h5>Eli</h5>
+            <asp:CheckBox Text="abm 1 especialidad" Checked="false" runat="server" />
+            <hr />
+
+        </div>
+        <div class="alert alert-info col-md-6">
+            <h5>Euge</h5>
+            <asp:CheckBox Text="reservar turnos" Checked="false" runat="server" />
+            <hr />
+            <asp:CheckBox Text="eliminar pacietes" Checked="true" runat="server" />
+        </div>
+    </div>
+
 
 </asp:Content>
