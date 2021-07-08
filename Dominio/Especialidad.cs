@@ -10,6 +10,7 @@ namespace Dominio
     {
         public long idEspecialidad { get; set; }
         public string nombre { get; set; }
+<<<<<<< Updated upstream
         public int convenio { get; set; }
         public Boolean estado { get; set; }
         public Especialidad()               
@@ -23,6 +24,8 @@ namespace Dominio
         {
             nombre = _nombre;
         }
+=======
+>>>>>>> Stashed changes
         public Especialidad(int id, string _nombre)
         {
             idEspecialidad = id;
