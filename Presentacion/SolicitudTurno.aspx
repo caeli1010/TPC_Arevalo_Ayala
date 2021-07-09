@@ -3,25 +3,36 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <hr class="py-1" />
-    <h1>Solicitud de Turnos</h1>
-    <div class="row alert alert-secondary">
+     <h3 class="text-center">Solicitud de Turnos</h3>
+    <div class="row alert alert-secondary col-md-8 offset-md-2">
         <div class="col-md-6">
             <div class="card" >
-                <img class="card-img-top mx-auto d-block py-3" style="width: 24%;" src="https://www.adl-logistica.org/wp-content/uploads/2019/07/imagen-perfil-sin-foto.png" alt="Card image cap">
+                <img class="card-img-top mx-auto d-block py-3" style="width: 24%;" 
+                    src="image/perfil.png" alt="Card image cap">
                 <div class="card-body">
-                    <hr />
-                    <h4 class="card-title">Identidad del Paciente</h4>
-                    <p class="card-text">NOMBRE y APELLIDO :<span class=" font-weight-bold "> <asp:Label ID="lblNombre" runat="server" /></span></p>
+    
+                    <h4 class="card-title">Paciente: <asp:Label ID="lblNombre" runat="server" /></h4>
+                   
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">DNI: <span class=" font-weight-bold "><asp:Label  ID="lblDni" runat="server" /></span> </li>
-                    <li class="list-group-item">OBRA SOCIAL: <span class=" font-weight-bold"><asp:Label ID="lblObraSocial" runat="server" /></span> </li>
-                    <li class="list-group-item">EMAIL: <span class="font-weight-bold "><asp:Label ID="lblEmail" runat="server" /> </span>  </li>
+                    <li class="list-group-item">
+                        DNI: <span class=" font-weight-bold ">
+                        <asp:Label  ID="lblDni" runat="server" /></span> 
+                    </li>
+                    <li class="list-group-item">
+                        OBRA SOCIAL: <span class=" font-weight-bold">
+                        <asp:Label ID="lblObraSocial" runat="server" /></span> 
+                    </li>
+                    <li class="list-group-item">
+                        EMAIL: <span class="font-weight-bold ">
+                        <asp:Label ID="lblEmail" runat="server" /> </span>
+                    </li>
                 </ul>
                 <div class="card-body">
-                    <asp:Button Text="Modificar Datos" CssClass="card-link btn-sm  btn-danger"  ID="btnModificar"  runat="server" />
+                    <asp:Button Text="Modificar Datos" 
+                        CssClass="card-link btn-sm btn-outline-secondary"  
+                        ID="btnModificar"  runat="server" />
              
-                    <a href="#" class="card-link badge btn-sm badge-info">Enviar mensaje</a>
                 </div>
             </div>
 
@@ -31,42 +42,42 @@
 
             <form>
                 <div class="form-row">
-
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-12">
                         <label for="espec">Especialidad</label>
-                        <select id="espec" class="form-control" required>
-                            <option selected>Seleccione ...</option>
-                            <option value="1">Medico clínico</option>
-                            <option value="2">Urología</option>
-                            <option value="3">Ginecología</option>
-                            <option value="4">Nutricionista</option>
-                        </select>
+                        <asp:DropDownList ID="ddlEspecialidad"  CssClass="form-control" runat="server">
+                            <asp:ListItem Text="text1" />
+                            <asp:ListItem Text="text2" />
+                        </asp:DropDownList>
                     </div>
                 </div>
+
                 <div class="form-row">
-
-                    <div class="form-group col-md-6">
-
+                    <div class="form-group col-md-12">
                         <label for="profesional">Profesional</label>
-                        <select id="profesional" class="form-control" required>
-                            <option selected>Seleccione ...</option>
-                            <option value="1">Arostegui Isidoro</option>
-                            <option value="2">Miranda Maximiliano</option>
-                            <option value="3">Arevalo Eugenio</option>
-                            <option value="4">Ayala Elizabeth</option>
-                        </select>
+                        <asp:DropDownList ID="ddlProfesional"  
+                            OnSelectedIndexChanged="ddlProfesional_SelectedIndexChanged"
+                            CssClass="form-control" runat="server">
+                            <asp:ListItem Text="text1" />
+                            <asp:ListItem Text="text2" />
+                        </asp:DropDownList>
                     </div>
                 </div>
                 <div class="form-row">
-
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-12">
                         <label for="turnosDisp">Turnos disponibles </label>
-                        <input type="date" name="turnosDisp" class="form-control" id="turnosDisp" required>
+                        <asp:TextBox runat="server" ID="txtFecha"  CssClass="form-control" TextMode="Date" />
                     </div>
                 </div>
-
-
-                <button type="submit" name="grabarTurno" class="btn btn-success">Agendar</button>
+                <div class="row ">
+                 <div class="text-right col-md-12 ">
+                <asp:Button 
+                    Text="Agendar Turno" 
+                    CssClass="btn btn-outline-info"
+                    ID="btnAgendar" 
+                    Visible="true" 
+                    runat="server" />
+                </div>
+                </div>
             </form>
         </div>
     </div>
