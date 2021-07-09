@@ -146,5 +146,40 @@ namespace Negocio
             }
 
         }
+        public List<Medico> leerMedicoXEspecialidad(long id)
+        {
+            List<Medico> lista = new List<Medico>();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearParametro("@id", id);
+                datos.setearConsulta(@"SELECT ME.IDMEDICO, ME.NOMBRE, ME.APELLIDO FROM MEDICOS ME
+                                     INNER JOIN ESPECIALIDAD_X_MEDICO EM ON EM.IDMEDICO = ME.IDMEDICO
+                                     INNER JOIN ESPECIALIDADES ES ON ES.IDESPECIALIDAD = EM.IDESPECIALIDAD 
+                                     WHERE ES.IDESPECIALIDAD LIKE @id");
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    Medico aux = new Medico();
+                    aux.idMedico = (long)datos.Lector["IDMEDICO"];
+                    aux.apellido = (string)datos.Lector["APELLIDO"];
+                    aux.nombre = (string)datos.Lector["NOMBRE"];
+                    lista.Add(aux);
+
+                }
+                return lista;
+
+            }
+            catch (global::System.Exception ex)
+            {
+                throw ex;
+            }
+
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+        }
     }
 }
