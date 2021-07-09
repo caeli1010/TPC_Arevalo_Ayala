@@ -42,8 +42,8 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                //string valores = @"values('" + nuevo.nombre + "')";
-                datos.setearConsulta(@"update ESPECIALIDADES set ESTADO=1 WHERE NOMBRE LIKE '" +nuevo.nombre+"' ");
+                datos.setearParametro("@nombre", nuevo.nombre);
+                datos.setearConsulta(@"update ESPECIALIDADES set ESTADO=1 WHERE NOMBRE LIKE @nombre ");
                 datos.ejecutarAccion();
 
             }
@@ -61,9 +61,12 @@ namespace Negocio
         {
             AccesoDatos datos = new AccesoDatos();
             try
-            {
-                string valores = @"values( " + medico.idMedico + " , " + nuevo.idEspecialidad + ", 5, 1)";
-                datos.setearConsulta(@"insert into ESPECIALIDAD_X_MEDICO (IDMEDICO, IDESPECIALIDAD, IDCONVENIO, ESTADO) " + valores);
+            {   datos.setearParametro("@idMedico", medico.idMedico);
+                datos.setearParametro("@idEspecialidad", nuevo.idEspecialidad);
+                datos.setearParametro("@idConvenio", 5);
+                datos.setearParametro("@estado", 1);
+                datos.setearConsulta(@"insert into ESPECIALIDAD_X_MEDICO (IDMEDICO, IDESPECIALIDAD, IDCONVENIO, ESTADO)
+                                        VALUES(@idMedico, @idEspecialidad, @idConvenio, @estado)");
                 datos.ejecutarAccion();
                 
             }
@@ -129,10 +132,11 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
+                datos.setearParametro("@id", id);
                 datos.setearConsulta(@"SELECT * FROM ESPECIALIDADES ES
                                      INNER JOIN ESPECIALIDAD_X_MEDICO EM ON EM.IDESPECIALIDAD = ES.IDESPECIALIDAD
                                      INNER JOIN MEDICOS ME ON ME.IDMEDICO = EM.IDMEDICO 
-                                     WHERE ME.IDMEDICO = "+ id +" ");
+                                     WHERE ME.IDMEDICO = @id");
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {

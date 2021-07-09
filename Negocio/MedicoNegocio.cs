@@ -51,24 +51,18 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                string valores = @"values('" +
-                                    nuevo.nombre + "', '" +
-                                    nuevo.apellido + "', '" +
-                                    nuevo.genero + "', '" +
-                                    nuevo.fechaNac + "', '" +
-                                    nuevo.fechaIngreso + "', '" +
-                                    nuevo.mail + "', '" +
-                                    nuevo.dni + "', "+ 1 +")";
-                datos.setearConsulta(@"insert into MEDICOS (
-                                        NOMBRE,
-                                        APELLIDO, 
-                                        SEXO, 
-                                        FECHANAC, 
-                                        FECHAINGRESO, 
-                                        EMAIL,
-                                        DNI,
-                                        ESTADO
-                                        ) " + valores);
+                datos.setearParametro("@nombre", nuevo.nombre);
+                datos.setearParametro("@apellido", nuevo.apellido);
+                datos.setearParametro("@sexo", nuevo.genero);
+                datos.setearParametro("@fechaNac", nuevo.fechaNac);
+                datos.setearParametro("@fechaIngreso", nuevo.fechaIngreso);
+                datos.setearParametro("@email", nuevo.mail);
+                datos.setearParametro("@dni", nuevo.dni);
+                datos.setearParametro("@estado", 1);
+                datos.setearConsulta(@"insert into MEDICOS (NOMBRE, APELLIDO, SEXO, FECHANAC, 
+                                        FECHAINGRESO, EMAIL, DNI, ESTADO) 
+                                        VALUES(@nombre, @apellido, @sexo, @fechaNac, @fechaIngreso, 
+                                        @email, @dni, @estado )");
                 datos.ejecutarAccion();
 
             }
@@ -135,7 +129,8 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("select * from MEDICOS where DNI = " + dni + "");
+                datos.setearParametro("@dni", dni);
+                datos.setearConsulta("select * from MEDICOS where DNI = @dni");
                 datos.ejecutarLectura();
 
             }
