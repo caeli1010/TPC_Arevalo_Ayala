@@ -11,13 +11,16 @@ namespace Presentacion
 {
     public partial class AgregarEspecialidad : System.Web.UI.Page
     {
-        public List<Especialidad>insertar, espec;
+        public List<Especialidad> insertar; 
+        public List<Especialidad> especial;
         public List<Medico> medico;
         private Medico doctor;
         private Especialidad especialidad;
         protected void Page_Load(object sender, EventArgs e)
         {
             EspecialidadNegocio negocio = new EspecialidadNegocio();
+            Session.Add("especialidad", negocio.listar());
+            insertar = (List<Especialidad>)Session["especialidad"];
             try
             {
                 if(Request.QueryString["idM"] != null)
@@ -26,11 +29,13 @@ namespace Presentacion
                     doctor= (Medico)medico.Find(X => X.idMedico.ToString() == Request.QueryString["idM"]);
                     
                     lblNombre.Text = doctor.nombre +" "+ doctor.apellido;
+                    Session.Add("EspecialidadXMedico", negocio.leerEspecialidad(doctor.idMedico));
+                    especial = (List<Especialidad>)Session["EspecialidadXMedico"];
+                    repetidor.DataSource = especial;
+                    repetidor.DataBind();                       
 
                     if (!Page.IsPostBack)
                     {
-                        espec = (List<Especialidad>)negocio.leerEspecialidad(doctor.idMedico);
-                        
                         ddlEspecialidad.DataValueField = "idEspecialidad";
                         ddlEspecialidad.DataTextField = "nombre";
                         ddlEspecialidad.DataSource = negocio.listar();
@@ -38,6 +43,7 @@ namespace Presentacion
                         ddlEspecialidad.Items.Insert(0, new ListItem("Seleccione una especialidad", "0"));
                     }
                 }
+
 
 //Queda pendiente reañizar el alta de las especialidades en caso de que la organizacion quiera agregar mas
             }
@@ -52,10 +58,7 @@ namespace Presentacion
         protected void ddlEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
-            {
-                EspecialidadNegocio negocio = new EspecialidadNegocio();
-                Session.Add("especialidad", negocio.listar());
-                insertar = (List<Especialidad>)Session["especialidad"];
+            { 
 
                 var argument = ddlEspecialidad.SelectedItem.Value;
                 especialidad = (Especialidad)insertar.Find(X => X.idEspecialidad.ToString() == argument.ToString());
@@ -73,6 +76,12 @@ namespace Presentacion
             {
                 EspecialidadNegocio negocio = new EspecialidadNegocio();
                 negocio.agregarXMedico(especialidad, doctor);
+                Session.Add("EspecialidadXMedico", negocio.leerEspecialidad(doctor.idMedico));
+                especial = (List<Especialidad>)Session["EspecialidadXMedico"];
+                repetidor.DataSource = especial;
+                repetidor.DataBind();
+                //ClientScript.RegisterStartupScript(type: GetType(), "mensaje", "<script>" +
+                //"window.location='AgregarEspecilidad.aspx?idM="+doctor.idMedico+"'</script>");
             }
             catch (Exception ex)
             {
@@ -85,12 +94,14 @@ namespace Presentacion
 
         protected void btnAgregarEspecialidad_Click(object sender, EventArgs e)
         {
+            EspecialidadNegocio negocio = new EspecialidadNegocio();
             try
             {
-
+            btnAgregarEspecialidad.Visible = false;
             lblEspecialidad.Visible = true;
             ddlEspecialidad.Visible = true;
             btnAgregar.Visible = true;
+             
             }
             catch (Exception ex)
             {

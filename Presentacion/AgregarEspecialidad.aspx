@@ -11,10 +11,14 @@
                     <h5 class="card-title">Medico</h5><p><strong><span><asp:Label ID="lblNombre" runat="server" /></span></strong></p>
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Especialidades: <span class=" font-weight-bold ">
-                        <% foreach (Dominio.Especialidad item in espec) { %>
-                        <asp:Label Text="<% = item.nombre %>" runat="server" />
-                        <% } %></span> </li>
+                    <li class="list-group-item">Especialidades:<br /> <span class=" font-weight-bold ">
+                        <asp:Repeater runat="server" ID="repetidor">
+                            <ItemTemplate>  
+                        <asp:Label Text='<%#Eval("nombre")%>' runat="server" /><br />
+
+                            </ItemTemplate>
+                        </asp:Repeater>
+                        </span> </li>
                 </ul>
                 <div class="card-body">
              
@@ -33,7 +37,7 @@
                         <asp:Button ID="btnAgregarEspecialidad" OnClick="btnAgregarEspecialidad_Click" 
                             Text="Agregar Especialidad" CssClass="card-link btn-sm  btn-danger" runat="server" />
                         <asp:Label ID="lblEspecialidad" visible="false" Text="Especialidad" runat="server" />
-                            <asp:DropDownList ID="ddlEspecialidad" Visible="false" CssClass="btn btn-otline-dark dropdown-toggle" runat="server" 
+                            <asp:DropDownList ID="ddlEspecialidad" Visible="false" CssClass="form-control" runat="server" 
                                  OnSelectedIndexChanged="ddlEspecialidad_SelectedIndexChanged">          
                             </asp:DropDownList>
                     </div>

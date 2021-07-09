@@ -136,7 +136,7 @@ namespace Negocio
                 datos.setearConsulta(@"SELECT ES.IDESPECIALIDAD, ES.NOMBRE FROM ESPECIALIDADES ES
                                      INNER JOIN ESPECIALIDAD_X_MEDICO EM ON EM.IDESPECIALIDAD = ES.IDESPECIALIDAD
                                      INNER JOIN MEDICOS ME ON ME.IDMEDICO = EM.IDMEDICO 
-                                     WHERE ME.IDMEDICO LIKE '@id'");
+                                     WHERE ME.IDMEDICO LIKE @id");
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
