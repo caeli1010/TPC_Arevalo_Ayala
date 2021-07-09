@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="SolicitudTurno.aspx.cs" Inherits="Presentacion.SolicitudTurno" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" EnableEventValidation="true" CodeBehind="SolicitudTurno.aspx.cs" Inherits="Presentacion.SolicitudTurno" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -44,9 +44,10 @@
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <label for="espec">Especialidad</label>
-                        <asp:DropDownList ID="ddlEspecialidad"  CssClass="form-control" runat="server">
-                            <asp:ListItem Text="text1" />
-                            <asp:ListItem Text="text2" />
+                        <asp:DropDownList ID="ddlEspecialidad" 
+                            OnSelectedIndexChanged="ddlEspecialidad_SelectedIndexChanged"
+                            AutoPostBack="true"
+                            CssClass="form-control" runat="server">
                         </asp:DropDownList>
                     </div>
                 </div>
@@ -54,11 +55,10 @@
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <label for="profesional">Profesional</label>
-                        <asp:DropDownList ID="ddlProfesional"  
+                        <asp:DropDownList ID="ddlProfesional" 
+                            Visible="false"
                             OnSelectedIndexChanged="ddlProfesional_SelectedIndexChanged"
                             CssClass="form-control" runat="server">
-                            <asp:ListItem Text="text1" />
-                            <asp:ListItem Text="text2" />
                         </asp:DropDownList>
                     </div>
                 </div>

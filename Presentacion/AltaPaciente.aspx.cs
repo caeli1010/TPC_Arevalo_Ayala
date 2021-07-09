@@ -46,20 +46,25 @@ namespace Presentacion
             var idOs = ddlObraSocial.SelectedItem.Value;
             if (txtEmail.Text == txtConfEmail.Text)
             {
-                Paciente paciente = new Paciente();
-                PacienteNegocio agregar = new PacienteNegocio();
-                paciente.dni = txtDni.Text;
-                paciente.mail = txtEmail.Text;
-                paciente.apellido = txtApellido.Text;
-                paciente.nombre = txtNombre.Text;
-                paciente.obraSocial = new Obrasocial(5);
-               // paciente.fechaNacimiento = DateTime.ParseExact(txtFechaNac.Text, "M/D/Y", null);
-                paciente.fechaNacimiento = DateTime.Parse(txtFechaNac.Text);
-                paciente.genero = ddlSexo.SelectedItem.Value;
-                paciente.nroCarnet = int.Parse(txtNroCred.Text);
-                agregar.agregar(paciente);
+                    Paciente paciente = new Paciente();
+                    PacienteNegocio agregar = new PacienteNegocio();
+                    paciente.dni = txtDni.Text;
+                    paciente.mail = txtEmail.Text;
+                    paciente.apellido = txtApellido.Text;
+                    paciente.nombre = txtNombre.Text;
+                    paciente.obraSocial = new Obrasocial(5);
+                   // paciente.fechaNacimiento = DateTime.ParseExact(txtFechaNac.Text, "M/D/Y", null);
+                    paciente.fechaNacimiento = DateTime.Parse(txtFechaNac.Text);
+                    paciente.genero = ddlSexo.SelectedItem.Value;
+                    paciente.nroCarnet = int.Parse(txtNroCred.Text);
+                    agregar.agregar(paciente);
 
-            }
+                    Response.Redirect("ListarPacientes.aspx");
+
+
+                    //ClientScript.RegisterStartupScript(type: GetType(), "mensaje", "<script>" +
+                    //"window.location='AgregarEspecilidad.aspx?idM="+doctor.idMedico+"'</script>");
+                }
 
             }
             catch (Exception ex)

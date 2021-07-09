@@ -12,7 +12,7 @@ namespace Presentacion
     public partial class SolicitudTurno : System.Web.UI.Page
     {
         public List<Especialidad> listEspecialidades;
-        public List<Medico> listMedicos;
+        public List<Medico> listMedicosConEspe;
         private Paciente paciente;
         public List<Paciente> listPacientes;
         protected void Page_Load(object sender, EventArgs e)
@@ -39,9 +39,6 @@ namespace Presentacion
                     ddlEspecialidad.DataBind();
                     ddlEspecialidad.Items.Insert(0, new ListItem("Especialidades", "0"));
 
-
-
-
                 }
                 else
                 {
@@ -64,16 +61,30 @@ namespace Presentacion
 
         protected void ddlProfesional_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var idEspecialidad = ((Button)sender).CommandArgument;
-            Especialidad especialidad = listEspecialidades.Find(X => X.idEspecialidad.ToString() == idEspecialidad);
 
-            //Medico medico = listMedicos.Find(X => X.idMedico.ToString() == idMedico);
-            //ddlProfesional.DataValueField = "idMedico";
-            //ddlProfesional.DataTextField = "apellido";
-            //ddlProfesional.DataSource = listMedicos.FindAll(X => X.especialidad.idEspecialidad == idEspecialidad);
-            //ddlProfesional.DataBind();
-            //ddlProfesional.Items.Insert(0, new ListItem("Especialidades", "-1"));
+        }
 
+        protected void ddlEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                ddlProfesional.Visible = true;
+
+                long idEspecialidad = long.Parse(ddlEspecialidad.SelectedItem.Value);
+                MedicoNegocio medNegocio = new MedicoNegocio();
+                listMedicosConEspe = medNegocio.listar();
+
+                ddlProfesional.DataValueField = "idMedico";
+                ddlProfesional.DataTextField = "apellido";
+                ddlProfesional.DataSource = ((List<Medico>)listMedicosConEspe).FindAll(X => X.especialidad.idEspecialidad==idEspecialidad);
+                ddlProfesional.DataBind();
+                ddlProfesional.Items.Insert(0, new ListItem("Profesionales", "0"));
+            }
+            catch (Exception ex)
+            {
+                Session.Add("Error", ex.ToString());
+                Response.Redirect("Error.aspx");
+            }
 
         }
     }
