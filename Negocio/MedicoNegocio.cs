@@ -58,11 +58,12 @@ namespace Negocio
                 datos.setearParametro("@fechaIngreso", nuevo.fechaIngreso);
                 datos.setearParametro("@email", nuevo.mail);
                 datos.setearParametro("@dni", nuevo.dni);
+                datos.setearParametro("@matricula", nuevo.matricula);
                 datos.setearParametro("@estado", 1);
                 datos.setearConsulta(@"insert into MEDICOS (NOMBRE, APELLIDO, SEXO, FECHANAC, 
-                                        FECHAINGRESO, EMAIL, DNI, ESTADO) 
+                                        FECHAINGRESO, EMAIL, DNI, MATRICULA, ESTADO) 
                                         VALUES(@nombre, @apellido, @sexo, @fechaNac, @fechaIngreso, 
-                                        @email, @dni, @estado )");
+                                        @email, @dni, @matricula, @estado )");
                 datos.ejecutarAccion();
 
             }

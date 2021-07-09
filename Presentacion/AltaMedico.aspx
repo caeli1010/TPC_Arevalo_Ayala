@@ -26,13 +26,13 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <asp:Label ID="lblEmail" Text="e-mail" runat="server" />
-                        <asp:TextBox ID="txtEmail" type="email" cssClass="form-control"
-                            ClientIDMode="Static" runat="server"/>
+                        <asp:TextBox ID="txtEmail" CssClass="form-control"
+                            ClientIDMode="Static" runat="server" TextMode="Email" />
                     </div>
                     <div class="form-group col-md-6">
                         <asp:Label ID="lblCEmail" Text="Confirmar e-mail" runat="server" />
-                        <asp:TextBox ID="txtCEmail" type="email" cssClass="form-control"
-                            ClientIdMode="Static" runat="server"/>
+                        <asp:TextBox ID="txtCEmail" CssClass="form-control"
+                            ClientIDMode="Static" runat="server" TextMode="Email" />
                     </div>
                 </div>
                 <div class="form-row">
@@ -50,13 +50,13 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <asp:Label ID="lblFechaIngreso" Text="Fecha de ingreso" runat="server" />
-                       <asp:TextBox ID="txtFechaIngreso" Type="date" cssClass="form-control" 
+                       <asp:TextBox ID="txtFechaIngreso" TextMode="Date" cssClass="form-control" 
                            runat="server"/>   
                     </div>
                     <div class="form-group col-md-6">
                          <asp:Label ID="lblFechaNac" Text="Fecha Nacimiento" runat="server" />
-                        <asp:TextBox ID="txtFechaNac" type="date" cssClass="form-control"  
-                            runat="server"/>
+                        <asp:TextBox ID="txtFechaNac" CssClass="form-control"
+                            runat="server" TextMode="Date" />
                     </div>
                 </div>
 
@@ -79,7 +79,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <asp:Label ID="lblMatricula" Text="Matricula" runat="server" />
-                        <asp:TextBox ID="txtMatricula" Type="text" cssClass="form-control" runat="server"/>
+                        <asp:TextBox ID="txtMatricula"  cssClass="form-control" runat="server"/>
                      </div>
                  </div>
                     <asp:Button Text="Guardar" ID="btnGrabarMedico" OnClick="btnGrabarMedico_Click" runat="server" />

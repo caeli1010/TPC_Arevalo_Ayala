@@ -11,7 +11,7 @@ namespace Presentacion
 {
     public partial class AgregarEspecialidad : System.Web.UI.Page
     {
-        public List<Especialidad>insertar;
+        public List<Especialidad>insertar, espec;
         public List<Medico> medico;
         private Medico doctor;
         private Especialidad especialidad;
@@ -26,23 +26,16 @@ namespace Presentacion
                     doctor= (Medico)medico.Find(X => X.idMedico.ToString() == Request.QueryString["idM"]);
                     
                     lblNombre.Text = doctor.nombre +" "+ doctor.apellido;
-                    lblDni.Text = doctor.dni;
-                    lblMatricula.Text = doctor.matricula.ToString();
-                    lblEmail.Text = doctor.mail;
 
                     if (!Page.IsPostBack)
                     {
-                        ddlVerEspecialidad.DataValueField = "idEspecialidad";
-                        ddlVerEspecialidad.DataTextField= "nombre";
-                        ddlVerEspecialidad.DataSource = negocio.leerEspecialidad(doctor.idMedico);
-                        ddlVerEspecialidad.DataBind();
-                        ddlVerEspecialidad.Items.Insert(0, new ListItem("Especialidades", "-1"));
-
+                        espec = (List<Especialidad>)negocio.leerEspecialidad(doctor.idMedico);
+                        
                         ddlEspecialidad.DataValueField = "idEspecialidad";
                         ddlEspecialidad.DataTextField = "nombre";
                         ddlEspecialidad.DataSource = negocio.listar();
                         ddlEspecialidad.DataBind();
-                        ddlEspecialidad.Items.Insert(0, new ListItem("Seleccione una especialidad", "-1"));
+                        ddlEspecialidad.Items.Insert(0, new ListItem("Seleccione una especialidad", "0"));
                     }
                 }
 
