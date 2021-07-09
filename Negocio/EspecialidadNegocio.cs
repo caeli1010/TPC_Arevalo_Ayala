@@ -42,7 +42,7 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearParametro("@nombre", nuevo.nombre);
+                datos.setearParametro("@nombre", nuevo);
                 datos.setearConsulta(@"update ESPECIALIDADES set ESTADO=1 WHERE NOMBRE LIKE @nombre ");
                 datos.ejecutarAccion();
 
