@@ -31,6 +31,7 @@
         <div class="col-md-6">
 
             <form>
+
                 <div class="form-row">
 
                     <div class="form-group col-md-12">
@@ -43,8 +44,22 @@
                     </div>
                 </div>
 
-                  <asp:Button Text="Agregar" CssClass="card-link btn-sm  btn-danger" 
-                      ID="btnAgregar"  runat="server" Visible="false" OnClick="btnAgregar_Click" />
+                <div class="form-row">
+
+                    <div class="form-group col-md-12">
+                        <asp:Button ID="btnNEspecialidad" OnClick="btnNEspecialidad_Click"
+                            Text="Nueva Especialidad" Visible="false" CssClass="card-link btn-sm  btn-danger" runat="server" />
+                        <asp:Label ID="lblNEspecialidad" visible="false" Text="Nueva Especialidad" runat="server" />
+                        <asp:TextBox ID="txtNEspecialidad" CssClass="form-control" runat="server" />  
+                    </div>
+                </div>
+
+                  <asp:Button Text="Guardar" CssClass="card-link btn-sm  btn-danger" 
+                      ID="btnGuardar"  runat="server" Visible="false" OnClick="btnGuardar_Click1" />
+
+                <asp:Button Text="Habilitar" Visible="false" CssClass="card-link btn-sm  btn-danger" 
+                    ID="btnHabilitar" Onclick="btnHabilitar_Click" runat="server" />
+
             </form>
         </div>
     </div>

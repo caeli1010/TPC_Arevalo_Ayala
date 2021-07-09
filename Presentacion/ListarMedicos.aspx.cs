@@ -13,7 +13,6 @@ namespace Presentacion
     public partial class ListarMedicos : System.Web.UI.Page
     {
         public List<Medico> lista;
-        public Horario horario;
         protected void Page_Load(object sender, EventArgs e)
         {
             MedicoNegocio negocio = new MedicoNegocio();
@@ -47,23 +46,19 @@ namespace Presentacion
 
         }
 
-        protected void btnAgregarEsp_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("Error.aspx");
-        }
 
-        protected void btnDeshabilitar_Click(object sender, EventArgs e)
-        {
-            var argument = ((Button)sender).CommandArgument;
-            List<Medico> seleccionado = (List<Medico>)Session["Medicos"];
-            Medico medicoSeleccionado = (Medico)seleccionado.Find(x => x.idMedico.ToString() == argument);
+        //protected void btnDeshabilitar_Click(object sender, EventArgs e)
+        //{
+        //    var argument = ((Button)sender).CommandArgument;
+        //    List<Medico> seleccionado = (List<Medico>)Session["Medicos"];
+        //    Medico medicoSeleccionado = (Medico)seleccionado.Find(x => x.idMedico.ToString() == argument);
 
-            MedicoNegocio negocio = new MedicoNegocio();
-            negocio.eliminar(medicoSeleccionado);
+        //    MedicoNegocio negocio = new MedicoNegocio();
+        //    negocio.eliminar(medicoSeleccionado);
 
-            seleccionado.Remove(medicoSeleccionado);
-            repetidor.DataSource = seleccionado;
-            repetidor.DataBind();
-        }
+        //    seleccionado.Remove(medicoSeleccionado);
+        //    repetidor.DataSource = seleccionado;
+        //    repetidor.DataBind();
+        //}
     }
 }

@@ -70,7 +70,7 @@ namespace Presentacion
             }
            
         }
-        protected void btnAgregar_Click(object sender, EventArgs e)
+        protected void btnGuardar_Click(object sender, EventArgs e)
         {
             try
             {
@@ -97,10 +97,10 @@ namespace Presentacion
             EspecialidadNegocio negocio = new EspecialidadNegocio();
             try
             {
-            btnAgregarEspecialidad.Visible = false;
-            lblEspecialidad.Visible = true;
-            ddlEspecialidad.Visible = true;
-            btnAgregar.Visible = true;
+                btnAgregarEspecialidad.Visible = false;
+                lblEspecialidad.Visible = true;
+                ddlEspecialidad.Visible = true;
+                btnGuardar.Visible = true;
              
             }
             catch (Exception ex)
@@ -109,6 +109,21 @@ namespace Presentacion
                 Response.Redirect("Error.aspx");
 
             }
+        }
+
+        protected void btnNEspecialidad_Click(object sender, EventArgs e)
+        {
+            btnHabilitar.Visible = true;
+            txtNEspecialidad.Visible = true;
+
+        }
+
+        protected void btnHabilitar_Click(object sender, EventArgs e)
+        {
+            EspecialidadNegocio negocio = new EspecialidadNegocio();
+            string nuevo = txtNEspecialidad.Text;
+            negocio.agregar(nuevo);
+
         }
     }
 }

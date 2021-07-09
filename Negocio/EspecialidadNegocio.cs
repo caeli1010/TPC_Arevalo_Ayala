@@ -37,7 +37,7 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
-        public void agregar(Especialidad nuevo)
+        public void agregar(string nuevo)
         {
             AccesoDatos datos = new AccesoDatos();
             try
