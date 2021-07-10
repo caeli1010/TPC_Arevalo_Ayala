@@ -4,24 +4,62 @@
      <hr class="py-1" />
     <h3>Agregar Especialidad</h3>
     <div class="Especialidades">
-        <div class="col-md-6">
+
+         <div class="col-md-12">
+
+            <form>
+
+                <div class="form-row">
+                   <div class="row alert alert-heading">
+                    <div class="form-group col-md-8">
+                        <table class="table">
+                               <thead class="thead-dark">
+                                  <tr>
+                                    <th scope="col">Especialidad</th>
+                                    <th scope="col">Medicos</th>
+                                   </tr>
+                                </thead>
+                                <tbody>
+                                       <asp:Repeater runat="server" ID="repetidor">
+                                           <ItemTemplate>   
+                                     <tr>
+                                                <th><%#Eval("nombre")%></th>
+                                                    <%foreach (Dominio.Medico item in doctor)
+                                                        {%>
+                                                <td>
+                                                            <asp:Label ID="txtNombre" text="<% =item.nombre %>" runat="server" /></br>
+                                                </td> 
+                                                       <%} %>
+                                    </tr>
+                                           </ItemTemplate>
+                                       </asp:Repeater>
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+                
+            </form>
+           <div class="form-row">
+
+        <div class="col-md-4">
             <div class="card" >
-                <%--<img class="card-img-top mx-auto d-block py-3" style="width: 24%;" src="https://www.adl-logistica.org/wp-content/uploads/2019/07/imagen-perfil-sin-foto.png" alt="Card image cap">--%>
+              
                 <div class="card-body">
                     <hr />
                     <asp:Button ID="btnModificar" Text="Modificar Especialidad" 
                         OnClick="btnModificar_Click" runat="server" />
                 </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Especialidades:<br /> <span class=" font-weight-bold ">
-                        <asp:Repeater runat="server" ID="repetidor">
-                            <ItemTemplate>  
-                        <asp:Label Text='<%#Eval("nombre")%>' runat="server" /><br />
-
-                            </ItemTemplate>
-                        </asp:Repeater>
-                        </span> </li>
-                </ul>
+                 <div class="card-body">
+                    <hr />
+                    <asp:Button ID="btn" Text="Modificar Especialidad" 
+                        OnClick="btnModificar_Click" runat="server" />
+                </div>
+                 <div class="card-body">
+                    <hr />
+                    <asp:Button ID="Button2" Text="Modificar Especialidad" 
+                        OnClick="btnModificar_Click" runat="server" />
+                </div>
                 <div class="card-body">
              
                 <a class="btn btn-sm btn-outline-danger" href='ListarMedicos.aspx'>Atras</a>
@@ -30,40 +68,7 @@
 
         </div>
 
-        <div class="col-md-6">
-
-            <form>
-
-                <div class="form-row">
-
-                    <div class="form-group col-md-12">
-                        <asp:Button ID="btnAgregarEspecialidad" OnClick="btnAgregarEspecialidad_Click" 
-                            Text="Agregar Especialidad" CssClass="card-link btn-sm  btn-danger" runat="server" />
-                        <asp:Label ID="lblEspecialidad" visible="false" Text="Especialidad" runat="server" />
-                            <asp:DropDownList ID="ddlEspecialidad" Visible="false" CssClass="form-control" runat="server" 
-                                 OnSelectedIndexChanged="ddlEspecialidad_SelectedIndexChanged">          
-                            </asp:DropDownList>
-                    </div>
-                </div>
-
-                <div class="form-row">
-
-                    <div class="form-group col-md-12">
-                        <asp:Button ID="btnNEspecialidad" OnClick="btnNEspecialidad_Click"
-                            Text="Nueva Especialidad" Visible="true" CssClass="card-link btn-sm  btn-danger" runat="server" />
-                        <asp:Label ID="lblNEspecialidad" visible="false" Text="Nueva Especialidad" runat="server" />
-                        <asp:TextBox ID="txtNEspecialidad" Visible="false" CssClass="form-control" runat="server" />  
-                    </div>
-                </div>
-
-                  <asp:Button Text="Guardar" CssClass="card-link btn-sm  btn-danger" 
-                      ID="btnGuardar"  runat="server" Visible="false" OnClick="btnGuardar_Click" />
-
-                <asp:Button Text="Habilitar" Visible="false" CssClass="card-link btn-sm  btn-danger" 
-                    ID="btnHabilitar" Onclick="btnHabilitar_Click" runat="server" />
-
-            </form>
-        </div>
     </div>
-
+  </div>
+</div>
 </asp:Content>

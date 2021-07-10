@@ -133,6 +133,7 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="ListarEspecialidad.aspx" />
     <Content Include="ListarMedicos.aspx" />
     <Content Include="ListarPacientes.aspx" />
     <Content Include="ListarUsuarios.aspx" />
@@ -257,6 +258,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="ListarEspecialidad.aspx.cs">
+      <DependentUpon>ListarEspecialidad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ListarEspecialidad.aspx.designer.cs">
+      <DependentUpon>ListarEspecialidad.aspx</DependentUpon>
     </Compile>
     <Compile Include="ListarMedicos.aspx.cs">
       <DependentUpon>ListarMedicos.aspx</DependentUpon>

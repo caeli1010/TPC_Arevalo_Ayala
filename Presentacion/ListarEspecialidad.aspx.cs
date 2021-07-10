@@ -4,13 +4,50 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Dominio;
+using Negocio;
 
 namespace Presentacion
 {
     public partial class ListarEspecialidad : System.Web.UI.Page
     {
+    public List<Especialidad> lista;
+    public List<Medico> doctor;
         protected void Page_Load(object sender, EventArgs e)
         {
+        EspecialidadNegocio negocio = new EspecialidadNegocio();
+        MedicoNegocio datos = new MedicoNegocio();
+            try
+            {
+                lista = (List<Especialidad>)Session["Especialidad"];
+                if (lista == null)
+                {
+                    lista = negocio.listar();
+                    Session.Add("Especialidad", lista);
+                }
+                else
+                {
+                    lista = (List<Especialidad>)Session["Especialidad"];
+                }
+                repetidor.DataSource = lista;
+                repetidor.DataBind();
+
+                long id = 0;
+                Especialidad especial;
+                foreach (Especialidad item in lista)
+                {
+                    especial = (Especialidad)lista.Find(x => x.idEspecialidad == item.idEspecialidad);
+                    id = especial.idEspecialidad;
+                    doctor = datos.leerMedicoXEspecialidad(id);
+                    
+                }
+               
+            }
+            catch (Exception error)
+            {
+                Session.Add("Error", error.ToString());
+                Response.Redirect("Error.aspx");
+            }
 
         }
 
