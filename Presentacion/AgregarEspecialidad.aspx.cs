@@ -29,6 +29,7 @@ namespace Presentacion
                     doctor= (Medico)medico.Find(X => X.idMedico.ToString() == Request.QueryString["idM"]);
                     
                     lblNombre.Text = doctor.nombre +" "+ doctor.apellido;
+
                     Session.Add("EspecialidadXMedico", negocio.leerEspecialidad(doctor.idMedico));
                     especial = (List<Especialidad>)Session["EspecialidadXMedico"];
                     repetidor.DataSource = especial;
@@ -44,8 +45,6 @@ namespace Presentacion
                     }
                 }
 
-
-//Queda pendiente reañizar el alta de las especialidades en caso de que la organizacion quiera agregar mas
             }
             catch (Exception ex)
             {
@@ -80,6 +79,7 @@ namespace Presentacion
                 especial = (List<Especialidad>)Session["EspecialidadXMedico"];
                 repetidor.DataSource = especial;
                 repetidor.DataBind();
+                Response.Redirect("ListarMedico.aspx");
                 //ClientScript.RegisterStartupScript(type: GetType(), "mensaje", "<script>" +
                 //"window.location='AgregarEspecilidad.aspx?idM="+doctor.idMedico+"'</script>");
             }
@@ -113,16 +113,35 @@ namespace Presentacion
 
         protected void btnNEspecialidad_Click(object sender, EventArgs e)
         {
-            btnHabilitar.Visible = true;
-            txtNEspecialidad.Visible = true;
+            try
+            {
+                btnHabilitar.Visible = true;
+                txtNEspecialidad.Visible = true;
+                btnNEspecialidad.Visible = false;
+
+            }
+            catch (Exception ex)
+            {
+                Session.Add("Error", ex.ToString());
+                Response.Redirect("Error.aspx");
+            }
 
         }
 
         protected void btnHabilitar_Click(object sender, EventArgs e)
         {
-            EspecialidadNegocio negocio = new EspecialidadNegocio();
-            string nuevo = txtNEspecialidad.Text;
-            negocio.agregar(nuevo);
+            try
+            {
+                EspecialidadNegocio negocio = new EspecialidadNegocio();
+                string nuevo = txtNEspecialidad.Text;
+                negocio.agregar(nuevo);
+
+            }
+            catch (Exception ex)
+            {
+                Session.Add("Error", ex.ToString());
+                Response.Redirect("Error.aspx");
+            }
 
         }
     }

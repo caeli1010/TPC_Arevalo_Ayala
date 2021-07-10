@@ -1,14 +1,16 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AgregarEspecialidad.aspx.cs" Inherits="Presentacion.AgregarEspecialidad" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ListarEspecialidad.aspx.cs" Inherits="Presentacion.ListarEspecialidad" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+
      <hr class="py-1" />
     <h3>Agregar Especialidad</h3>
-    <div class="row alert alert-secondary">
+    <div class="Especialidades">
         <div class="col-md-6">
             <div class="card" >
                 <%--<img class="card-img-top mx-auto d-block py-3" style="width: 24%;" src="https://www.adl-logistica.org/wp-content/uploads/2019/07/imagen-perfil-sin-foto.png" alt="Card image cap">--%>
                 <div class="card-body">
                     <hr />
-                    <h5 class="card-title">Medico</h5><p><strong><span><asp:Label ID="lblNombre" runat="server" /></span></strong></p>
+                    <asp:Button ID="btnModificar" Text="Modificar Especialidad" 
+                        OnClick="btnModificar_Click" runat="server" />
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">Especialidades:<br /> <span class=" font-weight-bold ">
@@ -63,7 +65,5 @@
             </form>
         </div>
     </div>
-
-
 
 </asp:Content>
