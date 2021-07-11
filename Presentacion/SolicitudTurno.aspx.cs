@@ -32,13 +32,16 @@ namespace Presentacion
                     lblEmail.Text = (string)paciente.mail;
                     lblObraSocial.Text = (string)paciente.obraSocial.nombre;
                     //turno.fechaHora = DateTime.Parse(txtFecha.Text);
+                    if (!IsPostBack)
+                    {
 
                     ddlEspecialidad.DataValueField = "idEspecialidad";
                     ddlEspecialidad.DataTextField = "nombre";
                     ddlEspecialidad.DataSource = espNegocio.listar();
                     ddlEspecialidad.DataBind();
-                    ddlEspecialidad.Items.Insert(0, new ListItem("Especialidades", "0"));
+                    ddlEspecialidad.Items.Insert(0, new ListItem("Especialidades", "1"));
 
+                    }
                 }
                 else
                 {
@@ -69,14 +72,14 @@ namespace Presentacion
             try
             {
                 ddlProfesional.Visible = true;
-
-                long idEspecialidad = long.Parse(ddlEspecialidad.SelectedItem.Value);
+                var argument = ddlEspecialidad.SelectedItem.Text;
+                //long idEspecialidad = long.Parse(ddlEspecialidad.SelectedValue);
                 MedicoNegocio medNegocio = new MedicoNegocio();
                 listMedicosConEspe = medNegocio.listar();
 
+                ddlProfesional.DataSource = (listMedicosConEspe).FindAll(x => x.especialidad.nombre.ToString() == argument.ToString());
                 ddlProfesional.DataValueField = "idMedico";
                 ddlProfesional.DataTextField = "apellido";
-                ddlProfesional.DataSource = ((List<Medico>)listMedicosConEspe).FindAll(X => X.especialidad.idEspecialidad==idEspecialidad);
                 ddlProfesional.DataBind();
                 ddlProfesional.Items.Insert(0, new ListItem("Profesionales", "0"));
             }
