@@ -4,7 +4,10 @@
 
 
     <hr class="py-1" />
-    <h1>Listado de Medicos </h1>
+    <div class ="row">
+    <h4>Listado de Medicos </h4>
+    <asp:TextBox ID="txtBuscar" OnTextChanged="txtBuscar_TextChanged" runat="server" />
+    </div>
     <div class="row alert alert-heading">
         <div class="col-md-12">
             <table class="table">

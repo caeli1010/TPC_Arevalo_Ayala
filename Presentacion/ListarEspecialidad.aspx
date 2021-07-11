@@ -22,15 +22,16 @@
                                 <tbody>
                                        <asp:Repeater runat="server" ID="repetidor">
                                            <ItemTemplate>   
+                                   <%-- <% foreach (Dominio.Especialidad especial in lista)
+                                        {%>
                                      <tr>
-                                                <th><%#Eval("nombre")%></th>
-                                                    <%foreach (Dominio.Medico item in doctor)
-                                                        {%>
-                                                <td>
-                                                            <asp:Label ID="txtNombre" text="<% =item.nombre %>" runat="server" /></br>
-                                                </td> 
-                                                       <%} %>
+                                                <th><% = especial.nombre %></th>--%>
+                                                  <%--  <% foreach (Dominio.Medico medico in doctor)
+                                                        {%>--%>
+                                                <td><%#Eval("apellido") %></td> 
+                                                    <%--   <%  } %>--%>
                                     </tr>
+                                  <%--  <% } %>--%>
                                            </ItemTemplate>
                                        </asp:Repeater>
                                 </tbody>

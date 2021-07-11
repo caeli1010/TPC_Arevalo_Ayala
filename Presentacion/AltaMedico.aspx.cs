@@ -90,6 +90,7 @@ namespace Presentacion
                     nuevo.especialidad = new Especialidad(especialidad);
                     negocio.agregar(nuevo);
                 }
+                Response.Redirect("ListarMedico.aspx");
             }
             catch (Exception ex)
             {

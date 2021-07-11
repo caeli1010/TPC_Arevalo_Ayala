@@ -13,6 +13,7 @@ namespace Presentacion
     public partial class ListarMedicos : System.Web.UI.Page
     {
         public List<Medico> lista;
+        public List<Medico> busquedaMedico;
         protected void Page_Load(object sender, EventArgs e)
         {
             MedicoNegocio negocio = new MedicoNegocio();
@@ -26,21 +27,47 @@ namespace Presentacion
                 lista = (List<Medico>)Session["Medicos"];
                 if (lista == null)
                 {
-                    lista = negocio.listar(); 
-                   
+                    lista = negocio.listar();
+
                     Session.Add("Medicos", lista);
                 }
                 else
                 {
-                  
+
                     lista = (List<Medico>)Session["Medicos"];
                 }
                 repetidor.DataSource = lista;
                 repetidor.DataBind();
             }
-            catch (Exception error)
+            catch (Exception ex)
             {
-                Session.Add("Error", error.ToString());
+                Session.Add("Error", ex.ToString());
+                Response.Redirect("Error.aspx");
+            }
+
+        }
+        protected void txtBuscar_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+
+            MedicoNegocio negocio = new MedicoNegocio();
+            if (txtBuscar.Text != "")
+            {
+                busquedaMedico= lista.FindAll(x => x.nombre.ToUpper().Contains(txtBuscar.Text.ToUpper()) || x.apellido.ToUpper().Contains(txtBuscar.Text.ToUpper()) || x.dni.ToUpper().Contains(txtBuscar.Text.ToUpper()));
+                repetidor.DataSource = busquedaMedico;
+                repetidor.DataBind();
+            }
+            else
+            {
+                repetidor.DataSource = lista;
+                repetidor.DataBind();
+               
+            }
+            }
+            catch (Exception ex)
+            {
+                Session.Add("Error", ex.ToString());
                 Response.Redirect("Error.aspx");
             }
 

@@ -15,9 +15,11 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta(@"SELECT IDMEDICO, APELLIDO, NOMBRE, SEXO, 
-                                       FECHANAC, FECHAINGRESO, COALESCE(EMAIL, 'Sin email') AS CORREO,
-                                       MATRICULA, DNI, ESTADO FROM MEDICOS WHERE ESTADO=1");
+                datos.setearConsulta(@"SELECT IDMEDICO, APELLIDO, NOMBRE, SEXO, FECHANAC, 
+                                     FECHAINGRESO, COALESCE(EMAIL, 'Sin email') AS CORREO, DNI,
+                                     MATRICULA, ESTADO FROM MEDICOS
+                                     WHERE ESTADO=1 
+                                     ORDER BY IDMEDICO DESC");
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {

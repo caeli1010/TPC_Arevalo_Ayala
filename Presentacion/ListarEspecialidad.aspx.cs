@@ -29,19 +29,18 @@ namespace Presentacion
                 {
                     lista = (List<Especialidad>)Session["Especialidad"];
                 }
-                repetidor.DataSource = lista;
-                repetidor.DataBind();
+                //repetidor.DataSource = lista;
+                //repetidor.DataBind();
 
-                long id = 0;
                 Especialidad especial;
                 foreach (Especialidad item in lista)
                 {
                     especial = (Especialidad)lista.Find(x => x.idEspecialidad == item.idEspecialidad);
-                    id = especial.idEspecialidad;
-                    doctor = datos.leerMedicoXEspecialidad(id);
-                    
+                    doctor = datos.leerMedicoXEspecialidad(especial.idEspecialidad);
+                    repetidor.DataSource = doctor;
+                    repetidor.DataBind();
                 }
-               
+
             }
             catch (Exception error)
             {
