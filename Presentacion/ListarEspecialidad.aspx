@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <hr class="py-1" />
-    <h3>Agregar Especialidad</h3>
+    <h3>Especialidades</h3>
     <div class="Especialidades">
 
         <div class="col-md-12">
@@ -27,13 +27,13 @@
                                         <ItemTemplate>
                                             <tr>
                                                 <th><%#Eval("idEspecialidad")%></th>
-                                                <asp:HiddenField ID="hdfidEspecialidad" 
+                                                    <asp:HiddenField ID="hdfidEspecialidad" 
                                                     Value='<%#Eval("idEspecialidad")%>' runat="server" />
                                                 <th><%#Eval("nombre")%></th>
 
                                                 <asp:Repeater runat="server" ID="repetidorHijo" >
                                                     <ItemTemplate>
-                                                        <td><%#Eval("apellido") %> <%#Eval("nombre") %></td>
+                                                       <td><%#Eval("apellido") %> <%#Eval("nombre") %></td>
 
                                                     </ItemTemplate>
                                                 </asp:Repeater>
