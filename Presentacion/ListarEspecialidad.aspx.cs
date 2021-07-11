@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data;
+using System.Data.SqlClient;
 using System.Web;
 using System.Web.UI;
+using System.Web.Configuration;
 using System.Web.UI.WebControls;
 using Dominio;
 using Negocio;
@@ -29,22 +32,22 @@ namespace Presentacion
                 {
                     lista = (List<Especialidad>)Session["Especialidad"];
                 }
-                //repetidor.DataSource = lista;
-                //repetidor.DataBind();
+                repetidorPadre.DataSource = lista;
+                repetidorPadre.DataBind();
 
                 Especialidad especial;
                 foreach (Especialidad item in lista)
                 {
                     especial = (Especialidad)lista.Find(x => x.idEspecialidad == item.idEspecialidad);
                     doctor = datos.leerMedicoXEspecialidad(especial.idEspecialidad);
-                    repetidor.DataSource = doctor;
-                    repetidor.DataBind();
+                    //repe .DataSource = doctor;
+                    //repetidorPadre.DataBind();
                 }
 
             }
-            catch (Exception error)
+            catch (Exception ex)
             {
-                Session.Add("Error", error.ToString());
+                Session.Add("Error", ex.ToString());
                 Response.Redirect("Error.aspx");
             }
 
@@ -53,6 +56,27 @@ namespace Presentacion
         protected void btnModificar_Click(object sender, EventArgs e)
         {
 
+        }
+
+        protected void repetidorPadre_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            try
+            {
+
+            MedicoNegocio negocio = new MedicoNegocio();
+            if(e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
+            {
+                var idEspecialidad = (HiddenField)e.Item.FindControl("hdfidEspecialidad");
+                Repeater repetidorHijo = (Repeater)e.Item.FindControl("repetidorHijo");
+                repetidorHijo.DataSource = negocio.leerMedicoXEspecialidad(long.Parse(idEspecialidad.Value));
+                repetidorHijo.DataBind();
+             }
+            }
+            catch (Exception ex)
+            {
+                Session.Add("Error", ex.ToString());
+                Response.Redirect("Error.aspx");
+            }
         }
     }
 }
