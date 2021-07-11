@@ -109,7 +109,7 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("delete from MEDICOS WHERE DNI = @dni");
+                datos.setearConsulta("UPDATE MEDICOS SET ESTADO = 0 WHERE DNI = @dni");
                 datos.setearParametro("@dni", Medico.dni);
 
                 datos.ejecutarAccion();
@@ -133,7 +133,7 @@ namespace Negocio
             try
             {
                 datos.setearParametro("@dni", dni);
-                datos.setearConsulta("select * from MEDICOS where DNI = @dni");
+                datos.setearConsulta("SELECT * FROM MEDICOS WHERE DNI = @dni WHERE ESTADO = 1");
                 datos.ejecutarLectura();
 
             }
@@ -158,7 +158,7 @@ namespace Negocio
                 datos.setearConsulta(@"SELECT ME.IDMEDICO, ME.NOMBRE, ME.APELLIDO FROM MEDICOS ME
                                      INNER JOIN ESPECIALIDAD_X_MEDICO EM ON EM.IDMEDICO = ME.IDMEDICO
                                      INNER JOIN ESPECIALIDADES ES ON ES.IDESPECIALIDAD = EM.IDESPECIALIDAD 
-                                     WHERE ES.IDESPECIALIDAD LIKE @id");
+                                     WHERE ES.IDESPECIALIDAD LIKE @id AND ME.ESTADO = 1");
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {

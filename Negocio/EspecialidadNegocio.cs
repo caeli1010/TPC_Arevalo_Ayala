@@ -85,7 +85,7 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("update EspecialidadS set NOMBRE = @nombre where IDESPECIALIDAD =@id");
+                datos.setearConsulta("update ESPECIALIDADES set NOMBRE = @nombre where IDESPECIALIDAD =@id");
                 datos.setearParametro("@nombre", modificar.nombre);
                 datos.setearParametro("@id", modificar.idEspecialidad);
                 datos.ejecutarAccion();
@@ -107,7 +107,8 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("update ESPECIALIDADES set ESTADO = 0 from WHERE DNI = @id");
+                datos.setearConsulta(@"UPDATE MEDICOS SET ESTADO = 0 WHERE IDMEDICO = @id
+                                       UPDATE ESPECIALIDAD_X_MEDICO SET ESTADO = 0 WHERE IDMEDICO = @id");
                 datos.setearParametro("@id", especialidad.idEspecialidad);
 
                 datos.ejecutarAccion();
@@ -136,7 +137,7 @@ namespace Negocio
                 datos.setearConsulta(@"SELECT ES.IDESPECIALIDAD, ES.NOMBRE FROM ESPECIALIDADES ES
                                      INNER JOIN ESPECIALIDAD_X_MEDICO EM ON EM.IDESPECIALIDAD = ES.IDESPECIALIDAD
                                      INNER JOIN MEDICOS ME ON ME.IDMEDICO = EM.IDMEDICO 
-                                     WHERE ME.IDMEDICO LIKE @id");
+                                     WHERE ME.IDMEDICO LIKE @id AND ES.ESTADO LIKE 1");
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
