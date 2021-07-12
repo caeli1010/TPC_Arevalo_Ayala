@@ -40,7 +40,13 @@
     <div class="row">
         <div class="alert alert-danger col-md-6">
             <h5>Eli</h5>
-            <asp:CheckBox Text="abm 1 especialidad" Checked="false" runat="server" />
+            <asp:CheckBox Text="abm 1 especialidad" Checked="true" runat="server" />
+            <hr />
+            <asp:CheckBox Text="baja de especialidades" Checked="false" runat="server" />
+            <hr />
+            <asp:CheckBox Text="unificar botones en el menu NAVBAR" Checked="false" runat="server" />
+            <hr />
+            <asp:CheckBox Text="instalar datatable" Checked="false" runat="server" />
             <hr />
 
         </div>
@@ -49,6 +55,12 @@
             <asp:CheckBox Text="reservar turnos" Checked="false" runat="server" />
             <hr />
             <asp:CheckBox Text="eliminar pacietes" Checked="true" runat="server" />
+            <hr />
+            <asp:CheckBox Text="modificar pacientes" Checked="false" runat="server" />
+            <hr />
+            <asp:CheckBox Text="listado de turno" Checked="false" runat="server" />  
+            <hr />
+            <asp:CheckBox Text="datatable" Checked="false" runat="server" />
         </div>
     </div>
 
