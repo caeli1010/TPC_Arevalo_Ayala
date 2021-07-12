@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ListarPacientes.aspx.cs" Inherits="Presentacion.ListarPacientes" EnableEventValidation="False" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <script>
+   <%-- <script>
 
         function bajar(ev) {
 
@@ -33,11 +33,10 @@
 
         }
 
-    </script>
+    </script>--%>
        <script>
            $(document).ready(function () {
                $('#pacientes').DataTable({
-
                    "responsive": true,
                    "language": {
                        "lengthMenu": "Mostrar _MENU_ Registros por páginas",
@@ -61,8 +60,8 @@
            });
        </script>
 
-    <hr class="py-1" />
-    <h1>Listado de Pacientes </h1>
+    <hr/>
+    <h3>Listado de Pacientes </h3>
     <% if (lblMensaje.Visible == true)
         { %>
     <div class="alert alert-success text-center">
@@ -116,16 +115,7 @@
                     </asp:Repeater>
 
                 </tbody>
-                <tfoot>
-                    <tr>
-                        <th scope="col">DNI</th>
-                        <th scope="col">Nombre y Apellido</th>
-                        <%--<th scope="col">Obra Social</th>--%>
-                        <th scope="col">Nro Carnet</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Acciónes</th>
-                    </tr>
-                </tfoot>
+             
             </table>
 
         </div>
