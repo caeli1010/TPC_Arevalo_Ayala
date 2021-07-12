@@ -1,16 +1,38 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ListarMedicos.aspx.cs" Inherits="Presentacion.ListarMedicos" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+      <script>
+           $(document).ready(function () {
+               $('#medicos').DataTable({
+                   "responsive": true,
+                   "language": {
+                       "lengthMenu": "Mostrar _MENU_ Registros por páginas",
+                       "zeroRecords": "No se encontraron registros - sorry",
+                       "info": "Mostrando Página_PAGE_ de _PAGES_, ",
+                       "infoEmpty": "No encontre registros",
+                       "search": "Buscar:",
+                       "zeroRecords": "No encontramos registros",
+                       "paginate": {
+                           "first": "Primera",
+                           "last": "Ultima",
+                           "next": "Siguiente",
+                           "previous": "Anterior"
+                       },
+                       "aria": {
+                           "sortAscending": ":activar para ordenar la columna ascendenteg",
+                           "sortDescending": ":activar para ordenar la columna ascendente"
+                       }
+                   }
+               });
+           });
+      </script>
 
-
-    <hr class="py-1" />
-    <div class ="row">
-    <h4>Listado de Medicos </h4>
-    <asp:TextBox ID="txtBuscar" OnTextChanged="txtBuscar_TextChanged" runat="server" />
+    <div class ="row justify-content-center">
+    <h4 class="text-center">Listado de Medicos </h4>
     </div>
     <div class="row alert alert-heading">
         <div class="col-md-12">
-            <table class="table">
+            <table class="table" id="medicos">
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">Matricula</th>

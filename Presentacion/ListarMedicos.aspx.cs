@@ -46,33 +46,9 @@ namespace Presentacion
             }
 
         }
-        protected void txtBuscar_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
+       
 
-            MedicoNegocio negocio = new MedicoNegocio();
-            if (txtBuscar.Text != "")
-            {
-                busquedaMedico= lista.FindAll(x => x.nombre.ToUpper().Contains(txtBuscar.Text.ToUpper()) || x.apellido.ToUpper().Contains(txtBuscar.Text.ToUpper()) || x.dni.ToUpper().Contains(txtBuscar.Text.ToUpper()));
-                repetidor.DataSource = busquedaMedico;
-                repetidor.DataBind();
-            }
-            else
-            {
-                 Response.Redirect("ListarMedicos.aspx");
-                //repetidor.DataSource = lista;
-                //repetidor.DataBind();
-               
-            }
-            }
-            catch (Exception ex)
-            {
-                Session.Add("Error", ex.ToString());
-                Response.Redirect("Error.aspx");
-            }
 
-        }
 
 
         //protected void btnDeshabilitar_Click(object sender, EventArgs e)

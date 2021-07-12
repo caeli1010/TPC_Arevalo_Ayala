@@ -135,7 +135,7 @@ namespace Presentacion
                 EspecialidadNegocio negocio = new EspecialidadNegocio();
                 string nuevo = txtNEspecialidad.Text;
                 negocio.agregar(nuevo);
-                //Response.Redirect("ListarMedico.aspx");
+                Response.Redirect("ListarMedico.aspx");
             }
             catch (Exception ex)
             {

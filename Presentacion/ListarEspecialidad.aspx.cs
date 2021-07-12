@@ -40,8 +40,7 @@ namespace Presentacion
                 {
                     especial = (Especialidad)lista.Find(x => x.idEspecialidad == item.idEspecialidad);
                     doctor = datos.leerMedicoXEspecialidad(especial.idEspecialidad);
-                    //repe .DataSource = doctor;
-                    //repetidorPadre.DataBind();
+                  
                 }
 
             }
@@ -50,11 +49,6 @@ namespace Presentacion
                 Session.Add("Error", ex.ToString());
                 Response.Redirect("Error.aspx");
             }
-
-        }
-
-        protected void btnModificar_Click(object sender, EventArgs e)
-        {
 
         }
 
