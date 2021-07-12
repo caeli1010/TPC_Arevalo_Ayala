@@ -107,6 +107,7 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
+                datos.setearConsulta(@"UPDATE ESPECIALIDADES SET ESTADO = 0 WHERE IDMEDICO = @id");
                 datos.setearParametro("@id", especialidad.idEspecialidad);
 
                 datos.ejecutarAccion();
