@@ -12,33 +12,41 @@
 
                 <div class="form-row">
                     <div class="row alert alert-heading">
-                        <div class="form-group col-md-8">
-                            <table class="table">
+                        <div class="form-group col-md-12">
+                            <table class="table table-responsive table-bordered">
                                 <thead class="thead-dark">
                                     <tr>
                                         <th scope="col">Nro</th>
                                         <th scope="col">Especialidad</th>
                                         <th scope="col">Medicos</th>
+                                        <th scope="col">Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <asp:Repeater runat="server" ID="repetidorPadre" 
+                                    <asp:Repeater runat="server" ID="repetidorPadre"
                                         OnItemDataBound="repetidorPadre_ItemDataBound">
                                         <ItemTemplate>
                                             <tr>
-                                                <th><%#Eval("idEspecialidad")%></th>
-                                                    <asp:HiddenField ID="hdfidEspecialidad" 
+                                                <td><%#Eval("idEspecialidad")%></td>
+                                                <asp:HiddenField ID="hdfidEspecialidad"
                                                     Value='<%#Eval("idEspecialidad")%>' runat="server" />
-                                                <th><%#Eval("nombre")%></th>
+                                                <td><%#Eval("nombre")%></td>
 
-                                                <asp:Repeater runat="server" ID="repetidorHijo" >
-                                                    <ItemTemplate>
-                                                       <td><%#Eval("apellido") %> <%#Eval("nombre") %></td>
-
-                                                    </ItemTemplate>
-                                                </asp:Repeater>
-
-
+                                                <td>
+                                                    <asp:Repeater runat="server" ID="repetidorHijo">
+                                                        <ItemTemplate>
+                                                            <a href='AgregarEspecialidad.aspx?idM=<%#Eval("idMedico")%>'>
+                                                            <strong><%#Eval("apellido") %></strong>
+                                                            <%#Eval("nombre") %>
+                                                            </a>
+                                                        </ItemTemplate>
+                                                    </asp:Repeater>
+                                                </td>
+                                                <td>
+                                                    <a href="#" class="btn btn-outline-info">
+                                                        <i class="fa fa-edit"></i>
+                                                    </a>
+                                                </td>
                                             </tr>
 
                                         </ItemTemplate>
@@ -65,8 +73,8 @@
                             <asp:Button ID="btn" Text="Modificar Especialidad"
                                 OnClick="btnModificar_Click" runat="server" />
                         </div>
-                        <div class ="card-body">
-                            <hr/>
+                        <div class="card-body">
+                            <hr />
                             <asp:Button ID="Button2" Text="Modificar Especialidad"
                                 OnClick="btnModificar_Click" runat="server" />
                         </div>

@@ -43,7 +43,7 @@ namespace Negocio
             try
             {
                 datos.setearParametro("@nombre", nuevo);
-                datos.setearConsulta(@"update ESPECIALIDADES set ESTADO=1 WHERE NOMBRE LIKE @nombre ");
+                datos.setearConsulta(@"INSERT INTO ESPECIALIDADES(NOMBRE, ESTADO) VALUES(@nombre, 1)");
                 datos.ejecutarAccion();
 
             }

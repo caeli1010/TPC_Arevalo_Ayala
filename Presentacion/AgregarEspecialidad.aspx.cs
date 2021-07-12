@@ -35,14 +35,14 @@ namespace Presentacion
                     repetidor.DataSource = especial;
                     repetidor.DataBind();                       
 
-                    if (!Page.IsPostBack)
-                    {
+                    //if (!Page.IsPostBack)
+                    //{
                         ddlEspecialidad.DataValueField = "idEspecialidad";
                         ddlEspecialidad.DataTextField = "nombre";
                         ddlEspecialidad.DataSource = negocio.listar();
                         ddlEspecialidad.DataBind();
                         ddlEspecialidad.Items.Insert(0, new ListItem("Seleccione una especialidad", "0"));
-                    }
+                    //}
                 }
 
             }
@@ -135,7 +135,7 @@ namespace Presentacion
                 EspecialidadNegocio negocio = new EspecialidadNegocio();
                 string nuevo = txtNEspecialidad.Text;
                 negocio.agregar(nuevo);
-
+                //Response.Redirect("ListarMedico.aspx");
             }
             catch (Exception ex)
             {

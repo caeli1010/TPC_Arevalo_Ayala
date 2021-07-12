@@ -60,8 +60,9 @@ namespace Presentacion
             }
             else
             {
-                repetidor.DataSource = lista;
-                repetidor.DataBind();
+                 Response.Redirect("ListarMedicos.aspx");
+                //repetidor.DataSource = lista;
+                //repetidor.DataBind();
                
             }
             }
