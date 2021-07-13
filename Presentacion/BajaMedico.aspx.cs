@@ -19,7 +19,7 @@ namespace Presentacion
             {
                 if (Request.QueryString["idM"] != null)
                 {
-                    medico = (List<Medico>)Session["medicos"];
+                    medico = (List<Medico>)Session["Medicos"];
                     doctor = (Medico)medico.Find(X => X.idMedico.ToString() == Request.QueryString["idM"]);
 
                     txtMatricula.Text = doctor.matricula.ToString();
@@ -44,6 +44,7 @@ namespace Presentacion
             {
             MedicoNegocio negocio = new MedicoNegocio();
             negocio.eliminar(doctor);
+            Response.Redirect("ListarMedicos.aspx");
 
             }
             catch (Exception ex)

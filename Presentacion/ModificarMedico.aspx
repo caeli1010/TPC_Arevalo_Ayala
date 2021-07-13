@@ -5,6 +5,13 @@
     <hr class="py-1" />
     <div class="offset-md-2 col-md-8">
         <h4 class="text-center">Modificando datos personales del Médico</h4>
+         <% if (lblMensaje.Visible == true)
+        { %>
+    <div class="alert alert-success text-center">
+
+        <asp:Label Visible="false" runat="server" ID="lblMensaje" />
+    </div>
+    <% } %>
         <div class="row alert alert-secondary">
 
 
@@ -36,8 +43,8 @@
                 </div>
                 
                 <div class="offset-md-3 form-group col-md-6 ">
-                <asp:Button CssClass="btn btn-sm btn-outline-warnign" Text="Modificar" ID="btnModificarMedico" OnClick="btnModificarMedico_Click" runat="server" />
-                <a class="btn btn-sm btn-outline-info" href='ListarMedicos.aspx'>Atras</a>
+                <a class="btn btn-sm btn-outline-danger" href='ListarMedicos.aspx'>Cancelar</a>
+                <asp:Button CssClass="btn btn-sm btn-outline-success" Text="Aceptar" ID="btnModificarMedico" OnClick="btnModificarMedico_Click" runat="server" />
 <%--                <asp:Button CssClass="btn btn-sm btn-outline-secondary" Text="Atras" ID="btnAtras" OnClick="btnAtras_Click" runat="server" />--%>
             </div>
             </form>

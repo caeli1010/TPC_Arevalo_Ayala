@@ -24,18 +24,15 @@ namespace Presentacion
             //}
             try
             {
-                lista = (List<Medico>)Session["Medicos"];
-                if (lista == null)
+                if (!Page.IsPostBack)
                 {
-                    lista = negocio.listar();
-
-                    Session.Add("Medicos", lista);
+                    if (lista == null)
+                    {
+                        lista = negocio.listar();
+                        Session.Add("Medicos", lista);
+                    }
                 }
-                else
-                {
-
-                    lista = (List<Medico>)Session["Medicos"];
-                }
+               
                 repetidor.DataSource = lista;
                 repetidor.DataBind();
             }

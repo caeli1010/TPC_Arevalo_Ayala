@@ -26,6 +26,8 @@ namespace Negocio
                     aux.medico = new Medico((long)datos.Lector["IDMEDICO"]);
                     aux.hora = (int)datos.Lector["HORAS"];
                     aux.idDias = (int)datos.Lector["IDDIAS"];
+                    aux.horaEntrada = (byte)datos.Lector["HORAINICIO"];
+                    aux.especXMed = (int)datos.Lector["IDESP_X_MED"];
 
                     lista.Add(aux);
 
@@ -46,19 +48,17 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                string valores = @"values(" +
-                                    nuevo.duracion + ", " +
-                                    nuevo.medico.idMedico + ", " +
-                                    nuevo.hora + ", " +
-                                    nuevo.idDias + ", " +
-                                    1 +")";
-                datos.setearConsulta(@"insert into DIAS_Y_HORARIOS (
-                                        DURACION,
-                                        IDMEDICO, 
-                                        HORAS, 
-                                        IDDIAS,
-                                        ESTADO
-                                        ) " + valores);
+                datos.setearParametro("@duracion", nuevo.duracion);
+                datos.setearParametro("@idMedico", nuevo.medico.idMedico);
+                datos.setearParametro("@horas", nuevo.hora);
+                datos.setearParametro("@idDias", nuevo.idDias);
+                datos.setearParametro("@horarioInicio", nuevo.horaEntrada);
+                datos.setearParametro("@idEspXMed", nuevo.especXMed);
+                datos.setearParametro("@estado", 1);
+                datos.setearConsulta(@"insert into DIAS_Y_HORARIOS (DURACION, IDMEDICO, HORAS, IDDIAS,
+                                        HORARIOINICIO, IDESP_X_MED, ESTADO) 
+                                        VALUES(@duracion, @idMedico, @horas, @idDias, @horarioInicio, 
+                                        @idEspXMed, @estado)");
                 datos.ejecutarAccion();
 
             }
@@ -76,15 +76,15 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("update DIAS_Y_HORARIOS set " +
-                                            "DURACION = @duracion, " +
-                                            "IDMEDICO = @idMedico, " +
-                                            "HORAS = @hora, " +
-                                            "IDDIAS= @idDias");
+                datos.setearConsulta(@"update DIAS_Y_HORARIOS set DURACION = @duracion,
+                                     IDMEDICO = @idMedico, HORAS = @hora, IDDIAS= @idDias, 
+                                      HORAINICIO = @horarioEntrada WHERE ID = @id");
                 datos.setearParametro("@duracion", modificar.duracion);
                 datos.setearParametro("@idMedico", modificar.medico.idMedico);
                 datos.setearParametro("@hora", modificar.hora);
                 datos.setearParametro("@idDias", modificar.idDias);
+                datos.setearParametro("@horarioEntrada", modificar.horaEntrada);
+                datos.setearParametro("@id", modificar.id);
 
 
                 datos.ejecutarAccion();
