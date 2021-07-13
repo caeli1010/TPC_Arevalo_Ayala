@@ -37,7 +37,7 @@
 
                 <div class="form-row">
                     <div class="row alert alert-heading">
-                        <div class="form-group col-md-12">
+                        <div class=" col-md-12">
                             <table class="table table-responsive table-bordered" id="especialidades">
                                 <thead class="thead-dark">
                                     <tr>

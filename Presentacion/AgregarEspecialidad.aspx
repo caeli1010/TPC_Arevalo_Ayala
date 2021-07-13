@@ -1,27 +1,39 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AgregarEspecialidad.aspx.cs" Inherits="Presentacion.AgregarEspecialidad" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-     <hr class="py-1" />
-    <h3>Agregar Especialidad</h3>
+    <script>    
+        function accion() {
+            if (Request.QueryString["d"] != null) {
+                document.getElementById("h5Medico").hidden;
+                document.getElementById("h3Espec").hidden;
+                document.getElementById("liEspec").hidden;
+                
+            }
+        }
+
+    </script>
+    <h3 id="h3Espec">Agregar Especialidad</h3>
       <% if (lblMensaje.Visible == true)
         { %>
     <div class="alert alert-success text-center">
 
-        <asp:Label Visible="false" runat="server" ID="lblMensaje" />
+        <asp:Label Visible="true" runat="server" ID="lblMensaje" />
     </div>
     <% } %>
+   
     <div class="row alert alert-secondary">
         <div class="col-md-6">
             <div class="card" >
-                <%--<img class="card-img-top mx-auto d-block py-3" style="width: 24%;" src="https://www.adl-logistica.org/wp-content/uploads/2019/07/imagen-perfil-sin-foto.png" alt="Card image cap">--%>
                 <div class="card-body">
                     <hr />
-                    <h5 class="card-title">Medico</h5><p><strong><span><asp:Label ID="lblNombre" runat="server" /></span></strong></p>
+                    <h5 ID="h5Medico" Visible="true" class="card-title">Medico</h5>
+                    <p><strong><span><asp:Label ID="lblNombre" Visible="true" runat="server" /></span></strong></p>
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Especialidades:<br /> <span class=" font-weight-bold ">
-                        <asp:Repeater runat="server" ID="repetidor">
+                    <li ID="liEspecialidad" class="list-group-item">Especialidades:<br /> 
+                        <span class=" font-weight-bold ">
+                        <asp:Repeater runat="server" Visible="true" ID="repetidor">
                             <ItemTemplate>  
-                        <asp:Label Text='<%#Eval("nombre")%>' runat="server" /><br />
+                        <asp:Label ID="lblNombreEsp" Visible="true" Text='<%#Eval("nombre")%>' runat="server" /><br />
 
                             </ItemTemplate>
                         </asp:Repeater>
@@ -29,7 +41,7 @@
                 </ul>
                 <div class="card-body">
              
-                <a class="btn btn-sm btn-outline-danger" href='ListarMedicos.aspx'>Atras</a>
+                <a class="btn btn-sm btn-outline-danger" Visible="true" href='ListarMedicos.aspx'>Atras</a>
                 </div>
             </div>
 
@@ -65,10 +77,20 @@
                 <div class="form-row">
 
                     <div class="form-group col-md-12">
-                      <%--  <asp:Button ID="btnNEspecialidad3" OnClick="btnNEspecialidad_Click"
-                            Text="Nueva Especialidad" Visible="true" CssClass="card-link btn-sm  btn-danger" runat="server" />--%>
+                        <asp:Button ID="btnNEspecialidad" OnClick="btnNEspecialidad_Click"
+                            Text="Especialidad" Visible="false" CssClass="card-link btn-sm  btn-success" runat="server" />
                         <asp:Label ID="lblNEspecialidad" visible="false" Text="Nueva Especialidad" runat="server" />
-                        <asp:TextBox ID="txtNEspecialidad" Visible="false" CssClass="form-control" runat="server" />  
+                        <asp:TextBox ID="txtNEspecialidad" Visible="false" CssClass="form-control" runat="server" />
+                       
+                        <asp:Button ID="btnElEspecialidad" OnClick="btnElEspecialidad_Click"
+                            Text="Nueva Especialidad" Visible="false" CssClass="card-link btn-sm  btn-success" runat="server" />
+                        <asp:Label ID="lblElEspecialidad" visible="false" Text="Eliminar" runat="server" />
+                        <asp:TextBox ID="txtElEspecialidad" Visible="false" CssClass="form-control" runat="server" />
+                       
+                        <asp:Button ID="btnModEspecialidad" OnClick="btnModEspecialidad_Click"
+                            Text="Nueva Especialidad" Visible="false" CssClass="card-link btn-sm  btn-success" runat="server" />
+                        <asp:Label ID="lblModEspecialidad" visible="false" Text="Modificar" runat="server" />
+                        <asp:TextBox ID="txtModEspecialidad" Visible="false" CssClass="form-control" runat="server" />  
                     </div>
                 </div>
 

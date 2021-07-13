@@ -44,6 +44,49 @@ namespace Presentacion
                         ddlEspecialidad.Items.Insert(0, new ListItem("Seleccione una especialidad", "0"));
                     //}
                 }
+            //Cuando el id especialidad viene de ListarEspecialidad, oculta los elemento utilizados en Listar Medicos
+                if(Request.QueryString["idM"] != null)
+                {
+                    btnAgregarEspecialidad.Visible = false;
+                    lblEspecialidad.Visible = false;
+                    ddlEspecialidad.Visible = false;
+                    btnGuardar.Visible = false;
+                    btnHabilitar.Visible = false;
+                    lbtnNEspecialidad.Visible = false;
+                    lblNombre.Visible = false;
+                    repetidor.Visible = false;
+
+                    if (Request.QueryString["d"] == "e")
+                    {
+                        //Elimina una especialidad
+                        btnElEspecialidad.Visible = true;
+                        lblElEspecialidad.Visible = true;
+                        txtElEspecialidad.Visible = true;
+
+                    }
+                    //Modifica una especialidad
+                    btnModEspecialidad.Visible = true;
+                    lblModEspecialidad.Visible = true;
+                    txtNEspecialidad.Visible = true;
+
+                   
+                }
+                else
+                {
+                    if(Request.QueryString["d"] == "a")
+                    {
+                        btnAgregarEspecialidad.Visible = false;
+                        lblEspecialidad.Visible = false;
+                        ddlEspecialidad.Visible = false;
+                        btnGuardar.Visible = false;
+                        lbtnNEspecialidad.Visible = false;
+
+                        btnNEspecialidad.Visible = true;
+                        lblNEspecialidad.Visible = true;
+                        txtNEspecialidad.Visible = true;
+
+                    }
+                }
 
             }
             catch (Exception ex)
@@ -171,6 +214,21 @@ namespace Presentacion
                 Response.Redirect("Error.aspx");
             }
 
+
+        }
+
+        protected void btnNEspecialidad_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnElEspecialidad_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnModEspecialidad_Click(object sender, EventArgs e)
+        {
 
         }
     }
