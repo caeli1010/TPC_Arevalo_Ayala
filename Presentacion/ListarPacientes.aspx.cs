@@ -28,13 +28,11 @@ namespace Presentacion
 
                 if (!Page.IsPostBack)
                 {
-
-                    pacientes = negocio.listar();
-                    Session.Add("Paciente", pacientes);
-                    pacientes = (List<Paciente>)Session["Paciente"];
-
+                    if (pacientes == null)
+                    {
+                        pacientes = negocio.listar();
+                    }
                 }
-
 
                 repetidor.DataSource = pacientes;
                 repetidor.DataBind();
@@ -59,7 +57,7 @@ namespace Presentacion
         private void eliminarPaciente(long id)
         {
             //var id = ((Button)sender).CommandArgument;
-            List<Paciente> seleccionado = (List<Paciente>)Session["Paciente"];
+            List<Paciente> seleccionado = pacientes;
             Paciente pacienteSeleccionado = seleccionado.Find(x => x.idPaciente == id);
 
             PacienteNegocio negocio = new PacienteNegocio();
