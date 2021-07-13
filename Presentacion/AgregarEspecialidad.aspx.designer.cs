@@ -60,13 +60,13 @@ namespace Presentacion
         protected global::System.Web.UI.WebControls.DropDownList ddlEspecialidad;
 
         /// <summary>
-        /// Control btnNEspecialidad.
+        /// Control lbtnNEspecialidad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnNEspecialidad;
+        protected global::System.Web.UI.WebControls.LinkButton lbtnNEspecialidad;
 
         /// <summary>
         /// Control lblNEspecialidad.

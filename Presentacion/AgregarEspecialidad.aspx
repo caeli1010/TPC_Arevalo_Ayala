@@ -35,20 +35,31 @@
                 <div class="form-row">
 
                     <div class="form-group col-md-12">
+
                         <asp:Button ID="btnAgregarEspecialidad" OnClick="btnAgregarEspecialidad_Click" 
-                            Text="Agregar Especialidad" CssClass="card-link btn-sm  btn-danger" runat="server" />
+                            Visible="true" Text="Agregar Especialidad" 
+                            CssClass="card-link btn-sm  btn-info" runat="server" />
+
                         <asp:Label ID="lblEspecialidad" visible="false" Text="Especialidad" runat="server" />
-                            <asp:DropDownList ID="ddlEspecialidad" Visible="false" CssClass="form-control" runat="server" 
-                                 OnSelectedIndexChanged="ddlEspecialidad_SelectedIndexChanged">          
-                            </asp:DropDownList>
+                        
+                        <div class="form-row" >
+                             <asp:DropDownList ID="ddlEspecialidad" Visible="false" CssClass="form-control" 
+                                 runat="server" OnSelectedIndexChanged="ddlEspecialidad_SelectedIndexChanged">          
+                                </asp:DropDownList>
+                            <div class="btn-success">
+                                <asp:LinkButton runat="server" ID="lbtnNEspecialidad" Visible="false" 
+                                    CssClass="btn btn-default btn-xs" OnClick="lbtnNEspecialidad_Click">
+                                    <i class="fa fa-plus-circle"></i>&nbsp;</asp:LinkButton>
+                            </div>
+                        </div>   
                     </div>
                 </div>
 
                 <div class="form-row">
 
                     <div class="form-group col-md-12">
-                        <asp:Button ID="btnNEspecialidad" OnClick="btnNEspecialidad_Click"
-                            Text="Nueva Especialidad" Visible="true" CssClass="card-link btn-sm  btn-danger" runat="server" />
+                      <%--  <asp:Button ID="btnNEspecialidad3" OnClick="btnNEspecialidad_Click"
+                            Text="Nueva Especialidad" Visible="true" CssClass="card-link btn-sm  btn-danger" runat="server" />--%>
                         <asp:Label ID="lblNEspecialidad" visible="false" Text="Nueva Especialidad" runat="server" />
                         <asp:TextBox ID="txtNEspecialidad" Visible="false" CssClass="form-control" runat="server" />  
                     </div>

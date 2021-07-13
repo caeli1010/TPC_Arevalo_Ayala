@@ -101,6 +101,7 @@ namespace Presentacion
                 lblEspecialidad.Visible = true;
                 ddlEspecialidad.Visible = true;
                 btnGuardar.Visible = true;
+                lbtnNEspecialidad.Visible = true;
              
             }
             catch (Exception ex)
@@ -111,22 +112,6 @@ namespace Presentacion
             }
         }
 
-        protected void btnNEspecialidad_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                btnHabilitar.Visible = true;
-                txtNEspecialidad.Visible = true;
-                btnNEspecialidad.Visible = false;
-
-            }
-            catch (Exception ex)
-            {
-                Session.Add("Error", ex.ToString());
-                Response.Redirect("Error.aspx");
-            }
-
-        }
 
         protected void btnHabilitar_Click(object sender, EventArgs e)
         {
@@ -142,6 +127,27 @@ namespace Presentacion
                 Session.Add("Error", ex.ToString());
                 Response.Redirect("Error.aspx");
             }
+
+        }
+
+        protected void lbtnNEspecialidad_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                btnHabilitar.Visible = true;
+                txtNEspecialidad.Visible = true;
+                lbtnNEspecialidad.Visible = false;
+                lblEspecialidad.Visible = false;
+                ddlEspecialidad.Visible = false;
+                btnGuardar.Visible = false;
+
+            }
+            catch (Exception ex)
+            {
+                Session.Add("Error", ex.ToString());
+                Response.Redirect("Error.aspx");
+            }
+
 
         }
     }
