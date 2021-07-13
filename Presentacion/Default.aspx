@@ -44,9 +44,11 @@
             <hr />
             <asp:CheckBox Text="baja de especialidades" Checked="false" runat="server" />
             <hr />
-            <asp:CheckBox Text="unificar botones en el menu NAVBAR" Checked="false" runat="server" />
+            <asp:CheckBox Text="unificar botones en el menu NAVBAR" Checked="true" runat="server" />
             <hr />
-            <asp:CheckBox Text="instalar datatable" Checked="false" runat="server" />
+            <asp:CheckBox Text="instalar datatable" Checked="TRUE" runat="server" />
+            <hr />
+              <asp:CheckBox Text="mostrar en hiperviculos los dias de atencion med" Checked="false" runat="server" />
             <hr />
 
         </div>
@@ -60,7 +62,15 @@
             <hr />
             <asp:CheckBox Text="listado de turno" Checked="false" runat="server" />  
             <hr />
-            <asp:CheckBox Text="datatable" Checked="false" runat="server" />
+            <asp:CheckBox Text="datatable paciente" Checked="true" runat="server" />
+            <hr />
+            <asp:CheckBox Text="abml usuarios" Checked="false" runat="server" />
+            <hr />
+            <asp:CheckBox Text="abml usuarios" Checked="false" runat="server" />
+            <hr />
+            <asp:CheckBox Text="listado de turnos" Checked="false" runat="server" />
+             <hr />
+            <asp:CheckBox Text="pdf en data table" Checked="false" runat="server" />
         </div>
     </div>
 
