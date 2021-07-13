@@ -120,7 +120,30 @@ namespace Presentacion
                 EspecialidadNegocio negocio = new EspecialidadNegocio();
                 string nuevo = txtNEspecialidad.Text;
                 negocio.agregar(nuevo);
-                Response.Redirect("ListarMedico.aspx");
+
+                //Definimos mensajes para la clase alert de bootstrp y cambiamos la bandera del label a true para mostrarlo.
+                lblMensaje.Text = "El proceso de agregar la especialidad se ha realizado correctamente!";
+                lblMensaje.CssClass = "alert alert-success text-center";
+                lblMensaje.Visible = true;
+
+                //usamos un sweetalert para avisar que el evento se ralizó con exito. 
+                ClientScript.RegisterStartupScript(type: GetType(), "K", "<script>" +
+                "setTimeout(function() {window.location = 'AgregarEspecialidad.aspx';}, 5000); " +
+                 "</script>");
+
+                if(lblMensaje.Visible == false)
+                {
+                    btnHabilitar.Visible = false;
+                    txtNEspecialidad.Visible = false;
+                    lbtnNEspecialidad.Visible = true;
+                    lblEspecialidad.Visible = true;
+                    ddlEspecialidad.Visible = true;
+                    btnGuardar.Visible = true;
+
+                    Session.Add("idM", doctor.idMedico);
+                    Response.Redirect("AgregarEspecialidad.aspx");
+
+                }
             }
             catch (Exception ex)
             {

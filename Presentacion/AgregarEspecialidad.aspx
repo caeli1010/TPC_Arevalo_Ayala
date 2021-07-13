@@ -2,6 +2,13 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
      <hr class="py-1" />
     <h3>Agregar Especialidad</h3>
+      <% if (lblMensaje.Visible == true)
+        { %>
+    <div class="alert alert-success text-center">
+
+        <asp:Label Visible="false" runat="server" ID="lblMensaje" />
+    </div>
+    <% } %>
     <div class="row alert alert-secondary">
         <div class="col-md-6">
             <div class="card" >

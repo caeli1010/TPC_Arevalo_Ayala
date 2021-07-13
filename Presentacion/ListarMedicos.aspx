@@ -57,12 +57,7 @@
                                     <a class="btn btn-sm btn-outline-success" href='AgregarHorario.aspx?aCc=a&idM=<%#Eval("idMedico")%>'><i title="Agregar horarios" class="fa fa-user-clock display-5"></i></a>
                                     <a class="btn btn-sm btn-outline-success" href='AgregarHorario.aspx?aCc=m&idM=<%#Eval("idMedico")%>'><i title="Modificar horarios" class="fa fa-user-clock display-5"></i></a>
                                     <a class="btn btn-sm btn-outline-success" href='AgregarHorario.aspx?aCc=b&idM=<%#Eval("idMedico")%>'><i title="Eliminar horarios" class="fa fa-user-clock display-5"></i></a>
-                                   <%-- <asp:Button Text="Deshabilitar"
-                                        runat="server"
-                                        CssClass="btn btn-outline-warning"
-                                        ID="btnDeshabilitar"
-                                        OnClick="btnDeshabilitar_Click" 
-                                        CommandArgument='<%#Eval("idMedico")%>'/>--%>
+                                  
                                 </td>
                             </tr>
 
