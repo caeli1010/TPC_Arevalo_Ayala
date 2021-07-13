@@ -42,7 +42,7 @@ namespace Presentacion
                 if (Request.QueryString["dltpte"] == "s")
                 {
                     long idp = long.Parse(Request.QueryString["ipc"]);
-                    icnEliminar(idp);
+                    eliminarPaciente(idp);
                 }
             }
             catch (Exception error)
@@ -56,7 +56,7 @@ namespace Presentacion
         }
         
 
-        private void icnEliminar(long id)
+        private void eliminarPaciente(long id)
         {
             //var id = ((Button)sender).CommandArgument;
             List<Paciente> seleccionado = (List<Paciente>)Session["Paciente"];
@@ -83,49 +83,6 @@ namespace Presentacion
                 "</script>");
 
         }
-        protected void eliminiar_Click(object sender, EventArgs e)
-        {
-
-            try
-            {
-                
-                var id = ((Button)sender).CommandArgument;
-                List<Paciente> seleccionado = (List<Paciente>)Session["Paciente"];
-                Paciente pacienteSeleccionado = seleccionado.Find(x => x.idPaciente.ToString() == id);
-
-                PacienteNegocio negocio = new PacienteNegocio();
-                negocio.eliminar(pacienteSeleccionado.dni);
-
-                seleccionado.Remove(pacienteSeleccionado);
-                repetidor.DataSource = seleccionado;
-                repetidor.DataBind();
-
-                //Definimos mensajes para la clase alert de bootstrp y cambiamos la bandera del label a true para mostrarlo.
-                lblMensaje.Text = "El proceso de eliminar el  Paciente se ha realizado correctamente!";
-                lblMensaje.CssClass = "alert alert-success text-center";
-                lblMensaje.Visible = true;
-
-                //usamos un sweetalert para avisar que el evento se ralizó con exito. 
-                ClientScript.RegisterStartupScript(type: GetType(),
-                    "K", "<script>swal('Ok!', " +
-                    "'¡El paciente ha sido eliminado con exito!', " +
-                    "'success'); " +
-                    "setTimeout(function() {window.location = 'ListarPacientes.aspx';}, 5000); " +
-                    "</script>");
-
-            }
-            catch (Exception ex)
-            {
-
-                ClientScript.RegisterClientScriptBlock(
-                        this.GetType(),
-                        "Mensaje",
-                        "<scripr> swal('Error!', '" + ex.Message + "!', 'error')</script>",
-                        true
-                    );
-            }
-            
-        }
-             
+        
     }
 }
