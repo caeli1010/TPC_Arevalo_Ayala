@@ -68,14 +68,14 @@
                                                     </asp:Repeater>
                                                 </td>
                                                 <td>
-                                                    <a href='AgregarEspecialidad.aspx?d=m&idE=<%#Eval("idEspecialidad")%>' class="btn btn-outline-info">
-                                                        <i title="Modificar especialidad" class="fa fa-edit"></i>
+                                                    <a href='AgregarEspecialidad.aspx?d=m&idE=<%#Eval("idEspecialidad")%>' class="btn btn-sm btn-outline-info">
+                                                        <i title="Modificar especialidad" class="fa fa-edit display-5"></i>
                                                     </a>
-                                                    <a href="AgregarEspecialidad.aspx?d=a" class="btn btn-outline-info">
-                                                        <i title="Agregar especialidad" class="fa fa-plus"></i>
+                                                    <a href="AgregarEspecialidad.aspx?d=a" class="btn btn-sm btn-outline-success">
+                                                        <i title="Agregar especialidad" class="fa fa-plus display-6"></i>
                                                     </a>
-                                                    <a href='AgregarEspecialidad.aspx?d=e&idE=<%#Eval("idEspecialidad")%>' class="btn btn-outline-info">
-                                                        <i title="Eliminar especialidad" class="fa fa-trash"></i>
+                                                    <a href='AgregarEspecialidad.aspx?d=e&idE=<%#Eval("idEspecialidad")%>' class="btn btn-sm btn-outline-danger">
+                                                        <i title="Eliminar especialidad" class="fa fa-trash display-5"></i>
                                                     </a>
                                                 </td>
                                             </tr>

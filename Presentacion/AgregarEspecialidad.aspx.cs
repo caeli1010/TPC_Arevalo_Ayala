@@ -19,19 +19,18 @@ namespace Presentacion
         protected void Page_Load(object sender, EventArgs e)
         {
             EspecialidadNegocio negocio = new EspecialidadNegocio();
-            Session.Add("especialidad", negocio.listar());
-            insertar = (List<Especialidad>)Session["especialidad"];
+            MedicoNegocio profesionales = new MedicoNegocio();
+            insertar = negocio.listar();
             try
             {
                 if(Request.QueryString["idM"] != null)
                 {
-                    medico = (List<Medico>)Session["medicos"];
+                    medico = profesionales.listar();
                     doctor= (Medico)medico.Find(X => X.idMedico.ToString() == Request.QueryString["idM"]);
                     
                     lblNombre.Text = doctor.nombre +" "+ doctor.apellido;
 
-                    Session.Add("EspecialidadXMedico", negocio.leerEspecialidad(doctor.idMedico));
-                    especial = (List<Especialidad>)Session["EspecialidadXMedico"];
+                    especial = negocio.leerEspecialidad(doctor.idMedico);
                     repetidor.DataSource = especial;
                     repetidor.DataBind();
 
@@ -128,13 +127,17 @@ namespace Presentacion
             {
                 EspecialidadNegocio negocio = new EspecialidadNegocio();
                 negocio.agregarXMedico(especialidad, doctor);
-                Session.Add("EspecialidadXMedico", negocio.leerEspecialidad(doctor.idMedico));
-                especial = (List<Especialidad>)Session["EspecialidadXMedico"];
+                especial = negocio.leerEspecialidad(doctor.idMedico);
                 repetidor.DataSource = especial;
                 repetidor.DataBind();
-                Response.Redirect("ListarMedico.aspx");
-                //ClientScript.RegisterStartupScript(type: GetType(), "mensaje", "<script>" +
-                //"window.location='AgregarEspecilidad.aspx?idM="+doctor.idMedico+"'</script>");
+
+                lblMensaje.Text = "El proceso de agregar la especialidad se ha realizado correctamente!";
+                lblMensaje.CssClass = "alert alert-success text-center";
+                lblMensaje.Visible = true;
+
+                ClientScript.RegisterStartupScript(type: GetType(), "K", "<script>" +
+                "setTimeout(function() {window.location = 'ListarMedicos.aspx';}, 5000); " +
+                 "</script>");
             }
             catch (Exception ex)
             {
@@ -262,7 +265,7 @@ namespace Presentacion
             Especialidad datos = new Especialidad();
 
             txtEspecialidad.Text = especialidad.nombre;
-
+            //ver porque no modifica
             datos.idEspecialidad = especialidad.idEspecialidad;
             datos.nombre = txtEspecialidad.Text;
             negocio.modificar(datos);
