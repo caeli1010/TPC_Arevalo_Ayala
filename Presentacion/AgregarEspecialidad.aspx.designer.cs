@@ -78,15 +78,6 @@ namespace Presentacion
         protected global::System.Web.UI.WebControls.LinkButton lbtnNEspecialidad;
 
         /// <summary>
-        /// Control btnNEspecialidad.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnNEspecialidad;
-
-        /// <summary>
         /// Control lblNEspecialidad.
         /// </summary>
         /// <remarks>
@@ -96,13 +87,13 @@ namespace Presentacion
         protected global::System.Web.UI.WebControls.Label lblNEspecialidad;
 
         /// <summary>
-        /// Control txtNEspecialidad.
+        /// Control txtEspecialidad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNEspecialidad;
+        protected global::System.Web.UI.WebControls.TextBox txtEspecialidad;
 
         /// <summary>
         /// Control btnElEspecialidad.
@@ -114,24 +105,6 @@ namespace Presentacion
         protected global::System.Web.UI.WebControls.Button btnElEspecialidad;
 
         /// <summary>
-        /// Control lblElEspecialidad.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblElEspecialidad;
-
-        /// <summary>
-        /// Control txtElEspecialidad.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtElEspecialidad;
-
-        /// <summary>
         /// Control btnModEspecialidad.
         /// </summary>
         /// <remarks>
@@ -139,24 +112,6 @@ namespace Presentacion
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnModEspecialidad;
-
-        /// <summary>
-        /// Control lblModEspecialidad.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblModEspecialidad;
-
-        /// <summary>
-        /// Control txtModEspecialidad.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtModEspecialidad;
 
         /// <summary>
         /// Control btnGuardar.

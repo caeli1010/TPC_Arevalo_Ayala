@@ -68,7 +68,7 @@
                                                     </asp:Repeater>
                                                 </td>
                                                 <td>
-                                                    <a href='AgregarEspecialidad.aspx?idE=<%#Eval("idEspecialidad")%>' class="btn btn-outline-info">
+                                                    <a href='AgregarEspecialidad.aspx?d=m&idE=<%#Eval("idEspecialidad")%>' class="btn btn-outline-info">
                                                         <i title="Modificar especialidad" class="fa fa-edit"></i>
                                                     </a>
                                                     <a href="AgregarEspecialidad.aspx?d=a" class="btn btn-outline-info">

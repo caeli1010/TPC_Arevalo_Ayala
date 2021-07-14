@@ -33,19 +33,19 @@ namespace Presentacion
                     Session.Add("EspecialidadXMedico", negocio.leerEspecialidad(doctor.idMedico));
                     especial = (List<Especialidad>)Session["EspecialidadXMedico"];
                     repetidor.DataSource = especial;
-                    repetidor.DataBind();                       
+                    repetidor.DataBind();
 
-                    //if (!Page.IsPostBack)
-                    //{
+                    if (!Page.IsPostBack)
+                    {
                         ddlEspecialidad.DataValueField = "idEspecialidad";
                         ddlEspecialidad.DataTextField = "nombre";
                         ddlEspecialidad.DataSource = negocio.listar();
                         ddlEspecialidad.DataBind();
                         ddlEspecialidad.Items.Insert(0, new ListItem("Seleccione una especialidad", "0"));
-                    //}
+                    }
                 }
             //Cuando el id especialidad viene de ListarEspecialidad, oculta los elemento utilizados en Listar Medicos
-                if(Request.QueryString["idM"] != null)
+                if(Request.QueryString["idE"] != null)
                 {
                     btnAgregarEspecialidad.Visible = false;
                     lblEspecialidad.Visible = false;
@@ -55,19 +55,26 @@ namespace Presentacion
                     lbtnNEspecialidad.Visible = false;
                     lblNombre.Visible = false;
                     repetidor.Visible = false;
+                    lblMensaje.Visible = false;
+
+                    especialidad = (Especialidad)insertar.Find(x => x.idEspecialidad.ToString() == Request.QueryString["idE"]);
 
                     if (Request.QueryString["d"] == "e")
                     {
                         //Elimina una especialidad
                         btnElEspecialidad.Visible = true;
-                        lblElEspecialidad.Visible = true;
-                        txtElEspecialidad.Visible = true;
+                        lblNEspecialidad.Visible = true;
+                        txtEspecialidad.Visible = true;
 
                     }
-                    //Modifica una especialidad
-                    btnModEspecialidad.Visible = true;
-                    lblModEspecialidad.Visible = true;
-                    txtNEspecialidad.Visible = true;
+                    else
+                    {
+                        //Modifica una especialidad
+                        btnModEspecialidad.Visible = true;
+                        lblNEspecialidad.Visible = true;
+                        txtEspecialidad.Visible = true;
+
+                    }
 
                    
                 }
@@ -80,10 +87,13 @@ namespace Presentacion
                         ddlEspecialidad.Visible = false;
                         btnGuardar.Visible = false;
                         lbtnNEspecialidad.Visible = false;
+                        lblNombre.Visible = false;
+                        repetidor.Visible = false;
+                        lblMensaje.Visible = false;
 
-                        btnNEspecialidad.Visible = true;
+                        btnHabilitar.Visible = true;
                         lblNEspecialidad.Visible = true;
-                        txtNEspecialidad.Visible = true;
+                        txtEspecialidad.Visible = true;
 
                     }
                 }
@@ -161,7 +171,7 @@ namespace Presentacion
             try
             {
                 EspecialidadNegocio negocio = new EspecialidadNegocio();
-                string nuevo = txtNEspecialidad.Text;
+                string nuevo = txtEspecialidad.Text;
                 negocio.agregar(nuevo);
 
                 //Definimos mensajes para la clase alert de bootstrp y cambiamos la bandera del label a true para mostrarlo.
@@ -170,22 +180,31 @@ namespace Presentacion
                 lblMensaje.Visible = true;
 
                 //usamos un sweetalert para avisar que el evento se ralizó con exito. 
-                ClientScript.RegisterStartupScript(type: GetType(), "K", "<script>" +
-                "setTimeout(function() {window.location = 'AgregarEspecialidad.aspx';}, 5000); " +
-                 "</script>");
-
-                if(lblMensaje.Visible == false)
+                    if(Request.QueryString["d"] == "a")
+                    {
+                        ClientScript.RegisterStartupScript(type: GetType(), "K", "<script>" +
+                        "setTimeout(function() {window.location = 'ListarEspecialidad.aspx';}, 5000); " +
+                         "</script>");
+                        
+                    }
+                else
                 {
-                    btnHabilitar.Visible = false;
-                    txtNEspecialidad.Visible = false;
-                    lbtnNEspecialidad.Visible = true;
-                    lblEspecialidad.Visible = true;
-                    ddlEspecialidad.Visible = true;
-                    btnGuardar.Visible = true;
 
-                    Session.Add("idM", doctor.idMedico);
-                    Response.Redirect("AgregarEspecialidad.aspx");
+                    long i = doctor.idMedico;
+                    ClientScript.RegisterStartupScript(type: GetType(), "K", "<script>" +
+                       "setTimeout(function() {window.location = 'AgregarEspecialidad.aspx?idM=i';}, 5000); " +
+                        "</script>");
 
+                    if (lblMensaje.Visible == false)
+                    {
+                        btnHabilitar.Visible = false;
+                        txtEspecialidad.Visible = false;
+                        lbtnNEspecialidad.Visible = true;
+                        lblEspecialidad.Visible = true;
+                        ddlEspecialidad.Visible = true;
+                        btnGuardar.Visible = true;
+
+                    }
                 }
             }
             catch (Exception ex)
@@ -201,7 +220,7 @@ namespace Presentacion
             try
             {
                 btnHabilitar.Visible = true;
-                txtNEspecialidad.Visible = true;
+                txtEspecialidad.Visible = true;
                 lbtnNEspecialidad.Visible = false;
                 lblEspecialidad.Visible = false;
                 ddlEspecialidad.Visible = false;
@@ -217,19 +236,44 @@ namespace Presentacion
 
         }
 
-        protected void btnNEspecialidad_Click(object sender, EventArgs e)
-        {
-
-        }
-
         protected void btnElEspecialidad_Click(object sender, EventArgs e)
         {
+            EspecialidadNegocio negocio = new EspecialidadNegocio();
+            Especialidad datos = new Especialidad();
 
+            txtEspecialidad.Text = especialidad.nombre;
+
+            datos.idEspecialidad = especialidad.idEspecialidad;
+            datos.nombre = txtEspecialidad.Text;
+            negocio.eliminar(datos);
+
+            lblMensaje.Text = "El proceso de eliminar la especialidad se ha realizado correctamente!";
+            lblMensaje.CssClass = "alert alert-success text-center";
+            lblMensaje.Visible = true;
+
+            ClientScript.RegisterStartupScript(type: GetType(), "K", "<script>" +
+             "setTimeout(function() {window.location = 'ListarEspecialidad.aspx';}, 5000); " +
+              "</script>");
         }
 
         protected void btnModEspecialidad_Click(object sender, EventArgs e)
         {
+            EspecialidadNegocio negocio = new EspecialidadNegocio();
+            Especialidad datos = new Especialidad();
 
+            txtEspecialidad.Text = especialidad.nombre;
+
+            datos.idEspecialidad = especialidad.idEspecialidad;
+            datos.nombre = txtEspecialidad.Text;
+            negocio.modificar(datos);
+
+            lblMensaje.Text = "El proceso de modoficar la especialidad se ha realizado correctamente!";
+            lblMensaje.CssClass = "alert alert-success text-center";
+            lblMensaje.Visible = true;
+
+            ClientScript.RegisterStartupScript(type: GetType(), "K", "<script>" +
+            "setTimeout(function() {window.location = 'ListarEspecialidad.aspx';}, 5000); " +
+             "</script>");
         }
     }
 }
