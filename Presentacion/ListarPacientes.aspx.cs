@@ -31,6 +31,7 @@ namespace Presentacion
                     if (pacientes == null)
                     {
                         pacientes = negocio.listar();
+                        Session["Paciente"] = pacientes;
                     }
                 }
 
