@@ -43,7 +43,7 @@
         <div class="form-row">
             <div class="form-group col-md-12">
                 <label for="obSoc">Obra social</label>
-                <asp:DropDownList runat="server" ID="ddlObSocial">
+                <asp:DropDownList runat="server"  CssClass="form-control"  ID="ddlObSocial">
                 </asp:DropDownList>
                 
             </div>

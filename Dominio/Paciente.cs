@@ -18,8 +18,18 @@ namespace Dominio
         public string mail { get; set; }
         public int nroCarnet { get; set; }
 
+        public Paciente() { }
 
-        
+        public Paciente(string _nombre, string _apellido)
+        {
+            apellido = _apellido;
+            nombre = _nombre;
+        }
+        public Paciente(long id)
+        {
+            idPaciente = id;
+        }
+
         public override string ToString()
         {
             string datoPaciente = nombre + apellido;
