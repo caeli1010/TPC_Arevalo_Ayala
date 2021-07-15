@@ -136,6 +136,7 @@
     <Content Include="ListarEspecialidad.aspx" />
     <Content Include="ListarMedicos.aspx" />
     <Content Include="ListarPacientes.aspx" />
+    <Content Include="ListarTurnos.aspx" />
     <Content Include="ListarUsuarios.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Login2.aspx" />
@@ -279,6 +280,13 @@
     </Compile>
     <Compile Include="ListarPacientes.aspx.designer.cs">
       <DependentUpon>ListarPacientes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ListarTurnos.aspx.cs">
+      <DependentUpon>ListarTurnos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ListarTurnos.aspx.designer.cs">
+      <DependentUpon>ListarTurnos.aspx</DependentUpon>
     </Compile>
     <Compile Include="ListarUsuarios.aspx.cs">
       <DependentUpon>ListarUsuarios.aspx</DependentUpon>
