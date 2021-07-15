@@ -29,9 +29,12 @@
                     </li>
                 </ul>
                 <div class="card-body">
-                    <asp:Button Text="Modificar Datos" 
+                    <a href='ModificarPaciente.aspx?ipc=<%#Eval("idPaciente")%>' class="btn btn-sm btn-outline-secondary" title="Modificar datos de este Paciente" >
+                                       Modificar Datos <i class="fa fa-user-edit"  ></i>
+                                    </a>
+                    <%--<asp:Button Text="Modificar Datos" 
                         CssClass="card-link btn-sm btn-outline-secondary"  
-                        ID="btnModificar"  runat="server" />
+                        ID="btnModificar"  runat="server" />--%>
              
                 </div>
             </div>
