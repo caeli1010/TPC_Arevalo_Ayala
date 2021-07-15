@@ -174,6 +174,11 @@ namespace Presentacion
             try
             {
                 EspecialidadNegocio negocio = new EspecialidadNegocio();
+               
+                string mensaje = string.Empty;
+                if (string.IsNullOrEmpty(txtEspecialidad.Text)) mensaje += "| El campo esta vacio,";
+                if (!string.IsNullOrEmpty(mensaje)) throw new Exception(mensaje.TrimEnd(','));
+                   
                 string nuevo = txtEspecialidad.Text;
                 negocio.agregar(nuevo);
 
@@ -183,20 +188,18 @@ namespace Presentacion
                 lblMensaje.Visible = true;
 
                 //usamos un sweetalert para avisar que el evento se ralizó con exito. 
-                    if(Request.QueryString["d"] == "a")
-                    {
-                        ClientScript.RegisterStartupScript(type: GetType(), "K", "<script>" +
-                        "setTimeout(function() {window.location = 'ListarEspecialidad.aspx';}, 5000); " +
-                         "</script>");
+                if(Request.QueryString["d"] == "a")
+                {
+                    ClientScript.RegisterStartupScript(type: GetType(), "K", "<script>" +
+                    "setTimeout(function() {window.location = 'ListarEspecialidad.aspx';}, 5000); " +
+                        "</script>");
                         
-                    }
+                }
                 else
                 {
-
-                    long i = doctor.idMedico;
                     ClientScript.RegisterStartupScript(type: GetType(), "K", "<script>" +
-                       "setTimeout(function() {window.location = 'AgregarEspecialidad.aspx?idM=i';}, 5000); " +
-                        "</script>");
+                    "setTimeout(function() {window.location = 'AgregarEspecialidad.aspx?idM="+doctor.idMedico+"';}, 5000); " +
+                    "</script>");
 
                     if (lblMensaje.Visible == false)
                     {
@@ -212,8 +215,11 @@ namespace Presentacion
             }
             catch (Exception ex)
             {
-                Session.Add("Error", ex.ToString());
-                Response.Redirect("Error.aspx");
+                ClientScript.RegisterStartupScript(
+                    this.GetType(),
+                    "Mensaje",
+                    "<script> swal('Falla!', '" + ex.Message + "!', 'warning'); </script>"
+                );
             }
 
         }
@@ -241,11 +247,16 @@ namespace Presentacion
 
         protected void btnElEspecialidad_Click(object sender, EventArgs e)
         {
+            try
+            {
             EspecialidadNegocio negocio = new EspecialidadNegocio();
             Especialidad datos = new Especialidad();
 
             txtEspecialidad.Text = especialidad.nombre;
-
+            string mensaje = string.Empty;
+            if (string.IsNullOrEmpty(txtEspecialidad.Text)) mensaje += "| El campo esta vacio,";
+            if (!string.IsNullOrEmpty(mensaje)) throw new Exception(mensaje.TrimEnd(','));
+         
             datos.idEspecialidad = especialidad.idEspecialidad;
             datos.nombre = txtEspecialidad.Text;
             negocio.eliminar(datos);
@@ -255,28 +266,56 @@ namespace Presentacion
             lblMensaje.Visible = true;
 
             ClientScript.RegisterStartupScript(type: GetType(), "K", "<script>" +
-             "setTimeout(function() {window.location = 'ListarEspecialidad.aspx';}, 5000); " +
-              "</script>");
+                "setTimeout(function() {window.location = 'ListarEspecialidad.aspx';}, 5000); " +
+                "</script>");
+
+            }
+            catch (Exception ex)
+            {
+                ClientScript.RegisterStartupScript(
+                this.GetType(),
+                "Mensaje",
+                "<script> swal('Falla!', '" + ex.Message + "!', 'warning'); </script>"
+            );
+            }
+            
         }
 
         protected void btnModEspecialidad_Click(object sender, EventArgs e)
         {
-            EspecialidadNegocio negocio = new EspecialidadNegocio();
-            Especialidad datos = new Especialidad();
+            try
+            {
 
-            txtEspecialidad.Text = especialidad.nombre;
-            //ver porque no modifica
-            datos.idEspecialidad = especialidad.idEspecialidad;
-            datos.nombre = txtEspecialidad.Text;
-            negocio.modificar(datos);
+                EspecialidadNegocio negocio = new EspecialidadNegocio();
+                Especialidad datos = new Especialidad();
 
-            lblMensaje.Text = "El proceso de modoficar la especialidad se ha realizado correctamente!";
-            lblMensaje.CssClass = "alert alert-success text-center";
-            lblMensaje.Visible = true;
+                txtEspecialidad.Text = especialidad.nombre;
+                //ver porque no modifica
 
-            ClientScript.RegisterStartupScript(type: GetType(), "K", "<script>" +
-            "setTimeout(function() {window.location = 'ListarEspecialidad.aspx';}, 5000); " +
-             "</script>");
+                string mensaje = string.Empty;
+                if (string.IsNullOrEmpty(txtEspecialidad.Text)) mensaje += "| El campo esta vacio,";
+                if (!string.IsNullOrEmpty(mensaje)) throw new Exception(mensaje.TrimEnd(','));
+
+                datos.idEspecialidad = especialidad.idEspecialidad;
+                datos.nombre = txtEspecialidad.Text;
+                negocio.modificar(datos);
+
+                lblMensaje.Text = "El proceso de modoficar la especialidad se ha realizado correctamente!";
+                lblMensaje.CssClass = "alert alert-success text-center";
+                lblMensaje.Visible = true;
+
+                ClientScript.RegisterStartupScript(type: GetType(), "K", "<script>" +
+                "setTimeout(function() {window.location = 'ListarEspecialidad.aspx';}, 5000); " +
+                    "</script>");
+            }
+            catch (Exception ex)
+            {
+                ClientScript.RegisterStartupScript(
+                   this.GetType(),
+                   "Mensaje",
+                   "<script> swal('Falla!', '" + ex.Message + "!', 'warning'); </script>"
+               );
+            }
         }
     }
 }

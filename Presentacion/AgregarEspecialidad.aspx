@@ -2,14 +2,11 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <script>    
-        function accion() {
-            if (Request.QueryString["d"] != null) {
-                document.getElementById("h5Medico").hidden;
-                document.getElementById("h3Espec").hidden;
-                document.getElementById("liEspec").hidden;
+        if (getParameterByName('d') !== null) {
+                document.getElementById("esconder").style.display="none";
 
             }
-        }
+
 
     </script>
     <h3 id="h3Espec">Agregar Especialidad</h3>
@@ -23,8 +20,8 @@
 
     <div class="row alert alert-secondary">
         <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
+            <div id="esconder" class="card" >
+                <div  class="card-body">
                     <hr />
                     <h5 id="h5Medico" visible="true" class="card-title">Medico</h5>
                     <p><strong><span>
