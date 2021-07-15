@@ -105,7 +105,9 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("select * from OBRAS_SOCIALES where IDOBRASOCIAL = " + id + "");
+
+                datos.setearConsulta("select * from OBRAS_SOCIALES where IDOBRASOCIAL = @id");
+                datos.setearParametro("@id", id);
                 datos.ejecutarLectura();
 
             }
