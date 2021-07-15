@@ -15,7 +15,7 @@
                 Aquí podrá ver el listado completo de los turnos pendientes.
             </p>
             <p>
-                <a class="btn btn-default" href="~/Turnos">Ir &raquo;</a>
+                <a class="btn btn-outline-info" href="ListarTurnos.aspx"> Ir al Listado </a>
             </p>
         </div>
         <div class="col-md-4">
@@ -24,7 +24,7 @@
                 Aquí podrá ver el listado completo de los pacientes inscriptos.
             </p>
             <p>
-                <a class="btn btn-default" href="~/Pacientes">Ir &raquo;</a>
+                <a class="btn btn-outline-info" href="ListarPacientes.aspx">Ir al Listado  &raquo;</a>
             </p>
         </div>
         <div class="col-md-4">
@@ -33,7 +33,7 @@
                 Aquí podrá ver el listado completo de los medicos bajo convenio
             </p>
             <p>
-                <a class="btn btn-default" href="~/Medicos">Ver Más &raquo;</a>
+                <a class="btn btn-outline-info" href="ListarMedicos.aspx">Ir al Listado  &raquo;</a>
             </p>
         </div>
     </div>
@@ -56,11 +56,11 @@
             <h5>Euge</h5>
             <asp:CheckBox Text="reservar turnos" Checked="false" runat="server" />
             <hr />
-            <asp:CheckBox Text="eliminar pacietes" Checked="true" runat="server" />
+            <asp:CheckBox Text="eliminar pacientes" Checked="true" runat="server" />
             <hr />
-            <asp:CheckBox Text="modificar pacientes" Checked="false" runat="server" />
+            <asp:CheckBox Text="modificar pacientes" Checked="true" runat="server" />
             <hr />
-            <asp:CheckBox Text="listado de turno" Checked="false" runat="server" />  
+            <asp:CheckBox Text="listado de turno" Checked="true" runat="server" />  
             <hr />
             <asp:CheckBox Text="datatable paciente" Checked="true" runat="server" />
             <hr />
