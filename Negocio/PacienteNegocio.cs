@@ -93,11 +93,12 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta(@"update PACIENTES SET NOMBRE = @nombre, APELLIDO = @apellido, NROCARNET= @nroCarnet, IDOBRASOCIAL = @idObraSocial, EMAIL = @email 
+                datos.setearConsulta(@"update PACIENTES 
+                SET NROCARNET= @nroCarnet, 
+                    IDOBRASOCIAL = @idObraSocial, 
+                    EMAIL = @email 
                 WHERE IDPACIENTE = @idPaciente");
                 datos.setearParametro("@idPaciente", modificar.idPaciente);
-                datos.setearParametro("@nombre", modificar.nombre);
-                datos.setearParametro("@apellido", modificar.apellido);
                 datos.setearParametro("@nroCarnet", modificar.nroCarnet);
                 datos.setearParametro("@idObraSocial", modificar.obraSocial.idObraSocial);
                 datos.setearParametro("@email", modificar.mail);
