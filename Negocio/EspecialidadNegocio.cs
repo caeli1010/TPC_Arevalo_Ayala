@@ -107,15 +107,15 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta(@"UPDATE ESPECIALIDADES SET ESTADO = 0 WHERE IDMEDICO = @id");
+                datos.setearConsulta(@"UPDATE ESPECIALIDADES SET ESTADO = 0 WHERE IDESPECIALIDAD = @id");
                 datos.setearParametro("@id", especialidad.idEspecialidad);
 
                 datos.ejecutarAccion();
 
             }
-            catch (global::System.Exception)
+            catch (global::System.Exception ex)
             {
-                throw;
+                throw ex;
             }
 
             finally

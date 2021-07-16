@@ -21,6 +21,7 @@ namespace Presentacion
             EspecialidadNegocio negocio = new EspecialidadNegocio();
             MedicoNegocio profesionales = new MedicoNegocio();
             insertar = negocio.listar();
+
             try
             {
                 if(Request.QueryString["idM"] != null)
@@ -47,7 +48,6 @@ namespace Presentacion
                 if(Request.QueryString["idE"] != null)
                 {
                     btnAgregarEspecialidad.Visible = false;
-                    lblEspecialidad.Visible = false;
                     ddlEspecialidad.Visible = false;
                     btnGuardar.Visible = false;
                     btnHabilitar.Visible = false;
@@ -55,6 +55,7 @@ namespace Presentacion
                     lblNombre.Visible = false;
                     repetidor.Visible = false;
                     lblMensaje.Visible = false;
+                    lblEspecialidad.Visible = true;
 
                     especialidad = (Especialidad)insertar.Find(x => x.idEspecialidad.ToString() == Request.QueryString["idE"]);
 
@@ -62,27 +63,24 @@ namespace Presentacion
                     {
                         //Elimina una especialidad
                         btnElEspecialidad.Visible = true;
-                        lblNEspecialidad.Visible = true;
-                        txtEspecialidad.Visible = true;
+                        lblEspecialidad.Text = especialidad.nombre;
 
                     }
                     else
                     {
                         //Modifica una especialidad
                         btnModEspecialidad.Visible = true;
-                        lblNEspecialidad.Visible = true;
                         txtEspecialidad.Visible = true;
-
+                        lblEspecialidad.Text = especialidad.nombre;
                     }
 
-                   
+
                 }
                 else
                 {
                     if(Request.QueryString["d"] == "a")
                     {
                         btnAgregarEspecialidad.Visible = false;
-                        lblEspecialidad.Visible = false;
                         ddlEspecialidad.Visible = false;
                         btnGuardar.Visible = false;
                         lbtnNEspecialidad.Visible = false;
@@ -90,8 +88,9 @@ namespace Presentacion
                         repetidor.Visible = false;
                         lblMensaje.Visible = false;
 
+                        lblEspecialidad.Visible = true;
+                        lblEspecialidad.Text = "Nueva especialidad";
                         btnHabilitar.Visible = true;
-                        lblNEspecialidad.Visible = true;
                         txtEspecialidad.Visible = true;
 
                     }
@@ -106,6 +105,7 @@ namespace Presentacion
 
         }
       
+        //Funcion del dropdownlist
         protected void ddlEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -121,6 +121,8 @@ namespace Presentacion
             }
            
         }
+
+        //Funcion que guarda la especialidad seleccionada para un medico (ListarMedicos)
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
             try
@@ -155,6 +157,7 @@ namespace Presentacion
             {
                 btnAgregarEspecialidad.Visible = false;
                 lblEspecialidad.Visible = true;
+                lblEspecialidad.Text = "Especialidad";
                 ddlEspecialidad.Visible = true;
                 btnGuardar.Visible = true;
                 lbtnNEspecialidad.Visible = true;
@@ -168,7 +171,7 @@ namespace Presentacion
             }
         }
 
-
+        //Funcion que habilita una especialidad, (cuando se viene desde ambos listados, especialidad y medico)
         protected void btnHabilitar_Click(object sender, EventArgs e)
         {
             try
@@ -207,6 +210,7 @@ namespace Presentacion
                         txtEspecialidad.Visible = false;
                         lbtnNEspecialidad.Visible = true;
                         lblEspecialidad.Visible = true;
+                        lblEspecialidad.Text = "Especialidad";
                         ddlEspecialidad.Visible = true;
                         btnGuardar.Visible = true;
 
@@ -224,15 +228,17 @@ namespace Presentacion
 
         }
 
+        //Funcion del linkButton cuando el idMedico (ListarMedico)
         protected void lbtnNEspecialidad_Click(object sender, EventArgs e)
         {
             try
             {
                 btnHabilitar.Visible = true;
                 txtEspecialidad.Visible = true;
-                lbtnNEspecialidad.Visible = false;
-                lblEspecialidad.Visible = false;
+                lblEspecialidad.Visible = true;
+                lblEspecialidad.Text = "Nueva especialidad";
                 ddlEspecialidad.Visible = false;
+                lbtnNEspecialidad.Visible = false;
                 btnGuardar.Visible = false;
 
             }
@@ -245,60 +251,48 @@ namespace Presentacion
 
         }
 
+        //Funcion que elimina una especialidad (ListarEspecialidad)
         protected void btnElEspecialidad_Click(object sender, EventArgs e)
         {
             try
             {
-            EspecialidadNegocio negocio = new EspecialidadNegocio();
-            Especialidad datos = new Especialidad();
+                EspecialidadNegocio negocio = new EspecialidadNegocio();
+                
+                negocio.eliminar(especialidad);
 
-            txtEspecialidad.Text = especialidad.nombre;
-            string mensaje = string.Empty;
-            if (string.IsNullOrEmpty(txtEspecialidad.Text)) mensaje += "| El campo esta vacio,";
-            if (!string.IsNullOrEmpty(mensaje)) throw new Exception(mensaje.TrimEnd(','));
-         
-            datos.idEspecialidad = especialidad.idEspecialidad;
-            datos.nombre = txtEspecialidad.Text;
-            negocio.eliminar(datos);
+                lblMensaje.Text = "El proceso de eliminar la especialidad se ha realizado correctamente!";
+                lblMensaje.CssClass = "alert alert-success text-center";
+                lblMensaje.Visible = true;
 
-            lblMensaje.Text = "El proceso de eliminar la especialidad se ha realizado correctamente!";
-            lblMensaje.CssClass = "alert alert-success text-center";
-            lblMensaje.Visible = true;
-
-            ClientScript.RegisterStartupScript(type: GetType(), "K", "<script>" +
-                "setTimeout(function() {window.location = 'ListarEspecialidad.aspx';}, 5000); " +
-                "</script>");
+                ClientScript.RegisterStartupScript(type: GetType(), "K", "<script>" +
+                    "setTimeout(function() {window.location = 'ListarEspecialidad.aspx';}, 5000); " +
+                    "</script>");
 
             }
             catch (Exception ex)
             {
-                ClientScript.RegisterStartupScript(
-                this.GetType(),
-                "Mensaje",
-                "<script> swal('Falla!', '" + ex.Message + "!', 'warning'); </script>"
-            );
+                Session.Add("Error", ex.ToString());
+                Response.Redirect("Error.aspx");
             }
             
         }
 
+        //Funcion que modifica el nombre de una especialidad (ListarEspecialidad)
         protected void btnModEspecialidad_Click(object sender, EventArgs e)
         {
             try
             {
 
                 EspecialidadNegocio negocio = new EspecialidadNegocio();
-                Especialidad datos = new Especialidad();
-
-                txtEspecialidad.Text = especialidad.nombre;
-                //ver porque no modifica
+                Especialidad eliminado = new Especialidad();
 
                 string mensaje = string.Empty;
                 if (string.IsNullOrEmpty(txtEspecialidad.Text)) mensaje += "| El campo esta vacio,";
                 if (!string.IsNullOrEmpty(mensaje)) throw new Exception(mensaje.TrimEnd(','));
 
-                datos.idEspecialidad = especialidad.idEspecialidad;
-                datos.nombre = txtEspecialidad.Text;
-                negocio.modificar(datos);
+                eliminado.idEspecialidad = especialidad.idEspecialidad;
+                eliminado.nombre = txtEspecialidad.Text;
+                negocio.modificar(eliminado);
 
                 lblMensaje.Text = "El proceso de modoficar la especialidad se ha realizado correctamente!";
                 lblMensaje.CssClass = "alert alert-success text-center";

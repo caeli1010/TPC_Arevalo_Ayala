@@ -22,16 +22,12 @@ namespace Presentacion
         MedicoNegocio datos = new MedicoNegocio();
             try
             {
-                lista = (List<Especialidad>)Session["Especialidad"];
                 if (lista == null)
                 {
                     lista = negocio.listar();
                     Session.Add("Especialidad", lista);
                 }
-                else
-                {
-                    lista = (List<Especialidad>)Session["Especialidad"];
-                }
+               
                 repetidorPadre.DataSource = lista;
                 repetidorPadre.DataBind();
 

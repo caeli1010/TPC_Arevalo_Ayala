@@ -60,7 +60,7 @@
                             Visible="true" Text="Agregar Especialidad"
                             CssClass="card-link btn-sm  btn-info" runat="server" />
 
-                        <asp:Label ID="lblEspecialidad" Visible="false" Text="Especialidad" runat="server" />
+                        <asp:Label ID="lblEspecialidad" Visible="false" runat="server" />
 
                         <div class="form-row">
                             <asp:DropDownList ID="ddlEspecialidad" Visible="false" CssClass="form-control"
