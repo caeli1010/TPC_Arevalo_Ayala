@@ -15,7 +15,8 @@ namespace Dominio
         public Especialidad()               
         {
 
-        } public Especialidad(long id)               
+        } 
+        public Especialidad(long id)               
         {
             idEspecialidad = id;
         }

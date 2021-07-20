@@ -24,6 +24,24 @@ namespace Presentacion
         protected global::System.Web.UI.WebControls.Label lblNombre;
 
         /// <summary>
+        /// Control horariosRep.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater horariosRep;
+
+        /// <summary>
+        /// Control lbtnNHorario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtnNHorario;
+
+        /// <summary>
         /// Control lblDias.
         /// </summary>
         /// <remarks>

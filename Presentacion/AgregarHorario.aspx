@@ -11,6 +11,34 @@
                 <div class="card-body">
                     <hr />
                     <h5 class="card-title"> PROFESIONAL:  <asp:Label ID="lblNombre" runat="server" /> </h5>
+                    <table>
+                      <tr>
+                        <th>Dias</th>
+                        <th>Desde</th>
+                        <th>Hasta</th>
+                        <th>Acciones</th>
+                      </tr>
+                      <tr>
+                          <asp:Repeater runat="server" ID="horariosRep">
+                              <ItemTemplate>   
+                                    <td><%#Eval("idDias")%></td>
+                                    <td><%#Eval("horaEntrada")%></td>
+                                    <td><%#Eval("horaEntrada + hora")%></td>
+                                    <td>
+                                        <asp:LinkButton runat="server" ID="lbtnModificar" Visible="true"
+                                    CssClass="btn btn-default btn-xs" OnClick="lbtnModificar_Click">
+                                    <i class="fa fa-edit-circle"></i>&nbsp;</asp:LinkButton>
+                                        <asp:LinkButton runat="server" ID="lbtnEliminar" Visible="true"
+                                    CssClass="btn btn-default btn-xs" OnClick="lbtnEliminar_Click">
+                                    <i class="fa fa-trash-circle"></i>&nbsp;</asp:LinkButton>
+                                    </td>
+                              </ItemTemplate>
+                          </asp:Repeater>
+                      </tr>
+                    </table>
+                    <asp:LinkButton runat="server" ID="lbtnNHorario" Visible="true"
+                                    CssClass="btn btn-default btn-xs" OnClick="lbtnNHorario_Click">
+                                    <i class="fa fa-plus-circle"></i>&nbsp;</asp:LinkButton>
                     <p class="card-text"<span class=" font-weight-bold ">
                        </span></p>
                 </div>

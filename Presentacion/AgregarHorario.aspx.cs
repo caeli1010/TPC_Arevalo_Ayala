@@ -17,7 +17,7 @@ namespace Presentacion
         private Horario horario;
         protected void Page_Load(object sender, EventArgs e)
         {
-        
+            HorarioNegocio negocio = new HorarioNegocio();
             try
             {
                 if (Request.QueryString["idM"] != null)
@@ -25,15 +25,10 @@ namespace Presentacion
                     medico = (List<Medico>)Session["medicos"];
                     doctor = (Medico)medico.Find(X => X.idMedico.ToString() == Request.QueryString["idM"]);
 
-                    lblNombre.Text = doctor.nombre + " " + doctor.apellido;
-                    //lblDni.Text = doctor.dni;
-                    //lblMatricula.Text = doctor.matricula.ToString();
-                    //lblEmail.Text = doctor.mail;
 
-                    //if (!Page.IsPostBack)
-                    //{
-                    //    ddlDias.Items.Insert(0, new ListItem("Seleccione una opción", "1"));
-                    //}
+                    lblNombre.Text = doctor.nombre + " " + doctor.apellido;
+                    horariosRep.DataSource = negocio.leerHorario(doctor.idMedico);
+                    horariosRep.DataBind();
                 }
 
             }
@@ -81,6 +76,21 @@ namespace Presentacion
             ddlDias.Text = String.Empty;
             txtDuracion.Text = String.Empty;
             txtTHoras.Text = String.Empty;
+        }
+
+        protected void lbtnNHorario_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void lbtnEliminar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void lbtnModificar_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

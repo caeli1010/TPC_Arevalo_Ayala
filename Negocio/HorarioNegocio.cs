@@ -101,18 +101,30 @@ namespace Negocio
             }
         }
         
-        public void leerHorario(int idMedico)
+        public List<Horario> leerHorario(long idMedico)
         {
+            List<Horario> lista = new List<Horario>();
             AccesoDatos datos = new AccesoDatos();
             try
             {
+                datos.setearParametro("@id", idMedico);
                 datos.setearConsulta("select * from DIAS_Y_HORARIOS where IDMEDICO = idMedico  ");
                 datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    Horario aux = new Horario();
+                    aux.id= (long)datos.Lector["ID"];
+                    aux.horaEntrada = (byte)datos.Lector["HORAINICIO"];
+                    aux.hora = (int)datos.Lector["IDDIAS"];
+                    aux.duracion = (int)datos.Lector["DURACION"];
+                    lista.Add(aux);
 
+                }
+                return lista;
             }
-            catch (global::System.Exception)
+            catch (global::System.Exception ex)
             {
-                throw;
+                throw ex;
             }
 
             finally
