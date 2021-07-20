@@ -47,6 +47,7 @@ namespace Negocio
                         (string)datos.Lector["ESPECIAL"]
                     );
                     aux.idTurnos = (long)datos.Lector["IDTURNO"];
+                    aux.idPaciente = (long)datos.Lector["IDPACIENTE"];
                     aux.fechaHora = (DateTime)datos.Lector["FECHAHORA"];
                     aux.estado = (byte)datos.Lector["IDESTADO"];
                     lista.Add(aux);
