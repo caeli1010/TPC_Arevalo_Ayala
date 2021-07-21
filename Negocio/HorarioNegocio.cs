@@ -54,7 +54,7 @@ namespace Negocio
                 datos.setearParametro("@horarioInicio", nuevo.horaEntrada);
                 datos.setearParametro("@estado", 1);
                 datos.setearConsulta(@"insert into DIAS_Y_HORARIOS (DURACION, IDMEDICO, HORAS, IDDIAS,
-                                        HORARIOINICIO, ESTADO) 
+                                        HORAINICIO, ESTADO) 
                                         VALUES(@duracion, @idMedico, @horas, @idDias, @horarioInicio, 
                                         @estado)");
                 datos.ejecutarAccion();

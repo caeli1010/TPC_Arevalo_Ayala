@@ -22,17 +22,16 @@ namespace Presentacion
             MedicoNegocio profesionales = new MedicoNegocio();
             try
             {
-                if (Request.QueryString["idM"] != null)
-                {
-                    medico = profesionales.listar();
-                    doctor = (Medico)medico.Find(X => X.idMedico.ToString() == Request.QueryString["idM"]);
+                    if (Request.QueryString["idM"] != null)
+                    {
+                        medico = profesionales.listar();
+                        doctor = (Medico)medico.Find(X => X.idMedico.ToString() == Request.QueryString["idM"]);
 
-                    lblMensaje.Visible = false;
-                    lblNombre.Text = doctor.nombre + " " + doctor.apellido;
-                    horariosRep.DataSource = negocio.leerHorario(doctor.idMedico);
-                    horariosRep.DataBind();
-                }
-
+                        lblMensaje.Visible = false;
+                        lblNombre.Text = doctor.nombre + " " + doctor.apellido;
+                        horariosRep.DataSource = negocio.leerHorario(doctor.idMedico);
+                        horariosRep.DataBind();
+                     }
             }
             catch (Exception ex)
             {
@@ -87,12 +86,13 @@ namespace Presentacion
         {
             try
             {
-                var id = ((Button)sender).CommandArgument;
+                LinkButton btn = (LinkButton)(sender);
+
                 HorarioNegocio negocio = new HorarioNegocio();
                 horaXDias = negocio.listar();
-                horario = horaXDias.Find(x => x.id.ToString() == id);
+                horario = horaXDias.Find(x => x.id.ToString() == btn.CommandArgument.ToString());
 
-                negocio.eliminar(horario.id);
+                negocio.eliminar((int)horario.id);
 
                 horaXDias.Remove(horario);
                 horariosRep.DataSource = horaXDias;

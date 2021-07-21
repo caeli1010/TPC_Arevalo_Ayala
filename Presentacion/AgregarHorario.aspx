@@ -69,7 +69,7 @@
                                     <td><%#(((byte)Eval("horaEntrada"))+((short)Eval("hora")))%></td>&nbsp;
                                     <td>
                                         <asp:LinkButton runat="server" ID="lbtnModificar" Visible="true"
-                                    CssClass="btn btn-sm btn-outline-secondary" OnClick="lbtnModificar_Click"
+                                            CssClass="btn btn-sm btn-outline-secondary" OnClick="lbtnModificar_Click"
                                             CommandArgument='<%#Eval("id")%>'>
                                     <i title="Modificar datos" class="fa fa-edit display-5"></i>&nbsp;</asp:LinkButton>
                                         <asp:LinkButton runat="server" ID="lbtnEliminar" Visible="true"
@@ -104,11 +104,13 @@
                     <div class="form-group col-md-12">
                         <asp:Label ID="lblDias" Visible="false" runat="server" />
                         <asp:DropDownList ID="ddlDias" CssClass="form-control"  Visible="false" runat="server">
+                            <asp:ListItem Value="0" Text="Seleccione un dato" />
                             <asp:ListItem Value="1" Text="Lunes" />
                             <asp:ListItem Value="2" Text="Martes" />
                             <asp:ListItem Value="3" Text="Miercoles" />
                             <asp:ListItem Value="4" Text="Jueves" />
                             <asp:ListItem Value="5" Text="Viernes" />
+                            <asp:ListItem Value="6" Text="Sabado" />
                         </asp:DropDownList>
                     </div>
                     <div class="form-group col-md-12">
