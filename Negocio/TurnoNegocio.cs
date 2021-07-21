@@ -15,26 +15,25 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta(@"SELECT
-                        T.IDTURNO,
-                        T.IDMEDICO, 
-                        T.IDPACIENTE, 
-                        T.FECHAHORA,
-                        T.IDESTADO,
-                        P.NOMBRE NOMBREP, 
-                        P.APELLIDO APELLIDOP, 
-                        P.IDOBRASOCIAL,
-                        P.NROCARNET, 
-                        M.APELLIDO, 
-                        M.NOMBRE, 
-                        M.MATRICULA,
-						E.NOMBRE ESPECIAL
-                        FROM TURNOS AS T
-                        INNER JOIN PACIENTES AS  P ON P.IDPACIENTE = T.IDPACIENTE
-                        INNER JOIN MEDICOS AS M ON M.IDMEDICO = T.IDMEDICO
-                        INNER JOIN ESPECIALIDAD_X_MEDICO  AS EXM ON EXM.IDMEDICO = M.IDMEDICO
-                        INNER JOIN ESPECIALIDADES  AS E ON E.IDESPECIALIDAD = EXM.IDESPECIALIDAD
-                        WHERE  T.IDESTADO = 1");
+                datos.setearConsulta(@"SELECT 
+T.IDTURNO,
+T.IDMEDICO, 
+T.IDPACIENTE, 
+T.FECHAHORA,
+T.IDESTADO,
+P.NOMBRE NOMBREP, 
+P.APELLIDO APELLIDOP, 
+P.IDOBRASOCIAL,
+P.NROCARNET, 
+M.APELLIDO, 
+M.NOMBRE, 
+M.MATRICULA, (SELECT  E.NOMBRE FROM ESPECIALIDADES E 
+INNER JOIN ESPECIALIDAD_X_MEDICO  AS EXM ON EXM.IDESPECIALIDAD = E.IDESPECIALIDAD WHERE EXM.ID = T.IDESP_X_MED ) AS
+ESPECIAL
+FROM TURNOS AS T
+INNER JOIN PACIENTES AS  P ON P.IDPACIENTE = T.IDPACIENTE
+INNER JOIN MEDICOS AS M ON M.IDMEDICO = T.IDMEDICO
+WHERE  T.IDESTADO = 1");
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
