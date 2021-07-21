@@ -111,7 +111,7 @@
                           </button>
                               <div class="dropdown-menu" aria-labelledby="dropdownMenu">
                                   <a class="dropdown-item" runat="server" href="~/AltaMedico">Medicos</a>
-                                  <a class="dropdown-item" runat="server" href="~/AltaPacientes">Pacientes</a>
+                                  <a class="dropdown-item" runat="server" href="~/AltaPaciente">Pacientes</a>
                                   <a class="dropdown-item" runat="server" href="~/AltaUsuarios">Usuarios</a>
                               </div>
                           </div>
