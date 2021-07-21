@@ -5,8 +5,8 @@
   <div class="carousel-inner">
     <div class="carousel-item active" id="fondo">
         <div class="carousel-caption d-none d-md-block">
-    <h2>Turnos On line</h2>
-    <p>Gestión de turnos web para consultorios médicos</p>
+    <h1>Turnos On line</h1>
+    <p class="display-4">Gestión de turnos web para consultorios médicos</p>
   </div>
     </div>
   </div>
@@ -20,8 +20,8 @@
     </div>--%>
 
     <div class="row">
-        <div class="col-md-4">
-            <h2>TURNOS</h2>
+        <div class="col-md-4 text-center text-uppercase">
+            <h3>TURNOS</h3>
             <p>
                 Aquí podrá ver el listado completo de los turnos pendientes.
             </p>
@@ -29,8 +29,8 @@
                 <a class="btn btn-outline-info" href="ListarTurnos.aspx"> Ir al Listado </a>
             </p>
         </div>
-        <div class="col-md-4">
-            <h2>PACIENTES</h2>
+        <div class="col-md-4 text-center text-uppercase">
+            <h3>PACIENTES</h3>
             <p>
                 Aquí podrá ver el listado completo de los pacientes inscriptos.
             </p>
@@ -38,8 +38,8 @@
                 <a class="btn btn-outline-info" href="ListarPacientes.aspx">Ir al Listado  &raquo;</a>
             </p>
         </div>
-        <div class="col-md-4">
-            <h2>MEDICOS</h2>
+        <div class="col-md-4 text-center text-uppercase">
+            <h3>MEDICOS</h3>
             <p>
                 Aquí podrá ver el listado completo de los medicos bajo convenio
             </p>
@@ -51,7 +51,7 @@
     <div class="row">
         <%--<div id="donut-chart"></div>--%>
     </div>
-    <div class="row">
+    <div class="row" style="display: none;">
         <div class="alert alert-danger col-md-6">
             <h5>Eli</h5>
             <asp:CheckBox Text="abm 1 especialidad" Checked="true" runat="server" />
