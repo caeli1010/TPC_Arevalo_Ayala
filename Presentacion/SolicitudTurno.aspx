@@ -1,7 +1,15 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" EnableEventValidation="true" CodeBehind="SolicitudTurno.aspx.cs" Inherits="Presentacion.SolicitudTurno" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+      <script>
 
+        function bajar() {
+
+            alert('HOla Mundo');
+
+        }
+
+    </script>
     <hr class="py-1" />
      <h3 class="text-center">Solicitud de Turnos</h3>
     <div class="row alert alert-secondary col-md-8 offset-md-2">
@@ -29,7 +37,9 @@
                     </li>
                 </ul>
                 <div class="card-body">
-                    <a href='ModificarPaciente.aspx?ipc=<%#Eval("idPaciente")%>' class="btn btn-sm btn-outline-secondary" title="Modificar datos de este Paciente" >
+                    <a href='ModificarPaciente.aspx?ipc=<%#Eval("idPaciente")%>' 
+                        class="btn btn-sm btn-outline-secondary" 
+                        title="Modificar datos de este Paciente" >
                                        Modificar Datos <i class="fa fa-user-edit"  ></i>
                                     </a>
                     <%--<asp:Button Text="Modificar Datos" 
@@ -47,38 +57,103 @@
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <label for="espec">Especialidad</label>
-                        <asp:DropDownList ID="ddlEspecialidad" 
+                        <asp:DropDownList 
+                            ID="ddlEspecialidad" 
                             OnSelectedIndexChanged="ddlEspecialidad_SelectedIndexChanged"
                             AutoPostBack="true"
-                            CssClass="form-control" runat="server">
+                            CssClass="form-control" 
+                            runat="server">
                         </asp:DropDownList>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group col-md-12">
-                        <label for="profesional">Profesional</label>
-                        <asp:DropDownList ID="ddlProfesional" 
+                        <asp:Label Text="Profesional"  Visible="false"  ID="lblProfesional" runat="server" />
+                        <asp:DropDownList 
+                            ID="ddlProfesional" 
                             Visible="false"
+                              AutoPostBack="true"
                             OnSelectedIndexChanged="ddlProfesional_SelectedIndexChanged"
-                            CssClass="form-control" runat="server">
+                            CssClass="form-control" 
+                            runat="server">
+                        </asp:DropDownList>
+                    </div>
+                </div>
+                 <div class="form-row">
+                    <div class="form-group col-md-12">
+                      
+                        <asp:Label Text="Meses" ID="lblMese"  Visible="false" runat="server" />
+                        <asp:DropDownList
+                            Visible="false"
+                            ID="ddlMeses"
+                              AutoPostBack="true"
+                             CssClass="form-control"
+                            OnSelectedIndexChanged="ddlMeses_SelectedIndexChanged"
+                            runat="server">
+                            <asp:ListItem Text="Seleccione un mes" />
+                            <asp:ListItem Text="Julio" />
+                            <asp:ListItem Text="Agosto" />
+                            <asp:ListItem Text="Septiembre" />
+                            <asp:ListItem Text="Octubre" />
+                            <asp:ListItem Text="Noviembre" />
+                            <asp:ListItem Text="Diciembre" />
+                        </asp:DropDownList>
+                    </div>
+                </div>
+                 <div class="form-row">
+                    <div class="form-group col-md-12">
+                        
+                        <asp:Label Text="Dias " ID="lblDias" Visible="false" runat="server" />
+                        <asp:DropDownList 
+                            runat="server"
+                              AutoPostBack="true"
+                            Visible="false"
+                            ID="ddlDiasSemana" 
+                            OnSelectedIndexChanged="ddlDiasSemana_SelectedIndexChanged"
+                            CssClass="form-control" 
+                            >
+                            <asp:ListItem Text="seleccione un dia " />
+                            <asp:ListItem Text="Lunes 26 " />
+                            <asp:ListItem Text="Miercoles 28" />
                         </asp:DropDownList>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-12">
-                        <label for="turnosDisp">Turnos disponibles </label>
-                        <asp:TextBox runat="server" ID="txtFecha"  CssClass="form-control" TextMode="Date" />
+                        
+                        <asp:Label Text="Horario" ID="lblHorario"  Visible="false"  runat="server" />
+                        <asp:DropDownList runat="server"
+                            Visible="false" 
+                              AutoPostBack="true"
+                            ID="ddlHorario"
+                            OnSelectedIndexChanged="ddlHorario_SelectedIndexChanged"
+                            CssClass="form-control" >
+                            <asp:ListItem Text="Seleccionar un horario" />
+                            <asp:ListItem Text="14:20" />
+                            <asp:ListItem Text="14:40" />
+                            <asp:ListItem Text="15:20" />
+                            <asp:ListItem Text="16:00" />
+                        </asp:DropDownList>
                     </div>
                 </div>
+               
                 <div class="row ">
                  <div class="text-right col-md-12 ">
                 <asp:Button 
+                    Visible="false" 
                     Text="Agendar Turno" 
                     CssClass="btn btn-outline-info"
-                    ID="btnAgendar" 
-                    Visible="true" 
-                    runat="server" />
+                    ID="btnAgendar" OnClick="btnAgendar_Click"
+                    
+                    runat="server"  />
+                     <asp:Button 
+                    Visible="false" 
+                    Text="Volver" 
+                    CssClass="btn btn-outline-info"
+                    ID="btnVolver" OnClick="btnVolver_Click"
+                    
+                    runat="server"  />
                 </div>
                 </div>
             </form>

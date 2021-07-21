@@ -15,6 +15,7 @@ namespace Presentacion
         public List<Medico> listMedicosConEspe;
         public List<Paciente> listPacientes;
         private Paciente paciente;
+        private long idt;
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -44,6 +45,9 @@ namespace Presentacion
                         ddlEspecialidad.Items.Insert(0, new ListItem("Especialidades", "1"));
 
                     }
+                    if (!string.IsNullOrEmpty(Request.QueryString["rep"])) {
+                        idt = long.Parse(Request.QueryString["rep"]);
+                    }
                 }
                 else
                 {
@@ -66,7 +70,9 @@ namespace Presentacion
 
         protected void ddlProfesional_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            
+            ddlMeses.Visible = true;
+            lblMese.Visible = true;
         }
 
         protected void ddlEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
@@ -77,6 +83,7 @@ namespace Presentacion
                 MedicoNegocio medNegocio = new MedicoNegocio();
                 listMedicosConEspe = medNegocio.leerMedicoXEspecialidad(idEsp);
                 ddlProfesional.Visible = true;
+                lblProfesional.Visible = true;
                 //long idEspecialidad = long.Parse(ddlEspecialidad.SelectedValue);
 
 
@@ -92,6 +99,47 @@ namespace Presentacion
                 Response.Redirect("Error.aspx");
             }
 
+        }
+
+
+
+        protected void ddlDiasSemana_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ddlHorario.Visible = true;
+            lblHorario.Visible = true;
+        }
+
+
+        protected void ddlMeses_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+            ddlDiasSemana.Visible = true;
+            lblDias.Visible = true;
+
+        }
+
+        protected void ddlHorario_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnAgendar.Visible = true;
+
+        }
+
+        protected void btnAgendar_Click(object sender, EventArgs e)
+        {
+            ClientScript.RegisterStartupScript(type: GetType(),
+               "K", "<script>swal('Exito!', " +
+               "'¡Correcto se ha agendado el turno y el paciente recibirá un mensaje al correo: "+paciente.mail.ToString()+"  ', " +
+               "'success'); " +
+               " console.log('hola mundo'); " +
+               "</script>");
+            btnAgendar.Visible = false;
+            btnVolver.Visible = true;
+        }
+
+        protected void btnVolver_Click(object sender, EventArgs e)
+        {
+
+            Response.Redirect("ListarPacientes.aspx");
         }
     }
 }
