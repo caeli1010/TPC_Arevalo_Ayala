@@ -15,6 +15,15 @@ namespace Presentacion
     {
 
         /// <summary>
+        /// Control lblMensaje.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMensaje;
+
+        /// <summary>
         /// Control lblNombre.
         /// </summary>
         /// <remarks>
@@ -33,13 +42,13 @@ namespace Presentacion
         protected global::System.Web.UI.WebControls.Repeater horariosRep;
 
         /// <summary>
-        /// Control lbtnNHorario.
+        /// Control lbtnAgregar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnNHorario;
+        protected global::System.Web.UI.WebControls.LinkButton lbtnAgregar;
 
         /// <summary>
         /// Control lblDias.
@@ -94,6 +103,24 @@ namespace Presentacion
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtDuracion;
+
+        /// <summary>
+        /// Control lblIngreso.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblIngreso;
+
+        /// <summary>
+        /// Control txtIngreso.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtIngreso;
 
         /// <summary>
         /// Control btnAgregar.

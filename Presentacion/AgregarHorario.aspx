@@ -33,8 +33,14 @@
     </script>
 
     <div class="offset-md-2 col-md-10">
-    <hr class="py-1" />
-    <h3 class="text-center">Agregar Horarios</h3>
+    <h3 class="text-center">Horarios</h3>
+         <% if (lblMensaje.Visible == true)
+        { %>
+    <div class="alert alert-success text-center">
+
+        <asp:Label Visible="false" runat="server" ID="lblMensaje" />
+    </div>
+    <% } %>
     <div class="row alert alert-secondary">
         <div class="col-md-6">
             <div class="card">
@@ -72,8 +78,8 @@
                           </asp:Repeater>
                        </tbody>
                     </table>
-                    <asp:LinkButton runat="server" ID="lbtnNHorario" Visible="true"
-                                    CssClass="btn btn-default btn-xs" OnClick="lbtnNHorario_Click">
+                    <asp:LinkButton runat="server" ID="lbtnAgregar" Visible="true"
+                                    CssClass="btn btn-default btn-xs" OnClick="lbtnAgregar_Click">
                                     <i class="fa fa-plus-circle"></i>&nbsp;</asp:LinkButton>
                     <p class="card-text"<span class=" font-weight-bold ">
                        </span></p>
@@ -108,6 +114,11 @@
                     <div class="form-group col-md-12">
                         <asp:Label ID="lblDuracion" Text="Duracion de turno"  Visible="false" runat="server" />
                         <asp:TextBox ID="txtDuracion" CssClass="form-control" runat="server"
+                           Visible="false" TextMode="Number" />
+                    </div>
+                    <div class="form-group col-md-12">
+                        <asp:Label ID="lblIngreso" Text="Hora de ingreso"  Visible="false" runat="server" />
+                        <asp:TextBox ID="txtIngreso" CssClass="form-control" runat="server"
                            Visible="false" TextMode="Number" />
                     </div>
                 </div>

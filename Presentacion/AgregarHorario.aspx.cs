@@ -26,7 +26,7 @@ namespace Presentacion
                     medico = profesionales.listar();
                     doctor = (Medico)medico.Find(X => X.idMedico.ToString() == Request.QueryString["idM"]);
 
-
+                    lblMensaje.Visible = false;
                     lblNombre.Text = doctor.nombre + " " + doctor.apellido;
                     horariosRep.DataSource = negocio.leerHorario(doctor.idMedico);
                     horariosRep.DataBind();
@@ -49,18 +49,28 @@ namespace Presentacion
                 string mensaje = string.Empty;
                 if (string.IsNullOrEmpty(txtDuracion.Text)) mensaje += "| La duracion de trabajo es obligatorio,";
                 if (string.IsNullOrEmpty(txtTHoras.Text)) mensaje += "| El tiempo por turno es obligatorio,";
+                if (string.IsNullOrEmpty(txtIngreso.Text)) mensaje += "| El horario de ingreso es obligatorio,";
                
                 //lanzamos la excepcion solo en caso de que haya algun camp
                 if (!string.IsNullOrEmpty(mensaje)) throw new Exception(mensaje.TrimEnd(','));
 
                 HorarioNegocio negocio = new HorarioNegocio();
                 horario = new Horario();
-                horario.idDias = (Byte)ddlDias.SelectedIndex;
-                horario.hora = Int16.Parse(txtTHoras.Text);
-                horario.duracion = Byte.Parse(txtDuracion.Text);
+                horario.idDias = (byte)ddlDias.SelectedIndex;
+                horario.hora = short.Parse(txtTHoras.Text);
+                horario.duracion = byte.Parse(txtDuracion.Text);
+                horario.horaEntrada = byte.Parse(txtIngreso.Text);
                 horario.medico = (Medico)doctor;
 
                 negocio.agregar(horario);
+
+                lblMensaje.Text = "El proceso de agregar el horario se ha realizado correctamente!";
+                lblMensaje.CssClass = "alert alert-success text-center";
+                lblMensaje.Visible = true;
+
+                ClientScript.RegisterStartupScript(type: GetType(), "K", "<script>" +
+                "setTimeout(function() {window.location = 'ListarMedicos.aspx';}, 5000); " +
+                 "</script>");
             }
             catch (Exception ex)
             {
@@ -72,13 +82,6 @@ namespace Presentacion
             }
         }
 
-        protected void lbtnNHorario_Click(object sender, EventArgs e)
-        {
-            ddlDias.Text = String.Empty;
-            txtDuracion.Text = String.Empty;
-            txtTHoras.Text = String.Empty;
-        }
-
         protected void lbtnEliminar_Click(object sender, EventArgs e)
         {
 
@@ -87,6 +90,18 @@ namespace Presentacion
         protected void lbtnModificar_Click(object sender, EventArgs e)
         {
 
+        }
+
+        protected void lbtnAgregar_Click(object sender, EventArgs e)
+        {
+            ddlDias.Visible = true;
+            lblDias.Visible = true;
+            lblDuracion.Visible = true;
+            lblTotalHoras.Visible = true;
+            lblIngreso.Visible = true;
+            txtDuracion.Visible = true;
+            txtIngreso.Visible = true;
+            txtTHoras.Visible = true;
         }
     }
 }
