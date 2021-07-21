@@ -100,7 +100,30 @@ namespace Negocio
                 datos = null;
             }
         }
-        
+        public void eliminar(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearParametro("@id", id);
+                datos.setearConsulta(@"UPDATE DIAS_Y_HORARIOS SET ESTADO = 0 WHERE ID = @id");
+
+                datos.ejecutarAccion();
+
+            }
+            catch (global::System.Exception ex)
+            {
+                throw ex;
+            }
+
+            finally
+            {
+                datos.cerrarConexion();
+                datos = null;
+            }
+
+        }
+
         public List<Horario> leerHorario(long id)
         {
             List<Horario> lista = new List<Horario>();

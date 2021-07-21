@@ -13,6 +13,7 @@ namespace Presentacion
     {
         public List<Horario> lista;
         public List<Medico> medico;
+        public List<Horario> horaXDias;
         private Medico doctor;
         private Horario horario;
         protected void Page_Load(object sender, EventArgs e)
@@ -63,10 +64,10 @@ namespace Presentacion
                 horario.medico = (Medico)doctor;
 
                 negocio.agregar(horario);
-
                 lblMensaje.Text = "El proceso de agregar el horario se ha realizado correctamente!";
                 lblMensaje.CssClass = "alert alert-success text-center";
                 lblMensaje.Visible = true;
+                btnAgregar.Visible = false;
 
                 ClientScript.RegisterStartupScript(type: GetType(), "K", "<script>" +
                 "setTimeout(function() {window.location = 'ListarMedicos.aspx';}, 5000); " +
@@ -84,6 +85,16 @@ namespace Presentacion
 
         protected void lbtnEliminar_Click(object sender, EventArgs e)
         {
+            var id = ((Button)sender).CommandArgument;
+            HorarioNegocio negocio = new HorarioNegocio();
+            horaXDias = negocio.listar();
+            horario = horaXDias.Find(x => x.id.ToString() == id);
+
+            negocio.eliminar(horario.id);
+
+            horaXDias.Remove(horario);
+            horariosRep.DataSource = horaXDias;
+            horariosRep.DataBind();
 
         }
 
@@ -102,6 +113,7 @@ namespace Presentacion
             txtDuracion.Visible = true;
             txtIngreso.Visible = true;
             txtTHoras.Visible = true;
+            btnAgregar.Visible = true;
         }
     }
 }
