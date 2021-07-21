@@ -27,7 +27,6 @@ namespace Negocio
                     aux.hora = (short)datos.Lector["HORAS"];
                     aux.idDias = (int)datos.Lector["IDDIAS"];
                     aux.horaEntrada = (byte)datos.Lector["HORAINICIO"];
-                    aux.especXMed = (int)datos.Lector["IDESP_X_MED"];
 
                     lista.Add(aux);
 
@@ -53,12 +52,11 @@ namespace Negocio
                 datos.setearParametro("@horas", nuevo.hora);
                 datos.setearParametro("@idDias", nuevo.idDias);
                 datos.setearParametro("@horarioInicio", nuevo.horaEntrada);
-                datos.setearParametro("@idEspXMed", nuevo.especXMed);
                 datos.setearParametro("@estado", 1);
                 datos.setearConsulta(@"insert into DIAS_Y_HORARIOS (DURACION, IDMEDICO, HORAS, IDDIAS,
-                                        HORARIOINICIO, IDESP_X_MED, ESTADO) 
+                                        HORARIOINICIO, ESTADO) 
                                         VALUES(@duracion, @idMedico, @horas, @idDias, @horarioInicio, 
-                                        @idEspXMed, @estado)");
+                                        @estado)");
                 datos.ejecutarAccion();
 
             }

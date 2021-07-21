@@ -160,5 +160,31 @@ namespace Negocio
             }
 
         }
+        //public int especialidadXMedico(long idM, long idE)
+        //{
+        //    int idEspXMedico;
+        //    AccesoDatos datos = new AccesoDatos();
+        //    try
+        //    {
+        //        datos.setearParametro("@idMedico", idM);
+        //        datos.setearParametro("@idEspecialidad", idE);
+        //        datos.setearConsulta(@"SELECT ID FROM ESPECIALIDAD_X_MEDICO WHERE IDMEDICO = @idMedico AND 
+        //                                IDESPECIALIDAD = @idEspecialidad AND ES.ESTADO LIKE 1");
+        //        datos.ejecutarLectura();
+        //        idEspXMedico = (int)datos.Lector["ID"];
+        //        return idEspXMedico;
+
+        //    }
+        //    catch (global::System.Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+
+        //    finally
+        //    {
+        //        datos.cerrarConexion();
+        //    }
+
+        //}
     }
 }

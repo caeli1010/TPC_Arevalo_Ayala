@@ -13,7 +13,6 @@ namespace Dominio
         public Medico medico { get; set; }
         public short hora { get; set; }
         public byte horaEntrada { get; set; }
-        public int especXMed { get; set; }
         public byte duracion { get; set; }
         public Horario() { }
         public Horario(int idHorario)

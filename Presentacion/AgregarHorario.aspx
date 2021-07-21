@@ -48,7 +48,9 @@
                 <div class="card-body">
                     <hr />
                     <h5 class="card-title"> PROFESIONAL:  <asp:Label ID="lblNombre" runat="server" /> </h5>
-                    <table>
+                    <div class="col-md-12">
+
+                    <table class="table">
                          <thead class="thead-dark">
                               <tr>
                                 <th>Dias</th>&nbsp;
@@ -67,10 +69,12 @@
                                     <td><%#(((byte)Eval("horaEntrada"))+((short)Eval("hora")))%></td>&nbsp;
                                     <td>
                                         <asp:LinkButton runat="server" ID="lbtnModificar" Visible="true"
-                                    CssClass="btn btn-sm btn-outline-secondary" OnClick="lbtnModificar_Click">
+                                    CssClass="btn btn-sm btn-outline-secondary" OnClick="lbtnModificar_Click"
+                                            CommandArgument='<%#Eval("id")%>'>
                                     <i title="Modificar datos" class="fa fa-edit display-5"></i>&nbsp;</asp:LinkButton>
                                         <asp:LinkButton runat="server" ID="lbtnEliminar" Visible="true"
-                                    CssClass="btn btn-sm btn-outline-danger" OnClick="lbtnEliminar_Click">
+                                    CssClass="btn btn-sm btn-outline-danger" OnClick="lbtnEliminar_Click" 
+                                            CommandArgument='<%#Eval("id")%>'>
                                     <i title="Eliminar" class="fa fa-trash display-5"></i>&nbsp;</asp:LinkButton>
                                     </td>
                                  </tr>
@@ -78,9 +82,10 @@
                           </asp:Repeater>
                        </tbody>
                     </table>
+                    </div>
                     <asp:LinkButton runat="server" ID="lbtnAgregar" Visible="true"
-                                    CssClass="btn btn-default btn-xs" OnClick="lbtnAgregar_Click">
-                                    <i class="fa fa-plus-circle"></i>&nbsp;</asp:LinkButton>
+                                    CssClass="btn btn-outline-info btn-xs" OnClick="lbtnAgregar_Click">
+                                    <i class="fa fa-plus-circle display-4"></i>&nbsp;</asp:LinkButton>
                     <p class="card-text"<span class=" font-weight-bold ">
                        </span></p>
                 </div>
@@ -97,7 +102,7 @@
             <form>
                 <div class="form-row">
                     <div class="form-group col-md-12">
-                        <asp:Label ID="lblDias" Text="Dias"  Visible="false" runat="server" />
+                        <asp:Label ID="lblDias" Visible="false" runat="server" />
                         <asp:DropDownList ID="ddlDias" CssClass="form-control"  Visible="false" runat="server">
                             <asp:ListItem Value="1" Text="Lunes" />
                             <asp:ListItem Value="2" Text="Martes" />

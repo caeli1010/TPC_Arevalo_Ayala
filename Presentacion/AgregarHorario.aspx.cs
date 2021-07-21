@@ -85,28 +85,90 @@ namespace Presentacion
 
         protected void lbtnEliminar_Click(object sender, EventArgs e)
         {
-            var id = ((Button)sender).CommandArgument;
-            HorarioNegocio negocio = new HorarioNegocio();
-            horaXDias = negocio.listar();
-            horario = horaXDias.Find(x => x.id.ToString() == id);
+            try
+            {
+                var id = ((Button)sender).CommandArgument;
+                HorarioNegocio negocio = new HorarioNegocio();
+                horaXDias = negocio.listar();
+                horario = horaXDias.Find(x => x.id.ToString() == id);
 
-            negocio.eliminar(horario.id);
+                negocio.eliminar(horario.id);
 
-            horaXDias.Remove(horario);
-            horariosRep.DataSource = horaXDias;
-            horariosRep.DataBind();
+                horaXDias.Remove(horario);
+                horariosRep.DataSource = horaXDias;
+                horariosRep.DataBind();
+
+                lblMensaje.Text = "El proceso de eliminar el horario se ha realizado correctamente!";
+                lblMensaje.CssClass = "alert alert-success text-center";
+                lblMensaje.Visible = true;
+                btnAgregar.Visible = false;
+
+                ClientScript.RegisterStartupScript(type: GetType(), "K", "<script>" +
+                "setTimeout(function() {window.location = 'AgregarHorario.aspx?idM=" + doctor.idMedico + "';}, 5000); " +
+                 "</script>");
+            }
+            catch (Exception ex)
+            {
+                ClientScript.RegisterStartupScript(
+                       this.GetType(),
+                       "Mensaje",
+                       "<script> swal('Falla!', '" + ex.Message + "!', 'warning'); </script>"
+                   );
+            }
 
         }
 
         protected void lbtnModificar_Click(object sender, EventArgs e)
         {
+            var id = ((Button)sender).CommandArgument;
+            HorarioNegocio negocio = new HorarioNegocio();
+            horaXDias = negocio.listar();
+            horario = horaXDias.Find(x => x.id.ToString() == id);
+            lblDias.Visible = true;
+            lblDuracion.Visible = true;
+            lblTotalHoras.Visible = true;
+            lblIngreso.Visible = true;
+            btnAgregar.Visible = true;
 
+            var dia = String.Empty;
+            switch (horario.idDias)
+            {
+                case 1:
+                    dia = "Lunes";
+                    break;
+                case 2:
+                    dia = "Martes";
+                    break;
+                case 3:
+                    dia = "Miercoles";
+                    break;
+                case 4:
+                    dia = "Jueves";
+                    break;
+                case 5:
+                    dia = "Viernes";
+                    break;
+                case 6:
+                    dia = "Sabado";
+                    break;
+                default:
+                    break;
+            }
+
+            lblDias.Text = dia;
+            txtDuracion.Visible = true;
+            txtDuracion.Text = horario.duracion.ToString();
+            txtIngreso.Visible = true;
+            txtIngreso.Text = horario.horaEntrada.ToString();
+            txtTHoras.Visible = true;
+            txtTHoras.Text = horario.hora.ToString();
         }
 
         protected void lbtnAgregar_Click(object sender, EventArgs e)
         {
             ddlDias.Visible = true;
             lblDias.Visible = true;
+            lblDias.Text = "Dias";
             lblDuracion.Visible = true;
             lblTotalHoras.Visible = true;
             lblIngreso.Visible = true;
