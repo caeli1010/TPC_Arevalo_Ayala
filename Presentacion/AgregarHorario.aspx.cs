@@ -18,11 +18,12 @@ namespace Presentacion
         protected void Page_Load(object sender, EventArgs e)
         {
             HorarioNegocio negocio = new HorarioNegocio();
+            MedicoNegocio profesionales = new MedicoNegocio();
             try
             {
                 if (Request.QueryString["idM"] != null)
                 {
-                    medico = (List<Medico>)Session["medicos"];
+                    medico = profesionales.listar();
                     doctor = (Medico)medico.Find(X => X.idMedico.ToString() == Request.QueryString["idM"]);
 
 
@@ -54,9 +55,9 @@ namespace Presentacion
 
                 HorarioNegocio negocio = new HorarioNegocio();
                 horario = new Horario();
-                horario.idDias = (int)ddlDias.SelectedIndex;
-                horario.hora = int.Parse(txtTHoras.Text);
-                horario.duracion = int.Parse(txtDuracion.Text);
+                horario.idDias = (Byte)ddlDias.SelectedIndex;
+                horario.hora = Int16.Parse(txtTHoras.Text);
+                horario.duracion = Byte.Parse(txtDuracion.Text);
                 horario.medico = (Medico)doctor;
 
                 negocio.agregar(horario);
@@ -71,16 +72,11 @@ namespace Presentacion
             }
         }
 
-        protected void btnInsertarHorario_Click(object sender, EventArgs e)
+        protected void lbtnNHorario_Click(object sender, EventArgs e)
         {
             ddlDias.Text = String.Empty;
             txtDuracion.Text = String.Empty;
             txtTHoras.Text = String.Empty;
-        }
-
-        protected void lbtnNHorario_Click(object sender, EventArgs e)
-        {
-
         }
 
         protected void lbtnEliminar_Click(object sender, EventArgs e)

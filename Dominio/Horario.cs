@@ -8,15 +8,15 @@ namespace Dominio
 {
     public class Horario
     {
-        public long id { get; set; }
+        public int id { get; set; }
         public int idDias { get; set; }
         public Medico medico { get; set; }
-        public int hora { get; set; }
+        public short hora { get; set; }
         public byte horaEntrada { get; set; }
         public int especXMed { get; set; }
-        public int duracion { get; set; }
+        public byte duracion { get; set; }
         public Horario() { }
-        public Horario(long idHorario)
+        public Horario(int idHorario)
         {
             id = idHorario;
         }

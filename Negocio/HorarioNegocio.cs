@@ -21,10 +21,10 @@ namespace Negocio
                 while (datos.Lector.Read())
                 {
                     Horario aux = new Horario();
-                    aux.id = (long)datos.Lector["ID"];
-                    aux.duracion = (int)datos.Lector["DURACION"];
+                    aux.id = (int)datos.Lector["ID"];
+                    aux.duracion = (byte)datos.Lector["DURACION"];
                     aux.medico = new Medico((long)datos.Lector["IDMEDICO"]);
-                    aux.hora = (int)datos.Lector["HORAS"];
+                    aux.hora = (short)datos.Lector["HORAS"];
                     aux.idDias = (int)datos.Lector["IDDIAS"];
                     aux.horaEntrada = (byte)datos.Lector["HORAINICIO"];
                     aux.especXMed = (int)datos.Lector["IDESP_X_MED"];
@@ -101,22 +101,22 @@ namespace Negocio
             }
         }
         
-        public List<Horario> leerHorario(long idMedico)
+        public List<Horario> leerHorario(long id)
         {
             List<Horario> lista = new List<Horario>();
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearParametro("@id", idMedico);
-                datos.setearConsulta("select * from DIAS_Y_HORARIOS where IDMEDICO = idMedico  ");
+                datos.setearParametro("@id", id);
+                datos.setearConsulta(@"SELECT * FROM DIAS_Y_HORARIOS WHERE IDMEDICO = @id");
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
                     Horario aux = new Horario();
-                    aux.id= (long)datos.Lector["ID"];
+                    aux.id= (int)datos.Lector["ID"];
+                    aux.idDias = (byte)datos.Lector["IDDIAS"];
                     aux.horaEntrada = (byte)datos.Lector["HORAINICIO"];
-                    aux.hora = (int)datos.Lector["IDDIAS"];
-                    aux.duracion = (int)datos.Lector["DURACION"];
+                    aux.hora = (short)datos.Lector["HORAS"];
                     lista.Add(aux);
 
                 }

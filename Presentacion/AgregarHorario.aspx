@@ -1,7 +1,38 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AgregarHorario.aspx.cs" Inherits="Presentacion.AgregarHorario" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="offset-md-2 col-md-8">
+    <script runat=server>
+            protected String GetStatus(string idDia) {
+                var dia = String.Empty;
+                switch (idDia)
+                {
+                    case "1":
+                        dia = "Lun";
+                        break;
+                    case "2":
+                        dia = "Mar";
+                        break;
+                    case "3":
+                        dia = "Mie";
+                        break;
+                    case "4":
+                        dia = "Jue";
+                        break;
+                    case "5":
+                        dia = "Vie";
+                        break;
+                    case "6":
+                        dia = "Sab";
+                        break;
+                    default:
+                        break;
+                }
+
+                return dia;
+            } 
+    </script>
+
+    <div class="offset-md-2 col-md-10">
     <hr class="py-1" />
     <h3 class="text-center">Agregar Horarios</h3>
     <div class="row alert alert-secondary">
@@ -12,29 +43,34 @@
                     <hr />
                     <h5 class="card-title"> PROFESIONAL:  <asp:Label ID="lblNombre" runat="server" /> </h5>
                     <table>
-                      <tr>
-                        <th>Dias</th>
-                        <th>Desde</th>
-                        <th>Hasta</th>
-                        <th>Acciones</th>
-                      </tr>
-                      <tr>
+                         <thead class="thead-dark">
+                              <tr>
+                                <th>Dias</th>&nbsp;
+                                <th>Desde</th>&nbsp;
+                                <th>Hasta</th>&nbsp;
+                                <th>Acciones</th>&nbsp;
+                              </tr>
+                             </thead>
+                         <tbody>
                           <asp:Repeater runat="server" ID="horariosRep">
                               <ItemTemplate>   
-                                    <td><%#Eval("idDias")%></td>
-                                    <td><%#Eval("horaEntrada")%></td>
-                                    <td><%#Eval("horaEntrada + hora")%></td>
+                                <tr>
+                                    
+                                    <td><%#GetStatus(Eval("idDias").ToString()) %> </td>&nbsp;
+                                    <td><%#Eval("horaEntrada")%></td>&nbsp;
+                                    <td><%#(((byte)Eval("horaEntrada"))+((short)Eval("hora")))%></td>&nbsp;
                                     <td>
                                         <asp:LinkButton runat="server" ID="lbtnModificar" Visible="true"
-                                    CssClass="btn btn-default btn-xs" OnClick="lbtnModificar_Click">
-                                    <i class="fa fa-edit-circle"></i>&nbsp;</asp:LinkButton>
+                                    CssClass="btn btn-sm btn-outline-secondary" OnClick="lbtnModificar_Click">
+                                    <i title="Modificar datos" class="fa fa-edit display-5"></i>&nbsp;</asp:LinkButton>
                                         <asp:LinkButton runat="server" ID="lbtnEliminar" Visible="true"
-                                    CssClass="btn btn-default btn-xs" OnClick="lbtnEliminar_Click">
-                                    <i class="fa fa-trash-circle"></i>&nbsp;</asp:LinkButton>
+                                    CssClass="btn btn-sm btn-outline-danger" OnClick="lbtnEliminar_Click">
+                                    <i title="Eliminar" class="fa fa-trash display-5"></i>&nbsp;</asp:LinkButton>
                                     </td>
+                                 </tr>
                               </ItemTemplate>
                           </asp:Repeater>
-                      </tr>
+                       </tbody>
                     </table>
                     <asp:LinkButton runat="server" ID="lbtnNHorario" Visible="true"
                                     CssClass="btn btn-default btn-xs" OnClick="lbtnNHorario_Click">
@@ -55,8 +91,8 @@
             <form>
                 <div class="form-row">
                     <div class="form-group col-md-12">
-                        <asp:Label ID="lblDias" Text="Dias" runat="server" />
-                        <asp:DropDownList ID="ddlDias" CssClass="form-control" runat="server">
+                        <asp:Label ID="lblDias" Text="Dias"  Visible="false" runat="server" />
+                        <asp:DropDownList ID="ddlDias" CssClass="form-control"  Visible="false" runat="server">
                             <asp:ListItem Value="1" Text="Lunes" />
                             <asp:ListItem Value="2" Text="Martes" />
                             <asp:ListItem Value="3" Text="Miercoles" />
@@ -65,23 +101,21 @@
                         </asp:DropDownList>
                     </div>
                     <div class="form-group col-md-12">
-                        <asp:Label ID="lblTotalHoras" Text="Total de horas" runat="server" />
+                        <asp:Label ID="lblTotalHoras" Text="Total de horas"  Visible="false" runat="server" />
                         <asp:TextBox ID="txtTHoras" CssClass="form-control" runat="server"
-                            TextMode="Number" MaxLength="2" ValidationGroup="0-12" />
+                             Visible="false" TextMode="Number" MaxLength="2" ValidationGroup="0-12" />
                     </div>
                     <div class="form-group col-md-12">
-                        <asp:Label ID="lblDuracion" Text="Duracion de turno" runat="server" />
+                        <asp:Label ID="lblDuracion" Text="Duracion de turno"  Visible="false" runat="server" />
                         <asp:TextBox ID="txtDuracion" CssClass="form-control" runat="server"
-                            TextMode="Number" />
+                           Visible="false" TextMode="Number" />
                     </div>
                 </div>
 
                 <div class="form-group col-md-12 text-right">
 
                     <asp:Button Text="Guardar" OnClick="btnAgregar_Click" CssClass="card-link btn-sm btn-outline-success"
-                        ID="btnAgregar" runat="server" />
-                    <asp:Button ID="btnInsertarHorario" OnClick="btnInsertarHorario_Click"
-                        Text="Agregar horarios" CssClass="card-link btn-sm btn-outline-info " runat="server" />
+                        Visible="false" ID="btnAgregar" runat="server" />
                 </div>
             </form>
         </div>
