@@ -51,7 +51,7 @@
                     <div class="col-md-12">
 
                     <table class="table">
-                         <thead class="thead-dark">
+                         <thead class="thead-light">
                               <tr>
                                 <th>Dias</th>&nbsp;
                                 <th>Desde</th>&nbsp;
@@ -83,15 +83,24 @@
                        </tbody>
                     </table>
                     </div>
-                    <asp:LinkButton runat="server" ID="lbtnAgregar" Visible="true"
-                                    CssClass="btn btn-outline-info btn-xs" OnClick="lbtnAgregar_Click">
-                                    <i class="fa fa-plus-circle display-4"></i>&nbsp;</asp:LinkButton>
                     <p class="card-text"<span class=" font-weight-bold ">
                        </span></p>
                 </div>
                 <div class="card-body">
-
-                    <a class="btn btn-sm btn-outline-info" href='ListarMedicos.aspx'>Atras</a>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="text-left">
+                                <a class="btn btn-sm btn-outline-info" href='ListarMedicos.aspx'>Atras</a>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="text-right">
+                                <asp:LinkButton runat="server" ID="lbtnAgregar" Visible="true"
+                                                CssClass="btn btn-outline-info btn-xs" OnClick="lbtnAgregar_Click">
+                                                <i class="fa fa-plus-circle display-5"></i>&nbsp;</asp:LinkButton>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
