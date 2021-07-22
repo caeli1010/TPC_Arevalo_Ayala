@@ -23,14 +23,15 @@
                     <div class="form-group">
                         <label for="contrasenia">Password</label>
                         <input type="password" class="form-control" id="contrasenia" name="contrasenia" />
+
                     </div>
                     <div class="form-group form-check">
                         <input type="checkbox" class="form-check-input" id="check" aria-describedby="validacion" name="check" />
                         <label class="form-check-label" for="check"></label>
                         <small id="validacion" class="form-text text-muted">Recordar usuario</small>
                     </div>
-                    <button type="submit" class="btn btn-primary">Iniciar sesión</button>
-
+                    <asp:Button ID="btnLogin" runat="server" OnClick="btnLogin_Click" />
+                   
                 </div>
             </form>
         </div>

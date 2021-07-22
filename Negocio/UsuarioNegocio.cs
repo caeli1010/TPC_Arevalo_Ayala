@@ -10,7 +10,7 @@ using Dominio;
 namespace Negocio
 {
     public class UsuarioNegocio
-    {
+    {   
         public List<Usuario> listar()
         {
             List<Usuario> lista = new List<Usuario>();
@@ -125,13 +125,27 @@ namespace Negocio
             }
 
         }
-        public void leerUsuario(string dni)
+        public Usuario leerUsuario(string user, string pass)
         {
+            Usuario usuario = new Usuario();
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("select * from USUARIOS where DNI = " + dni + "");
+                datos.setearConsulta("select * from USUARIOS where USERNAME = @usuario AND PASSWORD=@password");
+                datos.setearParametro("@usuario", user);
+                datos.setearParametro("@password", pass);
                 datos.ejecutarLectura();
+
+
+                usuario.idRol = (int)datos.Lector["IDROL"];
+                usuario.idUsuario = (int)datos.Lector["IDUSUARIO"];
+                usuario.dni = (string)datos.Lector["DNI"];
+                usuario.username = (string)datos.Lector["USERNAME"];
+                usuario.password = (string)datos.Lector["PASSWORD"];
+                usuario.estado = (bool)datos.Lector["ESTADO"];
+                usuario.idTipoDocumento = (byte)datos.Lector["IDTIPODOC"];
+                usuario.imagen = (string)datos.Lector["IMAGEN"];
+                return usuario;
 
             }
             catch (global::System.Exception)
