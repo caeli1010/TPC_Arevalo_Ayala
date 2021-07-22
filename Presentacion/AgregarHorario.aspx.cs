@@ -115,10 +115,10 @@ namespace Presentacion
 
         protected void lbtnModificar_Click(object sender, EventArgs e)
         {
-            var id = ((Button)sender).CommandArgument;
+            string argument = ((LinkButton)sender).CommandArgument;
             HorarioNegocio negocio = new HorarioNegocio();
             horaXDias = negocio.listar();
-            horario = horaXDias.Find(x => x.id.ToString() == id.ToString());
+            horario = horaXDias.Find(x => x.id.ToString() == argument.ToString());
             lblDias.Visible = true;
             lblDuracion.Visible = true;
             lblTotalHoras.Visible = true;
@@ -150,7 +150,7 @@ namespace Presentacion
                     break;
             }
 
-            lblDias.Text = dia;
+            lblDias.Text ="Dia:   "+ dia;
             txtDuracion.Visible = true;
             txtDuracion.Text = horario.duracion.ToString();
             txtIngreso.Visible = true;
@@ -164,13 +164,30 @@ namespace Presentacion
             ddlDias.Visible = true;
             lblDias.Visible = true;
             lblDias.Text = "Dias";
-            lblDuracion.Visible = true;
+        }
+
+        protected void ddlDias_SelectedIndexChanged(object sender, EventArgs e)
+        {
             lblTotalHoras.Visible = true;
-            lblIngreso.Visible = true;
-            txtDuracion.Visible = true;
-            txtIngreso.Visible = true;
             txtTHoras.Visible = true;
+        }
+        protected void txtTHoras_TextChanged(object sender, EventArgs e)
+        {
+            lblDuracion.Visible = true;
+            txtDuracion.Visible = true;
+        }
+
+        protected void txtDuracion_TextChanged(object sender, EventArgs e)
+        {
+            lblIngreso.Visible = true;
+            txtIngreso.Visible = true;
+           
+        }
+
+        protected void txtIngreso_TextChanged(object sender, EventArgs e)
+        {
             btnAgregar.Visible = true;
         }
+
     }
 }

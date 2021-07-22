@@ -103,8 +103,9 @@
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <asp:Label ID="lblDias" Visible="false" runat="server" />
-                        <asp:DropDownList ID="ddlDias" CssClass="form-control"  Visible="false" runat="server">
-                            <asp:ListItem Value="0" Text="Seleccione un dato" />
+                        <asp:DropDownList ID="ddlDias" CssClass="form-control"  Visible="false" 
+                            runat="server" OnSelectedIndexChanged="ddlDias_SelectedIndexChanged">
+                            <asp:ListItem Value="0" Text="Seleccione una opcion" />
                             <asp:ListItem Value="1" Text="Lunes" />
                             <asp:ListItem Value="2" Text="Martes" />
                             <asp:ListItem Value="3" Text="Miercoles" />
@@ -116,17 +117,18 @@
                     <div class="form-group col-md-12">
                         <asp:Label ID="lblTotalHoras" Text="Total de horas"  Visible="false" runat="server" />
                         <asp:TextBox ID="txtTHoras" CssClass="form-control" runat="server"
-                             Visible="false" TextMode="Number" MaxLength="2" ValidationGroup="0-12" />
+                            Visible="false" TextMode="Number" MaxLength="2" ValidationGroup="0-12" 
+                            OnTextChanged="txtTHoras_TextChanged" AutoPostBack="true" />
                     </div>
                     <div class="form-group col-md-12">
                         <asp:Label ID="lblDuracion" Text="Duracion de turno"  Visible="false" runat="server" />
                         <asp:TextBox ID="txtDuracion" CssClass="form-control" runat="server"
-                           Visible="false" TextMode="Number" />
+                           Visible="false" TextMode="Number" OnTextChanged="txtDuracion_TextChanged" AutoPostBack="true" />
                     </div>
                     <div class="form-group col-md-12">
                         <asp:Label ID="lblIngreso" Text="Hora de ingreso"  Visible="false" runat="server" />
                         <asp:TextBox ID="txtIngreso" CssClass="form-control" runat="server"
-                           Visible="false" TextMode="Number" />
+                           Visible="false" TextMode="Number" OnTextChanged="txtIngreso_TextChanged" AutoPostBack="true"/>
                     </div>
                 </div>
 
