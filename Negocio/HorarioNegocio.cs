@@ -16,16 +16,16 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta(@"SELECT * FROM DIAS_Y_HORARIOS");
+                datos.setearConsulta(@"SELECT * FROM DIAS_Y_HORARIOS WHERE ESTADO = 1");
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
                     Horario aux = new Horario();
                     aux.id = (int)datos.Lector["ID"];
-                    aux.duracion = (byte)datos.Lector["DURACION"];
+                    aux.duracion = (int)datos.Lector["DURACION"];
                     aux.medico = new Medico((long)datos.Lector["IDMEDICO"]);
                     aux.hora = (short)datos.Lector["HORAS"];
-                    aux.idDias = (int)datos.Lector["IDDIAS"];
+                    aux.idDias = (byte)datos.Lector["IDDIAS"];
                     aux.horaEntrada = (byte)datos.Lector["HORAINICIO"];
 
                     lista.Add(aux);
@@ -129,7 +129,7 @@ namespace Negocio
             try
             {
                 datos.setearParametro("@id", id);
-                datos.setearConsulta(@"SELECT * FROM DIAS_Y_HORARIOS WHERE IDMEDICO = @id");
+                datos.setearConsulta(@"SELECT * FROM DIAS_Y_HORARIOS WHERE IDMEDICO = @id AND ESTADO = 1");
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {

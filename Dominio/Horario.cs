@@ -9,11 +9,12 @@ namespace Dominio
     public class Horario
     {
         public int id { get; set; }
-        public int idDias { get; set; }
+        public byte idDias { get; set; }
         public Medico medico { get; set; }
         public short hora { get; set; }
         public byte horaEntrada { get; set; }
-        public byte duracion { get; set; }
+        public int duracion { get; set; }
+        public Boolean estado { get; set; }
         public Horario() { }
         public Horario(int idHorario)
         {

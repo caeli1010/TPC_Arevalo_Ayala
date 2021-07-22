@@ -85,18 +85,13 @@ namespace Presentacion
         protected void lbtnEliminar_Click(object sender, EventArgs e)
         {
             try
-            {
-                LinkButton btn = (LinkButton)(sender);
+            { 
+                string argument = ((LinkButton)sender).CommandArgument;
 
                 HorarioNegocio negocio = new HorarioNegocio();
                 horaXDias = negocio.listar();
-                horario = horaXDias.Find(x => x.id.ToString() == btn.CommandArgument.ToString());
-
-                negocio.eliminar((int)horario.id);
-
-                horaXDias.Remove(horario);
-                horariosRep.DataSource = horaXDias;
-                horariosRep.DataBind();
+                horario = (Horario)horaXDias.Find(x => x.id.ToString() == argument.ToString());
+                negocio.eliminar(horario.id);
 
                 lblMensaje.Text = "El proceso de eliminar el horario se ha realizado correctamente!";
                 lblMensaje.CssClass = "alert alert-success text-center";
@@ -123,7 +118,7 @@ namespace Presentacion
             var id = ((Button)sender).CommandArgument;
             HorarioNegocio negocio = new HorarioNegocio();
             horaXDias = negocio.listar();
-            horario = horaXDias.Find(x => x.id.ToString() == id);
+            horario = horaXDias.Find(x => x.id.ToString() == id.ToString());
             lblDias.Visible = true;
             lblDuracion.Visible = true;
             lblTotalHoras.Visible = true;

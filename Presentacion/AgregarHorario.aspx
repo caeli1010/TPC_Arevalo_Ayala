@@ -2,27 +2,27 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <script runat=server>
-            protected String GetStatus(string idDia) {
+            protected String GetDias(string idDia) {
                 var dia = String.Empty;
                 switch (idDia)
                 {
                     case "1":
-                        dia = "Lun";
+                        dia = "Lunes";
                         break;
                     case "2":
-                        dia = "Mar";
+                        dia = "Martes";
                         break;
                     case "3":
-                        dia = "Mie";
+                        dia = "Miercoles";
                         break;
                     case "4":
-                        dia = "Jue";
+                        dia = "Jueves";
                         break;
                     case "5":
-                        dia = "Vie";
+                        dia = "Viernes";
                         break;
                     case "6":
-                        dia = "Sab";
+                        dia = "Sabado";
                         break;
                     default:
                         break;
@@ -64,12 +64,12 @@
                               <ItemTemplate>   
                                 <tr>
                                     
-                                    <td><%#GetStatus(Eval("idDias").ToString()) %> </td>&nbsp;
+                                    <td><%#GetDias(Eval("idDias").ToString()) %> </td>&nbsp;
                                     <td><%#Eval("horaEntrada")%></td>&nbsp;
                                     <td><%#(((byte)Eval("horaEntrada"))+((short)Eval("hora")))%></td>&nbsp;
                                     <td>
                                         <asp:LinkButton runat="server" ID="lbtnModificar" Visible="true"
-                                            CssClass="btn btn-sm btn-outline-secondary" OnClick="lbtnModificar_Click"
+                                            CssClass="btn btn-sm btn-outline-secondary"  OnClick="lbtnModificar_Click"
                                             CommandArgument='<%#Eval("id")%>'>
                                     <i title="Modificar datos" class="fa fa-edit display-5"></i>&nbsp;</asp:LinkButton>
                                         <asp:LinkButton runat="server" ID="lbtnEliminar" Visible="true"
