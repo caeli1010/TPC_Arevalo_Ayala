@@ -12,8 +12,10 @@ namespace Presentacion
     public partial class SolicitudTurno : System.Web.UI.Page
     {
         public List<Especialidad> listEspecialidades;
+        public List<Horario> listHorarioConMedicos;
         public List<Medico> listMedicosConEspe;
         public List<Paciente> listPacientes;
+        //private Medico medico;
         private Paciente paciente;
         private long idt;
         protected void Page_Load(object sender, EventArgs e)
@@ -25,8 +27,7 @@ namespace Presentacion
                 if (Request.QueryString["ipc"] != null)
                 {
                     EspecialidadNegocio espNegocio = new EspecialidadNegocio();
-                  
-
+                                      
                     listPacientes = (List<Paciente>)Session["Paciente"];
                     paciente = listPacientes.Find(X => X.idPaciente.ToString() == Request.QueryString["ipc"]);
 
@@ -42,7 +43,7 @@ namespace Presentacion
                         ddlEspecialidad.DataTextField = "nombre";
                         ddlEspecialidad.DataSource = espNegocio.listar();
                         ddlEspecialidad.DataBind();
-                        ddlEspecialidad.Items.Insert(0, new ListItem("Especialidades", "1"));
+                        ddlEspecialidad.Items.Insert(0, new ListItem("Especialidades", "0"));
 
                     }
                     if (!string.IsNullOrEmpty(Request.QueryString["rep"])) {
@@ -66,13 +67,6 @@ namespace Presentacion
             }
  
 
-        }
-
-        protected void ddlProfesional_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-            ddlMeses.Visible = true;
-            lblMese.Visible = true;
         }
 
         protected void ddlEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
@@ -101,20 +95,40 @@ namespace Presentacion
 
         }
 
+        protected void ddlProfesional_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+
+            ddlMeses.Visible = true;
+            lblMese.Visible = true;
+
+            
+
+        }
 
 
         protected void ddlDiasSemana_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ddlHorario.Visible = true;
-            lblHorario.Visible = true;
+            
+
+           
         }
 
 
         protected void ddlMeses_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
-            ddlDiasSemana.Visible = true;
+
+            rptDias.Visible = true;
             lblDias.Visible = true;
+
+            long idMed = long.Parse(ddlProfesional.SelectedItem.Value);
+            HorarioNegocio horarioNegocio = new HorarioNegocio();
+            listHorarioConMedicos = horarioNegocio.leerHorario(idMed);
+            rptDias.DataSource = listHorarioConMedicos;
+            rptDias.DataBind();
+            //ddlDiasSemana.DataSource = horarioNegocio.leerHorario(idMed);
+            //ddlDiasSemana.DataBind();
+            //ddlDiasSemana.Items.Insert(0, new ListItem("Dias", "1"));
 
         }
 
@@ -139,7 +153,13 @@ namespace Presentacion
         protected void btnVolver_Click(object sender, EventArgs e)
         {
 
-            Response.Redirect("ListarPacientes.aspx");
+            Response.Redirect("ListarTurnos.aspx");
+        }
+
+        protected void btnDias_Click(object sender, EventArgs e)
+        {
+            ddlHorario.Visible = true;
+            lblHorario.Visible = true;
         }
     }
 }

@@ -16,24 +16,28 @@ namespace Negocio
             try
             {
                 datos.setearConsulta(@"SELECT 
-T.IDTURNO,
-T.IDMEDICO, 
-T.IDPACIENTE, 
-T.FECHAHORA,
-T.IDESTADO,
-P.NOMBRE NOMBREP, 
-P.APELLIDO APELLIDOP, 
-P.IDOBRASOCIAL,
-P.NROCARNET, 
-M.APELLIDO, 
-M.NOMBRE, 
-M.MATRICULA, (SELECT  E.NOMBRE FROM ESPECIALIDADES E 
-INNER JOIN ESPECIALIDAD_X_MEDICO  AS EXM ON EXM.IDESPECIALIDAD = E.IDESPECIALIDAD WHERE EXM.ID = T.IDESP_X_MED ) AS
-ESPECIAL
-FROM TURNOS AS T
-INNER JOIN PACIENTES AS  P ON P.IDPACIENTE = T.IDPACIENTE
-INNER JOIN MEDICOS AS M ON M.IDMEDICO = T.IDMEDICO
-WHERE  T.IDESTADO = 1");
+                                        T.IDTURNO,
+                                        T.IDMEDICO, 
+                                        T.IDPACIENTE, 
+                                        T.FECHAHORA,
+                                        T.IDESTADO,
+                                        P.NOMBRE NOMBREP, 
+                                        P.APELLIDO APELLIDOP, 
+                                        P.IDOBRASOCIAL,
+                                        P.NROCARNET, 
+                                        (SELECT  ME.APELLIDO FROM MEDICOS ME WHERE  ME.IDMEDICO = T.IDMEDICO
+                                        ) as APELLIDO, 
+                                        (SELECT  ME.NOMBRE FROM MEDICOS ME WHERE  ME.IDMEDICO = T.IDMEDICO
+                                        ) as NOMBRE, 
+                                        (SELECT  ME.MATRICULA FROM MEDICOS ME WHERE  ME.IDMEDICO = T.IDMEDICO
+                                        ) as MATRICULA, 
+                                        (SELECT  E.NOMBRE FROM ESPECIALIDADES E WHERE E.IDESPECIALIDAD =  EXM.IDESPECIALIDAD 
+                                        ) AS ESPECIAL,
+                                        T.IDESTADO
+                                        FROM TURNOS AS T
+                                        INNER JOIN PACIENTES AS  P ON P.IDPACIENTE = T.IDPACIENTE
+                                        INNER JOIN ESPECIALIDAD_X_MEDICO EXM ON EXM.ID= T.IDESP_X_MED
+                                        WHERE  T.IDESTADO = 1 AND T.FECHAHORA >= GETDATE() ORDER BY T.FECHAHORA ASC ");
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
@@ -54,15 +58,46 @@ WHERE  T.IDESTADO = 1");
                 }
                 return lista;
             }
-            catch (Exception)
+            catch (Exception EX)
             {
-                throw;
+                throw EX;
             }
             finally
             {
                 datos.cerrarConexion();
             }
         }
+
+        //public List<Horario> listarHorarioMedico(long idMedico)
+        //{
+        //    List<Horario> turnos = new List<Horario>();
+        //    List<Turno> lista = new List<Turno>();
+        //    AccesoDatos datos = new AccesoDatos();
+        //    try
+        //    {
+        //        datos.setearConsulta(@" select ");
+        //        datos.ejecutarLectura();
+        //        while (datos.Lector.Read())
+        //        {
+        //            //Paciente pac = new Paciente();
+        //            Turno aux = new Turno();
+        //            aux.medico = new Medico(idMedico);
+
+        //            lista.Add(aux);
+
+        //        }
+        //        return lista;
+        //    }
+        //    catch (Exception EX)
+        //    {
+        //        throw EX;
+        //    }
+        //    finally
+        //    {
+        //        datos.cerrarConexion();
+        //    }
+        //}
+
         public void agregar(Turno nuevo)
         {
             AccesoDatos datos = new AccesoDatos();

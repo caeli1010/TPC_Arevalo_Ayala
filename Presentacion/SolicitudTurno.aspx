@@ -1,14 +1,35 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" EnableEventValidation="true" CodeBehind="SolicitudTurno.aspx.cs" Inherits="Presentacion.SolicitudTurno" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-      <script>
+    <script runat=server>
+            protected String GetDias(string idDia) {
+                var dia = String.Empty;
+                switch (idDia)
+                {
+                    case "1":
+                        dia = "Lunes";
+                        break;
+                    case "2":
+                        dia = "Martes";
+                        break;
+                    case "3":
+                        dia = "Miercoles";
+                        break;
+                    case "4":
+                        dia = "Jueves";
+                        break;
+                    case "5":
+                        dia = "Viernes";
+                        break;
+                    case "6":
+                        dia = "Sabado";
+                        break;
+                    default:
+                        break;
+                }
 
-        function bajar() {
-
-            alert('HOla Mundo');
-
-        }
-
+                return dia;
+            } 
     </script>
     <hr class="py-1" />
      <h3 class="text-center">Solicitud de Turnos</h3>
@@ -92,20 +113,21 @@
                             OnSelectedIndexChanged="ddlMeses_SelectedIndexChanged"
                             runat="server">
                             <asp:ListItem Text="Seleccione un mes" />
-                            <asp:ListItem Text="Julio" />
-                            <asp:ListItem Text="Agosto" />
-                            <asp:ListItem Text="Septiembre" />
-                            <asp:ListItem Text="Octubre" />
-                            <asp:ListItem Text="Noviembre" />
-                            <asp:ListItem Text="Diciembre" />
+                            <asp:ListItem Value="7" Text="Julio" />
+                            <asp:ListItem Value="8" Text="Agosto" />
+                            <asp:ListItem Value="9" Text="Septiembre" />
+                            <asp:ListItem Value="10" Text="Octubre" />
+                            <asp:ListItem Value="11" Text="Noviembre" />
+                            <asp:ListItem Value="12" Text="Diciembre" />
                         </asp:DropDownList>
                     </div>
                 </div>
                  <div class="form-row">
                     <div class="form-group col-md-12">
-                        
+
                         <asp:Label Text="Dias " ID="lblDias" Visible="false" runat="server" />
-                        <asp:DropDownList 
+
+                        <%--<asp:DropDownList 
                             runat="server"
                               AutoPostBack="true"
                             Visible="false"
@@ -114,9 +136,16 @@
                             CssClass="form-control" 
                             >
                             <asp:ListItem Text="seleccione un dia " />
-                            <asp:ListItem Text="Lunes 26 " />
-                            <asp:ListItem Text="Miercoles 28" />
-                        </asp:DropDownList>
+                            <asp:ListItem Text="Luns " />
+                            
+                            
+                        </asp:DropDownList>--%>
+                            <asp:repeater ID="rptDias" runat="server">
+                                <itemtemplate>
+                                    <asp:Button ID='btnDias' OnClick="btnDias_Click" Text='<%#GetDias(Eval("idDias").ToString())%>' runat="server" />
+
+                                </itemtemplate>
+                            </asp:repeater>
                     </div>
                 </div>
                 <div class="form-row">

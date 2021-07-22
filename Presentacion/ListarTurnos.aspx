@@ -53,8 +53,8 @@
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">Fecha</th>
-                        <th scope="col">Paciente</th>
                         <th scope="col">Médico</th>
+                        <th scope="col">Paciente</th>
                         <th scope="col">Especialidad</th>
                         <th scope="col">Acciónes</th>
                     </tr>
@@ -71,7 +71,7 @@
                                  <td><%#Eval("nombre_p") %> <%#Eval("apellido_p") %></td>
                                  <td><%#Eval("especialidad") %> </td>
                                 <td>
-                                    <a href='SolicitudTurno.aspx?ipc=<%#Eval("idPaciente") %>&rep=<%#Eval("idTurnos") %>' 
+                                    <a href='SolicitudTurno?ipc=<%#Eval("idPaciente") %>&rep=<%#Eval("idTurnos") %>' 
                                         class="btn btn-sm btn-outline-success" title="Reprogramar el turno para este paciente">
                                         <i  class=" fa fa-calendar-check"   ></i>
                                     </a>
