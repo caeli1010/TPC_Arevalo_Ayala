@@ -35,22 +35,22 @@
             <table class="table" id="medicos">
                 <thead class="thead-dark">
                     <tr>
-                        <th scope="col">Matricula</th>
-                        <th scope="col">Nombre y Apellido</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Estado</th>
-                        <th scope="col">Acciónes</th>
+                        <th scope="col"class="text-center">Matricula</th>
+                        <th scope="col" class="text-center">Nombre y Apellido</th>
+                        <th scope="col" class="text-center">Email</th>
+                        <th scope="col" class="text-center">Estado</th>
+                        <th scope="col" class="text-center">Acciónes</th>
                     </tr>
                 </thead>
                 <tbody>
                     <asp:Repeater runat="server" ID="repetidor">
                         <ItemTemplate>
                             <tr>
-                                <th scope="row"><%#Eval("matricula")%></th>
-                                <td><%#Eval("nombre")%> <%#Eval("apellido")%></td> 
-                                <td><%#Eval("mail")%></td>
-                                <td>Activo</td>
-                                <td>
+                                <th scope="row" class="text-center"><%#Eval("matricula")%></th>
+                                <td class="text-left"><%#Eval("nombre")%> <%#Eval("apellido")%></td> 
+                                <td class="text-center"><%#Eval("mail")%></td>
+                                <td class="text-center">Activo</td>
+                                <td class="text-center">
                                     <a class="btn btn-sm btn-outline-info" href='AgregarEspecialidad.aspx?idM=<%#Eval("idMedico")%>'><i title="Ver especialidades" class="display-5 fa fa-eye"></i></a>
                                     <a class="btn btn-sm btn-outline-danger " href='BajaMedico.aspx?idM=<%#Eval("idMedico")%>'><i title="Eliminar" class="fa fa-trash display-5"></i></a>
                                     <a class="btn btn-sm btn-outline-secondary" href='ModificarMedico.aspx?idM=<%#Eval("idMedico")%>'><i title="Modificar datos" class="fa fa-user-edit display-5"></i></a>
