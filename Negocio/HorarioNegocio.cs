@@ -60,9 +60,9 @@ namespace Negocio
                 datos.ejecutarAccion();
 
             }
-            catch (global::System.Exception)
+            catch (global::System.Exception ex)
             {
-                throw;
+                throw ex;
             }
             finally
             {
@@ -74,15 +74,12 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta(@"update DIAS_Y_HORARIOS set DURACION = @duracion,
-                                     IDMEDICO = @idMedico, HORAS = @hora, IDDIAS= @idDias, 
-                                      HORAINICIO = @horarioEntrada WHERE ID = @id");
                 datos.setearParametro("@duracion", modificar.duracion);
-                datos.setearParametro("@idMedico", modificar.medico.idMedico);
                 datos.setearParametro("@hora", modificar.hora);
-                datos.setearParametro("@idDias", modificar.idDias);
                 datos.setearParametro("@horarioEntrada", modificar.horaEntrada);
                 datos.setearParametro("@id", modificar.id);
+                datos.setearConsulta(@"update DIAS_Y_HORARIOS set DURACION = @duracion, HORAS = @hora, 
+                                      HORAINICIO = @horarioEntrada WHERE ID = @id");
 
 
                 datos.ejecutarAccion();

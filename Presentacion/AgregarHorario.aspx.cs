@@ -63,10 +63,11 @@ namespace Presentacion
                 horario.medico = (Medico)doctor;
 
                 negocio.agregar(horario);
+
+                btnAgregar.Visible = false;
                 lblMensaje.Text = "El proceso de agregar el horario se ha realizado correctamente!";
                 lblMensaje.CssClass = "alert alert-success text-center";
                 lblMensaje.Visible = true;
-                btnAgregar.Visible = false;
 
                 ClientScript.RegisterStartupScript(type: GetType(), "K", "<script>" +
                 "setTimeout(function() {window.location = 'ListarMedicos.aspx';}, 5000); " +
@@ -96,7 +97,6 @@ namespace Presentacion
                 lblMensaje.Text = "El proceso de eliminar el horario se ha realizado correctamente!";
                 lblMensaje.CssClass = "alert alert-success text-center";
                 lblMensaje.Visible = true;
-                btnAgregar.Visible = false;
 
                 ClientScript.RegisterStartupScript(type: GetType(), "K", "<script>" +
                 "setTimeout(function() {window.location = 'AgregarHorario.aspx?idM=" + doctor.idMedico + "';}, 5000); " +
@@ -119,11 +119,14 @@ namespace Presentacion
             HorarioNegocio negocio = new HorarioNegocio();
             horaXDias = negocio.listar();
             horario = horaXDias.Find(x => x.id.ToString() == argument.ToString());
+            Session.Add("horario", horario);
+
             lblDias.Visible = true;
             lblDuracion.Visible = true;
             lblTotalHoras.Visible = true;
             lblIngreso.Visible = true;
-            btnAgregar.Visible = true;
+            btnAgregar.Visible = false;
+            btnModificar.Visible = true;
 
             var dia = String.Empty;
             switch (horario.idDias)
@@ -149,8 +152,8 @@ namespace Presentacion
                 default:
                     break;
             }
-
-            lblDias.Text ="Dia:   "+ dia;
+            lblDias.CssClass = "form-control";
+            lblDias.Text = dia;
             txtDuracion.Visible = true;
             txtDuracion.Text = horario.duracion.ToString();
             txtIngreso.Visible = true;
@@ -164,30 +167,56 @@ namespace Presentacion
             ddlDias.Visible = true;
             lblDias.Visible = true;
             lblDias.Text = "Dias";
-        }
-
-        protected void ddlDias_SelectedIndexChanged(object sender, EventArgs e)
-        {
             lblTotalHoras.Visible = true;
             txtTHoras.Visible = true;
-        }
-        protected void txtTHoras_TextChanged(object sender, EventArgs e)
-        {
             lblDuracion.Visible = true;
             txtDuracion.Visible = true;
-        }
-
-        protected void txtDuracion_TextChanged(object sender, EventArgs e)
-        {
             lblIngreso.Visible = true;
             txtIngreso.Visible = true;
-           
-        }
-
-        protected void txtIngreso_TextChanged(object sender, EventArgs e)
-        {
             btnAgregar.Visible = true;
         }
 
+        protected void btnModificar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string mensaje = string.Empty;
+                if (string.IsNullOrEmpty(txtDuracion.Text)) mensaje += "| La duracion de trabajo es obligatorio,";
+                if (string.IsNullOrEmpty(txtTHoras.Text)) mensaje += "| El tiempo por turno es obligatorio,";
+                if (string.IsNullOrEmpty(txtIngreso.Text)) mensaje += "| El horario de ingreso es obligatorio,";
+
+                //lanzamos la excepcion solo en caso de que haya algun camp
+                if (!string.IsNullOrEmpty(mensaje)) throw new Exception(mensaje.TrimEnd(','));
+
+                HorarioNegocio negocio = new HorarioNegocio();
+                Horario modificado = new Horario();
+                horario = (Horario)Session["horario"];
+
+                modificado.id = horario.id;
+                modificado.hora = short.Parse(txtTHoras.Text);
+                modificado.duracion = byte.Parse(txtDuracion.Text);
+                modificado.horaEntrada = byte.Parse(txtIngreso.Text);
+
+                negocio.modificar(modificado);
+
+                btnModificar.Visible = false;
+                lblMensaje.Text = "El proceso de modificar el horario se ha realizado correctamente!";
+                lblMensaje.CssClass = "alert alert-success text-center";
+                lblMensaje.Visible = true;
+
+                ClientScript.RegisterStartupScript(type: GetType(), "K", "<script>" +
+                "setTimeout(function() {window.location = 'AgregarHorario.aspx?idM=" + doctor.idMedico + "';}, 5000); " +
+                 "</script>");
+            }
+            catch (Exception ex)
+            {
+                ClientScript.RegisterStartupScript(
+                       this.GetType(),
+                       "Mensaje",
+                       "<script> swal('Falla!', '" + ex.Message + "!', 'warning'); </script>"
+                   );
+            }
+
+        }
     }
 }
