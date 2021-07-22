@@ -109,26 +109,48 @@ namespace Presentacion
 
         protected void ddlDiasSemana_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
-
-           
+            ddlHorario.Visible = true;
+            lblHorario.Visible = true;
         }
 
 
         protected void ddlMeses_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            rptDias.Visible = true;
+            ddlDiasSemana.Visible = true;
             lblDias.Visible = true;
-
             long idMed = long.Parse(ddlProfesional.SelectedItem.Value);
             HorarioNegocio horarioNegocio = new HorarioNegocio();
             listHorarioConMedicos = horarioNegocio.leerHorario(idMed);
-            rptDias.DataSource = listHorarioConMedicos;
-            rptDias.DataBind();
-            //ddlDiasSemana.DataSource = horarioNegocio.leerHorario(idMed);
-            //ddlDiasSemana.DataBind();
-            //ddlDiasSemana.Items.Insert(0, new ListItem("Dias", "1"));
+            //rptDias.DataSource = listHorarioConMedicos;
+            //rptDias.DataBind();
+            Horario horario = (Horario)listHorarioConMedicos.FindAll(x =>x.id !=null);
+            List<int> diasid = new List<int>();
+            
+                //diasid.Add(i);
+           
+
+            List<string> dia = new List<string>();
+            dia.Add("Dias");
+            //for (int i=1; i<8; i++) 
+               foreach(Horario )
+            {
+                switch (i)
+                {
+                    case 1: dia.Add("Lunes");   break;
+                    case 2: dia.Add("Martes");  break;
+                    case 3: dia.Add("Miercoles"); break;
+                    case 4: dia.Add("Jueves");  break;
+                    case 5: dia.Add("Viernes"); break;
+                    case 6: dia.Add("Sabado");  break;
+                    default: break;
+                }
+            }
+
+
+            ddlDiasSemana.DataSource = dia;
+            ddlDiasSemana.DataBind();
+            ddlDiasSemana.Items.Insert(0, new ListItem("Dias", "1"));
 
         }
 

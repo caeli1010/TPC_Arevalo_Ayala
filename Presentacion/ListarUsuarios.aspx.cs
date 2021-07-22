@@ -18,10 +18,10 @@ namespace Presentacion
             UsuarioNegocio negocio = new UsuarioNegocio();
 
 
-            if (Session["Login"] == null)
-            {
-                Response.Redirect("Login2.aspx");
-            }
+            //if (Session["Login"] == null)
+            //{
+            //    Response.Redirect("Login2.aspx");
+            //}
 
             try
             { 

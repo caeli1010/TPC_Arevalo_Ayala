@@ -127,7 +127,7 @@
 
                         <asp:Label Text="Dias " ID="lblDias" Visible="false" runat="server" />
 
-                        <%--<asp:DropDownList 
+                        <asp:DropDownList 
                             runat="server"
                               AutoPostBack="true"
                             Visible="false"
@@ -139,13 +139,13 @@
                             <asp:ListItem Text="Luns " />
                             
                             
-                        </asp:DropDownList>--%>
-                            <asp:repeater ID="rptDias" runat="server">
+                        </asp:DropDownList>
+                            <%--<asp:repeater ID="rptDias" runat="server">
                                 <itemtemplate>
                                     <asp:Button ID='btnDias' OnClick="btnDias_Click" Text='<%#GetDias(Eval("idDias").ToString())%>' runat="server" />
 
                                 </itemtemplate>
-                            </asp:repeater>
+                            </asp:repeater>--%>
                     </div>
                 </div>
                 <div class="form-row">
