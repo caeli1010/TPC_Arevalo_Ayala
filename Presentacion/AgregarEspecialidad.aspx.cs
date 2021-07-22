@@ -63,6 +63,7 @@ namespace Presentacion
                     {
                         //Elimina una especialidad
                         btnElEspecialidad.Visible = true;
+                        lblEspecialidad.CssClass = "form-control";
                         lblEspecialidad.Text = especialidad.nombre;
 
                     }
