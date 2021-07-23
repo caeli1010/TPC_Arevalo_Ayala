@@ -1,36 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" EnableEventValidation="true" CodeBehind="SolicitudTurno.aspx.cs" Inherits="Presentacion.SolicitudTurno" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <script runat=server>
-            protected String GetDias(string idDia) {
-                var dia = String.Empty;
-                switch (idDia)
-                {
-                    case "1":
-                        dia = "Lunes";
-                        break;
-                    case "2":
-                        dia = "Martes";
-                        break;
-                    case "3":
-                        dia = "Miercoles";
-                        break;
-                    case "4":
-                        dia = "Jueves";
-                        break;
-                    case "5":
-                        dia = "Viernes";
-                        break;
-                    case "6":
-                        dia = "Sabado";
-                        break;
-                    default:
-                        break;
-                }
 
-                return dia;
-            } 
-    </script>
     <hr class="py-1" />
      <h3 class="text-center">Solicitud de Turnos</h3>
     <div class="row alert alert-secondary col-md-8 offset-md-2">
@@ -75,6 +46,7 @@
         <div class="col-md-6">
 
             <form>
+                <asp:Label ID="lblTurno" Visible="false" runat="server" />
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <label for="espec">Especialidad</label>
@@ -115,37 +87,31 @@
                             <asp:ListItem Text="Seleccione un mes" />
                             <asp:ListItem Value="7" Text="Julio" />
                             <asp:ListItem Value="8" Text="Agosto" />
-                            <asp:ListItem Value="9" Text="Septiembre" />
-                            <asp:ListItem Value="10" Text="Octubre" />
-                            <asp:ListItem Value="11" Text="Noviembre" />
-                            <asp:ListItem Value="12" Text="Diciembre" />
                         </asp:DropDownList>
                     </div>
                 </div>
                  <div class="form-row">
                     <div class="form-group col-md-12">
 
-                        <asp:Label Text="Dias " ID="lblDias" Visible="false" runat="server" />
+                        <asp:Label Text="Dias " ID="lblDias" Visible="true" runat="server" />
 
                         <asp:DropDownList 
                             runat="server"
                               AutoPostBack="true"
-                            Visible="false"
+                            Visible="true"
                             ID="ddlDiasSemana" 
                             OnSelectedIndexChanged="ddlDiasSemana_SelectedIndexChanged"
                             CssClass="form-control" 
                             >
-                            <asp:ListItem Text="seleccione un dia " />
-                            <asp:ListItem Text="Luns " />
-                            
                             
                         </asp:DropDownList>
-                            <%--<asp:repeater ID="rptDias" runat="server">
-                                <itemtemplate>
-                                    <asp:Button ID='btnDias' OnClick="btnDias_Click" Text='<%#GetDias(Eval("idDias").ToString())%>' runat="server" />
-
-                                </itemtemplate>
-                            </asp:repeater>--%>
+                        <%--<asp:TextBox runat="server" 
+                            ID="clndFecha" 
+                             AutoPostBack="true"
+                            CssClass="form-control" 
+                            OnTextChanged="clndFecha_TextChanged"
+                            TextMode="Date" />--%>
+                           
                     </div>
                 </div>
                 <div class="form-row">
