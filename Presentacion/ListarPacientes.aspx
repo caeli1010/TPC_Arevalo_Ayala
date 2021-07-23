@@ -97,7 +97,7 @@
                                 <td><%#Eval("nroCarnet")%></td>
                                 <td><%#Eval("mail")%></td>
                                 <td>
-                                    <a href="SolicitudTurno.aspx?ipc=<%#Eval("idPaciente")%>" class="btn btn-sm btn-outline-success" title="Solicitar un turno para este paciente">
+                                    <a href="AgregarTurno.aspx?ipc=<%#Eval("idPaciente")%>" class="btn btn-sm btn-outline-success" title="Solicitar un turno para este paciente">
                                         <i title="Agregar un turno" class=" fa fa-calendar-check"></i>
                                     </a>
                                    <a href='ModificarPaciente.aspx?ipc=<%#Eval("idPaciente")%>' class="btn btn-sm btn-outline-secondary" title="Modificar datos de este Paciente" >
