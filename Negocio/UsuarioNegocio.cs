@@ -48,23 +48,13 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                string valores = @"values('" +
-                                    nuevo.idRol + "', '" +
-                                    nuevo.username + "', '" +
-                                    nuevo.password + "', " +
-                                    nuevo.estado + ", " +
-                                    nuevo.dni + ", '" +
-                                    nuevo.idTipoDocumento + "', " +
-                                    nuevo.imagen + ")";
-                datos.setearConsulta(@"insert into USUARIOS (
-                                        IDROL, 
-                                        USERNAME,
-                                        PASSWORD, 
-                                        ESTADO, 
-                                        DNI, 
-                                        IDTIPODOC, 
-                                        IMAGEN
-                                        ) " + valores);
+                datos.setearParametro("idRol", nuevo.idRol);
+                datos.setearParametro("@userName", nuevo.username);
+                datos.setearParametro("@passWord", nuevo.password);
+                datos.setearParametro("@passWord", nuevo.password);
+                datos.setearParametro("@estado", 1);
+                datos.setearConsulta(@"insert into USUARIOS (IDROL, USERNAME, PASSWORD, ESTADO, DNI, IDTIPODOC, IMAGEN)
+                Values(@idRol, @userName, @passWord, @estado, @dni, NULL, NULL)");
                 datos.ejecutarAccion();
 
             }
@@ -131,26 +121,28 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("select * from USUARIOS where USERNAME = @usuario AND PASSWORD=@password");
                 datos.setearParametro("@usuario", user);
                 datos.setearParametro("@password", pass);
+                datos.setearConsulta("select * from USUARIOS where USERNAME = @usuario AND PASSWORD=@password");
                 datos.ejecutarLectura();
 
-
-                usuario.idRol = (int)datos.Lector["IDROL"];
-                usuario.idUsuario = (int)datos.Lector["IDUSUARIO"];
-                usuario.dni = (string)datos.Lector["DNI"];
-                usuario.username = (string)datos.Lector["USERNAME"];
-                usuario.password = (string)datos.Lector["PASSWORD"];
-                usuario.estado = (bool)datos.Lector["ESTADO"];
-                usuario.idTipoDocumento = (byte)datos.Lector["IDTIPODOC"];
-                usuario.imagen = (string)datos.Lector["IMAGEN"];
+                while (datos.Lector.Read())
+                {
+                    usuario.idRol = (int)datos.Lector["IDROL"];
+                    usuario.idUsuario = (int)datos.Lector["IDUSUARIO"];
+                    usuario.dni = (string)datos.Lector["DNI"];
+                    usuario.username = (string)datos.Lector["USERNAME"];
+                    usuario.password = (string)datos.Lector["PASSWORD"];
+                    usuario.estado = (bool)datos.Lector["ESTADO"];
+                    usuario.idTipoDocumento = (byte)datos.Lector["IDTIPODOC"];
+                    usuario.imagen = (string)datos.Lector["IMAGEN"];
+                }
                 return usuario;
 
             }
-            catch (global::System.Exception)
+            catch (global::System.Exception ex)
             {
-                throw;
+                throw ex;
             }
 
             finally
