@@ -28,7 +28,7 @@
                     </li>
                 </ul>
                 <div class="card-body">
-                    <a href='ModificarPaciente.aspx?ipc=<%#Eval("idPaciente")%>' 
+                    <a href='ModificarPaciente?ipc=<% =Session["idPaciente"]%>' 
                         class="btn btn-sm btn-outline-secondary" 
                         title="Modificar datos de este Paciente" >
                                        Modificar Datos <i class="fa fa-user-edit"  ></i>

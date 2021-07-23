@@ -20,11 +20,11 @@ namespace Presentacion
         public long idMed;
         public long idt;
         private Paciente paciente;
+        //public DateTime fechaDia = DateTime.Now;
         
         //private Medico medico;
         //private DateTime dateValue;
         //private DateTime diaSele;
-        //private DateTime date1 = DateTime.Now;
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -34,7 +34,7 @@ namespace Presentacion
                 if (Request.QueryString["ipc"] != null)
                 {
                     EspecialidadNegocio espNegocio = new EspecialidadNegocio();
-
+                    Session["idPaciente"] = Request.QueryString["ipc"].ToString();
                     listPacientes = (List<Paciente>)Session["Paciente"];
                     paciente = listPacientes.Find(X => X.idPaciente.ToString() == Request.QueryString["ipc"]);
 
@@ -53,6 +53,7 @@ namespace Presentacion
                         ddlEspecialidad.Items.Insert(0, new ListItem("Especialidades", "0"));
 
                     }
+
                     if (!string.IsNullOrEmpty(Request.QueryString["rep"]))
                     {
                         idt = long.Parse(Request.QueryString["rep"]);
@@ -76,7 +77,6 @@ namespace Presentacion
 
 
         }
-
         protected void ddlEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -87,8 +87,6 @@ namespace Presentacion
                 Session["idEspe"] = idEsp;
                 ddlProfesional.Visible = true;
                 lblProfesional.Visible = true;
-                //long idEspecialidad = long.Parse(ddlEspecialidad.SelectedValue);
-
                 ddlProfesional.DataSource = listMedicosConEspe;
                 ddlProfesional.DataValueField = "idMedico";
                 ddlProfesional.DataTextField = "apellido";
@@ -102,7 +100,6 @@ namespace Presentacion
             }
 
         }
-
         protected void ddlProfesional_SelectedIndexChanged(object sender, EventArgs e)
         {
             clndFecha.Visible = true;
@@ -118,8 +115,8 @@ namespace Presentacion
                 lblMin.Visible = true;
                 ddlMin.Visible = true;
 
-                Session["diaSele"] = clndFecha.Text;
-
+                Session["diaSele"] = DateTime.Parse(clndFecha.Text);
+                //fechaDia = DateTime.Parse(clndFecha.Text); //
                 idMed = long.Parse(ddlProfesional.SelectedItem.Value);
                 Session["idMed"] = idMed;
                 HorarioNegocio horarioNegocio = new HorarioNegocio();
@@ -156,23 +153,11 @@ namespace Presentacion
 
                 ddlHorario.DataSource = hours;
                 ddlHorario.DataBind();
-                ddlHorario.Items.Insert(0, new ListItem("Horas", "0"));
+                ddlHorario.Items.Insert(0, new ListItem("Horas", "1"));
 
                 ddlMin.DataSource = min;
                 ddlMin.DataBind();
-                ddlMin.Items.Insert(0, new ListItem("Minutos", "0"));
-
-
-                    //int idDiaSemana = (int)date1.DayOfWeek;
-                    //int diferncia = diaSeleccionado - idDiaSemana;
-                    //if (idDiaSemana > diaSeleccionado)
-                    //{
-                    //    date1 = date1.AddDays(7+diferncia);
-                    //}
-                    //else
-                    //{
-                    //    date1 = date1.AddDays(diferncia);
-                    //}
+                ddlMin.Items.Insert(0, new ListItem("Minutos", "1"));
 
             }
             catch (Exception ex)
@@ -186,61 +171,12 @@ namespace Presentacion
             }
 
         }
-        //protected void ddlMeses_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-
-        //    clndFecha.Visible = true;
-        //    lblDias.Visible = true;
-
-        //    long idMed = long.Parse(ddlProfesional.SelectedItem.Value);
-        //    HorarioNegocio horarioNegocio = new HorarioNegocio();
-        //    listHorarioConMedicos = horarioNegocio.leerHorario(idMed);
-        //    //listHorarioConMedicos.ToString();
-        //    List<string> dia = new List<string>();
-        //    //for (int i = 0; i < listHorarioConMedicos.Count(); i++)
-        //    foreach (Horario itemss in listHorarioConMedicos)
-        //    {
-        //        switch (itemss.idDias)
-        //        {
-        //            case 1: dia.Add("Lunes"); break;
-        //            case 2: dia.Add("Martes"); break;
-        //            case 3: dia.Add("Miercoles"); break;
-        //            case 4: dia.Add("Jueves"); break;
-        //            case 5: dia.Add("Viernes"); break;
-        //            case 6: dia.Add("Sabado"); break;
-        //            case 7: dia.Add("Domingo"); break;
-        //            default: break;
-        //        }
-        //    }
-        //}
-
-        //protected void ddlDiasSemana_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    int idDiaSemana = (int)date1.DayOfWeek;
-        //    byte diaSeleccionado = byte.Parse(ddlDiasSemana.SelectedIndex.ToString());
-        //    int diferncia = diaSeleccionado - idDiaSemana;
-
-        //    if (idDiaSemana > diaSeleccionado)
-        //    {
-        //        date1.AddDays(7 + diferncia);
-        //    }
-        //    else
-        //    {
-        //        date1.AddDays(diferncia);
-        //    }
-
-        //    dateValue = new DateTime(date1.Year, int.Parse(ddlMeses.SelectedItem.Value), date1.Day + 5);
-        //    lblTurno.Text = dateValue.ToString();
-        //    lblTurno.Visible = true;
-        //    ddlHorario.Visible = true;
-        //    lblHorario.Visible = true;
-        //}
         protected void ddlHorario_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
                 ddlMin.Visible = true;
-                Session["diaSele"] = Session["diaSele"]+" "+ ddlHorario.SelectedItem.Text;
+                Session["horaTurno"] = int.Parse(ddlHorario.SelectedItem.Text);
             }
             catch (Exception ex)
             {
@@ -257,9 +193,8 @@ namespace Presentacion
             try
             {
                 btnAgendar.Visible = true;
-                Session["diaSele"] = Session["diaSele"] + ":" + ddlMin.SelectedItem.Text + ":00";
-                //dateValue = new DateTime(dateValue.Year, dateValue.Month, dateValue.Day, dateValue.Hour, minuto, 00);
-
+                Session["minTurno"] = int.Parse(ddlMin.SelectedItem.Text);
+ 
             }
             catch (Exception ex)
             {
@@ -272,21 +207,25 @@ namespace Presentacion
             }
 
         }
-
         protected void btnAgendar_Click(object sender, EventArgs e)
         {
 
             try
             {
+                DateTime fechaDia = (DateTime)Session["diaSele"];
+                int hora = (int)Session["horaTurno"];
+                int min = (int)Session["minTurno"];
+
+                fechaDia = new DateTime(fechaDia.Year, fechaDia.Month, fechaDia.Day, hora, min, 00);
+                lblTurno.Text = fechaDia.ToString();
                 TurnoNegocio agrega = new TurnoNegocio();
                 Turno turno = new Turno();
                 turno.idEspecialidad = (long)Session["idEspe"];
                 turno.medico = new Medico((long)Session["idMed"]);
                 turno.idPaciente = (long)paciente.idPaciente;
-                turno.fechaHora = (DateTime)Session["diaSele"];
+                turno.fechaHora = fechaDia;
                 agrega.agregar(turno);
 
-                lblTurno.Text = Session["diaSele"].ToString();
                 lblTurno.Visible = true;
                 ddlHorario.Visible = true;
                 lblHorario.Visible = true;
@@ -309,12 +248,11 @@ namespace Presentacion
                 ClientScript.RegisterStartupScript(
                     this.GetType(),
                     "Mensaje",
-                    "<script> swal('Falla!', '" + ex.Message + "!', 'warning'); </script>"
+                    "<script> swal('Falla al Agregar!', '" + ex.Message + "!', 'warning'); </script>"
                 );
             }
 
         }
-
         protected void btnVolver_Click(object sender, EventArgs e)
         {
 
