@@ -254,14 +254,14 @@ namespace Presentacion
             {
                 Session["minTurno"] = int.Parse(ddlMin.SelectedItem.Text);
 
-                if (!string.IsNullOrEmpty(Request.QueryString["rep"]))
-                {
-                    btnReprogramar.Visible = true;
-                }
-                else
-                {
+                //if (!string.IsNullOrEmpty(Request.QueryString["rep"]))
+                //{
+                //    btnReprogramar.Visible = true;
+                //}
+                //else
+                //{
                     btnAgendar.Visible = true;
-                }
+                //}
 
             }
             catch (Exception ex)
@@ -322,7 +322,7 @@ namespace Presentacion
                    CuerpoMensaje, " sin html");
 
                 btnVolver.Visible = true;
-                btnAgendar.Visible = false;
+               // btnAgendar.Visible = false;
             }
             catch (Exception ex)
             {
