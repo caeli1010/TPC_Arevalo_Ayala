@@ -19,8 +19,8 @@
     <% } %>
    
     <div class="row alert alert-secondary">
-                 <asp:UpdatePanel runat="server">
-        <ContentTemplate>
+               <%--  <asp:UpdatePanel runat="server">
+        <ContentTemplate>--%>
         <div class="col-md-6">
             <div id="esconder" class="card">
                 <div class="card-body">
@@ -88,8 +88,8 @@
                         <asp:TextBox ID="txtEspecialidad" Visible="false" CssClass="form-control" runat="server" />
                     </div>
                 </div>
-                 </ContentTemplate>
-    </asp:UpdatePanel>
+                 <%--</ContentTemplate>
+    </asp:UpdatePanel>--%>
                 <div class="form-row">
                     <div class="text-center">
                         <asp:Button ID="btnElEspecialidad" OnClick="btnElEspecialidad_Click"
