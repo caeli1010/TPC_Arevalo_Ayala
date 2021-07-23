@@ -87,7 +87,7 @@ namespace Presentacion
                     nuevo.fechaIngreso = DateTime.Parse(txtFechaIngreso.Text);
                     nuevo.mail = txtCEmail.Text;
                     nuevo.dni = txtDoc.Text;
-                    nuevo.especialidad = new Especialidad(especialidad);
+                    //nuevo.especialidad = new Especialidad(especialidad);
                     negocio.agregar(nuevo);
                 }
 
