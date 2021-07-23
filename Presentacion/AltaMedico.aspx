@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <hr class="py-1" />
-    <h1 class="text-center">Ingreso Nuevo Médico</h1>
+    <h3 class="text-center">Ingreso Nuevo Médico</h3>
     <div class="row alert alert-secondary">
         <div class="offset-md-1 col-md-10">
 
@@ -62,10 +62,12 @@
 
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <asp:Label ID="lblEspecialidad" Text="Especialidad" runat="server" />
+                        <asp:Label ID="lblMatricula" Text="Matricula" runat="server" />
+                        <asp:TextBox ID="txtMatricula"  cssClass="form-control" runat="server"/>
+                       <%-- <asp:Label ID="lblEspecialidad" Text="Especialidad" runat="server" />
                         <asp:DropDownList ID="ddlEspecialidad" cssClass="form-control" 
                             OnSelectedIndexChanged="ddlEspecialidad_SelectedIndexChanged" runat="server">
-                        </asp:DropDownList>      
+                        </asp:DropDownList> --%>     
                     </div>
                     <div class="form-group col-md-6">
                         <asp:Label ID="lblSexo" Text="Sexo" runat="server" />
@@ -77,13 +79,15 @@
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <asp:Label ID="lblMatricula" Text="Matricula" runat="server" />
-                        <asp:TextBox ID="txtMatricula"  cssClass="form-control" runat="server"/>
+                   <div>
+                    <div class="form-group col-md-6 text-left">
+                      <asp:Button Text="Guardar" ID="btnGrabarMedico" OnClick="btnGrabarMedico_Click" runat="server" /> 
                      </div>
                  </div>
-                    <asp:Button Text="Guardar" ID="btnGrabarMedico" OnClick="btnGrabarMedico_Click" runat="server" />
+                <div class="form-group col-md-6 text-right">
                      <a class="btn btn-sm btn-outline-danger" href='ListarMedicos.aspx'>Atras</a>
+                </div>
+               </div>
                 </form>
         </div>
     </div>

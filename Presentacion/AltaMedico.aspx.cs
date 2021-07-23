@@ -12,7 +12,6 @@ namespace Presentacion
     public partial class AltaMedico : System.Web.UI.Page
     {
         public List<Especialidad> lista;
-        private int especialidad;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["Login"] == null)
@@ -24,13 +23,13 @@ namespace Presentacion
                 EspecialidadNegocio negocio = new EspecialidadNegocio();
                 Especialidad nuevo = new Especialidad();
 
-                if(!Page.IsPostBack)
-                {
-                    ddlEspecialidad.DataSource = negocio.listar();
-                    ddlEspecialidad.DataTextField = "nombre";
-                    ddlEspecialidad.DataValueField = "idEspecialidad";
-                    ddlEspecialidad.DataBind();
-                }
+                //if(!Page.IsPostBack)
+                //{
+                //    ddlEspecialidad.DataSource = negocio.listar();
+                //    ddlEspecialidad.DataTextField = "nombre";
+                //    ddlEspecialidad.DataValueField = "idEspecialidad";
+                //    ddlEspecialidad.DataBind();
+                //}
             }
             catch (Exception ex)
             {
@@ -39,22 +38,22 @@ namespace Presentacion
             }
 
         }
-        protected void ddlEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
+        //protected void ddlEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
 
-                especialidad = int.Parse(ddlEspecialidad.SelectedItem.Value);
+        //        especialidad = int.Parse(ddlEspecialidad.SelectedItem.Value);
 
 
-            }                
-            catch (Exception ex)
-            {
-                Session.Add("Error", ex.ToString());
-                Response.Redirect("Error.aspx");
-            }
+        //    }                
+        //    catch (Exception ex)
+        //    {
+        //        Session.Add("Error", ex.ToString());
+        //        Response.Redirect("Error.aspx");
+        //    }
 
-        }
+        //}
 
         protected void btnGrabarMedico_Click(object sender, EventArgs e)
         {
@@ -70,7 +69,7 @@ namespace Presentacion
                 if (string.IsNullOrEmpty(txtFechaNac.Text)) mensaje += "| Debe seleccionar una fecha válida,";
                 if (string.IsNullOrEmpty(txtMatricula.Text)) mensaje += "| El numero de matricula es obligatorio,";
                 if (string.IsNullOrEmpty(ddlSexo.Text)) mensaje += "| Debe seleccionar una opcion, el campo es obligatorio,";
-                if (string.IsNullOrEmpty(ddlEspecialidad.Text)) mensaje += "| Debe seleccionar una espacialidad, es obligatorio,";
+                //if (string.IsNullOrEmpty(ddlEspecialidad.Text)) mensaje += "| Debe seleccionar una espacialidad, es obligatorio,";
                 if (!string.Equals(txtEmail.Text, txtCEmail.Text)) mensaje += " La casilla de email ingresada no es la misma,";
                 //lanzamos la excepcion solo en caso de que haya algun camp
                 if (!string.IsNullOrEmpty(mensaje)) throw new Exception(mensaje.TrimEnd(','));
