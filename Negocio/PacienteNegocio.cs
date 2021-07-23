@@ -28,7 +28,7 @@ namespace Negocio
 	                                    COALESCE ( P.DNI, 'sin dni' ) AS DNI 
                                     FROM
 	                                    PACIENTES AS P
-	                                    INNER JOIN OBRAS_SOCIALES AS OS ON OS.IDOBRASOCIAL= P.IDOBRASOCIAL WHERE P.ESTADO = 1");
+	                                    INNER JOIN OBRAS_SOCIALES AS OS ON OS.IDOBRASOCIAL= P.IDOBRASOCIAL WHERE P.ESTADO = 1 ORDER BY P.IDPACIENTE DESC");
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
@@ -138,7 +138,7 @@ namespace Negocio
             }
 
         }
-        public void leerPaciente(string dni)
+        public Paciente leerPaciente(string dni)
         {
             AccesoDatos datos = new AccesoDatos();
             try
@@ -146,6 +146,20 @@ namespace Negocio
                 datos.setearConsulta("select * from PACIENTES where DNI = @dni");
                 datos.setearParametro("@dni", dni);
                 datos.ejecutarLectura();
+                Paciente aux = new Paciente();
+                while (datos.Lector.Read())
+                {
+                    aux.idPaciente = (long)datos.Lector["IDPACIENTE"];
+                    aux.apellido = (string)datos.Lector["APELLIDO"];
+                    aux.nombre = (string)datos.Lector["NOMBRE"];
+                    aux.genero = (string)datos.Lector["SEXO"];
+                    aux.fechaNacimiento = (DateTime)datos.Lector["FECHANAC"];
+                    aux.mail = (string)datos.Lector["EMAIL"];
+                    aux.nroCarnet = (int)datos.Lector["NROCARNET"];
+                    aux.dni = (string)datos.Lector["DNI"];
+                    aux.obraSocial = new Obrasocial((int)datos.Lector["IDOBRASOCIAL"]);
+                }
+                return aux;
 
             }
             catch (global::System.Exception ex)

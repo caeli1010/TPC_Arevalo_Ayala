@@ -47,6 +47,7 @@ namespace Presentacion
             if (txtEmail.Text == txtConfEmail.Text)
             {
                     Paciente paciente = new Paciente();
+                    Paciente pteTurno = new Paciente();
                     PacienteNegocio agregar = new PacienteNegocio();
                     paciente.dni = txtDni.Text;
                     paciente.mail = txtEmail.Text;
@@ -59,7 +60,16 @@ namespace Presentacion
                     paciente.nroCarnet = int.Parse(txtNroCred.Text);
                     agregar.agregar(paciente);
 
-                    Response.Redirect("ListarPacientes.aspx");
+                    pteTurno = agregar.leerPaciente(txtDni.Text);
+                    if (cbxAgregaTurno.Checked) 
+                    {
+                        Session["nvoPaciente"] = pteTurno;
+                        Response.Redirect("AgregarTurno.aspx?ipc="+ pteTurno.idPaciente);
+                    } 
+                    else
+                    { 
+                        Response.Redirect("ListarPacientes.aspx");
+                    }
 
 
                     //ClientScript.RegisterStartupScript(type: GetType(), "mensaje", "<script>" +

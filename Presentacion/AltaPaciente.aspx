@@ -91,7 +91,7 @@
         <div class="form-group">
             <div class="form-check">
                 <asp:Label Text="Solicitar Turno" runat="server" />
-                <asp:CheckBox Text="text" runat="server" />
+                <asp:CheckBox Text="text" ID="cbxAgregaTurno" Visible="true" runat="server" />
              
             </div>
         </div>
