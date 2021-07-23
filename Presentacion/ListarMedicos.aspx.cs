@@ -18,10 +18,10 @@ namespace Presentacion
         {
             MedicoNegocio negocio = new MedicoNegocio();
             HorarioNegocio datos = new HorarioNegocio();
-            //if (Session["Login"] == null)
-            //{
-            //    Response.Redirect("Login2.aspx");
-            //}
+            if (Session["Login"] == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
             try
             {
                 if (!Page.IsPostBack)

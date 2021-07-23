@@ -119,7 +119,7 @@
                                   <a class="dropdown-item" runat="server" href="~/AltaPaciente">Pacientes</a>
                                     <%if(user.idRol == 1)
                                     {%>
-                                  <a class="dropdown-item" runat="server" href="~/AltaUsuarios">Usuarios</a>
+                                  <a class="dropdown-item" runat="server" href="~/AdministradorUsuario.aspx">Usuarios</a>
                                   <%} %>
                               </div>
                           </div>

@@ -15,10 +15,10 @@ namespace Presentacion
         private int especialidad;
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (Session["Login"] == null)
-            //{
-            //    Response.Redirect("Login2.aspx");
-            //}
+            if (Session["Login"] == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
             try
             {
                 EspecialidadNegocio negocio = new EspecialidadNegocio();
@@ -76,6 +76,7 @@ namespace Presentacion
                 if (!string.IsNullOrEmpty(mensaje)) throw new Exception(mensaje.TrimEnd(','));
 
                     MedicoNegocio negocio = new MedicoNegocio();
+                EspecialidadNegocio espec = new EspecialidadNegocio();
                     Medico nuevo = new Medico();
                 if (txtEmail.Text == txtCEmail.Text)
                 {
@@ -90,6 +91,7 @@ namespace Presentacion
                     nuevo.especialidad = new Especialidad(especialidad);
                     negocio.agregar(nuevo);
                 }
+
                 Response.Redirect("ListarMedico.aspx");
             }
             catch (Exception ex)
