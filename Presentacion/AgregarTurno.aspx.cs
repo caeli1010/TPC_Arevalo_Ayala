@@ -85,6 +85,7 @@ namespace Presentacion
                 MedicoNegocio medNegocio = new MedicoNegocio();
                 listMedicosConEspe = medNegocio.leerMedicoXEspecialidad(idEsp);
                 Session["idEspe"] = idEsp;
+                Session["EspecialidadMail"] = ddlEspecialidad.SelectedItem.Text;
                 ddlProfesional.Visible = true;
                 lblProfesional.Visible = true;
                 ddlProfesional.DataSource = listMedicosConEspe;
@@ -243,6 +244,15 @@ namespace Presentacion
                "'success'); " +
                " console.log('hola mundo'); " +
                "</script>");
+                string CuerpoMensaje = "<p>Su turno para la  fecha  " +
+               fechaDia.ToString("dddd dd MMMM YYYY", CultureInfo.CreateSpecificCulture("es-MX")) +
+               ", en la especialidad: " + Session["EspecialidadMail"].ToString() +
+               " </p><p> Por favor si desea cancelar su turno  comuniquese al <a href='tel:\"5555-0011\"' >5555-0011</a></p>";
+
+                EmailService envio = new EmailService();
+                envio.armarCorreo(paciente.mail.ToString(), 
+                    "Se ha agendado su turno médico",
+                   CuerpoMensaje, " sin html");
 
                 btnVolver.Visible = true;
                 btnAgendar.Visible = false;
