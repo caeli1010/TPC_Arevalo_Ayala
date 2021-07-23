@@ -72,29 +72,10 @@
                         </asp:DropDownList>
                     </div>
                 </div>
-                 <%--<div class="form-row">
-                    <div class="form-group col-md-12">
-                      
-                        <asp:Label Text="Meses" ID="lblMese"  Visible="false" runat="server" />
-                        <asp:DropDownList
-                            Visible="false"
-                            ID="ddlMeses"
-                              AutoPostBack="true"
-                             CssClass="form-control"
-                            OnSelectedIndexChanged="ddlMeses_SelectedIndexChanged"
-                            runat="server">
-                            <asp:ListItem Text="Seleccione un mes" />
-                            <asp:ListItem Value="7" Text="Julio" />
-                            <asp:ListItem Value="8" Text="Agosto" />
-                        </asp:DropDownList>
-                    </div>
-                </div>--%>
+              
                  <div class="form-row">
                     <div class="form-group col-md-12">
-
                         <asp:Label Text="Dias " ID="lblDias" Visible="false" runat="server" />
-
-                       
                         <asp:TextBox runat="server" 
                             ID="clndFecha" 
                             Visible="false"
@@ -110,7 +91,7 @@
                         
                         <asp:Label Text="Horario" ID="lblHorario"  Visible="false"  runat="server" />
                         <asp:DropDownList runat="server"
-                            Visible="true" 
+                            Visible="false" 
                               AutoPostBack="true"
                             ID="ddlHorario"
                             OnSelectedIndexChanged="ddlHorario_SelectedIndexChanged"
@@ -121,10 +102,12 @@
                             <asp:ListItem Text="16" />
                             <asp:ListItem Text="17" />--%>
                         </asp:DropDownList>
+                        <asp:Label Text="Minutos" ID="lblMin"  Visible="false"  runat="server" />
                         <asp:DropDownList runat="server" 
                             ID="ddlMin" 
-                             Visible="true" 
+                             Visible="false" 
                              CssClass="form-control"
+                            OnSelectedIndexChanged="ddlMin_SelectedIndexChanged"
                             AutoPostBack="true">
 <%--                            <asp:ListItem Text="00" />
                             <asp:ListItem Text="15" />

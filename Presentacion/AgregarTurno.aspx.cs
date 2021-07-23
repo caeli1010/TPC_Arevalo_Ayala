@@ -85,7 +85,6 @@ namespace Presentacion
                 lblProfesional.Visible = true;
                 //long idEspecialidad = long.Parse(ddlEspecialidad.SelectedValue);
 
-
                 ddlProfesional.DataSource = listMedicosConEspe;
                 ddlProfesional.DataValueField = "idMedico";
                 ddlProfesional.DataTextField = "apellido";
@@ -102,15 +101,83 @@ namespace Presentacion
 
         protected void ddlProfesional_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-
             clndFecha.Visible = true;
             lblDias.Visible = true;
+        }
+        protected void clndFecha_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                lblHorario.Visible = true;
+                ddlHorario.Visible = true;
 
+                lblMin.Visible = true;
+                ddlMin.Visible = true;
+
+                Session["diaSele"] = clndFecha.Text;
+
+                long idMed = long.Parse(ddlProfesional.SelectedItem.Value);
+                HorarioNegocio horarioNegocio = new HorarioNegocio();
+                listHorarioConMedicos = horarioNegocio.listar();
+                Horario horarioXMed = (Horario)listHorarioConMedicos.Find(x => x.medico.idMedico == idMed);
+                List<int> hours = new List<int>();
+                List<int> min = new List<int>();
+                int horaInicio = (int)horarioXMed.horaEntrada;
+                int cantHoras = (int)horarioXMed.hora;
+                int duracion = (int)horarioXMed.duracion;
+                int fraccionHora = 60 / duracion;
+                int cantTurnos = (cantHoras * 60) / duracion;
+
+                for (int i = 0; i < cantHoras; i++)
+                {
+                    if (i == 0)
+                    {hours.Add(horaInicio);}
+                    else
+                    { hours.Add(horaInicio += 1); }
+                }
+                for (int i = 0; i < fraccionHora; i++)
+                {
+                    if (i == 0)
+                    {
+                        min.Add(00);
+                    }
+                    else
+                    {
+                        min.Add(duracion * i);
+                    }
+
+
+                }
+
+                ddlHorario.DataSource = hours;
+                ddlHorario.DataBind();
+                ddlHorario.Items.Insert(0, new ListItem("Horas", "0"));
+
+                ddlMin.DataSource = min;
+                ddlMin.DataBind();
+                ddlMin.Items.Insert(0, new ListItem("Minutos", "0"));
+
+
+                    //int idDiaSemana = (int)date1.DayOfWeek;
+                    //int diferncia = diaSeleccionado - idDiaSemana;
+                    //if (idDiaSemana > diaSeleccionado)
+                    //{
+                    //    date1 = date1.AddDays(7+diferncia);
+                    //}
+                    //else
+                    //{
+                    //    date1 = date1.AddDays(diferncia);
+                    //}
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
 
 
         }
-
         //protected void ddlMeses_SelectedIndexChanged(object sender, EventArgs e)
         //{
 
@@ -137,10 +204,6 @@ namespace Presentacion
         //            default: break;
         //        }
         //    }
-
-
-
-
         //}
 
         //protected void ddlDiasSemana_SelectedIndexChanged(object sender, EventArgs e)
@@ -166,14 +229,37 @@ namespace Presentacion
         //}
         protected void ddlHorario_SelectedIndexChanged(object sender, EventArgs e)
         {
-            btnAgendar.Visible = true;
-            int hora = int.Parse(ddlHorario.SelectedItem.Text);
-            int minuto = int.Parse(ddlMin.SelectedItem.Text);
-            dateValue = new DateTime(date1.Year, diaSele.Month, diaSele.Day, hora, minuto, 00);
-            lblTurno.Text = dateValue.ToString();
-            lblTurno.Visible = true;
-            ddlHorario.Visible = true;
-            lblHorario.Visible = true;
+            try
+            {
+                ddlMin.Visible = true;
+                Session["diaSele"] = Session["diaSele"]+" "+ ddlHorario.SelectedItem.Text;
+                //int minuto = int.Parse(ddlMin.SelectedItem.Text);
+
+                //dateValue = new DateTime(dateValue.Year, diaSele.Month, diaSele.Day, hora, 00, 00);
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+           
+
+        }
+        protected void ddlMin_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                btnAgendar.Visible = true;
+                Session["diaSele"] = Session["diaSele"] + ":" + ddlMin.SelectedItem.Text + ":00";
+                //dateValue = new DateTime(dateValue.Year, dateValue.Month, dateValue.Day, dateValue.Hour, minuto, 00);
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
 
         }
 
@@ -183,6 +269,15 @@ namespace Presentacion
 
             try
             {
+
+                //int hora = int.Parse(ddlHorario.SelectedItem.Text);
+                //int minuto = int.Parse(ddlMin.SelectedItem.Text);
+
+                //dateValue = new DateTime(dateValue.Year, dateValue.Month, dateValue.Day, dateValue.Hour, dateValue.Minute, 00);
+                lblTurno.Text = Session["diaSele"].ToString();
+                lblTurno.Visible = true;
+                ddlHorario.Visible = true;
+                lblHorario.Visible = true;
 
                 //dateValue = new DateTime(2021, int.Parse(ddlMeses.SelectedItem.Value), 1);
 
@@ -215,73 +310,6 @@ namespace Presentacion
             lblHorario.Visible = true;
         }
 
-        protected void clndFecha_TextChanged(object sender, EventArgs e)
-        {
-            clndFecha.Visible = true;
-            lblDias.Visible = true;
-            diaSele = DateTime.Parse(clndFecha.Text);
 
-            long idMed = long.Parse(ddlProfesional.SelectedItem.Value);
-            HorarioNegocio horarioNegocio = new HorarioNegocio();
-            //listHorarioConMedicos = horarioNegocio.leerHorario(idMed);
-            listHorarioConMedicos = horarioNegocio.listar();
-            Horario horarioXMed = (Horario)listHorarioConMedicos.Find(x => x.medico.idMedico == idMed);
-            List<int> hours = new List<int>();
-            List<int> min = new List<int>();
-            //List<int> dia = new List<int>();
-            int horaInicio = (int)horarioXMed.horaEntrada;
-            int cantHoras = (int)horarioXMed.hora;
-            int duracion = (int)horarioXMed.duracion;
-            int fraccionHora = 60 / duracion;
-            int cantTurnos = (cantHoras*60) / duracion;
-
-            for (int i = 0; i < cantHoras; i++) {
-                if (i == 0) 
-                { 
-                    hours.Add(horaInicio);
-                } 
-                else
-                {
-                    hours.Add(horaInicio+=1);
-                }
-            }
-
-            for (int i = 0; i < fraccionHora; i++)
-            {
-                if (i == 0)
-                {
-                    min.Add(00);
-                }
-                else
-                { 
-                    min.Add(duracion*i);
-                }
-          
-
-            }
-
-            ddlHorario.DataSource = hours;
-            ddlHorario.DataBind();
-            ddlHorario.Items.Insert(0, new ListItem("Horas", "0"));
-
-            ddlMin.DataSource = min;
-            ddlMin.DataBind();
-            ddlMin.Items.Insert(0, new ListItem("Minutos", "0"));
-
-
-            //int idDiaSemana = (int)date1.DayOfWeek;
-            //int diferncia = diaSeleccionado - idDiaSemana;
-            //if (idDiaSemana > diaSeleccionado)
-            //{
-            //    date1 = date1.AddDays(7+diferncia);
-            //}
-            //else
-            //{
-            //    date1 = date1.AddDays(diferncia);
-            //}
-          
-            
-           
-        }
     }
 }
