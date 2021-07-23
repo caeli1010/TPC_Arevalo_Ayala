@@ -20,14 +20,14 @@ namespace Presentacion
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-            UsuarioNegocio negocio = new UsuarioNegocio();
-            Usuario datos = new Usuario();
+            //UsuarioNegocio negocio = new UsuarioNegocio();
+            //Usuario datos = new Usuario();
 
-            datos.idRol = 3;
-            datos.username = txtUser.Text;
-            datos.password = txtPassw.Text;
-            datos.dni = txtDNI.Text;
-            negocio.agregar(datos);
+            //datos.idRol = 3;
+            //datos.username = txtUser.Text;
+            //datos.password = txtPassw.Text;
+            //datos.dni = txtDNI.Text;
+            //negocio.agregar(datos);
         }
     }
 }

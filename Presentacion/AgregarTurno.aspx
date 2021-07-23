@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AgregarTurno.aspx.cs" Inherits="Presentacion.AgregarTurno" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-
+    <%--<asp:ScriptManager  runat="server" />--%>
     <hr class="py-1" />
      <h3 class="text-center">Solicitud de Turnos</h3>
     <div class="row alert alert-secondary col-md-8 offset-md-2">
@@ -41,10 +41,11 @@
             </div>
 
         </div>
-
         <div class="col-md-6">
 
             <form>
+            <asp:UpdatePanel runat="server">
+                <ContentTemplate>
                 <asp:Label ID="lblTurno" Visible="true" runat="server" />
                 <div class="form-row">
                     <div class="form-group col-md-12">
@@ -119,7 +120,8 @@
                         </asp:DropDownList>
                     </div>
                 </div>
-               
+                  </ContentTemplate>
+    </asp:UpdatePanel> 
                 <div class="row ">
                  <div class="text-right col-md-12 ">
                 <asp:Button 
@@ -148,5 +150,5 @@
             </form>
         </div>
     </div>
-
+ 
 </asp:Content>

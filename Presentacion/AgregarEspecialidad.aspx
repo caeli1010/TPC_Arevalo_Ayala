@@ -17,7 +17,8 @@
         <asp:Label Visible="false" runat="server" ID="lblMensaje" />
     </div>
     <% } %>
-
+    <asp:UpdatePanel runat="server">
+        <ContentTemplate>
     <div class="row alert alert-secondary">
         <div class="col-md-6">
             <div id="esconder" class="card">
@@ -109,5 +110,6 @@
             </form>
         </div>
     </div>
-
+            </ContentTemplate>
+    </asp:UpdatePanel>
 </asp:Content>
