@@ -17,9 +17,10 @@
         <asp:Label Visible="false" runat="server" ID="lblMensaje" />
     </div>
     <% } %>
-    <asp:UpdatePanel runat="server">
-        <ContentTemplate>
+   
     <div class="row alert alert-secondary">
+                 <asp:UpdatePanel runat="server">
+        <ContentTemplate>
         <div class="col-md-6">
             <div id="esconder" class="card">
                 <div class="card-body">
@@ -87,6 +88,8 @@
                         <asp:TextBox ID="txtEspecialidad" Visible="false" CssClass="form-control" runat="server" />
                     </div>
                 </div>
+                 </ContentTemplate>
+    </asp:UpdatePanel>
                 <div class="form-row">
                     <div class="text-center">
                         <asp:Button ID="btnElEspecialidad" OnClick="btnElEspecialidad_Click"
@@ -99,7 +102,7 @@
                     </div>
                 </div>
                 <div class="text-right">
-
+                    
                     <asp:Button Text="Guardar" CssClass="card-link btn-sm  btn-success"
                         ID="btnGuardar" runat="server" Visible="false" OnClick="btnGuardar_Click" />
 
@@ -110,6 +113,5 @@
             </form>
         </div>
     </div>
-            </ContentTemplate>
-    </asp:UpdatePanel>
+           
 </asp:Content>

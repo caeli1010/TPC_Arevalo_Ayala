@@ -322,7 +322,7 @@ namespace Presentacion
                    CuerpoMensaje, " sin html");
 
                 btnVolver.Visible = true;
-               // btnAgendar.Visible = false;
+                btnAgendar.Visible = false;
             }
             catch (Exception ex)
             {

@@ -44,8 +44,8 @@
         <div class="col-md-6">
 
             <form>
-            <asp:UpdatePanel runat="server">
-                <ContentTemplate>
+           <%-- <asp:UpdatePanel runat="server">
+                <ContentTemplate>--%>
                 <asp:Label ID="lblTurno" Visible="true" runat="server" />
                 <div class="form-row">
                     <div class="form-group col-md-12">
@@ -120,8 +120,8 @@
                         </asp:DropDownList>
                     </div>
                 </div>
-                  </ContentTemplate>
-    </asp:UpdatePanel> 
+                 <%-- </ContentTemplate>
+    </asp:UpdatePanel>--%> 
                 <div class="row ">
                  <div class="text-right col-md-12 ">
                 <asp:Button 
