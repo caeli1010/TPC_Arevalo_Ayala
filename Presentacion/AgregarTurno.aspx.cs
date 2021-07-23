@@ -16,12 +16,12 @@ namespace Presentacion
         public List<Horario> listHorarioConMedicos;
         public List<Medico> listMedicosConEspe;
         public List<Paciente> listPacientes;
-        private Medico medico;
+        public long idEsp;
+        public long idMed;
+        public long idt;
         private Paciente paciente;
         
-        private long idEsp;
-        private long idMed;
-        private long idt;
+        //private Medico medico;
         //private DateTime dateValue;
         //private DateTime diaSele;
         //private DateTime date1 = DateTime.Now;
@@ -84,6 +84,7 @@ namespace Presentacion
                 idEsp = long.Parse(ddlEspecialidad.SelectedItem.Value);
                 MedicoNegocio medNegocio = new MedicoNegocio();
                 listMedicosConEspe = medNegocio.leerMedicoXEspecialidad(idEsp);
+                Session["idEspe"] = idEsp;
                 ddlProfesional.Visible = true;
                 lblProfesional.Visible = true;
                 //long idEspecialidad = long.Parse(ddlEspecialidad.SelectedValue);
@@ -120,6 +121,7 @@ namespace Presentacion
                 Session["diaSele"] = clndFecha.Text;
 
                 idMed = long.Parse(ddlProfesional.SelectedItem.Value);
+                Session["idMed"] = idMed;
                 HorarioNegocio horarioNegocio = new HorarioNegocio();
                 listHorarioConMedicos = horarioNegocio.listar();
                 Horario horarioXMed = (Horario)listHorarioConMedicos.Find(x => x.medico.idMedico == idMed);
@@ -176,7 +178,11 @@ namespace Presentacion
             catch (Exception ex)
             {
 
-                throw ex;
+                ClientScript.RegisterStartupScript(
+                   this.GetType(),
+                   "Mensaje",
+                   "<script> swal('Falla!', '" + ex.Message + "!', 'warning'); </script>"
+               );
             }
 
         }
@@ -238,8 +244,11 @@ namespace Presentacion
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                ClientScript.RegisterStartupScript(
+                                   this.GetType(),
+                                   "Mensaje",
+                                   "<script> swal('Falla!', '" + ex.Message + "!', 'warning'); </script>"
+                               );
             }
 
         }
@@ -255,7 +264,11 @@ namespace Presentacion
             catch (Exception ex)
             {
 
-                throw ex;
+                ClientScript.RegisterStartupScript(
+                    this.GetType(),
+                    "Mensaje",
+                    "<script> swal('Falla!', '" + ex.Message + "!', 'warning'); </script>"
+                );
             }
 
         }
@@ -267,12 +280,10 @@ namespace Presentacion
             {
                 TurnoNegocio agrega = new TurnoNegocio();
                 Turno turno = new Turno();
-                turno.idEspecialidad = idEsp;
-                turno.medico = new Medico(idMed);
+                turno.idEspecialidad = (long)Session["idEspe"];
+                turno.medico = new Medico((long)Session["idMed"]);
                 turno.idPaciente = (long)paciente.idPaciente;
                 turno.fechaHora = (DateTime)Session["diaSele"];
-                
-
                 agrega.agregar(turno);
 
                 lblTurno.Text = Session["diaSele"].ToString();
@@ -295,7 +306,11 @@ namespace Presentacion
             catch (Exception ex)
             {
 
-                throw ex;
+                ClientScript.RegisterStartupScript(
+                    this.GetType(),
+                    "Mensaje",
+                    "<script> swal('Falla!', '" + ex.Message + "!', 'warning'); </script>"
+                );
             }
 
         }
