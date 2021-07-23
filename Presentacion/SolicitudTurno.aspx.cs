@@ -138,8 +138,8 @@ namespace Presentacion
 
 
 
-            ddlDiasSemana.DataValueField = "index";
-            ddlDiasSemana.DataTextField = "Valor";
+            //ddlDiasSemana.DataValueField = "index";
+            //ddlDiasSemana.DataTextField = "Valor";
             ddlDiasSemana.DataSource = dia;
             ddlDiasSemana.DataBind();
             ddlDiasSemana.Items.Insert(0, new ListItem("Dias", "0"));
