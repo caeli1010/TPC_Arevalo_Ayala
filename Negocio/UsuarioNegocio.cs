@@ -48,23 +48,13 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                string valores = @"values('" +
-                                    nuevo.idRol + "', '" +
-                                    nuevo.username + "', '" +
-                                    nuevo.password + "', " +
-                                    nuevo.estado + ", " +
-                                    nuevo.dni + ", '" +
-                                    nuevo.idTipoDocumento + "', " +
-                                    nuevo.imagen + ")";
-                datos.setearConsulta(@"insert into USUARIOS (
-                                        IDROL, 
-                                        USERNAME,
-                                        PASSWORD, 
-                                        ESTADO, 
-                                        DNI, 
-                                        IDTIPODOC, 
-                                        IMAGEN
-                                        ) " + valores);
+                datos.setearParametro("idRol", nuevo.idRol);
+                datos.setearParametro("@userName", nuevo.username);
+                datos.setearParametro("@passWord", nuevo.password);
+                datos.setearParametro("@passWord", nuevo.password);
+                datos.setearParametro("@estado", 1);
+                datos.setearConsulta(@"insert into USUARIOS (IDROL, USERNAME, PASSWORD, ESTADO, DNI, IDTIPODOC, IMAGEN)
+                Values(@idRol, @userName, @passWord, @estado, @dni, NULL, NULL)");
                 datos.ejecutarAccion();
 
             }

@@ -11,7 +11,8 @@ namespace Presentacion
 {
     public partial class Login2 : System.Web.UI.Page
     {
-        Usuario user;
+        public List<Usuario> user;
+        private Usuario usuario;
         protected void Page_Load(object sender, EventArgs e)
         {
            
@@ -32,16 +33,17 @@ namespace Presentacion
 
                 string username = txtUser.Text;
                 string password = txtPassw.Text;
-                user = negocio.leerUsuario(username, password);
+                usuario = negocio.leerUsuario(username, password);
 
-                if (user != null)
+                if (usuario != null)
                 {
-                    Session.Add("Login", user);
+                    Session.Add("Login", usuario);
                     Response.Redirect("Default.aspx");
                 }
                 else
                 {
-                    Response.Redirect("GestionUsuario.aspx");
+                    lblMensaje.Visible = true;
+                    lblMensaje.Text = "Los datos ingresados no son correctos";
                 }
             }
             catch (Exception ex)
