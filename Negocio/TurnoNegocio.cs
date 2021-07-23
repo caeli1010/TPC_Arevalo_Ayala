@@ -103,11 +103,11 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta(@"insert into TURNOS (FECHAHORA, IDMEDICO, IDPACIENTE, ESTADO)
+                datos.setearConsulta(@"insert into TURNOS (FECHAHORA, IDMEDICO, IDPACIENTE, OBSERVACIONES, ESTADO)
                  VALUES(@fecha, @idMedico, @idPaciente, @Observ, @estado)");
                 datos.setearParametro("@fecha", nuevo.fechaHora);
                 datos.setearParametro("@idMedico", nuevo.medico.idMedico);
-                datos.setearParametro("@idPaciente", nuevo.paciente.idPaciente);
+                datos.setearParametro("@idPaciente", nuevo.idPaciente);
                 datos.setearParametro("@Observ", (nuevo.observaciones == null) ? nuevo.observaciones : "SIN OBSERVACION");
                 datos.setearParametro("@estado", 1);
 

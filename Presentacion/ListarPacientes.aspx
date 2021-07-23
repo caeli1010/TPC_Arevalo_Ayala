@@ -86,10 +86,8 @@
                     </tr>
                 </thead>
                 <tbody>
-
                     <asp:Repeater runat="server" ID="repetidor">
                         <ItemTemplate>
-
                             <tr>
                                 <td scope="row"><%#Eval("dni")%></td>
                                 <td><%#Eval("nombre")%> <%#Eval("apellido")%></td>
@@ -106,14 +104,7 @@
                                     <a href='ListarPacientes.aspx?ipc=<%#Eval("idPaciente")%>&dltpte=s' class="btn btn-sm btn-outline-danger" title="Elimninará este Paciente" >
                                         <i class="fa fa-trash"  ></i>
                                     </a>
-                                    <%--<asp:Button
-                                        Text="Eliminar"
-                                        ID="eliminiar"
-                                        CssClass="btn btn-sm btn-outline-danger"
-                                        CommandArgument='<%#Eval("idPaciente")%>'
-                                        OnClick="eliminiar_Click"
-                                        runat="server" Enabled="True" />--%>
-
+                                  
                                 </td>
                             </tr>
                         </ItemTemplate>

@@ -21,6 +21,7 @@ namespace Dominio
         public string apellido_m { get; set; }
 
         public string especialidad { get; set; }
+        public long idEspecialidad { get; set; }
         public string observaciones { get; set; }
         public int estado { get; set; }
         public Turno() { }

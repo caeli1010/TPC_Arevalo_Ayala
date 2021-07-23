@@ -16,12 +16,15 @@ namespace Presentacion
         public List<Horario> listHorarioConMedicos;
         public List<Medico> listMedicosConEspe;
         public List<Paciente> listPacientes;
-        //private Medico medico;
+        private Medico medico;
         private Paciente paciente;
+        
+        private long idEsp;
+        private long idMed;
         private long idt;
-        private DateTime dateValue;
-        private DateTime diaSele;
-        private DateTime date1 = DateTime.Now;
+        //private DateTime dateValue;
+        //private DateTime diaSele;
+        //private DateTime date1 = DateTime.Now;
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -78,7 +81,7 @@ namespace Presentacion
         {
             try
             {
-                long idEsp = long.Parse(ddlEspecialidad.SelectedItem.Value);
+                idEsp = long.Parse(ddlEspecialidad.SelectedItem.Value);
                 MedicoNegocio medNegocio = new MedicoNegocio();
                 listMedicosConEspe = medNegocio.leerMedicoXEspecialidad(idEsp);
                 ddlProfesional.Visible = true;
@@ -116,7 +119,7 @@ namespace Presentacion
 
                 Session["diaSele"] = clndFecha.Text;
 
-                long idMed = long.Parse(ddlProfesional.SelectedItem.Value);
+                idMed = long.Parse(ddlProfesional.SelectedItem.Value);
                 HorarioNegocio horarioNegocio = new HorarioNegocio();
                 listHorarioConMedicos = horarioNegocio.listar();
                 Horario horarioXMed = (Horario)listHorarioConMedicos.Find(x => x.medico.idMedico == idMed);
@@ -176,7 +179,6 @@ namespace Presentacion
                 throw ex;
             }
 
-
         }
         //protected void ddlMeses_SelectedIndexChanged(object sender, EventArgs e)
         //{
@@ -233,17 +235,12 @@ namespace Presentacion
             {
                 ddlMin.Visible = true;
                 Session["diaSele"] = Session["diaSele"]+" "+ ddlHorario.SelectedItem.Text;
-                //int minuto = int.Parse(ddlMin.SelectedItem.Text);
-
-                //dateValue = new DateTime(dateValue.Year, diaSele.Month, diaSele.Day, hora, 00, 00);
-
             }
             catch (Exception ex)
             {
 
                 throw ex;
             }
-           
 
         }
         protected void ddlMin_SelectedIndexChanged(object sender, EventArgs e)
@@ -266,14 +263,18 @@ namespace Presentacion
         protected void btnAgendar_Click(object sender, EventArgs e)
         {
 
-
             try
             {
+                TurnoNegocio agrega = new TurnoNegocio();
+                Turno turno = new Turno();
+                turno.idEspecialidad = idEsp;
+                turno.medico = new Medico(idMed);
+                turno.idPaciente = (long)paciente.idPaciente;
+                turno.fechaHora = (DateTime)Session["diaSele"];
+                
 
-                //int hora = int.Parse(ddlHorario.SelectedItem.Text);
-                //int minuto = int.Parse(ddlMin.SelectedItem.Text);
+                agrega.agregar(turno);
 
-                //dateValue = new DateTime(dateValue.Year, dateValue.Month, dateValue.Day, dateValue.Hour, dateValue.Minute, 00);
                 lblTurno.Text = Session["diaSele"].ToString();
                 lblTurno.Visible = true;
                 ddlHorario.Visible = true;
@@ -289,6 +290,7 @@ namespace Presentacion
                "</script>");
 
                 btnVolver.Visible = true;
+                btnAgendar.Visible = false;
             }
             catch (Exception ex)
             {
@@ -303,13 +305,6 @@ namespace Presentacion
 
             Response.Redirect("ListarTurnos.aspx");
         }
-
-        protected void btnDias_Click(object sender, EventArgs e)
-        {
-            ddlHorario.Visible = true;
-            lblHorario.Visible = true;
-        }
-
 
     }
 }
