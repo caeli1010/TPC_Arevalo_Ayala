@@ -21,7 +21,6 @@ namespace Presentacion
         public long idt;
         private Paciente paciente;
         //public DateTime fechaDia = DateTime.Now;
-        
         //private Medico medico;
         //private DateTime dateValue;
         //private DateTime diaSele;
@@ -29,15 +28,20 @@ namespace Presentacion
         {
             try
             {
-
-
                 if (Request.QueryString["ipc"] != null)
                 {
                     EspecialidadNegocio espNegocio = new EspecialidadNegocio();
                     Session["idPaciente"] = Request.QueryString["ipc"].ToString();
-                    listPacientes = (List<Paciente>)Session["Paciente"];
-                    paciente = listPacientes.Find(X => X.idPaciente.ToString() == Request.QueryString["ipc"]);
 
+                    if (Session["nvoPaciente"] == null)
+                    {
+                        listPacientes = (List<Paciente>)Session["Paciente"];
+                        paciente = listPacientes.Find(X => X.idPaciente.ToString() == Request.QueryString["ipc"]);
+                    }
+                    else
+                    {
+                        paciente = (Paciente)Session["nvoPaciente"];
+                    }
                     lblNombre.Text = (string)paciente.nombre + " " + (string)paciente.apellido;
                     lblDni.Text = (string)paciente.dni;
                     lblEmail.Text = (string)paciente.mail;
