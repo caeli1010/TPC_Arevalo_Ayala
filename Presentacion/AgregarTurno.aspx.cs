@@ -210,23 +210,27 @@ namespace Presentacion
         protected void btnAgendar_Click(object sender, EventArgs e)
         {
 
-            try
-            {
                 DateTime fechaDia = (DateTime)Session["diaSele"];
                 int hora = (int)Session["horaTurno"];
                 int min = (int)Session["minTurno"];
 
                 fechaDia = new DateTime(fechaDia.Year, fechaDia.Month, fechaDia.Day, hora, min, 00);
+                lblTurno.Visible = true;
                 lblTurno.Text = fechaDia.ToString();
+            try
+            {
                 TurnoNegocio agrega = new TurnoNegocio();
+              
+                
                 Turno turno = new Turno();
                 turno.idEspecialidad = (long)Session["idEspe"];
                 turno.medico = new Medico((long)Session["idMed"]);
                 turno.idPaciente = (long)paciente.idPaciente;
+                turno.idEsp_X_Med = agrega.especialidadXMedico(new Medico((long)Session["idMed"]), (long)Session["idEspe"]);
                 turno.fechaHora = fechaDia;
                 agrega.agregar(turno);
 
-                lblTurno.Visible = true;
+                
                 ddlHorario.Visible = true;
                 lblHorario.Visible = true;
 

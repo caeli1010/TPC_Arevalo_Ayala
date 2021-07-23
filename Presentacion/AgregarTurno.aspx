@@ -45,7 +45,7 @@
         <div class="col-md-6">
 
             <form>
-                <asp:Label ID="lblTurno" Visible="false" runat="server" />
+                <asp:Label ID="lblTurno" Visible="true" runat="server" />
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <label for="espec">Especialidad</label>

@@ -11,7 +11,7 @@ namespace Negocio
     {
         public List<Turno> listar()
         {
-            List<Turno> lista = new List<Turno>();
+             List<Turno> lista = new List<Turno>();
             AccesoDatos datos = new AccesoDatos();
             try
             {
@@ -19,6 +19,7 @@ namespace Negocio
                                         T.IDTURNO,
                                         T.IDMEDICO, 
                                         T.IDPACIENTE, 
+                                        T.IDESP_X_MED,
                                         T.FECHAHORA,
                                         T.IDESTADO,
                                         P.NOMBRE NOMBREP, 
@@ -51,6 +52,7 @@ namespace Negocio
                     );
                     aux.idTurnos = (long)datos.Lector["IDTURNO"];
                     aux.idPaciente = (long)datos.Lector["IDPACIENTE"];
+                    aux.idEsp_X_Med = (int)datos.Lector["IDESP_X_MED"];
                     aux.fechaHora = (DateTime)datos.Lector["FECHAHORA"];
                     aux.estado = (byte)datos.Lector["IDESTADO"];
                     lista.Add(aux);
@@ -67,49 +69,19 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
-
-        //public List<Horario> listarHorarioMedico(long idMedico)
-        //{
-        //    List<Horario> turnos = new List<Horario>();
-        //    List<Turno> lista = new List<Turno>();
-        //    AccesoDatos datos = new AccesoDatos();
-        //    try
-        //    {
-        //        datos.setearConsulta(@" select ");
-        //        datos.ejecutarLectura();
-        //        while (datos.Lector.Read())
-        //        {
-        //            //Paciente pac = new Paciente();
-        //            Turno aux = new Turno();
-        //            aux.medico = new Medico(idMedico);
-
-        //            lista.Add(aux);
-
-        //        }
-        //        return lista;
-        //    }
-        //    catch (Exception EX)
-        //    {
-        //        throw EX;
-        //    }
-        //    finally
-        //    {
-        //        datos.cerrarConexion();
-        //    }
-        //}
-
         public void agregar(Turno nuevo)
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta(@"insert into TURNOS (FECHAHORA, IDMEDICO, IDPACIENTE, OBSERVACIONES, ESTADO)
-                 VALUES(@fecha, @idMedico, @idPaciente, @Observ, @estado)");
+                datos.setearConsulta(@"insert into TURNOS (FECHAHORA, IDMEDICO, IDPACIENTE, IDESP_X_MED, IDESTADO)
+                 VALUES(@fecha, @idMedico, @idPaciente, 1)");
                 datos.setearParametro("@fecha", nuevo.fechaHora);
                 datos.setearParametro("@idMedico", nuevo.medico.idMedico);
                 datos.setearParametro("@idPaciente", nuevo.idPaciente);
-                datos.setearParametro("@Observ", (nuevo.observaciones == null) ? nuevo.observaciones : "SIN OBSERVACION");
-                datos.setearParametro("@estado", 1);
+                datos.setearParametro("@idEsp_X_Med", nuevo.idEsp_X_Med);
+                //datos.setearParametro("@Observ", (nuevo.observaciones == null) ? nuevo.observaciones : "SIN OBSERVACION");
+                //datos.setearParametro("@estado", 1);
 
                 datos.ejecutarAccion();
 
@@ -177,7 +149,7 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("select * from TURNOS where IDTURNO= @id");
+                datos.setearConsulta("select * from TURNOS where IDTURNO= @id AND IDESTADO=1");
                 datos.setearParametro("@id", id);
                 datos.ejecutarLectura();
 
@@ -187,6 +159,32 @@ namespace Negocio
                 throw ex;
             }
 
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+        }
+        public int especialidadXMedico(Medico idM, long idE)
+        {
+            List<Turno> idEsp_x_medi = new List<Turno>();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+
+                datos.setearParametro("@idMedico", idM.idMedico);
+                datos.setearParametro("@idEspecialidad", idE);
+                datos.setearConsulta(@"SELECT ID FROM ESPECIALIDAD_X_MEDICO WHERE IDMEDICO = @idMedico AND 
+                                        IDESPECIALIDAD = @idEspecialidad AND ESTADO = 1");
+                datos.ejecutarLectura();
+                Turno aux = new Turno();
+                return  (int)datos.Lector["ID"];
+                //idEsp_x_medi.Add(aux);
+            }
+            catch (global::System.Exception ex)
+            {
+                throw ex;
+            }
             finally
             {
                 datos.cerrarConexion();

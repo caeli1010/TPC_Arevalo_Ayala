@@ -22,6 +22,7 @@ namespace Dominio
 
         public string especialidad { get; set; }
         public long idEspecialidad { get; set; }
+        public int idEsp_X_Med { get; set; }
         public string observaciones { get; set; }
         public int estado { get; set; }
         public Turno() { }
