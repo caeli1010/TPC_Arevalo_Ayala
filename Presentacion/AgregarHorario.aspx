@@ -1,41 +1,43 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AgregarHorario.aspx.cs" Inherits="Presentacion.AgregarHorario" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <script runat=server>
-            protected String GetDias(string idDia) {
-                var dia = String.Empty;
-                switch (idDia)
-                {
-                    case "1":
-                        dia = "Lunes";
-                        break;
-                    case "2":
-                        dia = "Martes";
-                        break;
-                    case "3":
-                        dia = "Miercoles";
-                        break;
-                    case "4":
-                        dia = "Jueves";
-                        break;
-                    case "5":
-                        dia = "Viernes";
-                        break;
-                    case "6":
-                        dia = "Sabado";
-                        break;
-                    default:
-                        break;
-                }
 
-                return dia;
-            } 
+    <script runat=server>
+        protected String GetDias(string idDia)
+        {
+            var dia = String.Empty;
+            switch (idDia)
+            {
+                case "1":
+                    dia = "Lunes";
+                    break;
+                case "2":
+                    dia = "Martes";
+                    break;
+                case "3":
+                    dia = "Miercoles";
+                    break;
+                case "4":
+                    dia = "Jueves";
+                    break;
+                case "5":
+                    dia = "Viernes";
+                    break;
+                case "6":
+                    dia = "Sabado";
+                    break;
+                default:
+                    break;
+            }
+
+            return dia;
+        }
     </script>
 
     <div class="offset-md-2 col-md-10">
     <h3 class="text-center">Horarios</h3>
          <% if (lblMensaje.Visible == true)
-        { %>
+             { %>
     <div class="alert alert-success text-center">
 
         <asp:Label Visible="false" runat="server" ID="lblMensaje" />
@@ -147,10 +149,10 @@
                     <asp:Button Text="Modificar" OnClick="btnModificar_Click" CssClass="card-link btn-sm btn-outline-info"
                         Visible="false" ID="btnModificar" runat="server" />
                 </div>
+
             </form>
         </div>
     </div>
     </div>
-
 
 </asp:Content>

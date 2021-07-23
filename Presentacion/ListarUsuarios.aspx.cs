@@ -17,11 +17,19 @@ namespace Presentacion
         {
             UsuarioNegocio negocio = new UsuarioNegocio();
 
+            if (Session["Login"] == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
+            else
+            {
+                Usuario user = (Usuario)Session["Login"];
+                if(user.idRol != 1)
+                {
+                    Response.Redirect("Default.aspx");
+                }
 
-            //if (Session["Login"] == null)
-            //{
-            //    Response.Redirect("Login2.aspx");
-            //}
+            }
 
             try
             { 
