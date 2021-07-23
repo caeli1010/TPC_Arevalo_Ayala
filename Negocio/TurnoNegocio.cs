@@ -75,13 +75,13 @@ namespace Negocio
             try
             {
                 datos.setearConsulta(@"insert into TURNOS (FECHAHORA, IDMEDICO, IDPACIENTE, IDESP_X_MED, IDESTADO)
-                 VALUES(@fecha, @idMedico, @idPaciente, 1)");
+                 VALUES(@fecha, @idMedico, @idPaciente, @idEsp_X_Med, @estado)");
                 datos.setearParametro("@fecha", nuevo.fechaHora);
                 datos.setearParametro("@idMedico", nuevo.medico.idMedico);
                 datos.setearParametro("@idPaciente", nuevo.idPaciente);
                 datos.setearParametro("@idEsp_X_Med", nuevo.idEsp_X_Med);
+                datos.setearParametro("@estado", 1);
                 //datos.setearParametro("@Observ", (nuevo.observaciones == null) ? nuevo.observaciones : "SIN OBSERVACION");
-                //datos.setearParametro("@estado", 1);
 
                 datos.ejecutarAccion();
 
@@ -178,7 +178,8 @@ namespace Negocio
                                         IDESPECIALIDAD = @idEspecialidad AND ESTADO = 1");
                 datos.ejecutarLectura();
                 Turno aux = new Turno();
-                return  (int)datos.Lector["ID"];
+                aux.idEsp_X_Med= (int)datos.Lector["ID"];
+                return aux.idEsp_X_Med;
                 //idEsp_x_medi.Add(aux);
             }
             catch (global::System.Exception ex)

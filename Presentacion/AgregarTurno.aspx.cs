@@ -226,7 +226,8 @@ namespace Presentacion
                 turno.idEspecialidad = (long)Session["idEspe"];
                 turno.medico = new Medico((long)Session["idMed"]);
                 turno.idPaciente = (long)paciente.idPaciente;
-                turno.idEsp_X_Med = agrega.especialidadXMedico(new Medico((long)Session["idMed"]), (long)Session["idEspe"]);
+                //turno.idEsp_X_Med = agrega.especialidadXMedico(new Medico((long)Session["idMed"]), (long)Session["idEspe"]);
+                turno.idEsp_X_Med = 12; //momoentaneamente hardcodeado
                 turno.fechaHora = fechaDia;
                 agrega.agregar(turno);
 
