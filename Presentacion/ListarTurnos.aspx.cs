@@ -17,7 +17,9 @@ namespace Presentacion
             TurnoNegocio negocio = new TurnoNegocio();
 
             //if (Session["Login"] == null)
-            //    Response.Redirect("Login2.aspx");
+            //{
+            //    Response.Redirect("Login.aspx");
+            //}
 
             try
             {
@@ -49,6 +51,27 @@ namespace Presentacion
         }
         private void eliminarTurno(long id)
         {
+            //var id = ((Button)sender).CommandArgument;
+            List<Turno> seleccionado = turnos;
+            Turno turnoSeleccionado = seleccionado.Find(x => x.idTurnos == id);
+
+            TurnoNegocio negocio = new TurnoNegocio();
+            negocio.eliminar(turnoSeleccionado.idTurnos);
+
+            seleccionado.Remove(turnoSeleccionado);
+            rptTurnos.DataSource = seleccionado;
+            rptTurnos.DataBind();
+            lblMensaje.Text = "Se ha eliminado correctamente!";
+            lblMensaje.CssClass = "alert alert-success text-center";
+            lblMensaje.Visible = true;
+
+            //usamos un sweetalert para avisar que el evento se ralizó con exito. 
+            ClientScript.RegisterStartupScript(type: GetType(),
+                "K", "<script>swal('Ok!', " +
+                "'¡El Turno ha sido eliminado con exito!', " +
+                "'success'); " +
+                "setTimeout(function() {window.location = 'ListarTurnos.aspx';}, 2000); " +
+                "</script>");
 
         }
     }

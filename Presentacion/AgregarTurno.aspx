@@ -49,8 +49,10 @@
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <label for="espec">Especialidad</label>
+                        <asp:Label ID="lblEspecialidad" Visible="false" runat="server" />
                         <asp:DropDownList 
                             ID="ddlEspecialidad" 
+                            Visible="true"
                             OnSelectedIndexChanged="ddlEspecialidad_SelectedIndexChanged"
                             AutoPostBack="true"
                             CssClass="form-control" 
@@ -62,6 +64,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <asp:Label Text="Profesional"  Visible="false"  ID="lblProfesional" runat="server" />
+                          <asp:Label ID="lblMedico" Visible="false" runat="server" />
                         <asp:DropDownList 
                             ID="ddlProfesional" 
                             Visible="false"
@@ -124,6 +127,13 @@
                     Text="Agendar Turno" 
                     CssClass="btn btn-outline-info"
                     ID="btnAgendar" OnClick="btnAgendar_Click"
+                    
+                    runat="server"  />
+                     <asp:Button 
+                    Visible="false" 
+                    Text="Reprogramar Turno" 
+                    CssClass="btn btn-outline-info"
+                    ID="btnReprogramar" OnClick="btnReprogramar_Click"
                     
                     runat="server"  />
                      <asp:Button 

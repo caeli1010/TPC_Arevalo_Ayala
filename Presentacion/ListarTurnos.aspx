@@ -71,11 +71,11 @@
                                  <td><%#Eval("nombre_p") %> <%#Eval("apellido_p") %></td>
                                  <td><%#Eval("especialidad") %> </td>
                                 <td>
-                                    <a href='SolicitudTurno?ipc=<%#Eval("idPaciente") %>&rep=<%#Eval("idTurnos") %>' 
+                                    <a href='AgregarTurno?ipc=<%#Eval("idPaciente") %>&rep=<%#Eval("idTurnos") %>' 
                                         class="btn btn-sm btn-outline-success" title="Reprogramar el turno para este paciente">
                                         <i  class=" fa fa-calendar-check"   ></i>
                                     </a>
-                                   <a href='ListarTurno.aspx?itr=<%#Eval("idTurnos") %>&dlttrn=s' class="btn btn-sm btn-outline-danger" title="Cancelar  este turno" >
+                                   <a href='ListarTurnos.aspx?itr=<%#Eval("idTurnos") %>&dlttrn=s' class="btn btn-sm btn-outline-danger" title="Cancelar  este turno" >
                                         <i class="fa fa-ban"  ></i>
                                     </a>
                 

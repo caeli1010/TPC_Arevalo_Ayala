@@ -20,7 +20,7 @@ namespace Presentacion
 
             //if (Session["Login"] == null)
             //{
-            //    Response.Redirect("Login2.aspx");
+            //    Response.Redirect("Login.aspx");
             //}
 
             try

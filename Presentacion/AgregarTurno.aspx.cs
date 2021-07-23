@@ -26,16 +26,20 @@ namespace Presentacion
         //private DateTime diaSele;
         protected void Page_Load(object sender, EventArgs e)
         {
+            //if (Session["Login"] == null)
+            //    Response.Redirect("Login.aspx");
+
             try
             {
                 if (Request.QueryString["ipc"] != null)
                 {
+                    PacienteNegocio pacNegocio = new PacienteNegocio();
                     EspecialidadNegocio espNegocio = new EspecialidadNegocio();
                     Session["idPaciente"] = Request.QueryString["ipc"].ToString();
 
                     if (Session["nvoPaciente"] == null)
                     {
-                        listPacientes = (List<Paciente>)Session["Paciente"];
+                        listPacientes = pacNegocio.listar();
                         paciente = listPacientes.Find(X => X.idPaciente.ToString() == Request.QueryString["ipc"]);
                     }
                     else
@@ -61,6 +65,52 @@ namespace Presentacion
                     if (!string.IsNullOrEmpty(Request.QueryString["rep"]))
                     {
                         idt = long.Parse(Request.QueryString["rep"]);
+                        TurnoNegocio turNegocio = new TurnoNegocio();
+                        List<Turno> lista = turNegocio.listar();
+                        Turno turnoRepr = lista.Find(x => x.idTurnos == idt);
+
+                        //idMed = turnoRepr.medico.idMedico;
+                        //Session["idMed"] = idMed;
+
+                        ddlEspecialidad.Visible = false;
+
+                        lblEspecialidad.Visible = true;
+                        lblEspecialidad.CssClass = "form-control";
+                        lblEspecialidad.Text = turnoRepr.especialidad;
+                        ddlProfesional.Visible = true;
+                        lblProfesional.Visible = true;
+
+
+                        MedicoNegocio medNegocio = new MedicoNegocio();
+                        listMedicosConEspe = medNegocio.leerMedicoXEspecialidad(turnoRepr.idEspecialidad);
+                        Session["idEspe"] = turnoRepr.idEspecialidad;
+                        Session["EspecialidadMail"] = turnoRepr.especialidad;
+                        ddlProfesional.Visible = true;
+                        lblProfesional.Visible = true;
+                        ddlProfesional.DataSource = listMedicosConEspe;
+                        ddlProfesional.DataValueField = "idMedico";
+                        ddlProfesional.DataTextField = "apellido";
+                        ddlProfesional.DataBind();
+                      
+                        ddlProfesional.Items.Insert(0, new ListItem("Profesionales", "0"));
+
+
+                        //ddlProfesional.SelectedItem.Text = turnoRepr.apellido_m.ToString();
+                        //ddlProfesional.SelectedItem.Selected = true;
+
+                        //lblProfesional.Visible = true;
+                        //lblMedico.Visible = true;
+                        //lblMedico.CssClass = "form-control";
+                        //lblMedico.Text = turnoRepr.apellido_m +" "+ turnoRepr.nombre_m;
+                        clndFecha.Visible = true;
+                        lblDias.Visible = true;
+                        lblHorario.Visible = true;
+                        ddlHorario.Visible = true;
+
+                        lblMin.Visible = true;
+                        ddlMin.Visible = true;
+
+
                     }
                 }
                 else
@@ -122,13 +172,18 @@ namespace Presentacion
 
                 Session["diaSele"] = DateTime.Parse(clndFecha.Text);
                 //fechaDia = DateTime.Parse(clndFecha.Text); //
-                idMed = long.Parse(ddlProfesional.SelectedItem.Value);
-                Session["idMed"] = idMed;
+
+                
+                    idMed = long.Parse(ddlProfesional.SelectedItem.Value);
+                    Session["idMed"] = idMed;
+
+                
                 HorarioNegocio horarioNegocio = new HorarioNegocio();
                 listHorarioConMedicos = horarioNegocio.listar();
                 Horario horarioXMed = (Horario)listHorarioConMedicos.Find(x => x.medico.idMedico == idMed);
                 List<int> hours = new List<int>();
                 List<int> min = new List<int>();
+
                 int horaInicio = (int)horarioXMed.horaEntrada;
                 int cantHoras = (int)horarioXMed.hora;
                 int duracion = (int)horarioXMed.duracion;
@@ -197,9 +252,17 @@ namespace Presentacion
         {
             try
             {
-                btnAgendar.Visible = true;
                 Session["minTurno"] = int.Parse(ddlMin.SelectedItem.Text);
- 
+
+                if (!string.IsNullOrEmpty(Request.QueryString["rep"]))
+                {
+                    btnReprogramar.Visible = true;
+                }
+                else
+                {
+                    btnAgendar.Visible = true;
+                }
+
             }
             catch (Exception ex)
             {
@@ -231,8 +294,8 @@ namespace Presentacion
                 turno.idEspecialidad = (long)Session["idEspe"];
                 turno.medico = new Medico((long)Session["idMed"]);
                 turno.idPaciente = (long)paciente.idPaciente;
-                //turno.idEsp_X_Med = agrega.especialidadXMedico(new Medico((long)Session["idMed"]), (long)Session["idEspe"]);
-                turno.idEsp_X_Med = 12; //momoentaneamente hardcodeado
+                turno.idEsp_X_Med = agrega.especialidadXMedico(new Medico((long)Session["idMed"]), (long)Session["idEspe"]);
+                //turno.idEsp_X_Med = 12; //momoentaneamente hardcodeado
                 turno.fechaHora = fechaDia;
                 agrega.agregar(turno);
 
@@ -278,5 +341,9 @@ namespace Presentacion
             Response.Redirect("ListarTurnos.aspx");
         }
 
+        protected void btnReprogramar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

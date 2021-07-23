@@ -16,10 +16,12 @@ namespace Negocio
         public EmailService()
         {
             server = new SmtpClient();
-            server.Credentials = new NetworkCredential("programationiii@gmail.com", "programacion3");
+            server.Credentials = new NetworkCredential("turnos@eugenio.com.ar", "frgp.maxiprograma");
             server.EnableSsl = true;
+            //server.Port = 465;
+            //server.Host = "a2plcpnl0294.prod.iad2.secureserver.net";
             server.Port = 587;
-            server.Host = "smtp.gmail.com";
+            server.Host = "mail.eugenio.com.ar";
 
         }
         public void armarCorreo( string emalDest, string asunto, string mensaje, string cuerpo)

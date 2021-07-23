@@ -52,6 +52,7 @@ namespace Negocio
                     );
                     aux.idTurnos = (long)datos.Lector["IDTURNO"];
                     aux.idPaciente = (long)datos.Lector["IDPACIENTE"];
+                    aux.medico = new Medico((long)datos.Lector["IDMEDICO"]);
                     aux.idEsp_X_Med = (int)datos.Lector["IDESP_X_MED"];
                     aux.fechaHora = (DateTime)datos.Lector["FECHAHORA"];
                     aux.estado = (byte)datos.Lector["IDESTADO"];
@@ -144,14 +145,49 @@ namespace Negocio
             }
 
         }
-        public void leerTurno(long id)
+        public Turno leerTurno(long id)
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("select * from TURNOS where IDTURNO= @id AND IDESTADO=1");
+                Turno aux = new Turno();
+                datos.setearConsulta(@"SELECT 
+                                        T.IDTURNO,
+                                        T.IDMEDICO, 
+                                        T.IDPACIENTE, 
+                                        T.IDESP_X_MED,
+                                        T.FECHAHORA,
+                                        T.IDESTADO,
+                                        P.NOMBRE NOMBREP, 
+                                        P.APELLIDO APELLIDOP, 
+                                        P.IDOBRASOCIAL,
+                                        P.NROCARNET, 
+                                        (SELECT  ME.APELLIDO FROM MEDICOS ME WHERE  ME.IDMEDICO = T.IDMEDICO
+                                        ) as APELLIDO, 
+                                        (SELECT  ME.NOMBRE FROM MEDICOS ME WHERE  ME.IDMEDICO = T.IDMEDICO
+                                        ) as NOMBRE, 
+                                        (SELECT  ME.MATRICULA FROM MEDICOS ME WHERE  ME.IDMEDICO = T.IDMEDICO
+                                        ) as MATRICULA, 
+                                        (SELECT  E.NOMBRE FROM ESPECIALIDADES E WHERE E.IDESPECIALIDAD =  EXM.IDESPECIALIDAD 
+                                        ) AS ESPECIAL,
+                                        T.IDESTADO
+                                        FROM TURNOS AS T
+                                        INNER JOIN PACIENTES AS  P ON P.IDPACIENTE = T.IDPACIENTE
+                                        INNER JOIN ESPECIALIDAD_X_MEDICO EXM ON EXM.ID= T.IDESP_X_MED
+                                        WHERE  T.IDTURNO= @id AND T.IDESTADO = 1 AND T.FECHAHORA >= GETDATE() ORDER BY T.FECHAHORA ASC");
                 datos.setearParametro("@id", id);
                 datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+
+                    aux.idTurnos = (long)datos.Lector["IDTURNO"];
+                    aux.idPaciente = (long)datos.Lector["IDPACIENTE"];
+                    aux.idEsp_X_Med = (int)datos.Lector["IDESP_X_MED"];
+                    aux.fechaHora = (DateTime)datos.Lector["FECHAHORA"];
+                    aux.estado = (byte)datos.Lector["IDESTADO"];
+
+                }
+                return aux;
 
             }
             catch (global::System.Exception ex)
@@ -178,9 +214,12 @@ namespace Negocio
                                         IDESPECIALIDAD = @idEspecialidad AND ESTADO = 1");
                 datos.ejecutarLectura();
                 Turno aux = new Turno();
-                aux.idEsp_X_Med= (int)datos.Lector["ID"];
+                while (datos.Lector.Read())
+                {
+                    aux.idEsp_X_Med = (int)datos.Lector["ID"];
+                }
                 return aux.idEsp_X_Med;
-                //idEsp_x_medi.Add(aux);
+               
             }
             catch (global::System.Exception ex)
             {
