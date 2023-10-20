@@ -123,7 +123,8 @@ namespace Negocio
             {
                 datos.setearParametro("@usuario", user);
                 datos.setearParametro("@password", pass);
-                datos.setearConsulta("select * from USUARIOS where USERNAME = @usuario AND PASSWORD=@password");
+                //datos.setearConsulta("select * from USUARIOS where USERNAME = 'eugenio@arevalo.com.ar' AND PASSWORD='QWEQWE");
+                 datos.setearConsulta("select * from USUARIOS where USERNAME = @usuario AND PASSWORD=@password");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
